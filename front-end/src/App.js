@@ -1,15 +1,22 @@
-import './App.css';
+import './App.css'
 
 import HomePage from './components/HomePage'
+import Header from './components/Header'
+
+import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Traveling Grocery</h1>
+    <Router>
+      <div className="App">
+        <Header />
+        <br/>
+        <Route path='Home' component={HomePage} />
         <HomePage/>
-      </header>
-    </div>
+      </div>
+    </Router>
   );
 }
 
