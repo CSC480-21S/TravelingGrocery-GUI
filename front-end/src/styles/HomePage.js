@@ -3,14 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 export default makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        margin: theme.spacing(1),
+        margin: theme.spacing(0),
     },
     userName:{
-        width: '121px',
-        height: '19px',
-        left: '23px',
-        top: '228px',
-
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight:'600',
@@ -27,14 +22,14 @@ export default makeStyles((theme) => ({
         borderRadius: '15px'
     },
     sharedList:{
-
-        top: '12000px',
-
         fontFamily: 'Inter',
         fontStyle: 'normal',
         fontWeight:'600',
         fontSize: '16px',
         lineHeight: '19px',
+    },
+    test:{
+        margin: theme.spacing(3),
     },
     superContainer:{
        

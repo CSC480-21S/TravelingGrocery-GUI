@@ -17,9 +17,9 @@ const HomePage = () => {
 
 
     return (
-        <div>
+      
             <Grid container className={styles.superContainer}  direction= 'column' spacing={4}>
-                <Grid item >
+                <Grid item className={styles.test}>
                     <Typography className={styles.userName}>Hi {userName}</Typography>
                     <Grid container spacing={2}>
                         <Grid item>
@@ -30,11 +30,11 @@ const HomePage = () => {
                                 <AddIcon/>
                             </IconButton>
                         </Grid>
-                    </Grid><br />
+                    </Grid>
 
                 </Grid>
 
-                <Grid item>
+                <Grid item className={styles.test}>
                     <Typography className={styles.sharedList}>Shared List</Typography>
                     <Grid container spacing={2}>
                         <Grid item >
@@ -48,7 +48,7 @@ const HomePage = () => {
                     </Grid><br/>
                 </Grid>
             </Grid>
-        </div>
+       
     )
 }
 

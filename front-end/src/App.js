@@ -12,7 +12,6 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <br/>
         <Route path='Home' component={HomePage} />
         <HomePage/>
       </div>
