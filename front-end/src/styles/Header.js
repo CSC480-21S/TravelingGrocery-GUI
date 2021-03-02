@@ -32,13 +32,15 @@ export default makeStyles((theme) => ({
         textAlign: 'center',
     },
     search: {
+        paddingLeft:'20px',
+        justifyContent:'center',
+        height: '50px',
         width: '100%',
-      background: '#F6F6F6',
-      position: 'relative',
-      border: '1px solid #E8E8E8',
-      boxSizing: 'border-box',
-      borderRadius: '100px',
-        alignSelf: 'center'
+        border: '1px solid #E8E8E8',
+        position: 'relative',
+        background: '#F6F6F6',
+        boxSizing: 'border-box',
+        borderRadius: '100px',
     },
-    
+
 }))
