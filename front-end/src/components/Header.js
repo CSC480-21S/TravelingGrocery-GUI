@@ -4,12 +4,10 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { useState, useEffect } from 'react'
 import { Typography } from '@material-ui/core'
-import { ThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import test from '../images/test.jpg'
 import cat from '../images/cat.png'
 import Button from '@material-ui/core/Button'
-import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import TextField from '@material-ui/core/TextField'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -22,7 +20,7 @@ const Header = () => {
     const styles = makeStyles()
 
     useEffect(() => {
-        console.log(styles)
+      
     })
 
 
