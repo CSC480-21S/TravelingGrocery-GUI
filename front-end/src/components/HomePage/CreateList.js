@@ -1,19 +1,17 @@
 import { React, useState } from 'react'
 import Dialog from '@material-ui/core/Dialog'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
 import FormControl from '@material-ui/core/FormControl'
 import { useDispatch } from 'react-redux'
-import makeStyles from '../styles/CreasteList'
+import makeStyles from '../../styles/CreasteList'
+import { Typography } from '@material-ui/core'
 
-import { create_List } from '../actions/actions'
+import { create_List } from '../../actions/actions'
 
 const CreateList = (props) => {
     const [list, setList] = useState({ name: ' ', items: [] })
@@ -26,7 +24,7 @@ const CreateList = (props) => {
         clearInput()
         onClose(newList)
     }
-    const clearInput = () =>{
+    const clearInput = () => {
         setList({ name: ' ', items: [] })
     }
     const createNewList = async (e) => {
@@ -38,18 +36,28 @@ const CreateList = (props) => {
     return (
         <div>
             <Dialog onClose={handleClose} open={open} className={styles.main}>
-                <DialogActions>
-                    <IconButton>
-                        <CloseIcon></CloseIcon>
+                <DialogActions disableSpacing>
+                    <IconButton className={styles.exitIcon} size="small" onClick={handleClose}>
+                        <CloseIcon ></CloseIcon>
                     </IconButton>
                 </DialogActions>
-                <form className={styles.mainContainer} onSubmit={createNewList}>
+                <DialogContent> <Typography className={styles.title}> Create List </Typography></DialogContent>
+                <form className={`${styles.root} ${styles.mainContainer}`} onSubmit={createNewList}>
                     <FormControl className={styles.formControl}>
-                        <DialogContent>Create List</DialogContent>
-                        <TextField variant='outlined' value={list.name} onChange={(e) => setList({ ...list, name: e.target.value })} placeholder='Enter list name ...'></TextField>
-                        <Button type='submit'>Create New List</Button>
+                        <TextField 
+                            fullWidth 
+                            className={styles.inputText} 
+                            value={list.name} 
+                            onChange={(e) => setList({ ...list, name: e.target.value })}
+                            placeholder="Enter Name"
+                            InputProps={{
+                                disableUnderline: true,
+                            }}
+                        ></TextField>
+                        <Button type='submit' className={styles.submitButton}>Create New List</Button>
                     </FormControl>
                 </form>
+                <DialogActions></DialogActions>
             </Dialog>
         </div>
     )

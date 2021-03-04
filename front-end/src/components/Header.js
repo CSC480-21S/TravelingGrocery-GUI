@@ -13,26 +13,50 @@ import TextField from '@material-ui/core/TextField'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
+import { useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
 
-
     const styles = makeStyles()
+    const location = useLocation()
+    const history = useHistory()
+    const title = useSelector((state) => state.homePage.name)
+    const [userName, setUsername] = useState("Justin")
 
-    useEffect(() => {
-      
-    })
+    const [title2, setTitle2] = useState('')
+
+    const handleBack = () => {
+        if (location.pathname === '/User/Lists/listName') {
+            history.push('/home')
+        }
+    }
+    const handleTitle = () => {
+        if (location.pathname === '/home') {
+            return 'Dashboard'
+        } else if (location.pathname === '/User/Lists/listName') {
+            return title
+        }
+    }
+    //Create a separate component for user's lists
+    //The name of the component as a prop to List
+    //Create a new element in the store that contains the name of the list
+    //Once you have the name you can access it from the header
 
 
     return (
         <div>
             <Grid container spacing={3} className={styles.root}  >
                 <Grid item xs={2} >
-                    <IconButton><ArrowBackIcon/></IconButton>
-                    {/* <Button InputProps={{textTransform: "none"}}><Typography className={styles.item_first}>Back</Typography></Button> */}
+                    {location.pathname === '/home' ? <div></div> : <IconButton onClick={handleBack}><ArrowBackIcon /></IconButton>}
                 </Grid>
                 <Grid item xs={8} >
-                    <Typography className={styles.main}>Dashboard</Typography>
+                    {
+                        location.pathname === '/home' ? <Typography className={styles.main}>Dashboard</Typography> :
+                        location.pathname === '/User/Lists/listName' ? <Typography className={styles.main}>{title}</Typography>:
+                        <div></div>
+                    }
                 </Grid>
                 <Grid item xs={2} >
                     <Button><div className={styles.item_login}><Avatar alt='Test' src={cat} variant='circular' /></div></Button>
@@ -42,18 +66,19 @@ const Header = () => {
                         className={styles.search}
                         color='secondary'
                         placeholder={'Search Items'}
-                        InputProps={{              
+                        InputProps={{
                             disableUnderline: true,
                             startAdornment: (
                                 <InputAdornment position='start'>
                                     <SearchIcon />
                                 </InputAdornment >
                             ),
-                            
+
                         }}
                     />
 
                 </Grid>
+
             </Grid>
 
         </div>

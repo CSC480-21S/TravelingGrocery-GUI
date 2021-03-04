@@ -1,11 +1,13 @@
+//Style
 import './App.css'
-
-import HomePage from './components/HomePage'
+//Components
+import HomePage from './components/HomePage/HomePage'
 import Header from './components/Header'
+import Lists from './components/User/Lists'
 import { fetchLists } from './actions/actions'
-
+//Libraries
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 const App = () => {
@@ -18,11 +20,13 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <Route path='Home' component={HomePage} />
-        <HomePage />
-      </div>
+      <Header />
+      <Route exact path='/'>
+        <Redirect to='/home' />
+      </Route>
+      <Route path='/home' component={HomePage} />
+      <Route path='/User/Lists/listName' component={Lists}/>
+
     </Router>
   );
 }

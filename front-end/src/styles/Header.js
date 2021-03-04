@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
         height: '50px',
         width: '100%',
         border: '1px solid #E8E8E8',
-        position: 'relative',
+        
         background: '#F6F6F6',
         boxSizing: 'border-box',
         borderRadius: '100px',
