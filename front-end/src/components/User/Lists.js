@@ -15,8 +15,12 @@ import ShareIcon from '@material-ui/icons/Share'
 import AddIcon from '@material-ui/icons/Add'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 //Components
 import makeStyles from '../../styles/Lists'
+import List from './List'
 import test from '../../images/test.jpg'
 import cat from '../../images/cat.png'
 
@@ -24,51 +28,24 @@ const Lists = () => {
     const styles = makeStyles()
     const list = useSelector((state) => state.homePage)
     const [count, setCount] = useState(0)
+
+    //======================================================================
+
     return (
         <>
             <div>
-                <Grid container spacing={3} className={styles.user}>
-                    <Grid item xs={6}>
+                <Grid container className={styles.user}>
+                    <Grid item xs={3} >
                         <Typography class={styles.userName}> Hi Justin</Typography>
                     </Grid>
-                    <Grid item xs={6} className={styles.buttons}>
-                        <IconButton> <ShareIcon /> </IconButton>
-                        <Button> Add</Button>
+                    <Grid item xs={9} className={styles.buttons}>
+                        <Button fontSize='small' startIcon={<ShareIcon />} className={styles.topIconButton}>Share</Button>
+                        <Button fontSize='small' startIcon={<AddIcon />} className={styles.topIconButton2}>Add Item</Button>
                     </Grid>
                 </Grid>
             </div>
             <div>
-                <Card className={styles.root}>
-                    <Grid container spacing={1}>
-                        <Grid item xs={1} className={styles.itemImageContainer}>
-                            <Avatar  src={test} variant='square' className={styles.itemImage} />
-                        </Grid>
-
-                        <Grid item xs={8}>
-                            <div className={styles.details}>
-                                <CardContent>
-                                    <Typography className={styles.itemName}>Item Name</Typography>
-                                    <Typography className={styles.itemType}>Item Type</Typography>
-                                </CardContent>
-                                <CardContent>
-                                    <Typography className={styles.itemLocation}>Item location</Typography>
-                                </CardContent>
-                            </div>
-                        </Grid>
-
-                        <Grid item >
-                            <div className={styles.info}>
-                                <CardContent >
-                                    <ButtonGroup>
-                                        <Button className={styles.minus} onClick={() => count > 0 ? setCount(count - 1) : count}>-</Button>
-                                        <Button className={styles.count}>{count}</Button>
-                                        <Button className={styles.plus} onClick={() => setCount(count + 1)}>+</Button>
-                                    </ButtonGroup>
-                                </CardContent>
-                            </div>
-                        </Grid>
-                    </Grid>
-                </Card>
+                <List list={list}/>
             </div>
         </>
     )
