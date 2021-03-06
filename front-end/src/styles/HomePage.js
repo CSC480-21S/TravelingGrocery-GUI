@@ -35,6 +35,7 @@ export default makeStyles((theme) => ({
        
     },
     regularButton:{
+        textTransform: 'none',
         width:'100px',
         height: '106px',
         left: '23px',
