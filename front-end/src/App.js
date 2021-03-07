@@ -2,13 +2,13 @@
 import './App.css'
 //Components
 import HomePage from './components/HomePage/HomePage'
-import Header from './components/Header'
-import Lists from './components/User/Lists'
+import Header from './components/Header/Header'
+import Lists from './components/Lists/Lists'
 import { fetchLists } from './actions/actions'
-import Login from './components/Login/Login'
+import Login from './components/Login_SingOut/Login'
 //Libraries
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 const App = () => {
@@ -21,13 +21,22 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
-      <Route exact path='/'>
-        <Redirect to='/home' />
-      </Route>
-      <Route path='/home' component={HomePage} />
-      <Route path='/User/Lists/listName' component={Lists}/>
-      <Route path='/LogIn' component={Login}/>
+      <Switch>
+        <Route exact path='/'>
+          <Redirect to='/home' />
+        </Route>
+        <Route path='/home'>
+          <Header />
+          <HomePage />
+        </Route>
+        <Route path='/User/Lists/listName' >
+          <Header />
+          <Lists />
+        </Route>
+        <Route path='/LogIn'>
+          <Login />
+        </Route>
+      </Switch>
     </Router>
   );
 }

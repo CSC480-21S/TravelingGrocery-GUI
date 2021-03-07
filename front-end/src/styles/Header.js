@@ -7,7 +7,6 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
         alignContent: 'center',
     },
-
     paper: {
         padding: theme.spacing(1),
         color: theme.palette.text.secondary,
@@ -31,13 +30,15 @@ export default makeStyles((theme) => ({
         lineHeight: '36px',
         textAlign: 'center',
     },
+    item_login:{
+        
+    },
     search: {
         paddingLeft:'20px',
         justifyContent:'center',
         height: '50px',
         width: '100%',
         border: '1px solid #E8E8E8',
-        
         background: '#F6F6F6',
         boxSizing: 'border-box',
         borderRadius: '100px',

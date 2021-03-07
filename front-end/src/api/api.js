@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://820e65afc98b.ngrok.io/lists'   //first run json server,
+const url = 'http://localhost:5050/lists'   //first run json server,
                                                     //run ngrok http 5050, 
                                                     //change the url
 

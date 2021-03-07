@@ -4,20 +4,31 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import reducers from './reducers'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
-
-
+//Justin: Still have to figure out how this redux-persist Works
+//Redux-persist allows to store the redux store in local storage and then retrieve the information later
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+const persistedReducer = persistReducer(persistConfig, reducers)
+const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)))
+const persistor = persistStore(store)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

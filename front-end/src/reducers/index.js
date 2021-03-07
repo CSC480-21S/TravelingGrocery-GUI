@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import createList from './createList'
-import homePage from './homePage'
+import createList from './reducer/createList'
+import homePage from './reducer/homePage'
+import login from './reducer/login'
 
-export default combineReducers({ createList, homePage })
+export default combineReducers({ createList, homePage, login})

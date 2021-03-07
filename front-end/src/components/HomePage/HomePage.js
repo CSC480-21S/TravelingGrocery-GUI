@@ -1,5 +1,5 @@
 //Libraries
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
@@ -15,50 +15,66 @@ import CreateList from './CreateList'
 import {sendList} from '../../actions/actions'
 
 
+
 const HomePage = () => {
     const dispatch = useDispatch()
     const styles = makeStyles()
     const history = useHistory()
-    const [userName, setUsername] = useState("Justin")
-    const [newListName, setNewListName] = useState()
+
+    const lists = useSelector((state) => state.createList)  // gets the lists from server
+    const profile = useSelector((state) => state.login) //gets profile info from Google login
+    console.log('Profile from HomePage:' + profile)
+    //console.log("From HomePage: " + lists)
+
     const [open, setOpen] = useState(false)
-
-
-    const lists = useSelector((state) => state.createList)
-    console.log("From HomePage: " + lists)
+    const [user_Profile, set_User_Profile] = useState(profile)
+    console.log("User Profile: " + user_Profile)
 
     const handleClickOpen = () => {
         setOpen(true)
     }
-    const handleClose = (list_name) => {
+    const handleClose = () => {
         setOpen(false)
-        setNewListName(list_name)
     }
     const handleList = (list) => {
         dispatch(sendList(list))
         history.push('/User/Lists/listName')
     }
 
+    
+    //Load Profile information from localstorage
+    useEffect(() => {
+        const data = localStorage.getItem("profile")
+        if(data){
+            set_User_Profile(JSON.parse(data))
+        }
+    },[])
+    //Stores the Profile information in localstorage
+    useEffect(() =>{
+            localStorage.setItem("profile", JSON.stringify(profile))
+    })
+
     return (
         <Grid container className={styles.superContainer} direction='column' spacing={4}>
+            {/* User Regular Lists */}
             <Grid item className={styles.test}>
-                <Typography className={styles.userName}>Hi {userName}</Typography>
+                <Typography className={styles.userName}>Hi {profile.profileObj.name}</Typography>
                 <Grid container spacing={2}>
                     {lists.map((list) => (
-                        <Grid item>
+                        <Grid item key={list.id}>
                             <Button className={styles.regularButton} onClick={()=>handleList(list)}>{list.name}</Button>
                         </Grid>
                     ))}
-                    <Grid item>
+                    <Grid item> {/* Add List Button */}
                         <IconButton className={styles.iconButton} onClick={handleClickOpen}> {/*This is the PopUp menu*/}
                             <AddIcon />
                         </IconButton>
-                        <CreateList newList={newListName} open={open} onClose={handleClose} />
+                        <CreateList  open={open} onClose={handleClose} />
                     </Grid>
                 </Grid>
 
             </Grid>
-
+            {/* Shared Item List */}
             <Grid item className={styles.test}>
                 <Typography className={styles.sharedList}>Shared List</Typography>
                 <Grid container spacing={2}>

@@ -18,11 +18,11 @@ const CreateList = (props) => {
     const styles = makeStyles()
     const dispatch = useDispatch()
 
-    const { onClose, newList, open } = props
+    const { onClose, open } = props
 
     const handleClose = () => {
         clearInput()
-        onClose(newList)
+        onClose()
     }
     const clearInput = () => {
         setList({ name: ' ', items: [] })
