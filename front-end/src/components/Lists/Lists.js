@@ -1,54 +1,73 @@
-import { React, useState } from 'react'
+import React from "react";
+import { useEffect, useState } from "react";
 //Redux
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 //Material UI
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Typography from '@material-ui/core/Typography'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import ButtonGroup from "@material-ui/core/ButtonGroup"
-import Grid from '@material-ui/core/Grid'
-import ShareIcon from '@material-ui/icons/Share'
-import AddIcon from '@material-ui/icons/Add'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import ShareIcon from "@material-ui/icons/Share";
+import AddIcon from "@material-ui/icons/Add";
 //Components
-import makeStyles from '../../styles/Lists'
-import List from './List'
-import test from '../../images/test.jpg'
-import cat from '../../images/cat.png'
+import makeStyles from "./Lists_styles";
+import List from "./List/List";
+//Actions
+import { fecth_list_items } from "../../actions/actions";
 
 const Lists = () => {
-    const styles = makeStyles()
-    const list = useSelector((state) => state.homePage)
-    const [count, setCount] = useState(0)
+	const styles = makeStyles();
+	const items = useSelector((state) => state.lists); //get items
+	const list_Name = useSelector((state) => state.homePage.name); //gets name of the list
+	const user_email = useSelector((state) => state.login.profileObj.email); // gets the email of the user
+	const user_name = useSelector((state) => state.login.profileObj.name);
+	const dispatch = useDispatch(); //Dispatch an action to the reducers
 
-    //======================================================================
+	//Do not use setState when dealing with useSelector
 
-    return (
-        <>
-            <div>
-                <Grid container className={styles.user}>
-                    <Grid item xs={3} >
-                        <Typography class={styles.userName}> Hi Justin</Typography>
-                    </Grid>
-                    <Grid item xs={9} className={styles.buttons}>
-                        <Button fontSize='small' startIcon={<ShareIcon />} className={styles.topIconButton}>Share</Button>
-                        <Button fontSize='small' startIcon={<AddIcon />} className={styles.topIconButton2}>Add Item</Button>
-                    </Grid>
-                </Grid>
-            </div>
-            <div>
-                <List list={list}/>
-            </div>
-        </>
-    )
-}
+	console.log(`List from Lists Component: \n ${JSON.stringify(list_Name)}`);
+	//console.log("Selector: " + JSON.stringify(selector));
+	console.log(`Items from Lists Component: \n ${JSON.stringify(items)}`);
 
-export default Lists
+	useEffect(() => {
+		dispatch(fecth_list_items(user_email, list_Name));
+		/* 	return function cleanup() {
+			setItems("");
+		}; */
+	}, [dispatch]);
+	//======================================================================
+
+	return (
+		<>
+			<div>
+				<Grid container className={styles.top_container}>
+					<Grid item xs={3}>
+						<Typography className={styles.userName}> Hi {user_name}</Typography>
+					</Grid>
+					<Grid item xs={9} className={styles.buttons}>
+						<Button
+							fontSize="small"
+							startIcon={<ShareIcon />}
+							className={styles.topIconButton1}
+						>
+							Share
+						</Button>
+						<Button
+							fontSize="small"
+							startIcon={<AddIcon />}
+							className={styles.topIconButton2}
+						>
+							Delete List
+						</Button>
+					</Grid>
+				</Grid>
+			</div>
+			<div>
+				{items.map((item) => (
+					<List item={item} />
+				))}
+			</div>
+		</>
+	);
+};
+
+export default Lists;

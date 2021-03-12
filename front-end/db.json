@@ -1,39 +1,91 @@
 {
-  "lists": [
-    {
-      "name": " My First List",
-      "items": [],
-      "id": 1
-    },
-    {
-      "name": " Second List",
-      "items": [],
-      "id": 2
-    },
-    {
-      "name": " d",
-      "items": [],
-      "id": 3
-    },
-    {
-      "name": " das",
-      "items": [],
-      "id": 4
-    },
-    {
-      "name": " asd",
-      "items": [],
-      "id": 5
-    },
-    {
-      "name": " aaa",
-      "items": [],
-      "id": 6
-    },
-    {
-      "name": " aaa",
-      "items": [],
-      "id": 7
-    }
-  ]
+	"users": [
+		{
+			"id": "justincabrera854@gmail.com",
+			"email": "justincabrera854@gmail.com"
+		},
+		{
+			"id": "jcabrera@oswego.edu",
+			"email": "jcabrera@oswego.edu"
+		}
+	],
+	"lists": [
+		{
+			"id": "Groceries",
+			"userId": "justincabrera854@gmail.com",
+			"name": "Groceries"
+		},
+		{
+			"id": "Consoles",
+			"userId": "justincabrera854@gmail.com",
+			"name": "Consoles"
+		},
+		{
+			"id": "Games",
+			"userId": "justincabrera854@gmail.com",
+			"name": "Games"
+		},
+		{
+			"id": "First List",
+			"userId": "jcabrera@oswego.edu",
+			"name": "First List"
+		},
+		{
+			"name": "test",
+			"userId": "justincabrera854@gmail.com",
+			"id": "test"
+		}
+	],
+	"items": [
+		{
+			"id": 1,
+			"listId": "Groceries",
+			"name": "Apple"
+		},
+		{
+			"id": 2,
+			"listId": "Groceries",
+			"name": "Banana"
+		},
+		{
+			"id": 3,
+			"listId": "Groceries",
+			"name": "Coffee"
+		},
+		{
+			"id": 4,
+			"listId": "Consoles",
+			"name": "PS5"
+		},
+		{
+			"id": 5,
+			"listId": "Consoles",
+			"name": "Nintendo Switch"
+		},
+		{
+			"id": 6,
+			"listId": "Consoles",
+			"name": "Xbox Series X"
+		},
+		{
+			"id": 7,
+			"listId": "Games",
+			"name": "Valorant"
+		},
+		{
+			"id": 8,
+			"listId": "Games",
+			"name": "RuneScape"
+		},
+		{
+			"id": 9,
+			"listId": "Games",
+			"name": "Celeste"
+		},
+		{
+			"id": 10,
+			"listId": "test",
+			"name": "My list"
+		}
+	]
 }

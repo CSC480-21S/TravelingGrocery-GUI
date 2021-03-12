@@ -1,44 +1,44 @@
 //Style
-import './App.css'
+
 //Components
-import HomePage from './components/HomePage/HomePage'
-import Header from './components/Header/Header'
-import Lists from './components/Lists/Lists'
-import { fetchLists } from './actions/actions'
-import Login from './components/Login_SingOut/Login'
+import HomePage from "./components/HomePage/HomePage";
+import Header from "./components/Header/Header";
+import Lists from "./components/Lists/Lists";
+import Login from "./components/Login_SingOut/Login";
+import Navbar from "./components/Navbar/Navbar";
 //Libraries
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import {
+	BrowserRouter as Router,
+	Route,
+	Redirect,
+	Switch,
+} from "react-router-dom";
 
 const App = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log("Hello useEffect App")
-    dispatch(fetchLists())
-  }, [dispatch])
-
-  return (
-    <Router>
-      <Switch>
-        <Route exact path='/'>
-          <Redirect to='/home' />
-        </Route>
-        <Route path='/home'>
-          <Header />
-          <HomePage />
-        </Route>
-        <Route path='/User/Lists/listName' >
-          <Header />
-          <Lists />
-        </Route>
-        <Route path='/LogIn'>
-          <Login />
-        </Route>
-      </Switch>
-    </Router>
-  );
-}
+	return (
+		<Router>
+			<Switch>
+				<Route exact path="/">
+					<Redirect to="/login" />
+					<Header />
+					<Lists />
+				</Route>
+				<Route path="/home">
+					<Navbar />
+					<Header />
+					<HomePage />
+				</Route>
+				<Route path="/User/Lists/listName">
+					<Navbar />
+					<Header />
+					<Lists />
+				</Route>
+				<Route path="/login">
+					<Login />
+				</Route>
+			</Switch>
+		</Router>
+	);
+};
 
 export default App;

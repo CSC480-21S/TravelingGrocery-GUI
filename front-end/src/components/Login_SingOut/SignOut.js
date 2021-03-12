@@ -7,11 +7,12 @@ export const SignOut = () => {
         console.log(`FUCKING SUCESS`)
         alert(res)
     }
-    const onFailure = () => {
-        console.log('Error')
+    const onFailure = (res) => {
+        console.log('Error: ' +  res.message)
     }
     const {signOut} = useGoogleLogout({
         client_id: client_id,
+        isSignedIn: true,
         onLogoutSuccess: onLogoutSuccess,
         onFailure: onFailure,
     })
