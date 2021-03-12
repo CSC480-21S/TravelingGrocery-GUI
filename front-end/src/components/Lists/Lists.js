@@ -11,8 +11,10 @@ import AddIcon from "@material-ui/icons/Add";
 //Components
 import makeStyles from "./Lists_styles";
 import List from "./List/List";
+import Add_item from "./Add_item/Add_item";
 //Actions
 import { fecth_list_items } from "../../actions/actions";
+import { fetch_store_items } from "../../actions/actions";
 
 const Lists = () => {
 	const styles = makeStyles();
@@ -24,7 +26,7 @@ const Lists = () => {
 
 	//Do not use setState when dealing with useSelector
 
-	console.log(`List from Lists Component: \n ${JSON.stringify(list_Name)}`);
+	//console.log(`List from Lists Component: \n ${JSON.stringify(list_Name)}`);
 	//console.log("Selector: " + JSON.stringify(selector));
 	console.log(`Items from Lists Component: \n ${JSON.stringify(items)}`);
 
@@ -34,6 +36,10 @@ const Lists = () => {
 			setItems("");
 		}; */
 	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(fetch_store_items());
+	}, []);
 	//======================================================================
 
 	return (
@@ -43,6 +49,7 @@ const Lists = () => {
 					<Grid item xs={3}>
 						<Typography className={styles.userName}> Hi {user_name}</Typography>
 					</Grid>
+
 					<Grid item xs={9} className={styles.buttons}>
 						<Button
 							fontSize="small"
@@ -60,6 +67,9 @@ const Lists = () => {
 						</Button>
 					</Grid>
 				</Grid>
+			</div>
+			<div>
+				<Add_item />
 			</div>
 			<div>
 				{items.map((item) => (

@@ -31,19 +31,31 @@ const Options = ({ setting_boolean, set_Setting_bolean }) => {
 
 	return (
 		<div>
-			<Button className={makeStyles.note_add} onClick={handle_note_button}>
+			<Button
+				classes={{ root: styles.root, label: styles.label }}
+				onClick={handle_note_button}
+			>
 				<NoteAddOutlinedIcon />
 				Note
 			</Button>
-			<Button onClick={handle_delete_button}>
+			<Button
+				classes={{ root: styles.root, label: styles.label }}
+				onClick={handle_delete_button}
+			>
 				<DeleteSweepOutlinedIcon />
 				Delete
 			</Button>
-			<Button onClick={handle_move_button}>
+			<Button
+				classes={{ root: styles.root, label: styles.label }}
+				onClick={handle_move_button}
+			>
 				<LibraryBooksOutlinedIcon />
 				Move
 			</Button>
-			<Button onClick={handle_close_button}>
+			<Button
+				classes={{ root: styles.root, label: styles.label }}
+				onClick={handle_close_button}
+			>
 				<ForwardIcon />
 				Close
 			</Button>

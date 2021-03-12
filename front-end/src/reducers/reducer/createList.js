@@ -6,7 +6,7 @@ export default (lists = [], action) => {
 		case CREATE:
 			return [...lists, action.payload];
 		case FETCH_ALL: //get the lists of users
-			console.log("Reducer(CreateList) Payload: " + action.payload);
+			//console.log("Reducer(CreateList) Payload: " + action.payload);
 			return action.payload;
 		default:
 			return lists;

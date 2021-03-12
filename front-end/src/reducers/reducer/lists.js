@@ -1,4 +1,4 @@
-import { FETCH_LIST_ITEMS } from "../../actions/actionTypes";
+import { FETCH_LIST_ITEMS, FETCH_STORE_ITEMS } from "../../actions/actionTypes";
 
 export default (lists = [], action) => {
 	switch (action.type) {

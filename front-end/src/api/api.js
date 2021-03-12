@@ -9,3 +9,4 @@ export const createList = (newList, user_id) =>
 	axios.post(`${url}/users/${user_id}/lists`, newList);
 export const fetch_items = (user_id, list_Id) =>
 	axios.get(`${url}/users/${user_id}/items?listId=${list_Id}`);
+export const fetch_store_items = () => axios.get(`${url}/items_list`);

@@ -48,3 +48,12 @@ export const fecth_list_items = (user_id, list_id) => async (dispatch) => {
 		console.log(error.message);
 	}
 };
+export const fetch_store_items = () => async (dispatch) => {
+	try {
+		const { data } = await api.fetch_store_items();
+		//console.log(`Store Items from Actions: ${JSON.stringify(data)}`);
+		dispatch({ type: TYPES.FETCH_STORE_ITEMS, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
+};

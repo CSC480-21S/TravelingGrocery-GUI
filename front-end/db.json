@@ -34,6 +34,11 @@
 			"name": "test",
 			"userId": "justincabrera854@gmail.com",
 			"id": "test"
+		},
+		{
+			"name": "fasdf",
+			"userId": "jcabrera@oswego.edu",
+			"id": "W5w6TVL"
 		}
 	],
 	"items": [
@@ -86,6 +91,23 @@
 			"id": 10,
 			"listId": "test",
 			"name": "My list"
+		}
+	],
+	"items_list": [
+		{
+			"id": 1,
+			"name": "Meat",
+			"type": "Category 1"
+		},
+		{
+			"id": 2,
+			"name": "Pasta",
+			"type": "Category 2"
+		},
+		{
+			"id": 3,
+			"name": "Frozen Foods",
+			"type": "Category 3"
 		}
 	]
 }
