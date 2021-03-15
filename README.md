@@ -1,4 +1,6 @@
 # Jeff\'s Repo
+Each folder is a entirely different ReactJS project that I was working on.
+
 1. `w3-hello-world`
 	* I followed tutorial at https://youtu.be/w7ejDZ8SWv8. I did this to gain experience on ReactJS.
 
