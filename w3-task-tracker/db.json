@@ -1,0 +1,46 @@
+{
+  "tasks": [
+    {
+      "text": "Customer1",
+      "day": "Monday 2:30pm",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "Customer2",
+      "day": "Tuesday 3:30pm",
+      "reminder": true,
+      "id": 2
+    },
+    {
+      "text": "Customer3",
+      "day": "Wednesday 4:30pm",
+      "reminder": false,
+      "id": 3
+    },
+    {
+      "text": "Apple",
+      "day": "",
+      "reminder": false,
+      "id": 4
+    },
+    {
+      "text": "Banana",
+      "day": "",
+      "reminder": false,
+      "id": 5
+    },
+    {
+      "text": "Cherry",
+      "day": "",
+      "reminder": true,
+      "id": 6
+    },
+    {
+      "text": "Customer4",
+      "day": "MOnday",
+      "reminder": true,
+      "id": 7
+    }
+  ]
+}
