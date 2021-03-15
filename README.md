@@ -1,5 +1,14 @@
 # Jeff\'s Repo
-Each folder is a entirely different ReactJS project that I was working on.
+Each folder is a different ReactJS project that I was working on.
+
+## How to run
+1. Open terminal, change directory to one of the folders listed, ex: `w3-hello-world`
+2. Run `npm install`
+3. Open a second terminal, change directory to same one.
+4. In second terminal, type `json-server -p 8000 data/db.json`. This will start json-server on port 8000.
+5. Type `npm start` in first terminal.
+
+## Folder List
 
 1. `w3-hello-world`
 	* I followed tutorial at https://youtu.be/w7ejDZ8SWv8. I did this to gain experience on ReactJS.
