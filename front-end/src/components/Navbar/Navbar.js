@@ -13,7 +13,7 @@ const Navbar = () => {
 			<div className="leftSide" id={showLinks ? "hidden" : ""}>
 				{/* If showLinks is true, set id to "hidden" else set to "" */}
 				<div className="links" id={showLinks ? "hidden" : ""}>
-					<Link to="/dashboard" onClick={() => setShowLinks(!showLinks)}>
+					<Link to="/home" onClick={() => setShowLinks(!showLinks)}>
 						Dashboard
 					</Link>
 					<Link to="/sharelist" onClick={() => setShowLinks(!showLinks)}>

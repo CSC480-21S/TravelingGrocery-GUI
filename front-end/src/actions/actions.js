@@ -38,7 +38,7 @@ export const send_Google_User_info = (profile) => (dispatch) => {
 		console.log(error.message);
 	}
 };
-//Fecth items of a list
+//Fetch items of a list
 export const fecth_list_items = (user_id, list_id) => async (dispatch) => {
 	try {
 		const { data } = await api.fetch_items(user_id, list_id);
@@ -48,11 +48,20 @@ export const fecth_list_items = (user_id, list_id) => async (dispatch) => {
 		console.log(error.message);
 	}
 };
+//Fetch Store items
 export const fetch_store_items = () => async (dispatch) => {
 	try {
 		const { data } = await api.fetch_store_items();
 		//console.log(`Store Items from Actions: ${JSON.stringify(data)}`);
 		dispatch({ type: TYPES.FETCH_STORE_ITEMS, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+//Set Global Active List
+export const set_active_list = (list) => (dispatch) => {
+	try {
+		dispatch({ type: TYPES.SET_ACTIVE_LIST, payload: list });
 	} catch (error) {
 		console.log(error.message);
 	}

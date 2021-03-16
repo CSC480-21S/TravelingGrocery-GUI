@@ -12,6 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import makeStyles from "./Lists_styles";
 import List from "./List/List";
 import Add_item from "./Add_item/Add_item";
+import Start_Shooping from "./Start_Shooping/Start_Shooping";
 //Actions
 import { fecth_list_items } from "../../actions/actions";
 import { fetch_store_items } from "../../actions/actions";
@@ -22,19 +23,23 @@ const Lists = () => {
 	const list_Name = useSelector((state) => state.homePage.name); //gets name of the list
 	const user_email = useSelector((state) => state.login.profileObj.email); // gets the email of the user
 	const user_name = useSelector((state) => state.login.profileObj.name);
+	const [bol, setBol] = useState(false);
 	const dispatch = useDispatch(); //Dispatch an action to the reducers
 
 	//Do not use setState when dealing with useSelector
 
 	//console.log(`List from Lists Component: \n ${JSON.stringify(list_Name)}`);
 	//console.log("Selector: " + JSON.stringify(selector));
-	console.log(`Items from Lists Component: \n ${JSON.stringify(items)}`);
+	//console.log(`Items from Lists Component: \n ${JSON.stringify(items)}`);
 
 	useEffect(() => {
 		dispatch(fecth_list_items(user_email, list_Name));
 		/* 	return function cleanup() {
 			setItems("");
 		}; */
+		return () => {
+			dispatch(fecth_list_items(user_email, list_Name));
+		};
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -69,12 +74,15 @@ const Lists = () => {
 				</Grid>
 			</div>
 			<div>
-				<Add_item />
+				<Add_item setbol={setBol} />
 			</div>
 			<div>
 				{items.map((item) => (
 					<List item={item} />
 				))}
+			</div>
+			<div>
+				<Start_Shooping />
 			</div>
 		</>
 	);

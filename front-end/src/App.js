@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Lists from "./components/Lists/Lists";
 import Login from "./components/Login_SingOut/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Items from "./components/Items/Items";
 //Libraries
 import {
 	BrowserRouter as Router,
@@ -35,6 +36,11 @@ const App = () => {
 				</Route>
 				<Route path="/login">
 					<Login />
+				</Route>
+				<Route path="/items">
+					<Navbar />
+					<Header />
+					<Items />
 				</Route>
 			</Switch>
 		</Router>

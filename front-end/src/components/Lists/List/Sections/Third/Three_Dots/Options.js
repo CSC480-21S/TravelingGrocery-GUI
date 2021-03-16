@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Swiper from "swiper";
 //Material UI
 import Button from "@material-ui/core/Button";
@@ -10,49 +10,54 @@ import LibraryBooksOutlinedIcon from "@material-ui/icons/LibraryBooksOutlined";
 
 //Local Components
 import makeStyles from "./Options_styles";
+import Delete_Item from "./Delete/Delete_Item";
 
-const Options = ({ setting_boolean, set_Setting_bolean }) => {
+const Options = ({ set_Setting_bolean, item_id }) => {
 	const styles = makeStyles();
+	const [onDelete, setOnDelete] = useState(false); //Boolean to render dialog box
 
-	const handle_note_button = () => {
-		set_Setting_bolean(!setting_boolean);
-	};
+	const handle_note_button = () => {};
 
 	const handle_delete_button = () => {
-		set_Setting_bolean(!setting_boolean);
+		setOnDelete(true);
 	};
 
-	const handle_move_button = () => {
-		set_Setting_bolean(!setting_boolean);
-	};
+	const handle_move_button = () => {};
 	const handle_close_button = () => {
-		set_Setting_bolean(!setting_boolean);
+		set_Setting_bolean(true);
 	};
 
 	return (
 		<div>
-			<Button
+			{/* When onDelete is true a dialog box will render */}
+			<Delete_Item
+				onDelete={onDelete}
+				setOnDelete={setOnDelete}
+				set_Setting_bolean={set_Setting_bolean}
+				item_id={item_id}
+			/>
+			<Button //Note Button
 				classes={{ root: styles.root, label: styles.label }}
 				onClick={handle_note_button}
 			>
 				<NoteAddOutlinedIcon />
 				Note
 			</Button>
-			<Button
+			<Button //Delete Item Button
 				classes={{ root: styles.root, label: styles.label }}
 				onClick={handle_delete_button}
 			>
 				<DeleteSweepOutlinedIcon />
 				Delete
 			</Button>
-			<Button
+			<Button //Move Item Button
 				classes={{ root: styles.root, label: styles.label }}
 				onClick={handle_move_button}
 			>
 				<LibraryBooksOutlinedIcon />
 				Move
 			</Button>
-			<Button
+			<Button //Close  button
 				classes={{ root: styles.root, label: styles.label }}
 				onClick={handle_close_button}
 			>

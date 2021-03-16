@@ -1,8 +1,6 @@
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import TextField from "@material-ui/core/TextField";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 //hooks
@@ -33,9 +31,7 @@ const Header = () => {
 		setOpen(false);
 	};
 	const handleBack = () => {
-		if (location.pathname === "/User/Lists/listName") {
-			history.push("/home");
-		}
+		history.goBack();
 	};
 
 	//Create a separate component for user's lists
@@ -49,12 +45,13 @@ const Header = () => {
 				<Grid item xs={2}>
 					{" "}
 					{/* Back Button */}
-					{location.pathname === "/home" ? (
-						<div></div>
-					) : (
+					{location.pathname === "/User/Lists/listName" ||
+					location.pathname === "/items" ? (
 						<IconButton onClick={handleBack}>
 							<ArrowBackIcon />
 						</IconButton>
+					) : (
+						<div></div>
 					)}
 				</Grid>
 				<Grid item xs={7}>
@@ -64,9 +61,9 @@ const Header = () => {
 						<Typography className={styles.main}>Dashboard</Typography>
 					) : location.pathname === "/User/Lists/listName" ? (
 						<Typography className={styles.main}>{title}</Typography>
-					) : (
-						<div></div>
-					)}
+					) : location.pathname === "/items" ? (
+						<Typography className={styles.main}>Items</Typography>
+					) : null}
 				</Grid>
 				<Grid item xs={3}>
 					{" "}
