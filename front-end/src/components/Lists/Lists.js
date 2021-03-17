@@ -38,6 +38,7 @@ const Lists = () => {
 			setItems("");
 		}; */
 		return () => {
+			//Update the list of item when the componenet disassembles
 			dispatch(fecth_list_items(user_email, list_Name));
 		};
 	}, [dispatch]);

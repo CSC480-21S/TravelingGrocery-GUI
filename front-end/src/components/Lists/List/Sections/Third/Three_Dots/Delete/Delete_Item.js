@@ -6,7 +6,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router";
 //local Imports
 import { delete_item } from "../../../../../../../api/api";
 const Delete_Item = ({
@@ -14,9 +13,8 @@ const Delete_Item = ({
 	setOnDelete,
 	set_Setting_bolean,
 	item_id,
+	setOnConfirmation,
 }) => {
-	const history = useHistory();
-
 	const handleClose = () => {
 		setOnDelete(false);
 	};
@@ -30,11 +28,12 @@ const Delete_Item = ({
 		await delete_item(item_id);
 		setOnDelete(false);
 		set_Setting_bolean(true);
+		setOnConfirmation(true);
 		window.location.reload(false);
 	};
 	return (
 		<div>
-			<Dialog open={onDelete}>
+			<Dialog onClose={handleClose} open={onDelete}>
 				<div>
 					<div>
 						<DialogActions>

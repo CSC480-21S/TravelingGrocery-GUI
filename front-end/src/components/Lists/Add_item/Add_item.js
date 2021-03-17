@@ -16,6 +16,7 @@ const Add_item = ({ setbol }) => {
 				className={styles.button}
 				onClick={() => {
 					setbol(true);
+					//Send the user to the Items(Store Items) Component
 					history.push("/items");
 				}}
 			>

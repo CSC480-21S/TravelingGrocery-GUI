@@ -10,10 +10,10 @@ import makeStyles from "./Third_Section_List_styles";
 
 const Third_Section_List = ({ item }) => {
 	const styles = makeStyles();
-	const [count, setCount] = useState(0); //I need listname, item.name, etc
+	const [count, setCount] = useState(1); //I need listname, item.name, etc
 	const user_id = useSelector((state) => state.login.profileObj.email);
 	const active_list = useSelector((state) => state.homePage.name);
-	const new_Item = { listId: active_list, name: item.name, count: 1 };
+	const new_Item = { listId: active_list, name: item.name, count: count };
 
 	const handle_Add_item = () => {
 		add_item_to_list(user_id, new_Item);
