@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Aisles: Navigation</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+            margin: 0
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        #rectangle {
+            width: 100%;
+            height: 100px;
+            background: #fff;
+            position: relative;
+            top: 0;
+            left: 0;
+            box-shadow: 0px 5px 5px -5px #222258;
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .prev, .next, .text {
+                font-size: 11px
+            }
+        }
+
+        <style >
+
+        .navHeader {
+            border: 2px solid black;
+            text-align: center;
+            color: #222258;
+            padding: 10px;
+        }
+
+        .exitButton {
+            text-align: right;
+            contain: size;
+            /*color: black;
+            border: 2px solid black;
+            padding: 10px;*/
+        }
+
+        .itemBox {
+            border: 2px solid black;
+            padding: 30px;
+            margin: 50px;
+        }
+
+        .startShopping {
+            text-align: center;
+            background-color: #222258;
+            color: white;
+            margin: 0 auto;
+            display: block;
+            border-left-width: 0px;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            border-radius: 15px;
+            font-size: x-large;
+            cursor: pointer;
+            /*margin-bottom: 100px;*/
+        }
+
+        .nextItem {
+            margin: 0 auto;
+            background-color: #222258;
+            color: white;
+            padding: 30px;
+            border-left-width: 0px;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            border-radius: 15px;
+            font-size: x-large;
+            cursor: pointer;
+            /*visibility: hidden;*/
+            /*margin-bottom: 100px;*/
+        }
+
+        .backItem {
+            margin: 0 auto;
+            /*display: inline-block;*/
+            color: black;
+            /*border: 2px solid black;*/
+            padding: 30px;
+
+            border-left-width: 0px;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width:0px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            border-radius: 15px;
+            font-size: x-large;
+            cursor: pointer;
+
+            /*visibility: hidden;*/
+            /*margin-bottom: 100px;*/
+        }
+        .itemStock {
+            color: gray;
+            font-size: 10px;
+        }
+        .itemLocation {
+            color: gray;
+            font-size: 10px;
+        }
+        .directions {
+            /*font-family: Inter;*/
+            font-style: normal;
+            font-weight: 500;
+            font-size: 100px;
+            line-height: 86px;
+            text-align: center;
+            color: #000000;
+            /*padding: 30px;
+            margin: 50px;*/
+        }
+        .information {
+            /*font-family: Inter;*/
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            /* Gray/04 */
+            color: #666666;
+        }
+
+    </style>
+    </head>
+    <!--Navbar Color: #222258-->
+<body style="background-color: #ffffff; height: 500px;">
+
+    <!-- Hide this when I'm ready to bring in the navbar -->
+    <div id="rectangle">
+        <!--<img src="../../images/logo.png" style="align-content:center; height: 75px; padding-top:20px" />-->
+        <div class="exitButton">
+            <button type="button" style="text-align: right;margin-right: 20px;background: white;border: thin black;font-size: x-large;cursor: pointer;margin-top: 30px;" onclick="">EXIT</button>
+        </div>
+        <center><h1 style="color: #222258;text-align: center;">Navigation</h1></center>
+    </div>
+
+
+
+    <center>
+        <div id="itemInfo" style="background: #F6F6F6; border-radius: 5px;border: thin solid #F6F6F6;white-space: nowrap;display: inline-flex;margin-bottom: 50px;margin-top: 50px;visibility:hidden">
+            <img id="itemImage" src="../Login_SingOut/images/thinking monocle.png" style="width: 100px;height: 100px; margin-top: 5px;padding: 5px;" />
+            <p id="itemText" style="padding: 20px;text-align: left;margin-top: 0px;margin-bottom: 0px;margin-right: 200px;">
+                <span class="itemName">Item Name</span>
+                <br>
+                <span class="itemStock">In stock/Out of stock</span>
+                <br>
+                <span class="itemLocation">Item location</span>
+            </p>
+        </div>
+    </center>
+
+
+
+    <!--<script type="module" src ="../Navbar.js"></script>-->
+    <!-- Google Sign-in Button-->
+    <!--<div style="text-align: center; margin-top: 50px; margin-bottom: 50px">
+        <div id="signInBtn" style="background: white; border-radius: 5px; border: thin solid #bbb; white-space: nowrap; display: inline-block; margin-bottom: 50px">
+            <img src="../../images/g-logo.png" style="width:86px;padding-left: 18px;padding-top: 18px;padding-bottom: 18px;padding-right: 18px;" />
+            <span class="buttonText" style="font-family:'Roboto', sans-serif;padding-right: 28px;padding-left: 6px;">Log in with Google to Get Started</span>
+        </div>
+    </div>-->
+
+    <center>
+        <p style="max-width:600px">
+            <span class="directions">
+                You are on the
+                fastest route to
+                checkout
+            </span>
+        </p>
+    </center>
+
+    <center style="margin-top: 400px">
+        <p style="max-width:250px">
+            <span class="information">
+                To start shopping click
+                “Start Shopping” button
+            </span>
+        </p>
+    </center>
+
+
+    <button class="startShopping" type="button" >Start Shopping</button>
+        <!--<p>Start Shopping</p>
+        <button type="button" style="text-align: right;margin-right: 20px;background: white;border: thin black;font-size: x-large;cursor: pointer;" onclick="">EXIT</button>-->
+    
+    <div id="backAndNext" style="display:none;">
+        <button class="backItem" type="button">Back</button>
+        <button class="nextItem" type="button">Next</button>
+    </div>
+    
+    <p style="border-bottom:100px; visibility: hidden;">displaypls</p>
+
+    <script>
+        function myFunction() {
+            //block/none instead of hidden for the startShopping button so the back and next replace it
+            if (document.getElementsByClassName('startShopping')[0].style.display != "none") {
+                document.getElementsByClassName('startShopping')[0].style.display = "none";
+
+                document.getElementById("backAndNext").style.display = "flex";
+                document.getElementById("itemInfo").style.visibility = "visible";
+
+                document.getElementsByClassName("information")[0].innerText = "Click 'Next' button to move to next item.";
+                //document.getElementsByClassName("backItem")[0].style.display = "visible";
+                //document.getElementsByClassName("nextItem")[0].style.visibility = "visible";
+                //document.getElementsByClassName("backItem")[0].style.visibility = "visible";
+            }
+            else {
+                document.getElementsByClassName("startShopping")[0].style.display = "block";
+
+                document.getElementById("backAndNext").style.display = "none";
+                document.getElementById("itemInfo").style.visibility = "hidden";
+                document.getElementsByClassName("information")[0].innerText = "To start shopping click 'Start Shopping' button";
+                //document.getElementsByClassName("nextItem")[0].style.visibility = "hidden";
+                //document.getElementsByClassName("backItem")[0].style.visibility = "hidden";
+            }
+        }
+
+        document.getElementsByClassName("startShopping")[0].addEventListener("click", myFunction, false);
+        document.getElementsByClassName("backItem")[0].addEventListener("click", myFunction, false);
+        document.getElementsByClassName("nextItem")[0].addEventListener("click", myFunction, false);
+    </script>
+
+
+</body>
+</html>
