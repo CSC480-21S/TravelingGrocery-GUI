@@ -24,16 +24,19 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 
 	//UPDATE CHECK OF CURENT ITEM
 	useEffect(() => {
+		//Prevent rendering on mount
 		if (isMounted.current) {
 			console.log(isChecked);
 			new_Items.map((obj) => {
 				if (obj.id === item.id) {
+					/* 					console.log("ISCHECKED: " + isChecked);
+					console.log("OBJ: " + obj.isChecked); */
 					obj.isChecked = isChecked;
 				}
 			});
 			set_new_Item(new_Items);
 			dispatch(set_list_to_be_updated(new_Items));
-			//console.log("New Items: " + JSON.stringify(new_Items));
+			console.log("New Items CHECK: " + JSON.stringify(new_Items));
 		} else {
 			isMounted.current = true;
 		}
@@ -41,8 +44,9 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 
 	//UPDATE COUNT OF CURRENT ITEM
 	useEffect(() => {
+		//Prevent rendering on mount
 		if (isMounted2.current) {
-			console.log(`COUNT: ${item_count}`);
+			//console.log(`COUNT: ${item_count}`);
 			new_Items.map((obj) => {
 				if (obj.id === item.id) {
 					obj.count = item_count;
@@ -50,7 +54,7 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 			});
 			set_new_Item(new_Items);
 			dispatch(set_list_to_be_updated(new_Items));
-			//console.log("New Items: " + JSON.stringify(new_Items));
+			//console.log("New Items COUNT: " + JSON.stringify(new_Items));
 		} else {
 			isMounted2.current = true;
 		}

@@ -1,5 +1,5 @@
 //Regular imports
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 //Actions
 
@@ -13,23 +13,34 @@ import makeStyles from "./item_styles";
 
 const List = ({ item, items, set_items }) => {
 	const styles = makeStyles();
+	const isMounted = useRef(false);
+	const isMounted2 = useRef(false);
 
 	const [isChecked, set_isChecked] = useState(false);
 	const [item_count, set_itemCount] = useState(1);
 
 	useEffect(() => {
-		items.map((obj) => {
-			if (obj.id === item.id) obj.isChecked = isChecked;
-		});
-		console.log("ITEMS: " + JSON.stringify(items));
-		set_items(items);
+		if (isMounted.current) {
+			items.map((obj) => {
+				if (obj.id === item.id) obj.isChecked = isChecked;
+			});
+			//console.log("ISCHECKED: " + JSON.stringify(items));
+			set_items(items);
+		} else {
+			isMounted.current = true;
+		}
 	}, [isChecked]);
 
+	//
 	useEffect(() => {
-		items.map((obj) => {
-			if (obj.id === item.id) obj.count = item_count;
-		});
-		//console.log("COUNT: " + JSON.stringify(items));
+		if (isMounted2.current) {
+			items.map((obj) => {
+				if (obj.id === item.id) obj.count = item_count;
+			});
+			//console.log("COUNT: " + JSON.stringify(items));
+		} else {
+			isMounted2.current = true;
+		}
 	}, [item_count]);
 
 	useEffect(() => {});

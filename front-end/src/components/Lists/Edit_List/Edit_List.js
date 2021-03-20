@@ -11,22 +11,21 @@ const Edit_List = () => {
 
 	//ADD CHECK MARK BOOLEAN TO A NEW LIST OBJECT
 	const [new_Items, set_new_Item] = useState(
-		useSelector((state) =>
-			state.lists.map((item) => {
-				item.isChecked = false;
-				return item;
-			})
-		)
+		useSelector((state) => state.list_toUpdate)
 	);
 	//REMOVE ITEMS FROM THE LIST IF CHECK MARK BOOLEAN IS TRUE
 	const handleDelete = () => {
 		set_new_Item(new_Items.filter((item) => item.isChecked === false));
 	};
 
-	//UPTADE LIST OF ITEMS EVERYTIME THE LIST CHANGES
+	//UPTADE REDUX STATE (LIST_TOUPDATE) WHEN THE COMPONENT IS RENDERED
 	useEffect(() => {
-		console.log("FROM EDIT LISTS: " + JSON.stringify(new_Items));
+		//console.log("FROM EDIT LISTS: " + JSON.stringify(new_Items));
+		dispatch(set_list_to_be_updated(new_Items));
 	}, []);
+	useEffect(() => {
+		//console.log("LIST: " + JSON.stringify(new_Items));
+	}, [new_Items]);
 
 	return (
 		<div>
@@ -42,7 +41,7 @@ const Edit_List = () => {
 				<button onClick={handleDelete}>Delete</button>
 			</div>
 			<div>
-				<Confirm set_new_Item={set_new_Item} />
+				<Confirm new_Items={new_Items} />
 			</div>
 		</div>
 	);

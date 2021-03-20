@@ -12,6 +12,7 @@ import makeStyles from "./Regular_Item_styles";
 //Actions
 import { fecth_list_items } from "../../../actions/actions";
 import { fetch_store_items } from "../../../actions/actions";
+import { set_list_to_be_updated } from "../../../actions/actions";
 
 const Regular_List = ({ items, set_isEditable }) => {
 	const styles = makeStyles();
@@ -32,8 +33,17 @@ const Regular_List = ({ items, set_isEditable }) => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		dispatch(fetch_store_items());
+		dispatch(fetch_store_items(items));
 	}, []);
+
+	const handleEdit = () => {
+		const temp = items.map((item) => {
+			item.isChecked = false;
+			return item;
+		});
+		dispatch(set_list_to_be_updated(temp));
+		history.push("/edit");
+	};
 	return (
 		<div>
 			<div>
@@ -55,7 +65,7 @@ const Regular_List = ({ items, set_isEditable }) => {
 							fontSize="small"
 							startIcon={<EditIcon />}
 							className={styles.topIconButton2}
-							onClick={() => history.push("/edit")}
+							onClick={handleEdit}
 						>
 							Edit
 						</Button>

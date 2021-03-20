@@ -21,6 +21,7 @@ const Items = () => {
 			state.store_list.map((item) => {
 				item.listId = list_Name;
 				item.userId = username;
+				item.count = 1;
 				item.id = Math.random().toString(36).substr(2, 9);
 				item.isChecked = false;
 				return item;
@@ -28,20 +29,33 @@ const Items = () => {
 		)
 	);
 
-	console.log("STORE ITEMS: " + JSON.stringify(items));
-
+	//set_ItemsToBeUpdated(items_to_be_updated.push(item))
 	// IF CHECKED ADD THE ITEMS TO THE LIST TO BE UPDATED
 	const handleAdd = () => {
-		items.map((item) =>
-			item.isChecked === true
-				? set_ItemsToBeUpdated(items_to_be_updated.push(item))
-				: null
-		);
-		console.log("TEMP: " + JSON.stringify(items_to_be_updated));
+		items.map((item) => {
+			if (item.isChecked === true) {
+				/* console.log(
+					"items_to_be_updated: " + JSON.stringify(items_to_be_updated)
+				); */
+				try {
+					items_to_be_updated.push(item); //push returns the new index of the array
+					set_ItemsToBeUpdated(items_to_be_updated);
+				} catch (error) {
+					/* console.log(
+						"items_to_be_updated: " + JSON.stringify(items_to_be_updated)
+					);
+					console.log("ITEM: " + JSON.stringify(item)); */
+					console.log(error);
+				}
+			}
+		});
+		//console.log("items_to_be_updated: " + JSON.stringify(items_to_be_updated));
+		//	console.log("items: " + JSON.stringify(items));
 		dispatch(set_list_to_be_updated(items_to_be_updated));
 	};
 	//====================================================
 
+	//FETCH STORE ITEMS
 	useEffect(() => {
 		dispatch(fetch_store_items());
 	}, [dispatch]);

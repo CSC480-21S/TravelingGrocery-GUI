@@ -1,9 +1,23 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Confirm = ({ set_isEditable }) => {
+import { update_user_item } from "../../../../api/api";
+
+const Confirm = ({ new_Items }) => {
+	const user_id = useSelector((state) => state.login.profileObj.email);
+	const list_id = useSelector((state) => state.homePage.name);
+
+	const handleSaveChanges = () => {
+		new_Items.map((item) => {
+			delete item.isChecked;
+			console.log("from item: \n" + JSON.stringify(item));
+		});
+		console.log("from confirm: \n" + JSON.stringify(new_Items));
+		update_user_item(new_Items, user_id, list_id);
+	};
 	return (
 		<div>
-			<button onClick={() => console.log("hello")}>Confirm</button>
+			<button onClick={handleSaveChanges}>Save Changes</button>
 		</div>
 	);
 };

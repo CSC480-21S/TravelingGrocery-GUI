@@ -15,3 +15,5 @@ export const add_item_to_list = (user_id, item) =>
 export const update_Item = (item_id, item) =>
 	axios.put(`${url}/items/${item_id}`, item);
 export const delete_item = (item_id) => axios.delete(`${url}/items/${item_id}`);
+export const update_user_item = (items, user_id, list_id) =>
+	axios.post(`${url}/users/${user_id}/items?listId=${list_id}`, items);
