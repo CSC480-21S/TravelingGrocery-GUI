@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
 import Button from "@material-ui/core/Button";
 //local Imports
-import { delete_item } from "../../../../../../../api/api";
+import { delete_item } from "../../../../../../../../api/api";
 const Delete_Item = ({
 	onDelete,
 	setOnDelete,

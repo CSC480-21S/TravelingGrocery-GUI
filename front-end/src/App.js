@@ -7,6 +7,7 @@ import Lists from "./components/Lists/Lists";
 import Login from "./components/Login_SingOut/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Items from "./components/Items/Items";
+import Edit_List from "./components/Lists/Edit_List/Edit_List";
 //Libraries
 import {
 	BrowserRouter as Router,
@@ -41,6 +42,11 @@ const App = () => {
 					<Navbar />
 					<Header />
 					<Items />
+				</Route>
+				<Route path="/edit">
+					<Navbar />
+					<Header />
+					<Edit_List />
 				</Route>
 			</Switch>
 		</Router>

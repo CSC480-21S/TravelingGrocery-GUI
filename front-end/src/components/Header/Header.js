@@ -46,7 +46,8 @@ const Header = () => {
 					{" "}
 					{/* Back Button */}
 					{location.pathname === "/User/Lists/listName" ||
-					location.pathname === "/items" ? (
+					location.pathname === "/items" ||
+					location.pathname === "/edit" ? (
 						<IconButton onClick={handleBack}>
 							<ArrowBackIcon />
 						</IconButton>
@@ -63,6 +64,8 @@ const Header = () => {
 						<Typography className={styles.main}>{title}</Typography>
 					) : location.pathname === "/items" ? (
 						<Typography className={styles.main}>Items</Typography>
+					) : location.pathname === "/edit" ? (
+						<Typography className={styles.main}>{title}</Typography>
 					) : null}
 				</Grid>
 				<Grid item xs={3}>

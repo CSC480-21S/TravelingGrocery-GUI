@@ -15,6 +15,7 @@ import barrio from "../../images/barrio.png";
 import thinking_monocle from "../../images/thinking_monocle.png";
 import logo from "../../images/logo.png";
 
+import { useSelector } from "react-redux";
 import axios from "axios";
 import "./Login.css";
 const Login = () => {
@@ -23,11 +24,11 @@ const Login = () => {
 	const [test, setTest] = useState("Empty");
 	const [user, setUser] = useState({ name: "Justin" });
 
-	useEffect(async () => {
+	/* useEffect(async () => {
 		console.log("INSIDE USE EFFECT");
 		try {
 			axios
-				.put("http://localhost:9080/LibertyProject/System/properties", {
+				.put("http://localhost:9090/LibertyProject/System/properties", {
 					user: "hello",
 				})
 				.then((response) =>
@@ -37,16 +38,21 @@ const Login = () => {
 			console.log(`Error: ${error.message}`);
 		}
 		console.log("===============================");
-	}, []);
+	}, []); */
 
+	const profile = useSelector((state) => state.login);
+	useEffect(() => {
+		//console.log(profile.isSignedIn());
+	}, []);
 	//when Login works
 	const onSuccess = (response) => {
 		console.log(`Login Success: currentUser ${response.profileObj}`);
 		//console.log('Loaded: ' + loaded)
 		dispatch(send_Google_User_info(response));
 		setTest(response.profileObj.name);
+		console.log(response);
 
-		//history.push("/home");
+		history.push("/home");
 	};
 	//When login is a failute
 	const onFailure = (response) => {
@@ -97,43 +103,49 @@ const Login = () => {
 	//=================================
 
 	return (
-		<div>
-			<div id="rectangle">
-				<img
-					src={logo}
-					style={{ alignContent: "center", height: "75px", paddingTop: "20px" }}
-				/>
-			</div>
+		<>
+			<div>
+				<div id="rectangle">
+					<img
+						src={logo}
+						style={{
+							alignContent: "center",
+							height: "75px",
+							paddingTop: "20px",
+						}}
+					/>
+				</div>
 
-			<p>hi</p>
+				<p>hi</p>
 
-			<div
-				class="slideshow-container"
-				style={{
-					marginTtop: "100px",
-					marginBottom: "50px",
-				}}
-			>
-				{/* <div class="mySlides fade">
+				<div
+					class="slideshow-container"
+					style={{
+						marginTtop: "100px",
+						marginBottom: "50px",
+					}}
+				>
+					{/* <div class="mySlides fade">
 					<img src={fingerguns} style={{ width: "100%", }} />
 					<div class="text">Grocery shopping made easy with AISLES</div>
 				</div> */}
-			</div>
-			<br />
+				</div>
+				<br />
 
-			<GoogleLogin
-				clientId={
-					"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com"
-				}
-				buttonText="Login"
-				onSuccess={onSuccess}
-				onFailure={onFailure}
-				isSignedIn={true}
-				cookiePolicy={"single_host_origin"}
-				uxMode={"redirect"}
-				redirectUri={"http://localhost:3000/login"}
-			/>
-		</div>
+				<GoogleLogin
+					clientId={
+						"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com"
+					}
+					buttonText="Login"
+					onSuccess={onSuccess}
+					onFailure={onFailure}
+					isSignedIn={true}
+					cookiePolicy={"http://localhost:3000/"}
+					uxMode={"redirect"}
+					redirectUri={"http://localhost:3000/home"}
+				/>
+			</div>
+		</>
 	);
 };
 

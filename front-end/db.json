@@ -67,28 +67,28 @@
       "listId": "Consoles",
       "userId": "justincabrera854@gmail.com",
       "name": "PS5",
-      "count": "2",
+      "count": "29",
       "id": 4
     },
     {
       "listId": "Consoles",
       "userId": "justincabrera854@gmail.com",
       "name": "Nintendo Switch",
-      "count": "1",
+      "count": "0",
       "id": 5
     },
     {
       "listId": "Consoles",
       "userId": "justincabrera854@gmail.com",
       "name": "Xbox Series X",
-      "count": "1",
+      "count": "15",
       "id": 6
     },
     {
       "listId": "Games",
       "userId": "justincabrera854@gmail.com",
       "name": "Valorant",
-      "count": "1",
+      "count": "2",
       "id": 7
     },
     {
@@ -139,23 +139,34 @@
       "name": "Meat",
       "count": "1",
       "id": 32
+    },
+    {
+      "listId": "Groceries",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Meat",
+      "count": "2",
+      "id": 33
+    },
+    {
+      "listId": "Consoles",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Meat",
+      "count": "59",
+      "id": 34
     }
   ],
   "items_list": [
     {
       "id": 1,
-      "name": "Meat",
-      "type": "Category 1"
+      "name": "Meat"
     },
     {
       "id": 2,
-      "name": "Pasta",
-      "type": "Category 2"
+      "name": "Pasta"
     },
     {
       "id": 3,
-      "name": "Frozen Foods",
-      "type": "Category 3"
+      "name": "Frozen Foods"
     }
   ]
 }

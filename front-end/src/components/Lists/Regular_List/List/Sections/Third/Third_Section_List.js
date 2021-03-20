@@ -4,8 +4,8 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { useDispatch, useSelector } from "react-redux";
 //Local Imports
-import { update_Item } from "../../../../../api/api";
-import { fecth_list_items } from "../../../../../actions/actions";
+import { update_Item } from "../../../../../../api/api";
+import { fecth_list_items } from "../../../../../../actions/actions";
 //Styles
 import makeStyles from "./Third_Section_List_styles";
 

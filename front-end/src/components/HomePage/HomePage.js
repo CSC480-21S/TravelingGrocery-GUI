@@ -41,6 +41,7 @@ const HomePage = () => {
 	useEffect(() => {
 		//console.log("Hello useEffect App: Dispatching Lists")
 		//console.log(" Email:" + profile.profileObj.email);
+
 		dispatch(fetchLists(profile.profileObj.email));
 	}, [dispatch]);
 

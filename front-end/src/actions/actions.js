@@ -1,6 +1,8 @@
 import * as api from "../api/api";
 import * as TYPES from "./actionTypes";
 
+//DONT FORGET TO DISPATCH THE ACTION (REDUX)
+
 //Create a new List
 export const create_List = (list, id) => async (dispatch) => {
 	try {
@@ -23,20 +25,11 @@ export const fetchLists = (id) => async (dispatch) => {
 };
 //Send a List to a Component
 export const sendList = (list) => (dispatch) => {
-	try {
-		dispatch({ type: TYPES.SEND_LIST, payload: list });
-	} catch (error) {
-		console.log(error.message);
-	}
+	dispatch({ type: TYPES.SEND_LIST, payload: list });
 };
 //Send Google Info to a Component
 export const send_Google_User_info = (profile) => (dispatch) => {
-	try {
-		//console.log("From Actions: " + profile);
-		dispatch({ type: TYPES.SEND_GOOGLE_INFO, payload: profile });
-	} catch (error) {
-		console.log(error.message);
-	}
+	dispatch({ type: TYPES.SEND_GOOGLE_INFO, payload: profile });
 };
 //Fetch items of a list
 export const fecth_list_items = (user_id, list_id) => async (dispatch) => {
@@ -60,9 +53,9 @@ export const fetch_store_items = () => async (dispatch) => {
 };
 //Set Global Active List
 export const set_active_list = (list) => (dispatch) => {
-	try {
-		dispatch({ type: TYPES.SET_ACTIVE_LIST, payload: list });
-	} catch (error) {
-		console.log(error.message);
-	}
+	dispatch({ type: TYPES.SET_ACTIVE_LIST, payload: list });
+};
+//Set Global To be Updates List
+export const set_list_to_be_updated = (list) => (dispatch) => {
+	dispatch({ type: TYPES.SET_LIST_TO_BE_UPDATED, payload: list });
 };

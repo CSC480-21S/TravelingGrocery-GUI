@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 //Local Libraries
 import makeStyles from "./Add_item_styles";
 
-const Add_item = ({ setbol }) => {
+const Add_item = () => {
 	const styles = makeStyles();
 	const history = useHistory();
 
@@ -15,7 +15,6 @@ const Add_item = ({ setbol }) => {
 			<Button
 				className={styles.button}
 				onClick={() => {
-					setbol(true);
 					//Send the user to the Items(Store Items) Component
 					history.push("/items");
 				}}

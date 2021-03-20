@@ -1,6 +1,6 @@
 //Regular imports
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
+import Checkbox from "@material-ui/core/Checkbox";
 //Actions
 
 //Components
@@ -11,13 +11,38 @@ import Third_Section_List from "./Sections/Third/Third_Section_List";
 //Styles
 import makeStyles from "./item_styles";
 
-const List = ({ item }) => {
+const List = ({ item, items, set_items }) => {
 	const styles = makeStyles();
 
-	useEffect(() => {}, []);
+	const [isChecked, set_isChecked] = useState(false);
+	const [item_count, set_itemCount] = useState(1);
+
+	useEffect(() => {
+		items.map((obj) => {
+			if (obj.id === item.id) obj.isChecked = isChecked;
+		});
+		console.log("ITEMS: " + JSON.stringify(items));
+		set_items(items);
+	}, [isChecked]);
+
+	useEffect(() => {
+		items.map((obj) => {
+			if (obj.id === item.id) obj.count = item_count;
+		});
+		//console.log("COUNT: " + JSON.stringify(items));
+	}, [item_count]);
+
+	useEffect(() => {});
 	return (
 		<div style={{ paddingLeft: 50, paddingRight: 50 }}>
 			<div className={styles.container}>
+				<div>
+					<Checkbox
+						checked={isChecked}
+						onChange={() => set_isChecked(!isChecked)}
+						inputProps={{ "aria-label": "primary checkbox" }}
+					/>
+				</div>
 				<div className={styles.item_Image_Container}>
 					<First_Section_List />
 				</div>
@@ -25,7 +50,11 @@ const List = ({ item }) => {
 					<Second_Section_List item={item} />
 				</div>
 				<div className={styles.third_section_list_Container}>
-					<Third_Section_List item={item} />
+					<Third_Section_List
+						item={item}
+						item_count={item_count}
+						set_itemCount={set_itemCount}
+					/>
 				</div>
 			</div>
 		</div>
