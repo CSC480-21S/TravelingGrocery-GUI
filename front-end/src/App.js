@@ -1,26 +1,56 @@
 //Style
-import './App.css'
+
 //Components
-import Header from './components/Header'
-import { fetchLists } from './actions/actions'
+import HomePage from "./components/HomePage/HomePage";
+import Header from "./components/Header/Header";
+import Lists from "./components/Lists/Lists";
+import Login from "./components/Login_SingOut/Login";
+import Navbar from "./components/Navbar/Navbar";
+import Items from "./components/Items/Items";
+import Edit_List from "./components/Lists/Edit_List/Edit_List";
 //Libraries
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import {
+	BrowserRouter as Router,
+	Route,
+	Redirect,
+	Switch,
+} from "react-router-dom";
 
 const App = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log("Hello useEffect App")
-    dispatch(fetchLists())
-  }, [dispatch])
-
-  return (
-    <Router>
-      <Header />
-    </Router>
-  );
-}
+	return (
+		<Router>
+			<Switch>
+				<Route exact path="/">
+					<Redirect to="/login" />
+					<Header />
+					<Lists />
+				</Route>
+				<Route path="/home">
+					<Navbar />
+					<Header />
+					<HomePage />
+				</Route>
+				<Route path="/User/Lists/listName">
+					<Navbar />
+					<Header />
+					<Lists />
+				</Route>
+				<Route path="/login">
+					<Login />
+				</Route>
+				<Route path="/items">
+					<Navbar />
+					<Header />
+					<Items />
+				</Route>
+				<Route path="/edit">
+					<Navbar />
+					<Header />
+					<Edit_List />
+				</Route>
+			</Switch>
+		</Router>
+	);
+};
 
 export default App;
