@@ -176,6 +176,64 @@
         "count": "15",
         "id": 6
       }
+    ],
+    [
+      {
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "name": "Valorant",
+        "count": "2",
+        "id": 7
+      },
+      {
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "name": "RuneScape",
+        "count": "2",
+        "id": 8
+      },
+      {
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "name": "Celeste",
+        "count": "3",
+        "id": 9
+      },
+      {
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "name": "Pasta",
+        "count": "1",
+        "id": 23
+      },
+      {
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "name": "Meat",
+        "count": "1",
+        "id": 24
+      },
+      {
+        "id": "z64u7ybd0",
+        "name": "Meat",
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "count": 1
+      },
+      {
+        "id": "0c4gpkmhc",
+        "name": "Pasta",
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "count": 1
+      },
+      {
+        "id": "f89lbytlg",
+        "name": "Frozen Foods",
+        "listId": "Games",
+        "userId": "justincabrera854@gmail.com",
+        "count": 1
+      }
     ]
   ],
   "items_list": [
