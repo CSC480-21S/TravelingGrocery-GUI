@@ -3,9 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
 	container: {
 		display: "grid",
-		gridTemplateColumns: "auto auto auto",
+		gridTemplateColumns: "auto auto auto auto",
+		alignItems: "center",
+		justifyItems: "center",
 		background: "#F6F6F6",
 		borderRadius: "15px",
+		paddingTop: theme.spacing(1),
+		paddingBottom: theme.spacing(1),
 		marginTop: theme.spacing(3),
 		marginBottom: theme.spacing(3),
 	},

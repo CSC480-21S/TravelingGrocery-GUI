@@ -11,7 +11,7 @@ const Add_item = () => {
 	const history = useHistory();
 
 	return (
-		<div style={{ paddingLeft: 36, paddingRight: 36 }}>
+		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
 			<Button
 				className={styles.button}
 				onClick={() => {

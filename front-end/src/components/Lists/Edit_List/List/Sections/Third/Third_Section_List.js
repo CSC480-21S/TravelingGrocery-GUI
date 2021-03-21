@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-
-//Local Imports
-import { update_Item } from "../../../../../../api/api";
-
 //Styles
 import makeStyles from "./Third_Section_List_styles";
 
@@ -20,7 +16,6 @@ const Third_Section_List = ({ item_count, set_Item_count }) => {
 	};
 
 	// update count in JSON server everytime count changes
-
 	/* try {
 			console.log("When count: " + count);
 			const updated_item = {

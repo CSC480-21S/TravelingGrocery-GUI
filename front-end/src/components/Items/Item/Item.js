@@ -45,7 +45,7 @@ const List = ({ item, items, set_items }) => {
 
 	useEffect(() => {});
 	return (
-		<div style={{ paddingLeft: 50, paddingRight: 50 }}>
+		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
 			<div className={styles.container}>
 				<div>
 					<Checkbox

@@ -1,6 +1,5 @@
 //Regular imports
 import React, { useState, useEffect, useRef } from "react";
-import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch } from "react-redux";
 //Actions
@@ -61,31 +60,30 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 	}, [item_count]);
 
 	return (
-		<div style={{ paddingLeft: 50, paddingRight: 50 }}>
-			<Grid className={styles.container} container spacing={3}>
+		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
+			<div className={styles.container}>
 				{/* Item image */}
-				<Grid item xs={1}>
+				<div>
 					<Checkbox
 						checked={isChecked}
 						onChange={() => set_isChecked(!isChecked)}
 						inputProps={{ "aria-label": "primary checkbox" }}
 					/>
-				</Grid>
-				<Grid item xs={1} className={styles.item_Image_Container}>
+				</div>
+				<div className={styles.item_Image_Container}>
 					<First_Section_List />
-				</Grid>
-				{/* Hide The item info to toggle the settings menu */}
+				</div>
 
-				<Grid item xs className={styles.item_details_Container}>
+				<div className={styles.item_details_Container}>
 					<Second_Section_List item={item} />
-				</Grid>
-				<Grid item xs className={styles.third_section_list_Container}>
+				</div>
+				<div className={styles.third_section_list_Container}>
 					<Third_Section_List
 						item_count={item_count}
 						set_Item_count={set_Item_count}
 					/>
-				</Grid>
-			</Grid>
+				</div>
+			</div>
 		</div>
 	);
 };

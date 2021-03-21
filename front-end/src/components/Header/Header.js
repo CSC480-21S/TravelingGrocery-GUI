@@ -1,4 +1,3 @@
-import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
@@ -41,8 +40,8 @@ const Header = () => {
 
 	return (
 		<div>
-			<Grid container spacing={3} className={styles.root}>
-				<Grid item xs={2}>
+			<div className={styles.root}>
+				<div className={styles.item_one}>
 					{" "}
 					{/* Back Button */}
 					{location.pathname === "/User/Lists/listName" ||
@@ -51,11 +50,9 @@ const Header = () => {
 						<IconButton onClick={handleBack}>
 							<ArrowBackIcon />
 						</IconButton>
-					) : (
-						<div></div>
-					)}
-				</Grid>
-				<Grid item xs={7}>
+					) : null}
+				</div>
+				<div className={styles.item_two}>
 					{" "}
 					{/* title */}
 					{location.pathname === "/home" ? (
@@ -67,8 +64,8 @@ const Header = () => {
 					) : location.pathname === "/edit" ? (
 						<Typography className={styles.main}>{title}</Typography>
 					) : null}
-				</Grid>
-				<Grid item xs={3}>
+				</div>
+				<div className={styles.item_three}>
 					{" "}
 					{/* Profile Picture */}
 					{true ? (
@@ -81,13 +78,16 @@ const Header = () => {
 						</IconButton>
 					) : null}
 					<Profile open={open} onClose={handleProfileOnClose} />
-				</Grid>
-				<Grid item xs={12} lg={12} md={12} sm={12} xl={12}>
+				</div>
+				<div className={styles.item_four}>
 					{" "}
 					{/* Search Bar */}
-					{location.pathname === "/User/Lists/listName" ? <Search_Bar /> : null}
-				</Grid>
-			</Grid>
+					{location.pathname === "/User/Lists/listName" ||
+					location.pathname === "/edit" ? (
+						<Search_Bar />
+					) : null}
+				</div>
+			</div>
 		</div>
 	);
 };

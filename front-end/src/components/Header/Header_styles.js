@@ -2,10 +2,29 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
 	root: {
-		margin: theme.spacing(1),
-		justify: "space-between",
+		display: "grid",
+		gridTemplateAreas: `
+		"first first2 first3 "
+		"second second second"`,
+		marginTop: theme.spacing(3),
+		marginBottom: theme.spacing(3),
+		marginLeft: theme.spacing(1),
+		marginRight: theme.spacing(1),
 		alignItems: "center",
-		alignContent: "center",
+		justifyItems: "center",
+	},
+	item_one: {
+		gridArea: "first",
+	},
+	item_two: {
+		gridArea: "first2",
+	},
+	item_three: {
+		gridArea: "first3",
+	},
+	item_four: {
+		gridArea: "second",
+		width: "100%",
 	},
 	paper: {
 		padding: theme.spacing(1),
@@ -17,10 +36,6 @@ export default makeStyles((theme) => ({
 		fontWeight: 500,
 		fontSize: "16px",
 		lineHeight: "19px",
-
-		width: "38px",
-		height: "19px",
-		left: "0px",
 	},
 	main: {
 		fontWeight: 600,
