@@ -17,8 +17,19 @@ const Edit_List = () => {
 	const [new_Items, set_new_Item] = useState(
 		useSelector((state) => state.list_toUpdate)
 	);
+	const [items_ToBeDeleted, set_items_ToBeDeleted] = useState([]);
+
 	//REMOVE ITEMS FROM THE LIST IF CHECK MARK BOOLEAN IS TRUE
 	const handleDelete = () => {
+		set_items_ToBeDeleted(
+			new_Items.map((item) => {
+				if (item.isChecked === true) {
+					return item;
+				} else {
+					return null;
+				}
+			})
+		);
 		set_new_Item(new_Items.filter((item) => item.isChecked === false));
 	};
 
@@ -28,9 +39,11 @@ const Edit_List = () => {
 		dispatch(set_list_to_be_updated(new_Items));
 	}, []);
 	useEffect(() => {
-		//console.log("LIST: " + JSON.stringify(new_Items));
+		console.log("LIST: " + JSON.stringify(new_Items));
 	}, [new_Items]);
-
+	useEffect(() => {
+		console.log("items_ToBeDeleted: " + JSON.stringify(items_ToBeDeleted));
+	}, [items_ToBeDeleted]);
 	return (
 		<div style={{ marginTop: "0px" }}>
 			<div className={styles.firstContainer}>
@@ -56,7 +69,7 @@ const Edit_List = () => {
 				</div>
 			</div>
 			<div>
-				<Add_Item set_new_Item={set_new_Item} new_Items={new_Items} />
+				<Add_Item new_Items={new_Items} />
 			</div>
 			<div>
 				{new_Items.map((item) => (
@@ -64,7 +77,7 @@ const Edit_List = () => {
 				))}
 			</div>
 			<div>
-				<Confirm new_Items={new_Items} />
+				<Confirm new_Items={new_Items} items_ToBeDeleted={items_ToBeDeleted} />
 			</div>
 		</div>
 	);

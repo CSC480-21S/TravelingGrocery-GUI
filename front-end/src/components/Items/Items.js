@@ -29,6 +29,7 @@ const Items = () => {
 				item.count = 1;
 				item.id = Math.random().toString(36).substr(2, 9);
 				item.isChecked = false;
+				item.isStoreItem = true;
 				return item;
 			})
 		)
@@ -39,6 +40,7 @@ const Items = () => {
 		items.map((item) => {
 			if (item.isChecked === true) {
 				try {
+					item.isChecked = false;
 					items_to_be_updated.push(item); //push returns the new index of the array
 					set_ItemsToBeUpdated(items_to_be_updated);
 				} catch (error) {
@@ -46,6 +48,7 @@ const Items = () => {
 				}
 			}
 		});
+		console.log(`ITMES TO BE ADDED: ${JSON.stringify(items)}`);
 		history.goBack();
 		dispatch(set_list_to_be_updated(items_to_be_updated));
 	};

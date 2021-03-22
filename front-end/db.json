@@ -39,6 +39,11 @@
       "name": "fasdf",
       "userId": "jcabrera@oswego.edu",
       "id": "W5w6TVL"
+    },
+    {
+      "name": "New test",
+      "userId": "justincabrera854@gmail.com",
+      "id": "UUQEUb0"
     }
   ],
   "items": [
@@ -67,22 +72,8 @@
       "listId": "Consoles",
       "userId": "justincabrera854@gmail.com",
       "name": "PS5",
-      "count": "29",
+      "count": 14,
       "id": 4
-    },
-    {
-      "listId": "Consoles",
-      "userId": "justincabrera854@gmail.com",
-      "name": "Nintendo Switch",
-      "count": "0",
-      "id": 5
-    },
-    {
-      "listId": "Consoles",
-      "userId": "justincabrera854@gmail.com",
-      "name": "Xbox Series X",
-      "count": "15",
-      "id": 6
     },
     {
       "listId": "Games",
@@ -108,13 +99,6 @@
     {
       "listId": "test",
       "userId": "justincabrera854@gmail.com",
-      "name": "Meat",
-      "count": "28",
-      "id": 16
-    },
-    {
-      "listId": "test",
-      "userId": "justincabrera854@gmail.com",
       "name": "Pasta",
       "count": "0",
       "id": 17
@@ -134,107 +118,40 @@
       "id": 24
     },
     {
+      "id": "2rd5lr4xi",
+      "name": "Meat",
       "listId": "test",
       "userId": "justincabrera854@gmail.com",
-      "name": "Meat",
-      "count": "15",
-      "id": 32
+      "count": 1
     },
     {
-      "listId": "Groceries",
+      "id": "ilry0yqkp",
+      "name": "Frozen Foods",
+      "listId": "test",
       "userId": "justincabrera854@gmail.com",
-      "name": "Meat",
-      "count": "2",
-      "id": 33
+      "count": 1
     },
     {
-      "listId": "Consoles",
-      "userId": "justincabrera854@gmail.com",
+      "id": "a07pwv5xb",
       "name": "Meat",
-      "count": "59",
-      "id": 34
+      "listId": "New test",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
     },
-    [
-      {
-        "listId": "Consoles",
-        "userId": "justincabrera854@gmail.com",
-        "name": "PS5",
-        "count": "29",
-        "id": 4
-      },
-      {
-        "listId": "Consoles",
-        "userId": "justincabrera854@gmail.com",
-        "name": "Nintendo Switch",
-        "count": "0",
-        "id": 5
-      },
-      {
-        "listId": "Consoles",
-        "userId": "justincabrera854@gmail.com",
-        "name": "Xbox Series X",
-        "count": "15",
-        "id": 6
-      }
-    ],
-    [
-      {
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "name": "Valorant",
-        "count": "2",
-        "id": 7
-      },
-      {
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "name": "RuneScape",
-        "count": "2",
-        "id": 8
-      },
-      {
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "name": "Celeste",
-        "count": "3",
-        "id": 9
-      },
-      {
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "name": "Pasta",
-        "count": "1",
-        "id": 23
-      },
-      {
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "name": "Meat",
-        "count": "1",
-        "id": 24
-      },
-      {
-        "id": "z64u7ybd0",
-        "name": "Meat",
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "count": 1
-      },
-      {
-        "id": "0c4gpkmhc",
-        "name": "Pasta",
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "count": 1
-      },
-      {
-        "id": "f89lbytlg",
-        "name": "Frozen Foods",
-        "listId": "Games",
-        "userId": "justincabrera854@gmail.com",
-        "count": 1
-      }
-    ]
+    {
+      "id": "kq1gwkndd",
+      "name": "Pasta",
+      "listId": "New test",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    },
+    {
+      "id": "riskw1nlf",
+      "name": "Frozen Foods",
+      "listId": "New test",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    }
   ],
   "items_list": [
     {
