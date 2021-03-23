@@ -33,6 +33,7 @@ const Regular_List = ({ items, set_isEditable }) => {
 
 	useEffect(() => {
 		dispatch(fetch_store_items(items));
+		console.log(`REGULAR ITEMS: ${JSON.stringify(items)}`);
 	}, []);
 
 	const handleEdit = () => {

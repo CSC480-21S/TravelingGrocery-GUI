@@ -45,5 +45,10 @@ export default makeStyles((theme) => ({
 		lineHeight: "36px",
 		textAlign: "center",
 	},
+	title: {
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+	},
 	item_login: {},
 }));

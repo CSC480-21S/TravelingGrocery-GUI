@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -8,35 +8,21 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
 import { useDispatch } from "react-redux";
-import makeStyles from "../../styles/CreasteList";
+import makeStyles from "./Set_Title_styles";
 import { Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 
-import { create_List } from "../../actions/actions";
+import { update_List } from "../../../actions/actions";
 
-const CreateList = (props) => {
-	const profile = useSelector((state) => state.login); //Retrieve Login information from the store
-	const [list, setList] = useState({
-		id: "",
-		name: "",
-		userId: profile.profileObj.email,
-	});
+const Set_Title = ({ onClose, open }) => {
 	const styles = makeStyles();
-	const dispatch = useDispatch();
-
-	const { onClose, open } = props;
+	const [list, setList] = useState(useSelector((state) => state.homePage));
 
 	const handleClose = () => {
-		clearInput();
 		onClose();
 	};
-	const clearInput = () => {
-		setList({ name: " " });
-	};
-	const createNewList = async (e) => {
-		e.preventDefault();
-		dispatch(create_List(list, profile.profileObj.email));
-		handleClose();
+	const updateList = () => {
+		console.log(`UPDATE LIST NAME: ${JSON.stringify(list)}`);
 	};
 
 	return (
@@ -53,27 +39,26 @@ const CreateList = (props) => {
 				</DialogActions>
 				<DialogContent>
 					{" "}
-					<Typography className={styles.title}> Create List </Typography>
+					<Typography className={styles.title}> Rename List </Typography>
 				</DialogContent>
 				<form
 					className={`${styles.root} ${styles.mainContainer}`}
-					onSubmit={createNewList}
+					onSubmit={updateList}
 				>
 					<FormControl className={styles.formControl}>
 						<TextField
+							autoFocus={true}
 							fullWidth
 							className={styles.inputText}
 							value={list.name}
-							onChange={(e) =>
-								setList({ ...list, name: e.target.value, id: e.target.value })
-							}
+							onChange={(e) => setList({ ...list, name: e.target.value })}
 							placeholder="Enter Name"
 							InputProps={{
 								disableUnderline: true,
 							}}
 						></TextField>
 						<Button type="submit" className={styles.submitButton}>
-							Create New List
+							Confirm
 						</Button>
 					</FormControl>
 				</form>
@@ -83,4 +68,4 @@ const CreateList = (props) => {
 	);
 };
 
-export default CreateList;
+export default Set_Title;

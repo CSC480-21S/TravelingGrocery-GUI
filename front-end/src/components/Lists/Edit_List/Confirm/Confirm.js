@@ -14,26 +14,15 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 	const user_id = useSelector((state) => state.login.profileObj.email);
 	const list_id = useSelector((state) => state.homePage.name);
 
-	const temp2 = {
-		lists: [
-			{
-				shoppingListID: 5,
-				itemNameArray: ["turkey jerky", "grape juice", "ranch", "honey"],
-				itemQuantityArray: [3, 1, 6, 6],
-			},
-			{
-				shoppingListID: 200,
-				itemNameArray: ["spices", "pita bread"],
-				itemQuantityArray: [1, 4],
-			},
-		],
-	};
 	const handleSaveChanges = () => {
 		//Handle items to be deleted
 		items_ToBeDeleted.map((item) => {
+			console.log(`ITEMS TO BE DELETED: ${JSON.stringify(items_ToBeDeleted)}`);
 			if (item !== null) {
+				console.log(`item deleted: ${JSON.stringify(item)}`);
 				delete item.isChecked;
-				delete_Item(item.id, item);
+				delete item.isStoreItem;
+				delete_Item(item.id);
 			}
 		});
 		//Handle items to be updated
@@ -43,9 +32,10 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 				delete item.isChecked;
 				delete item.isStoreItem;
 				add_item_to_list(user_id, item);
-			} else {
+			} /*  else {
+				console.log(`ITEMS TO BE UPDTED: ${JSON.stringify(item)}`);
 				update_Item(item.id, item);
-			}
+			} */
 			//console.log("from item: \n" + JSON.stringify(item));
 		});
 		console.log("from confirm: \n" + JSON.stringify(new_Items));

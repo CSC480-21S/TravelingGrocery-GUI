@@ -65,7 +65,6 @@ const Login = () => {
 			"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
 		isSignedIn: true,
 		onFailure: onFailure,
-		cookiePolicy: "single_host_origin",
 		uxMode: "redirect",
 	});
 

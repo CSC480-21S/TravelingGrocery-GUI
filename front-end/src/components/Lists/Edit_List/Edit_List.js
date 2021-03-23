@@ -35,7 +35,7 @@ const Edit_List = () => {
 
 	//UPTADE REDUX STATE (LIST_TOUPDATE) WHEN THE COMPONENT IS RENDERED
 	useEffect(() => {
-		//console.log("FROM EDIT LISTS: " + JSON.stringify(new_Items));
+		console.log("FROM EDIT LISTS: " + JSON.stringify(new_Items));
 		dispatch(set_list_to_be_updated(new_Items));
 	}, []);
 	useEffect(() => {
@@ -44,6 +44,7 @@ const Edit_List = () => {
 	useEffect(() => {
 		console.log("items_ToBeDeleted: " + JSON.stringify(items_ToBeDeleted));
 	}, [items_ToBeDeleted]);
+
 	return (
 		<div style={{ marginTop: "0px" }}>
 			<div className={styles.firstContainer}>

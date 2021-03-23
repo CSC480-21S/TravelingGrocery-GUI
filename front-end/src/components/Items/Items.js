@@ -16,6 +16,7 @@ const Items = () => {
 	const history = useHistory();
 	const list_Name = useSelector((state) => state.homePage.name); //NAME OF THE LIST THAT WE ARE GOING TO ADD ITEMS
 	const username = useSelector((state) => state.login.profileObj.email);
+	const [filtered_storeList, set_Filtered_storeList] = useState([]); //filetered items
 	//LIST TO BE UPDATED
 	const [items_to_be_updated, set_ItemsToBeUpdated] = useState(
 		useSelector((state) => state.list_toUpdate)
@@ -48,7 +49,7 @@ const Items = () => {
 				}
 			}
 		});
-		console.log(`ITMES TO BE ADDED: ${JSON.stringify(items)}`);
+		//console.log(`ITMES TO BE ADDED: ${JSON.stringify(items)}`);
 		history.goBack();
 		dispatch(set_list_to_be_updated(items_to_be_updated));
 	};
@@ -61,16 +62,33 @@ const Items = () => {
 
 	return (
 		<div>
-			<Search_Bar />
+			<Search_Bar
+				items={items}
+				set_Filtered_storeList={set_Filtered_storeList}
+			/>
 			<div className={styles.text}>
 				<Typography style={{ fontFamily: "Inter", fontWeight: "600" }}>
 					Adding Items to {list_Name}
 				</Typography>
 			</div>
 			<div>
-				{items.map((item) => (
-					<Item key={item.id} item={item} items={items} set_items={set_items} />
-				))}
+				{filtered_storeList.length === 0
+					? items.map((item) => (
+							<Item
+								key={item.id}
+								item={item}
+								items={items}
+								set_items={set_items}
+							/>
+					  ))
+					: filtered_storeList.map((item) => (
+							<Item
+								key={item.id}
+								item={item}
+								items={items}
+								set_items={set_items}
+							/>
+					  ))}
 			</div>
 			<div>
 				<Button className={styles.add} onClick={handleAdd}>
