@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <liberty-plugin-config>
-    <installDirectory>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\target\liberty\wlp</installDirectory>
-    <serverDirectory>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\target\liberty\wlp\usr\servers\defaultServer</serverDirectory>
-    <userDirectory>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\target\liberty\wlp\usr</userDirectory>
-    <serverOutputDirectory>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\target\liberty\wlp\usr\servers\defaultServer</serverOutputDirectory>
+    <installDirectory>D:\Projects\CSC480\TravelingGrocery-GUI\finish\target\liberty\wlp</installDirectory>
+    <serverDirectory>D:\Projects\CSC480\TravelingGrocery-GUI\finish\target\liberty\wlp\usr\servers\defaultServer</serverDirectory>
+    <userDirectory>D:\Projects\CSC480\TravelingGrocery-GUI\finish\target\liberty\wlp\usr</userDirectory>
+    <serverOutputDirectory>D:\Projects\CSC480\TravelingGrocery-GUI\finish\target\liberty\wlp\usr\servers\defaultServer</serverOutputDirectory>
     <serverName>defaultServer</serverName>
-    <configDirectory>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\src\main\liberty\config</configDirectory>
-    <configFile>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\src\main\liberty\config\server.xml</configFile>
+    <configDirectory>D:\Projects\CSC480\TravelingGrocery-GUI\finish\src\main\liberty\config</configDirectory>
+    <configFile>D:\Projects\CSC480\TravelingGrocery-GUI\finish\src\main\liberty\config\server.xml</configFile>
     <appsDirectory>apps</appsDirectory>
     <looseApplication>true</looseApplication>
     <stripVersion>false</stripVersion>
@@ -19,8 +19,8 @@
         <type>zip</type>
     </assemblyArtifact>
     <assemblyArchive>C:\Users\justi\.m2\repository\io\openliberty\openliberty-kernel\21.0.0.3\openliberty-kernel-21.0.0.3.zip</assemblyArchive>
-    <assemblyInstallDirectory>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\target\liberty</assemblyInstallDirectory>
+    <assemblyInstallDirectory>D:\Projects\CSC480\TravelingGrocery-GUI\finish\target\liberty</assemblyInstallDirectory>
     <refresh>false</refresh>
-    <installAppsConfigDropins>D:\Projects\React_OpenLiberty\guide-rest-client-reactjs\finish\target\liberty\wlp\usr\servers\defaultServer\configDropins\defaults\install_apps_configuration_1491924271.xml</installAppsConfigDropins>
+    <installAppsConfigDropins>D:\Projects\CSC480\TravelingGrocery-GUI\finish\target\liberty\wlp\usr\servers\defaultServer\configDropins\defaults\install_apps_configuration_1491924271.xml</installAppsConfigDropins>
     <projectType>war</projectType>
 </liberty-plugin-config>

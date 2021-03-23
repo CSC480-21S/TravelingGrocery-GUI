@@ -136,11 +136,11 @@ const Login = () => {
 					clientId={
 						"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com"
 					}
+					disabled={false}
 					buttonText="Login"
 					onSuccess={onSuccess}
 					onFailure={onFailure}
 					isSignedIn={true}
-					cookiePolicy={"http://localhost:3000/"}
 					uxMode={"redirect"}
 					redirectUri={"http://localhost:3000/home"}
 				/>

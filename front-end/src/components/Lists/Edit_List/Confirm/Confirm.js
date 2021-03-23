@@ -46,7 +46,6 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 
 	const test = () => {
 		const url = "http://pi.cs.oswego.edu:9081/store/nav";
-
 		axios
 			.post(
 				"http://pi.cs.oswego.edu:9081/store/nav",
