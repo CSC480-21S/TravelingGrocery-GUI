@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.db816f8e.chunk.css",
+    "main.js": "/static/js/main.6fecb62f.chunk.js",
+    "main.js.map": "/static/js/main.6fecb62f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.18445cb3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.18445cb3.js.map",
+    "static/js/2.ef031672.chunk.js": "/static/js/2.ef031672.chunk.js",
+    "static/js/2.ef031672.chunk.js.map": "/static/js/2.ef031672.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.254d99389530d0f1016159e52c8cc2db.js": "/precache-manifest.254d99389530d0f1016159e52c8cc2db.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.db816f8e.chunk.css.map": "/static/css/main.db816f8e.chunk.css.map",
+    "static/js/2.ef031672.chunk.js.LICENSE.txt": "/static/js/2.ef031672.chunk.js.LICENSE.txt",
+    "static/media/barrio.png": "/static/media/barrio.99fdc013.png",
+    "static/media/fingerguns.png": "/static/media/fingerguns.9d253c5f.png",
+    "static/media/logo.png": "/static/media/logo.bb1db786.png",
+    "static/media/memeber.png": "/static/media/memeber.2ba91ab7.png",
+    "static/media/thinking_monocle.png": "/static/media/thinking_monocle.a4aec0bd.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.18445cb3.js",
+    "static/js/2.ef031672.chunk.js",
+    "static/css/main.db816f8e.chunk.css",
+    "static/js/main.6fecb62f.chunk.js"
+  ]
+}
