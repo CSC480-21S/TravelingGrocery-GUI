@@ -1,0 +1,181 @@
+{
+  "users": [
+    {
+      "id": "justincabrera854@gmail.com",
+      "email": "justincabrera854@gmail.com"
+    },
+    {
+      "id": "jcabrera@oswego.edu",
+      "email": "jcabrera@oswego.edu"
+    },
+    {
+      "id": "jcho4@oswego.edu",
+      "email": "jcho4@oswego.edu"
+    }
+  ],
+  "lists": [
+    {
+      "id": "Groceries",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Groceries"
+    },
+    {
+      "id": "Consoles",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Consoles"
+    },
+    {
+      "id": "Games",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Games"
+    },
+    {
+      "id": "First List",
+      "userId": "jcabrera@oswego.edu",
+      "name": "First List"
+    },
+    {
+      "name": "test",
+      "userId": "justincabrera854@gmail.com",
+      "id": "test"
+    },
+    {
+      "name": " s",
+      "id": " s",
+      "userId": "justincabrera854@gmail.com"
+    },
+    {
+      "id": "abc",
+      "name": "abc",
+      "userId": "jcho4@oswego.edu"
+    }
+  ],
+  "items": [
+    {
+      "listId": "Groceries",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Apple",
+      "count": "6",
+      "id": 1
+    },
+    {
+      "listId": "Groceries",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Banana",
+      "count": "2",
+      "id": 2
+    },
+    {
+      "listId": "Groceries",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Coffee",
+      "count": "1",
+      "id": 3
+    },
+    {
+      "listId": "Consoles",
+      "userId": "justincabrera854@gmail.com",
+      "name": "PS5",
+      "count": 14,
+      "id": 4
+    },
+    {
+      "listId": "Games",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Valorant",
+      "count": "2",
+      "id": 7
+    },
+    {
+      "listId": "Games",
+      "userId": "justincabrera854@gmail.com",
+      "name": "RuneScape",
+      "count": "2",
+      "id": 8
+    },
+    {
+      "listId": "Games",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Celeste",
+      "count": "3",
+      "id": 9
+    },
+    {
+      "listId": "Games",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Pasta",
+      "count": "1",
+      "id": 23
+    },
+    {
+      "listId": "Games",
+      "userId": "justincabrera854@gmail.com",
+      "name": "Meat",
+      "count": "1",
+      "id": 24
+    },
+    {
+      "id": "qm2xsz5wx",
+      "name": "Meat",
+      "listId": "Consoles",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    },
+    {
+      "id": "x5bfrnjme",
+      "name": "Pasta",
+      "listId": "Consoles",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    },
+    {
+      "id": "k0zub25zj",
+      "name": "Meat",
+      "listId": "test",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    },
+    {
+      "id": "7r4i9asg9",
+      "name": "Frozen Foods",
+      "listId": "test",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    },
+    {
+      "id": "hzgfo9erh",
+      "name": "Meat",
+      "listId": " s",
+      "userId": "justincabrera854@gmail.com",
+      "count": 1
+    },
+    {
+      "id": "gra8n6daa",
+      "name": "Frozen Foods",
+      "listId": "abc",
+      "userId": "jcho4@oswego.edu",
+      "count": 3
+    },
+    {
+      "id": "41umfoxkg",
+      "name": "Meat",
+      "listId": "abc",
+      "userId": "jcho4@oswego.edu",
+      "count": 1
+    }
+  ],
+  "items_list": [
+    {
+      "id": 1,
+      "name": "Meat"
+    },
+    {
+      "id": 2,
+      "name": "Pasta"
+    },
+    {
+      "id": 3,
+      "name": "Frozen Foods"
+    }
+  ]
+}

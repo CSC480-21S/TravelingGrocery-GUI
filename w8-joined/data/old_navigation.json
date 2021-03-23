@@ -1,0 +1,48 @@
+{
+	"directions": [
+		{
+			"shoppingListID": 1,
+			"itemName": "Toilet paper - 6 pack",
+			"aisle": 1,
+			"rack": 1,
+			"shelf": "top",
+			"side": "left",
+			"department": "Aisle",
+			"itemQuantity": 1,
+			"itemStockNum": 500
+		},
+		{
+			"shoppingListID": 1,
+			"itemName": "16 oz energy drink",
+			"aisle": 2,
+			"rack": 1,
+			"shelf": "top",
+			"side": "left",
+			"department": "Aisle",
+			"itemQuantity": 3, 
+			"itemStockNum": 500
+		},
+		{
+			"shoppingListID": 1,
+			"itemName": "16oz bottle distilled water",
+			"aisle": 3,
+			"rack": 1,
+			"shelf": "top",
+			"side": "left",
+			"department": "Aisle",
+			"itemQuantity": 3, 
+			"itemStockNum": 500
+		},
+		{
+			"shoppingListID": 1,
+			"itemName": "16 oz sweet tea",
+			"aisle": 3,
+			"rack": 1,
+			"shelf": "top",
+			"side": "left",
+			"department": "Aisle",
+			"itemQuantity": 12,
+			"itemStockNum": 500
+		}
+	]
+}
