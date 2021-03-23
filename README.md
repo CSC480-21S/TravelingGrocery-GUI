@@ -25,3 +25,6 @@ Each folder is a different ReactJS project that I was working on.
 	* Navigation text links and hamburger menu when window size small is in top right corner
 	* Search component in center of screen below navbar
 	* Developer link in navbar has stuff from `w6-offline-storage`, where I tested offline stuff
+
+4. `w7-navigation`
+	* Sends GET request to JSON server, gets mock list of mock directions that follow endpoint doc spec. , displays those directions step by step
