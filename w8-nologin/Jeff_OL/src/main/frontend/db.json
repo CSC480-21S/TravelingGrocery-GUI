@@ -1,0 +1,48 @@
+{
+  "Users": [
+    {
+      "id": "justincabrera854@gmail.com",
+      "lists": [
+        {
+          "name": " My First List",
+          "items": [],
+          "id": 1
+        },
+        {
+          "name": " Second List",
+          "items": [],
+          "id": 2
+        },
+        {
+          "name": " d",
+          "items": [],
+          "id": 3
+        },
+        {
+          "name": " das",
+          "items": [],
+          "id": 4
+        },
+        {
+          "name": " asd",
+          "items": [],
+          "id": 5
+        },
+        {
+          "name": " aaa",
+          "items": [],
+          "id": 6
+        },
+        {
+          "name": " aaa",
+          "items": [],
+          "id": 7
+        }
+      ]
+    },
+    {
+      "id":"jcabrera@oswego.edu",
+      "lists":[]
+    }
+  ]
+}
