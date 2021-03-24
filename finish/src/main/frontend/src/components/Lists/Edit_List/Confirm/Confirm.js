@@ -15,6 +15,21 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 	const user_id = useSelector((state) => state.login.profileObj.email);
 	const list_id = useSelector((state) => state.homePage.name);
 
+	const temp = {
+		lists: [
+			{
+				shoppingListID: 5,
+				itemNameArray: ["spices", "pita bread", "ranch", "honey"],
+				itemQuantityArray: [3, 1, 6, 6],
+			},
+			{
+				shoppingListID: 200,
+				itemNameArray: ["turkey jerky", "grape juice"],
+				itemQuantityArray: [1, 4],
+			},
+		],
+	};
+
 	/* const handleSaveChanges = () => {
 		//Handle items to be deleted
 		items_ToBeDeleted.map((item) => {
@@ -51,7 +66,7 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 			.post(
 				"http://pi.cs.oswego.edu:9081/store/nav",
 				{ headers: { "Access-Control-Allow-Origin": "*" } },
-				new_Items
+				temp
 			)
 			.then((response) => {
 				console.log(response);
