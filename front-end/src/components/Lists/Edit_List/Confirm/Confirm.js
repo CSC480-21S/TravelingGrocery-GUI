@@ -15,7 +15,7 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 	const user_id = useSelector((state) => state.login.profileObj.email);
 	const list_id = useSelector((state) => state.homePage.name);
 
-	/* const handleSaveChanges = () => {
+	const handleSaveChanges = () => {
 		//Handle items to be deleted
 		items_ToBeDeleted.map((item) => {
 			console.log(`ITEMS TO BE DELETED: ${JSON.stringify(items_ToBeDeleted)}`);
@@ -33,18 +33,18 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 				delete item.isChecked;
 				delete item.isStoreItem;
 				add_item_to_list(user_id, item);
-			}  else {
+			} else {
 				console.log(`ITEMS TO BE UPDTED: ${JSON.stringify(item)}`);
 				update_Item(item.id, item);
-			} 
+			}
 			//console.log("from item: \n" + JSON.stringify(item));
 		});
 		// pi.cs.oswego.edu:9081/store/nav
 		console.log("from confirm: \n" + JSON.stringify(new_Items));
 		//Handle items to be created
-	}; */
+	};
 
-	const test = () => {
+	/* const test = () => {
 		const url = "http://pi.cs.oswego.edu:9081/store/nav";
 		axios
 			.post(
@@ -58,7 +58,7 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 			.catch((error) => {
 				console.log(error);
 			});
-	};
+	}; */
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 20 }}>
 			<Button
@@ -71,7 +71,7 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 					height: "40px",
 					width: "100%",
 				}}
-				onClick={test}
+				onClick={handleSaveChanges}
 			>
 				Save Changes
 			</Button>

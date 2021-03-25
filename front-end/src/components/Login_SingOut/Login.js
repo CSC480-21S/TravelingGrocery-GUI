@@ -24,26 +24,6 @@ const Login = () => {
 	const [test, setTest] = useState("Empty");
 	const [user, setUser] = useState({ name: "Justin" });
 
-	/* useEffect(async () => {
-		console.log("INSIDE USE EFFECT");
-		try {
-			axios
-				.put("http://localhost:9090/LibertyProject/System/properties", {
-					user: "hello",
-				})
-				.then((response) =>
-					console.log(`response: ${JSON.stringify(response)}`)
-				);
-		} catch (error) {
-			console.log(`Error: ${error.message}`);
-		}
-		console.log("===============================");
-	}, []); */
-
-	const profile = useSelector((state) => state.login);
-	useEffect(() => {
-		//console.log(profile.isSignedIn());
-	}, []);
 	//when Login works
 	const onSuccess = (response) => {
 		console.log(`Login Success: currentUser ${response.profileObj}`);
@@ -51,25 +31,14 @@ const Login = () => {
 		dispatch(send_Google_User_info(response));
 		setTest(response.profileObj.name);
 		console.log(response);
-
 		history.push("/home");
 	};
 	//When login is a failute
 	const onFailure = (response) => {
-		//console.log("Error: " + response);
+		console.log("Error: " + response);
 	};
 
-	const { signIn, loaded } = useGoogleLogin({
-		onSuccess: onSuccess,
-		clientId:
-			"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
-		isSignedIn: true,
-		onFailure: onFailure,
-		uxMode: "redirect",
-	});
-
 	//==================================================
-	const [slideIndex, setSliceIndex] = useState(1);
 
 	/* 	function plusSlides(n) {
 		showSlides((slideIndex += n));
@@ -132,16 +101,11 @@ const Login = () => {
 				<br />
 
 				<GoogleLogin
-					clientId={
-						"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com"
-					}
 					buttonText="Login"
 					onSuccess={onSuccess}
 					onFailure={onFailure}
 					isSignedIn={true}
-					cookiePolicy={"http://localhost:3000/"}
 					uxMode={"redirect"}
-					redirectUri={"http://localhost:3000/home"}
 				/>
 			</div>
 		</>
