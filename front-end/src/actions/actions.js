@@ -3,6 +3,9 @@ import * as TYPES from "./actionTypes";
 
 //DONT FORGET TO DISPATCH THE ACTION (REDUX)
 
+//============================================================================
+//					JSON SERVER
+//============================================================================
 //Create a new List
 export const create_List = (list, id) => async (dispatch) => {
 	try {
@@ -58,4 +61,38 @@ export const set_active_list = (list) => (dispatch) => {
 //Set Global To be Updates List
 export const set_list_to_be_updated = (list) => (dispatch) => {
 	dispatch({ type: TYPES.SET_LIST_TO_BE_UPDATED, payload: list });
+};
+
+//============================================================================
+//					PI SERVER
+//============================================================================
+
+export const list_get = () => async (dispatch) => {
+	try {
+		const { data } = await api.list_get();
+		//console.log("response (list_get): " + JSON.stringify(data));
+		dispatch({ type: TYPES.LIST_GET, payload: data });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const list_create = (list) => async (dispatch) => {
+	try {
+		//console.log(JSON.stringify("List: " + JSON.stringify(list)));
+		const { data } = await api.list_create(list);
+		//console.log("respone (list_create) " + JSON.stringify(data));
+		dispatch({ type: TYPES.CREATE, payload: data });
+	} catch (error) {
+		console.log(error.nessage);
+	}
+};
+export const list_getItems = (shoppingListID) => async (dispatch) => {
+	try {
+		const { data } = await api.list_getItems(shoppingListID);
+		console.log("response (list_getItems): " + JSON.stringify(data));
+		dispatch({ type: TYPES.LIST_GET_ITEMS, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
 };

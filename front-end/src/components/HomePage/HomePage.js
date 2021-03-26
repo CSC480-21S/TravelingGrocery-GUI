@@ -14,13 +14,14 @@ import makeStyles from "../../styles/HomePage";
 import CreateList from "./CreateList";
 import { sendList } from "../../actions/actions";
 import { fetchLists } from "../../actions/actions";
+import { list_get } from "../../actions/actions";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const styles = makeStyles();
 	const history = useHistory();
 
-	const lists = useSelector((state) => state.createList); // gets the lists from server
+	const lists = useSelector((state) => state.list_users); // gets the lists from server
 	const profile = useSelector((state) => state.login); //gets profile info from Google login
 	//console.log("Profile from HomePage:" + profile);
 	//console.log("Lists From HomePage: " + JSON.stringify(lists));
@@ -41,8 +42,9 @@ const HomePage = () => {
 	useEffect(() => {
 		//console.log("Hello useEffect App: Dispatching Lists")
 		//console.log(" Email:" + profile.profileObj.email);
-
-		dispatch(fetchLists(profile.profileObj.email));
+		//console.log(`Lists from HomePage: \n ${JSON.stringify(lists)}`);
+		//dispatch(fetchLists(profile.profileObj.email));
+		dispatch(list_get());
 	}, [dispatch]);
 
 	return (
@@ -59,16 +61,20 @@ const HomePage = () => {
 					Hi {profile.profileObj.name}
 				</Typography>
 				<Grid container spacing={2}>
-					{lists.map((list) => (
-						<Grid item key={list.id}>
-							<Button
-								className={styles.regularButton}
-								onClick={() => handleList(list)}
-							>
-								{list.name}
-							</Button>
-						</Grid>
-					))}
+					{lists.map((list) =>
+						list != null ? (
+							<Grid item key={list.id}>
+								<Button
+									className={styles.regularButton}
+									onClick={() => handleList(list)}
+								>
+									{list.listName}
+								</Button>
+							</Grid>
+						) : (
+							<></>
+						)
+					)}
 					<Grid item>
 						{" "}
 						{/* Add List Button */}

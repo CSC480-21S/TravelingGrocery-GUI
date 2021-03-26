@@ -21,7 +21,7 @@ const Header = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const title = useSelector((state) => state.homePage.name); //gets the name of the list clicked
+	const title = useSelector((state) => state.homePage.listName); //gets the name of the list clicked
 	const profile = useSelector((state) => state.login); //gets profile info from Google login
 
 	const [open, setOpen] = useState(false); //Boolean that determines the state of Dialog/Profile component

@@ -13,13 +13,13 @@ import { Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 
 import { create_List } from "../../actions/actions";
+import { list_create } from "../../actions/actions";
 
 const CreateList = (props) => {
 	const profile = useSelector((state) => state.login); //Retrieve Login information from the store
 	const [list, setList] = useState({
-		id: "",
-		name: "",
-		userId: profile.profileObj.email,
+		listName: "",
+		userID: profile.googleId,
 	});
 	const styles = makeStyles();
 	const dispatch = useDispatch();
@@ -31,11 +31,11 @@ const CreateList = (props) => {
 		onClose();
 	};
 	const clearInput = () => {
-		setList({ name: " " });
+		setList({ listName: "", userID: 0 });
 	};
 	const createNewList = async (e) => {
 		e.preventDefault();
-		dispatch(create_List(list, profile.profileObj.email));
+		dispatch(list_create(list));
 		handleClose();
 	};
 
@@ -63,10 +63,8 @@ const CreateList = (props) => {
 						<TextField
 							fullWidth
 							className={styles.inputText}
-							value={list.name}
-							onChange={(e) =>
-								setList({ ...list, name: e.target.value, id: e.target.value })
-							}
+							value={list.listName}
+							onChange={(e) => setList({ ...list, listName: e.target.value })}
 							placeholder="Enter Name"
 							InputProps={{
 								disableUnderline: true,

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ShareIcon from "@material-ui/icons/Share";
@@ -13,26 +13,41 @@ import makeStyles from "./Regular_Item_styles";
 import { fecth_list_items } from "../../../actions/actions";
 import { fetch_store_items } from "../../../actions/actions";
 import { set_list_to_be_updated } from "../../../actions/actions";
+import { list_getItems } from "../../../actions/actions";
+
+import { list_addItem } from "../../../api/api";
 
 const Regular_List = ({ items, set_isEditable }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+	const [testItem, setTestItem] = useState({
+		listName: "test",
+		quantityItem: "2",
+		itemNote: "Testing notes",
+	});
+
 	const user = useSelector((state) => state.login.profileObj); //gets user information from reducer
-	const list_Name = useSelector((state) => state.homePage.name);
+	const shoppingListID = useSelector((state) => state.homePage.shoppingListID);
 
 	useEffect(() => {
-		dispatch(fecth_list_items(user.email, list_Name));
-
+		//dispatch(fecth_list_items(user.email, list_Name));
+		dispatch(list_getItems(shoppingListID));
 		return () => {
 			//Update the list of item when the componenet disassembles
-			dispatch(fecth_list_items(user.email, list_Name));
+			//dispatch(fecth_list_items(user.email, list_Name));
+			dispatch(list_getItems(shoppingListID));
 		};
 	}, [dispatch]);
 
+	useEffect(async () => {
+		await list_addItem(shoppingListID, testItem);
+	}, []);
+
 	useEffect(() => {
-		dispatch(fetch_store_items(items));
+		console.log(JSON.stringify(user));
+		dispatch(fetch_store_items());
 		console.log(`REGULAR ITEMS: ${JSON.stringify(items)}`);
 	}, []);
 
