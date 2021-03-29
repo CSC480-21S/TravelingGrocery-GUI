@@ -33,26 +33,32 @@ export const delete_item = (item_id) => axios.delete(`${url}/items/${item_id}`);
 //==========================================================================================================
 //				SERVER DEPLOYED at PI
 //==========================================================================================================
-//	List --------------------
+//	List (List of lists) --------------------
 export const list_get = () =>
-	axios.get(url_list).catch((e) => console.log(e.message));
+	axios
+		.get(url_list)
+		.catch((e) => console.log(`API list_get [ERROR]: ${e.message}`));
 export const list_create = (list) =>
-	axios.post(url_list, list).catch((e) => console.log(e.message));
+	axios
+		.post(url_list, list)
+		.catch((e) => console.log(`API list_create [ERROR]: ${e.message}`));
 export const list_delete = (shoppingListID) =>
 	axios
 		.delete(`${url_list}/${shoppingListID}`)
-		.catch((e) => console.log(e.message));
+		.catch((e) => console.log(`API list_delete [ERROR]: ${e.message}`));
 export const list_update = (shoppingListID, list) =>
 	axios
 		.put(`${url_list}/${shoppingListID}`, list)
-		.catch((e) => console.log(e.message));
+		.catch((e) => console.log(`API list_update [ERROR]: ${e.message}`));
 // List Items (List of Items) --------------------
 export const list_getMissedItems = () =>
-	axios.get(`${url_list}/missed/items`).catch((e) => console.log(e.message));
+	axios
+		.get(`${url_list}/missed/items`)
+		.catch((e) => console.log(`API list_getMissedItems [ERROR]: ${e.message}`));
 export const list_getItems = (shoppingListID) =>
 	axios
 		.get(`${url_list}/${shoppingListID}/items`)
-		.catch((e) => console.log(e.message));
+		.catch((e) => console.log(`API list_getItems [ERROR]: ${e.message}`));
 export const list_addItemList = (shoppingListID, items) =>
 	axios
 		.post(`${url_list}/${shoppingListID}/items`, items)

@@ -73,7 +73,7 @@ export const list_get = () => async (dispatch) => {
 		//console.log("response (list_get): " + JSON.stringify(data));
 		dispatch({ type: TYPES.LIST_GET, payload: data });
 	} catch (error) {
-		console.log(error);
+		console.log(error.message);
 	}
 };
 

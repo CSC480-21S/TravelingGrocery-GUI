@@ -11,8 +11,7 @@ import { useDispatch } from "react-redux";
 import makeStyles from "../../styles/CreasteList";
 import { Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
-
-import { create_List } from "../../actions/actions";
+//APPI
 import { list_create } from "../../actions/actions";
 
 const CreateList = (props) => {
@@ -36,6 +35,7 @@ const CreateList = (props) => {
 	const createNewList = async (e) => {
 		e.preventDefault();
 		dispatch(list_create(list));
+
 		handleClose();
 	};
 

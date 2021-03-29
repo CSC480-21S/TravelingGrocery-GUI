@@ -16,7 +16,7 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
 	//Edit List Content
-	const [item_count, set_Item_count] = useState(item.count);
+	const [item_count, set_Item_count] = useState(item.quantityItem);
 	const [isChecked, set_isChecked] = useState(item.isChecked);
 	//Use ref does not build on re-renders
 	const isMounted = useRef(false);

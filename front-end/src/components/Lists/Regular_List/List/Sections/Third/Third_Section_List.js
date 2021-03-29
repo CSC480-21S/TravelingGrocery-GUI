@@ -26,7 +26,7 @@ const Third_Section_List = ({ setting_boolean, set_Setting_bolean, item }) => {
 			<div style={{ fontSize: "12px" }}>
 				{/* Item Count Buttons */}
 				<p>
-					<b>Qty:</b> {item.count}
+					<b>Qty:</b> {item.quantityItem}
 				</p>
 			</div>
 		</div>

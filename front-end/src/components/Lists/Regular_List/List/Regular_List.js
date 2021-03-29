@@ -7,9 +7,9 @@ import Second_Section_List from "./Sections/Second/Second_Section_List";
 import Third_Section_List from "./Sections/Third/Third_Section_List";
 import Options from "./Sections/Third/Three_Dots/Options";
 //Styles
-import makeStyles from "./List_styles";
+import makeStyles from "./Regular_List_styles";
 
-const List = ({ item, setBol }) => {
+const Regular_List = ({ item, setBol }) => {
 	const styles = makeStyles();
 	const [setting_boolean, set_Setting_boolean] = useState(false);
 
@@ -34,7 +34,7 @@ const List = ({ item, setBol }) => {
 						<Options
 							setting_boolean={setting_boolean}
 							set_Setting_bolean={set_Setting_boolean}
-							item_id={item.id}
+							item={item}
 						/>
 					</div>
 				)}
@@ -52,4 +52,4 @@ const List = ({ item, setBol }) => {
 	);
 };
 
-export default List;
+export default Regular_List;

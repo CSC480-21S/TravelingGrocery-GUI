@@ -16,14 +16,21 @@ export default makeStyles((theme) => ({
 	},
 	topIconButton1: {
 		textTransform: "none",
-		marginLeft: theme.spacing(2),
-		marginRight: theme.spacing(2),
 		border: "1px solid #222258",
 		borderRadius: "8px",
 		fontSize: "10px",
 		height: "28px",
 	},
 	topIconButton2: {
+		marginLeft: theme.spacing(1.5),
+		marginRight: theme.spacing(1.5),
+		textTransform: "none",
+		border: "1px solid #222258",
+		borderRadius: "8px",
+		fontSize: "10px",
+		height: "28px",
+	},
+	topIconButton3: {
 		textTransform: "none",
 		border: "1px solid #222258",
 		borderRadius: "8px",

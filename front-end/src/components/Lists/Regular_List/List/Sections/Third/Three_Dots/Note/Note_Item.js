@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -8,32 +9,34 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
 import { useDispatch } from "react-redux";
-import makeStyles from "./Set_Title_styles";
 import { Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
-//Local Imports
-import { sendList } from "../../../actions/actions";
-import { list_update } from "../../../api/api";
+//local Imports
+import makeStyles from "./Note_Item_Styles";
+import { list_updateItem } from "../../../../../../../../api/api";
+import { list_getItems } from "../../../../../../../../actions/actions";
 
-const Set_Title = ({ onClose, open }) => {
-	const styles = makeStyles();
+const Note_Item = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
+	const [itemToBeUpdated, set_itemToBeUpdated] = useState(item);
 	const dispatch = useDispatch();
-	const [list, setList] = useState(useSelector((state) => state.homePage));
-
-	console.log(JSON.stringify(list));
+	const styles = makeStyles();
 	const handleClose = () => {
-		onClose();
+		setOnNote(false);
 	};
-	const updateList = async (e) => {
+	const updateItem = async (e) => {
 		e.preventDefault();
-		await list_update(list.shoppingListID, list);
-		dispatch(sendList(list));
+		await list_updateItem(
+			itemToBeUpdated.shoppingListID,
+			itemToBeUpdated.itemName,
+			itemToBeUpdated
+		);
+		dispatch(list_getItems(item.shoppingListID));
 		handleClose();
+		set_Setting_bolean(true);
 	};
 
 	return (
 		<div>
-			<Dialog onClose={handleClose} open={open} className={styles.main}>
+			<Dialog onClose={handleClose} open={onNote} className={styles.main}>
 				<DialogActions disableSpacing>
 					<IconButton
 						className={styles.exitIcon}
@@ -45,19 +48,24 @@ const Set_Title = ({ onClose, open }) => {
 				</DialogActions>
 				<DialogContent>
 					{" "}
-					<Typography className={styles.title}> Rename List </Typography>
+					<Typography className={styles.title}> Note </Typography>
 				</DialogContent>
 				<form
 					className={`${styles.root} ${styles.mainContainer}`}
-					onSubmit={updateList}
+					onSubmit={updateItem}
 				>
 					<FormControl className={styles.formControl}>
 						<TextField
 							autoFocus={true}
 							fullWidth
 							className={styles.inputText}
-							value={list.name}
-							onChange={(e) => setList({ ...list, listName: e.target.value })}
+							value={itemToBeUpdated.itemNote}
+							onChange={(e) =>
+								set_itemToBeUpdated({
+									...itemToBeUpdated,
+									itemNote: e.target.value,
+								})
+							}
 							placeholder="Enter Name"
 							InputProps={{
 								disableUnderline: true,
@@ -74,4 +82,4 @@ const Set_Title = ({ onClose, open }) => {
 	);
 };
 
-export default Set_Title;
+export default Note_Item;
