@@ -53,6 +53,7 @@ Each folder is a different ReactJS project that I was working on.
 
 `pi:~/Documents/csc480/TravelingGrocery-GUI-Jeff/w8-nologin> echo $PATH`
 `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin`
+
 11. Now we use setenv PATH command. 
 
 Take the echoed path string and append to start of that string the following `/home/jcho4/.local/lib/nodejs/node-v14.16.0-linux-x64/bin:`
@@ -60,14 +61,17 @@ Take the echoed path string and append to start of that string the following `/h
 What I typed:
 
 `setenv PATH "/home/jcho4/.local/lib/nodejs/node-v14.16.0-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"`
+
 12. Type `echo $PATH`, the output should be same as what you set.
 
 This is what I get
 `pi:~/Documents/csc480/TravelingGrocery-GUI-Jeff/w8-nologin> echo $PATH`
 
 `/home/jcho4/.local/lib/nodejs/node-v14.16.0-linux-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin`
+
 13. Test if its working by typing 
 
 `node -v`
 `npm version`
+
 14. You need to repeat step 11 everytime you ssh into CS account again, not sure if theres a fix for this.
