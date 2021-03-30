@@ -33,12 +33,11 @@ Each folder is a different ReactJS project that I was working on.
 	* Doesn't have any of Justin's code
 	* Navigation component sends POST request to `http://pi.cs.oswego.edu:9081/store/nav`
 
-8. `w9-only-navbar-new-recruits`
+8. `w9-navigation-navbar-new-recruits`
 	* Meant for new GUI recruits to use
-	* Only contains a navigation bar and navigation component, super minimal
+	* Only contains navigation component and navbar, super minimal
 	* No local JSON server stuff, we should try to use only actual endpoints from now on
 	* Navigation component sends POST request to `http://pi.cs.oswego.edu:9081/store/nav`
-
 
 ## How to get NodeJS installed on CS account
 1. Visit `https://nodejs.org/en/download/` and download "Linux Binaries (x64)"
