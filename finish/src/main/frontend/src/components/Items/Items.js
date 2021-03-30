@@ -5,10 +5,14 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 //Local imports
 import Item from "./Item/Item";
-import { fetch_store_items } from "../../actions/actions";
-import { set_list_to_be_updated } from "../../actions/actions";
 import Search_Bar from "./Search_Bar/Search_Bar";
 import makeStyles from "./Items_styles";
+//Api
+/* import { store_getItems } from "../../api/api"; */
+//Actions
+import { fetch_store_items } from "../../actions/actions";
+import { set_list_to_be_updated } from "../../actions/actions";
+import { store_getItems } from "../../actions/actions";
 
 const Items = () => {
 	const dispatch = useDispatch();
@@ -57,9 +61,14 @@ const Items = () => {
 
 	//FETCH STORE ITEMS
 	useEffect(() => {
-		dispatch(fetch_store_items());
-	}, [dispatch]);
+		//dispatch(fetch_store_items());
+		dispatch(store_getItems());
+	}, []);
 
+	/* useEffect(async () => {
+		const data = await store_getItems();
+		console.log("DATA: " + data);
+	}, []); */
 	return (
 		<div>
 			<Search_Bar

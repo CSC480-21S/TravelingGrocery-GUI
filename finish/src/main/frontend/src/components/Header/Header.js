@@ -5,8 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 
 //hooks
-import React from "react";
-import { useState } from "react";
+import { React, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -22,7 +21,7 @@ const Header = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const title = useSelector((state) => state.homePage.name); //gets the name of the list clicked
+	const title = useSelector((state) => state.homePage.listName); //gets the name of the list clicked
 	const profile = useSelector((state) => state.login); //gets profile info from Google login
 
 	const [open, setOpen] = useState(false); //Boolean that determines the state of Dialog/Profile component

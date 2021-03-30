@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -11,18 +11,24 @@ import { useDispatch } from "react-redux";
 import makeStyles from "./Set_Title_styles";
 import { Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
-
-import { update_List } from "../../../actions/actions";
+//Local Imports
+import { sendList } from "../../../actions/actions";
+import { list_update } from "../../../api/api";
 
 const Set_Title = ({ onClose, open }) => {
 	const styles = makeStyles();
+	const dispatch = useDispatch();
 	const [list, setList] = useState(useSelector((state) => state.homePage));
 
+	console.log(JSON.stringify(list));
 	const handleClose = () => {
 		onClose();
 	};
-	const updateList = () => {
-		console.log(`UPDATE LIST NAME: ${JSON.stringify(list)}`);
+	const updateList = async (e) => {
+		e.preventDefault();
+		await list_update(list.shoppingListID, list);
+		dispatch(sendList(list));
+		handleClose();
 	};
 
 	return (
@@ -51,7 +57,7 @@ const Set_Title = ({ onClose, open }) => {
 							fullWidth
 							className={styles.inputText}
 							value={list.name}
-							onChange={(e) => setList({ ...list, name: e.target.value })}
+							onChange={(e) => setList({ ...list, listName: e.target.value })}
 							placeholder="Enter Name"
 							InputProps={{
 								disableUnderline: true,

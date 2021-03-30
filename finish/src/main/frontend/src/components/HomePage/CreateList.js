@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { React, useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -12,15 +11,14 @@ import { useDispatch } from "react-redux";
 import makeStyles from "../../styles/CreasteList";
 import { Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
-
-import { create_List } from "../../actions/actions";
+//APPI
+import { list_create } from "../../actions/actions";
 
 const CreateList = (props) => {
 	const profile = useSelector((state) => state.login); //Retrieve Login information from the store
 	const [list, setList] = useState({
-		id: "",
-		name: "",
-		userId: profile.profileObj.email,
+		listName: "",
+		userID: profile.googleId,
 	});
 	const styles = makeStyles();
 	const dispatch = useDispatch();
@@ -32,11 +30,12 @@ const CreateList = (props) => {
 		onClose();
 	};
 	const clearInput = () => {
-		setList({ name: " " });
+		setList({ listName: "", userID: 0 });
 	};
 	const createNewList = async (e) => {
 		e.preventDefault();
-		dispatch(create_List(list, profile.profileObj.email));
+		dispatch(list_create(list));
+
 		handleClose();
 	};
 
@@ -64,10 +63,8 @@ const CreateList = (props) => {
 						<TextField
 							fullWidth
 							className={styles.inputText}
-							value={list.name}
-							onChange={(e) =>
-								setList({ ...list, name: e.target.value, id: e.target.value })
-							}
+							value={list.listName}
+							onChange={(e) => setList({ ...list, listName: e.target.value })}
 							placeholder="Enter Name"
 							InputProps={{
 								disableUnderline: true,
