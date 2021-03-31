@@ -19,7 +19,7 @@ const Items = () => {
 	const styles = makeStyles();
 	const history = useHistory();
 	const list_Name = useSelector((state) => state.homePage.name); //NAME OF THE LIST THAT WE ARE GOING TO ADD ITEMS
-	const username = useSelector((state) => state.login.profileObj.email);
+	const username = useSelector((state) => state.user.email);
 	const [filtered_storeList, set_Filtered_storeList] = useState([]); //filetered items
 	//LIST TO BE UPDATED
 	const [items_to_be_updated, set_ItemsToBeUpdated] = useState(

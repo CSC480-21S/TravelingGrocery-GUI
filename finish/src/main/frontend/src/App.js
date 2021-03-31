@@ -18,52 +18,35 @@ import {
 	Route,
 	Redirect,
 	Switch,
-	useLocation,
 } from "react-router-dom";
 
 const App = () => {
-	const is_Signin = useRef();
-	const user = useRef();
-	const selector = useSelector((state) => state.login);
+	const is_Signin = useRef(true);
 
-	const handleLogin = () => {
+	const handleLogin = async () => {
 		window.gapi.load("auth2", () => {
 			window.gapi.auth2
 				.init({
 					ux_mode: "redirect",
-					hosted_domain: "oswego.edu",
 					client_id:
 						"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
 				})
 				.then(() => {
 					const authInstance = window.gapi.auth2.getAuthInstance();
-					user.current = authInstance;
-					/* */
 					const isSignedIn = authInstance.isSignedIn.get();
-					console.log(isSignedIn);
-					is_Signin.current = isSignedIn;
-					authInstance.isSignedIn.listen((isSignedIn) => {
+					//is_Signin.current = isSignedIn;
+					/* authInstance.isSignedIn.listen((isSignedIn) => {
 						is_Signin.current = isSignedIn;
-					});
+					}); */
 				});
 		});
 	};
 
-	useEffect(() => {
+	useEffect(async () => {
 		handleLogin();
 		//console.log("SELECTOR: " + JSON.stringify(selector));
-	});
-
-	useEffect(() => {
-		//console.log(window.gapi.auth2.getAuthInstance());
-		try {
-			console.log(`user FROM APP: ${user.current.isSignedIn.get()}`);
-		} catch (e) {
-			console.log(e);
-		}
-
-		//console.log(`is_Signin.current: ${JSON.stringify(is_Signin.current)}`);
-	}, [handleLogin]);
+		console.log(JSON.stringify(is_Signin.current));
+	}, []);
 
 	return (
 		<Router>
@@ -73,47 +56,37 @@ const App = () => {
 				</Route>
 
 				{is_Signin.current ? (
-					<Route exact path="/">
-						<Redirect to="/home" />
-						<Header />
-						<Lists />
-					</Route>
-				) : (
-					<Redirect to="/login" />
-				)}
-				{is_Signin.current ? (
-					<Route path="/home">
-						<Navbar />
-						<Header />
-						<HomePage />
-					</Route>
-				) : (
-					<Redirect to="/login" />
-				)}
-				{is_Signin.current ? (
-					<Route path="/User/Lists/listName">
-						<Navbar />
-						<Header />
-						<Lists />
-					</Route>
-				) : (
-					<Redirect to="/login" />
-				)}
-				{is_Signin.current ? (
-					<Route path="/items">
-						<Navbar />
-						<Header />
-						<Items />
-					</Route>
-				) : (
-					<Redirect to="/login" />
-				)}
-				{is_Signin.current ? (
-					<Route path="/edit">
-						<Navbar />
-						<Header />
-						<Edit_List />
-					</Route>
+					<>
+						<Route exact path="/">
+							<Redirect to="/home" />
+							<Header />
+							<Lists />
+						</Route>
+
+						<Route path="/home">
+							<Navbar />
+							<Header />
+							<HomePage />
+						</Route>
+
+						<Route exact path="/list/:id">
+							<Navbar />
+							<Header />
+							<Lists />
+						</Route>
+
+						<Route path="/items">
+							<Navbar />
+							<Header />
+							<Items />
+						</Route>
+
+						<Route path="/list/:id/edit">
+							<Navbar />
+							<Header />
+							<Edit_List />
+						</Route>
+					</>
 				) : (
 					<Redirect to="/login" />
 				)}

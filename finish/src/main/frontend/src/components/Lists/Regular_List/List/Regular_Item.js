@@ -26,9 +26,19 @@ const Regular_Item = ({ item }) => {
 				{/* Hide The item info to toggle the settings menu */}
 				{setting_boolean ? (
 					/* Contains item's info (Item name, type, on Stock, location ) */
-					<div className={styles.item_details_Container}>
-						<Second_Section_List item={item} />
-					</div>
+					<>
+						<div className={styles.item_details_Container}>
+							<Second_Section_List item={item} />
+						</div>
+
+						<div className={styles.third_section_list_Container}>
+							<Third_Section_List
+								setting_boolean={setting_boolean}
+								set_Setting_bolean={set_Setting_boolean}
+								item={item}
+							/>
+						</div>
+					</>
 				) : (
 					<div className={styles.setting_details}>
 						<Options
@@ -38,15 +48,6 @@ const Regular_Item = ({ item }) => {
 						/>
 					</div>
 				)}
-				{setting_boolean ? (
-					<div className={styles.third_section_list_Container}>
-						<Third_Section_List
-							setting_boolean={setting_boolean}
-							set_Setting_bolean={set_Setting_boolean}
-							item={item}
-						/>
-					</div>
-				) : null}
 			</div>
 		</div>
 	);

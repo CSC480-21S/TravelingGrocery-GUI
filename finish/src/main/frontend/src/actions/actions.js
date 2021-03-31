@@ -54,10 +54,7 @@ export const fetch_store_items = () => async (dispatch) => {
 		console.log(error.message);
 	}
 };
-//Set Global Active List
-export const set_active_list = (list) => (dispatch) => {
-	dispatch({ type: TYPES.SET_ACTIVE_LIST, payload: list });
-};
+
 //Set Global To be Updates List
 export const set_list_to_be_updated = (list) => (dispatch) => {
 	dispatch({ type: TYPES.SET_LIST_TO_BE_UPDATED, payload: list });

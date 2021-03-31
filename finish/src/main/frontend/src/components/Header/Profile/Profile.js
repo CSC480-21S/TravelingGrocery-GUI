@@ -7,14 +7,11 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 //Google Stuff
 import { useGoogleLogout } from "react-google-login";
-import { send_Google_User_info } from "../../actions/actions";
-import { useDispatch } from "react-redux";
 //Components or Local imports
 
 //Styles
 const Profile = ({ open, onClose }) => {
 	const history = useHistory();
-	const dispatch = useDispatch();
 	const handleClose = () => {
 		onClose();
 	};

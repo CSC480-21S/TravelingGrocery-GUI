@@ -14,15 +14,15 @@ import Search_Bar from "./Search_Bar/Search_Bar";
 import Set_Title from "./Set_Title/Set_Title";
 //Libraries
 import makeStyles from "./Header_styles";
-import Profile from "./Profile";
+import Profile from "./Profile/Profile";
 
 const Header = () => {
 	const styles = makeStyles();
 	const location = useLocation();
 	const history = useHistory();
 
-	const title = useSelector((state) => state.homePage.listName); //gets the name of the list clicked
-	const profile = useSelector((state) => state.login); //gets profile info from Google login
+	const title = useSelector((state) => state.active_list.listName); //gets the name of the list clicked
+	const profile = useSelector((state) => state.user); //gets profile info from Google login
 
 	const [open, setOpen] = useState(false); //Boolean that determines the state of Dialog/Profile component
 	const [open2, setOpen2] = useState(false); //Boolean that determines the state of Dialog/Set_Title component
@@ -52,9 +52,7 @@ const Header = () => {
 				<div className={styles.item_one}>
 					{" "}
 					{/* Back Button */}
-					{location.pathname === "/User/Lists/listName" ||
-					location.pathname === "/items" ||
-					location.pathname === "/edit" ? (
+					{location.pathname !== "/home" ? (
 						<IconButton onClick={handleBack}>
 							<ArrowBackIcon />
 						</IconButton>
@@ -65,7 +63,7 @@ const Header = () => {
 					{/* title */}
 					{location.pathname === "/home" ? (
 						<Typography className={styles.main}>Dashboard</Typography>
-					) : location.pathname === "/User/Lists/listName" ? (
+					) : location.pathname === `/list/${title}` ? (
 						<div className={styles.title}>
 							<Typography className={styles.main}>{title}</Typography>
 							<IconButton onClick={() => setOpen2(true)}>
@@ -75,7 +73,7 @@ const Header = () => {
 						</div>
 					) : location.pathname === "/items" ? (
 						<Typography className={styles.main}>Items</Typography>
-					) : location.pathname === "/edit" ? (
+					) : location.pathname === `/list/${title}/edit` ? (
 						<Typography className={styles.main}>{title}</Typography>
 					) : null}
 				</div>
@@ -84,11 +82,7 @@ const Header = () => {
 					{/* Profile Picture */}
 					{true ? (
 						<IconButton className={styles.item_login} onClick={handleProfile}>
-							<Avatar
-								alt="Test"
-								src={profile.profileObj.imageUrl}
-								variant="circular"
-							/>
+							<Avatar alt="Test" src={profile.imageUrl} variant="circular" />
 						</IconButton>
 					) : null}
 					<Profile open={open} onClose={handleProfileOnClose} />
@@ -96,8 +90,8 @@ const Header = () => {
 				<div className={styles.item_four}>
 					{" "}
 					{/* Search Bar */}
-					{location.pathname === "/User/Lists/listName" ||
-					location.pathname === "/edit" ? (
+					{location.pathname === `/list/${title}` ||
+					location.pathname === `/list/${title}/edit` ? (
 						<Search_Bar />
 					) : null}
 				</div>

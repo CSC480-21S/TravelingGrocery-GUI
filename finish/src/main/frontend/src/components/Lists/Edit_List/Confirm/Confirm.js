@@ -12,8 +12,7 @@ import { add_item_to_list } from "../../../../api/api";
 import { pink } from "@material-ui/core/colors";
 
 const Confirm = ({ new_Items, items_ToBeDeleted }) => {
-	const user_id = useSelector((state) => state.login.profileObj.email);
-	const list_id = useSelector((state) => state.homePage.name);
+	const user_id = useSelector((state) => state.user.email);
 
 	const handleSaveChanges = () => {
 		//Handle items to be deleted

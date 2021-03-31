@@ -12,9 +12,11 @@ import { useDispatch } from "react-redux";
 import makeStyles from "../../styles/HomePage";
 //Components
 import CreateList from "./CreateList";
+//Actions
 import { sendList } from "../../actions/actions";
 import { fetchLists } from "../../actions/actions";
 import { list_get } from "../../actions/actions";
+import { list_getItems } from "../../actions/actions";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -22,7 +24,7 @@ const HomePage = () => {
 	const history = useHistory();
 
 	const lists = useSelector((state) => state.list_users); // gets the lists from server
-	const profile = useSelector((state) => state.login); //gets profile info from Google login
+	const profile = useSelector((state) => state.user); //gets profile info from Google login
 	//console.log("Profile from HomePage:" + profile);
 	//console.log("Lists From HomePage: " + JSON.stringify(lists));
 
@@ -36,17 +38,20 @@ const HomePage = () => {
 	};
 	const handleList = (list) => {
 		dispatch(sendList(list));
-		history.push("/User/Lists/listName");
+		dispatch(list_getItems(list.shoppingListID));
+		history.push(`/list/${list.listName}`);
 	};
 
 	useEffect(() => {
-		//console.log("Hello useEffect App: Dispatching Lists")
-		//console.log(" Email:" + profile.profileObj.email);
-		//console.log(`Lists from HomePage: \n ${JSON.stringify(lists)}`);
-		//dispatch(fetchLists(profile.profileObj.email));
+		//fetch lists on Mount
 		dispatch(list_get());
 	}, [dispatch]);
 
+	useEffect(() => {
+		const auth = window.gapi.auth2.getAuthInstance();
+		const user = auth.currentUser.get();
+		console.log("GAPI FROM HOME: " + JSON.stringify(user.getBasicProfile()));
+	});
 	return (
 		<Grid
 			container
@@ -57,9 +62,7 @@ const HomePage = () => {
 			{/* User Regular Lists */}
 			{/* <p>{profile.tokenObj.id_token}</p> */}
 			<Grid item className={styles.test}>
-				<Typography className={styles.userName}>
-					Hi {profile.profileObj.name}
-				</Typography>
+				<Typography className={styles.userName}>Hi {profile.name}</Typography>
 				<Grid container spacing={2}>
 					{lists.map((list) =>
 						list != null ? (

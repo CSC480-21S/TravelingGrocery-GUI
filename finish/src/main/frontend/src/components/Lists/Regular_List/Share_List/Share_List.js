@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+//Material UI
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -7,33 +8,21 @@ import IconButton from "@material-ui/core/IconButton";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
-import { useDispatch } from "react-redux";
-import makeStyles from "./Set_Title_styles";
 import { Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
+//Redux
+import { useDispatch } from "react-redux";
 //Local Imports
-import { sendList } from "../../../actions/actions";
-import { list_update } from "../../../api/api";
-
-const Set_Title = ({ onClose, open }) => {
+import makeStyles from "./Share_List_styles";
+const Share_List = ({ onShare, set_onShare, shoppingListID }) => {
 	const styles = makeStyles();
-	const dispatch = useDispatch();
-	const [list, setList] = useState(useSelector((state) => state.active_list));
-
-	console.log(JSON.stringify(list));
+	const [userID, set_userID] = useState();
 	const handleClose = () => {
-		onClose();
+		set_onShare(false);
 	};
-	const updateList = async (e) => {
-		e.preventDefault();
-		await list_update(list.shoppingListID, list);
-		dispatch(sendList(list));
-		handleClose();
-	};
-
+	const shareList = () => {};
 	return (
 		<div>
-			<Dialog onClose={handleClose} open={open} className={styles.main}>
+			<Dialog onClose={handleClose} open={onShare} className={styles.main}>
 				<DialogActions disableSpacing>
 					<IconButton
 						className={styles.exitIcon}
@@ -45,20 +34,20 @@ const Set_Title = ({ onClose, open }) => {
 				</DialogActions>
 				<DialogContent>
 					{" "}
-					<Typography className={styles.title}> Rename List </Typography>
+					<Typography className={styles.title}> Share List </Typography>
 				</DialogContent>
 				<form
 					className={`${styles.root} ${styles.mainContainer}`}
-					onSubmit={updateList}
+					onSubmit={shareList}
 				>
 					<FormControl className={styles.formControl}>
 						<TextField
 							autoFocus={true}
 							fullWidth
 							className={styles.inputText}
-							value={list.name}
-							onChange={(e) => setList({ ...list, listName: e.target.value })}
-							placeholder="Enter Name"
+							value={userID}
+							onChange={(e) => set_userID(e.target.value)}
+							placeholder="Enter UserID"
 							InputProps={{
 								disableUnderline: true,
 							}}
@@ -74,4 +63,4 @@ const Set_Title = ({ onClose, open }) => {
 	);
 };
 
-export default Set_Title;
+export default Share_List;

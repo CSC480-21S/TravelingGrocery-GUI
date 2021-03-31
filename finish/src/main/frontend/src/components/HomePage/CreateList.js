@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { list_create } from "../../actions/actions";
 
 const CreateList = (props) => {
-	const profile = useSelector((state) => state.login); //Retrieve Login information from the store
+	const profile = useSelector((state) => state.user); //Retrieve user information from the store
 	const [list, setList] = useState({
 		listName: "",
 		userID: profile.googleId,
