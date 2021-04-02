@@ -26,8 +26,8 @@ const Login = () => {
 		dispatch(send_Google_User_info(response));
 		try {
 			axios
-				.put("http://pi.cs.oswego.edu:7808/user/records", {
-					token: response,
+				.post("http://pi.cs.oswego.edu:7808/user/records", {
+					token: "idtoken=" + response.tc.id_token,
 				})
 				.then((response) =>
 					console.log(`response: ${JSON.stringify(response)}`)
