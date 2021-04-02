@@ -18,9 +18,7 @@ const Search_Bar = ({ items, set_Filtered_storeList }) => {
 	const onEnter = async (e) => {
 		e.preventDefault();
 		const data = store_searchItems(input_value);
-		const data2 = await store_getItems();
-		console.log(`SEARCH REPSONSE: ${JSON.stringify(data)}`);
-		console.log(`SEARCH REPSONSE2: ${JSON.stringify(data2)}`);
+		console.log(`SEARCH REPSONSE: ${data}`);
 	};
 	useEffect(() => {
 		console.log(JSON.stringify(input_value));

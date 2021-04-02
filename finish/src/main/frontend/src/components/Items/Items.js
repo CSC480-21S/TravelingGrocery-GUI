@@ -32,7 +32,6 @@ const Items = () => {
 				item.listId = list_Name;
 				item.userId = username;
 				item.count = 1;
-				item.id = Math.random().toString(36).substr(2, 9);
 				item.isChecked = false;
 				item.isStoreItem = true;
 				return item;
@@ -62,7 +61,7 @@ const Items = () => {
 	//FETCH STORE ITEMS
 	useEffect(() => {
 		//dispatch(fetch_store_items());
-		dispatch(store_getItems());
+		//dispatch(store_getItems());
 	}, []);
 
 	return (
@@ -77,9 +76,9 @@ const Items = () => {
 				</Typography>
 			</div>
 			<div>
-				{items.map((item) => (
+				{/* {items.map((item) => (
 					<Item key={item.id} item={item} items={items} set_items={set_items} />
-				))}
+				))} */}
 			</div>
 		</div>
 	);

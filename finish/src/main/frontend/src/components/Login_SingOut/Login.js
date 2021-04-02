@@ -27,7 +27,7 @@ const Login = () => {
 		try {
 			axios
 				.post("http://pi.cs.oswego.edu:7808/user/records", {
-					token: "idtoken=" + response.tc.id_token,
+					token: response.tc.id_token,
 				})
 				.then((response) =>
 					console.log(`response: ${JSON.stringify(response)}`)

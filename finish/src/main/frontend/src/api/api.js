@@ -111,5 +111,5 @@ export const store_getItems = () =>
 export const store_searchItems = (searchTerm) => {
 	axios
 		.post(`${url_store}/search`, searchTerm)
-		.then((res) => console.log(JSON.stringify(res)));
+		.then((res) => console.log(JSON.stringify(res.data)));
 };
