@@ -11,7 +11,7 @@ import { add_Item } from "../../../../api/api";
 import { add_item_to_list } from "../../../../api/api";
 import { pink } from "@material-ui/core/colors";
 
-const Confirm = ({ new_Items, items_ToBeDeleted }) => {
+const Confirm = ({ new_Items, items_ToBeDeleted, set_isEdit }) => {
 	const user_id = useSelector((state) => state.user.email);
 
 	const handleSaveChanges = () => {
@@ -38,26 +38,10 @@ const Confirm = ({ new_Items, items_ToBeDeleted }) => {
 			}
 			//console.log("from item: \n" + JSON.stringify(item));
 		});
-		// pi.cs.oswego.edu:9081/store/nav
-		console.log("from confirm: \n" + JSON.stringify(new_Items));
-		//Handle items to be created
+
+		set_isEdit(false);
 	};
 
-	/* const test = () => {
-		const url = "http://pi.cs.oswego.edu:9081/store/nav";
-		axios
-			.post(
-				"http://pi.cs.oswego.edu:9081/store/nav",
-				{ headers: { "Access-Control-Allow-Origin": "*" } },
-				new_Items
-			)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}; */
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 20 }}>
 			<Button

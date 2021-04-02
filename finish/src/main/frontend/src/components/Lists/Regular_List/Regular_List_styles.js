@@ -50,4 +50,9 @@ export default makeStyles((theme) => ({
 	fontSizeInherit: {
 		fontSize: "27px",
 	},
+	searchBar: {
+		marginLeft: theme.spacing(1.5),
+		marginRight: theme.spacing(1.5),
+		marginBottom: theme.spacing(3),
+	},
 }));

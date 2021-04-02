@@ -18,8 +18,8 @@ const Items = () => {
 	const dispatch = useDispatch();
 	const styles = makeStyles();
 	const history = useHistory();
-	const list_Name = useSelector((state) => state.homePage.name); //NAME OF THE LIST THAT WE ARE GOING TO ADD ITEMS
-	const username = useSelector((state) => state.user.email);
+	const list_Name = useSelector((state) => state.active_list.listName); //NAME OF THE LIST THAT WE ARE GOING TO ADD ITEMS
+	const username = useSelector((state) => state.user.profile.email);
 	const [filtered_storeList, set_Filtered_storeList] = useState([]); //filetered items
 	//LIST TO BE UPDATED
 	const [items_to_be_updated, set_ItemsToBeUpdated] = useState(
@@ -65,10 +65,6 @@ const Items = () => {
 		dispatch(store_getItems());
 	}, []);
 
-	/* useEffect(async () => {
-		const data = await store_getItems();
-		console.log("DATA: " + data);
-	}, []); */
 	return (
 		<div>
 			<Search_Bar
@@ -77,32 +73,13 @@ const Items = () => {
 			/>
 			<div className={styles.text}>
 				<Typography style={{ fontFamily: "Inter", fontWeight: "600" }}>
-					Adding Items to {list_Name}
+					Add Items to {list_Name}
 				</Typography>
 			</div>
 			<div>
-				{filtered_storeList.length === 0
-					? items.map((item) => (
-							<Item
-								key={item.id}
-								item={item}
-								items={items}
-								set_items={set_items}
-							/>
-					  ))
-					: filtered_storeList.map((item) => (
-							<Item
-								key={item.id}
-								item={item}
-								items={items}
-								set_items={set_items}
-							/>
-					  ))}
-			</div>
-			<div>
-				<Button className={styles.add} onClick={handleAdd}>
-					Add Items
-				</Button>
+				{items.map((item) => (
+					<Item key={item.id} item={item} items={items} set_items={set_items} />
+				))}
 			</div>
 		</div>
 	);

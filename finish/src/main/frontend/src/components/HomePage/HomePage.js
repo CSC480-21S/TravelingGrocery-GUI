@@ -24,7 +24,7 @@ const HomePage = () => {
 	const history = useHistory();
 
 	const lists = useSelector((state) => state.list_users); // gets the lists from server
-	const profile = useSelector((state) => state.user); //gets profile info from Google login
+	const profile = useSelector((state) => state.user.profile); //gets profile info from Google login
 	//console.log("Profile from HomePage:" + profile);
 	//console.log("Lists From HomePage: " + JSON.stringify(lists));
 

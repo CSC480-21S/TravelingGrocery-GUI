@@ -4,8 +4,17 @@ import { SEND_GOOGLE_INFO } from "../../actions/actionTypes";
 export default (state = [], action) => {
 	switch (action.type) {
 		case SEND_GOOGLE_INFO: {
-			const user = action.payload.profileObj;
-			return user;
+			let data = {};
+			var token;
+			const profile = action.payload.profileObj;
+			if (!action.payload.tokenId) {
+				data["tk"] = null;
+			} else {
+				token = { tk: action.payload.tokenId };
+				data["tk"] = token;
+			}
+			data["profile"] = profile;
+			return data;
 		}
 		default:
 			return state;

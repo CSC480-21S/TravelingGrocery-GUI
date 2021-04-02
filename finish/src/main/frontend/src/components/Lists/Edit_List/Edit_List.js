@@ -10,7 +10,7 @@ import Confirm from "./Confirm/Confirm";
 import Item from "./List/Item";
 import makeStyles from "./Edit_List_styles";
 
-const Edit_List = () => {
+const Edit_List = ({ items, set_isEdit }) => {
 	const dispatch = useDispatch();
 	const styles = makeStyles();
 	//ADD CHECK MARK BOOLEAN TO A NEW LIST OBJECT
@@ -78,7 +78,11 @@ const Edit_List = () => {
 				))}
 			</div>
 			<div>
-				<Confirm new_Items={new_Items} items_ToBeDeleted={items_ToBeDeleted} />
+				<Confirm
+					new_Items={new_Items}
+					items_ToBeDeleted={items_ToBeDeleted}
+					set_isEdit={set_isEdit}
+				/>
 			</div>
 		</div>
 	);

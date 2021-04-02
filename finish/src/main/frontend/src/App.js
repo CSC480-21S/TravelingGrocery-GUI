@@ -1,8 +1,8 @@
 //Style
 
 //Components
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import HomePage from "./components/HomePage/HomePage";
 import Header from "./components/Header/Header";
 import Lists from "./components/Lists/Lists";
@@ -21,48 +21,44 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-	const is_Signin = useRef(true);
+	const [bol, set_bol] = useState(null);
+	const token = useSelector((state) => state.user.tk);
 
-	const handleLogin = async () => {
-		window.gapi.load("auth2", () => {
-			window.gapi.auth2
-				.init({
-					ux_mode: "redirect",
-					client_id:
-						"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
-				})
-				.then(() => {
-					const authInstance = window.gapi.auth2.getAuthInstance();
-					const isSignedIn = authInstance.isSignedIn.get();
-					//is_Signin.current = isSignedIn;
-					/* authInstance.isSignedIn.listen((isSignedIn) => {
-						is_Signin.current = isSignedIn;
-					}); */
-				});
-		});
+	const handleLogin = () => {
+		try {
+			window.gapi.load("auth2", () => {
+				window.gapi.auth2
+					.init({
+						ux_mode: "redirect",
+						client_id:
+							"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
+					})
+					.then(async () => {
+						const auth = window.gapi.auth2.getAuthInstance();
+						set_bol(auth.isSignedIn.get());
+						auth.isSignedIn.listen((isSignedIn) => set_bol(isSignedIn));
+					});
+			});
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
-	useEffect(async () => {
+	useEffect(() => {
 		handleLogin();
-		//console.log("SELECTOR: " + JSON.stringify(selector));
-		console.log(JSON.stringify(is_Signin.current));
 	}, []);
 
 	return (
 		<Router>
 			<Switch>
+				<Route exact path="/">
+					<Redirect to="/login" />
+				</Route>
 				<Route path="/login">
 					<Login />
 				</Route>
-
-				{is_Signin.current ? (
+				{bol ? (
 					<>
-						<Route exact path="/">
-							<Redirect to="/home" />
-							<Header />
-							<Lists />
-						</Route>
-
 						<Route path="/home">
 							<Navbar />
 							<Header />
@@ -75,7 +71,7 @@ const App = () => {
 							<Lists />
 						</Route>
 
-						<Route path="/items">
+						<Route path="/list/:id/store">
 							<Navbar />
 							<Header />
 							<Items />

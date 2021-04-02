@@ -15,11 +15,12 @@ import Start_Shooping from "./Start_Shooping/Start_Shooping";
 import makeStyles from "./Regular_List_styles";
 import Delete_List from "./Delete_List/Delete_List";
 import Share_List from "./Share_List/Share_List";
+import Search_Bar from "./Search_Bar/Search_Bar";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
 import { sendList } from "../../../actions/actions";
 
-const Regular_Lists = ({ items }) => {
+const Regular_Lists = ({ items, set_isEdit }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -27,8 +28,9 @@ const Regular_Lists = ({ items }) => {
 
 	const [onDelete, set_onDelete] = useState(false);
 	const [onShare, set_onShare] = useState(false);
+	const [filteredList, set_fliteredList] = useState([]);
 
-	const user = useSelector((state) => state.user); //gets user information from reducer
+	const user = useSelector((state) => state.user.profile); //gets user information from reducer
 	const shoppingListID = useSelector(
 		(state) => state.active_list.shoppingListID
 	);
@@ -36,10 +38,11 @@ const Regular_Lists = ({ items }) => {
 	const handleEdit = () => {
 		const temp = items.map((item) => {
 			item.isChecked = false;
+			console.log(JSON.stringify(item));
 			return item;
 		});
 		dispatch(set_list_to_be_updated(temp));
-		history.push("/edit");
+		set_isEdit(true);
 	};
 	const handleDelete = () => {
 		set_onDelete(true);
@@ -62,6 +65,9 @@ const Regular_Lists = ({ items }) => {
 				shoppingListID={shoppingListID}
 			/>
 			<div>
+				<div className={styles.searchBar}>
+					<Search_Bar items={items} set_fliteredList={set_fliteredList} />
+				</div>
 				<div className={styles.top_container}>
 					<div>
 						<Typography
@@ -112,21 +118,16 @@ const Regular_Lists = ({ items }) => {
 			</div>
 			{items.length < 1 ? (
 				<div style={{ paddingLeft: 20, paddingRight: 20 }}>
-					<Button
-						className={styles.button}
-						onClick={() => {
-							history.push(`${location.pathname}/edit`);
-						}}
-					>
+					<Button className={styles.button} onClick={handleEdit}>
 						<AddIcon fontSize="inherit" /> Add Item
 					</Button>
 				</div>
 			) : (
 				<>
 					<div>
-						{items.map((item) => (
-							<Regular_Item item={item} />
-						))}
+						{filteredList.length === 0
+							? items.map((item) => <Regular_Item item={item} />)
+							: filteredList.map((item) => <Regular_Item item={item} />)}
 					</div>
 
 					<div>

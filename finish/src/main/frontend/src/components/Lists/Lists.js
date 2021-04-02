@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 //Components
 import Regular_List from "./Regular_List/Regular_List";
-import { list_getItems } from "../../actions/actions";
+import Edit_List from "./Edit_List/Edit_List";
 //Actions
+import { list_getItems } from "../../actions/actions";
 import { sendList } from "../../actions/actions";
 
 const Lists = () => {
 	const items = useSelector((state) => state.lists); //get items
+	const [isEdit, set_isEdit] = useState(false);
 	const shoppingListID = useSelector(
 		(state) => state.active_list.shoppingListID
 	);
@@ -27,7 +29,11 @@ const Lists = () => {
 	return (
 		<>
 			<div>
-				<Regular_List items={items} />
+				{isEdit ? (
+					<Edit_List items={items} set_isEdit={set_isEdit} />
+				) : (
+					<Regular_List items={items} set_isEdit={set_isEdit} />
+				)}
 			</div>
 		</>
 	);

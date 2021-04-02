@@ -1,11 +1,8 @@
-import { React, useState } from "react";
-
+import React from "react";
 import { GoogleLogin } from "react-google-login";
-
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Button from "@material-ui/core/Button";
-//Local components
+//Actions
 import { send_Google_User_info } from "../../actions/actions";
 import axios from "axios";
 
@@ -24,7 +21,7 @@ const Login = () => {
 
 	//when Login works
 	const onSuccess = (response) => {
-		console.log(`Login Success: currentUser ${response.profileObj}`);
+		console.log(`Login Success: currentUser ${JSON.stringify(response)}`);
 		console.log("Response: " + response.isSignedIn());
 		dispatch(send_Google_User_info(response));
 		try {

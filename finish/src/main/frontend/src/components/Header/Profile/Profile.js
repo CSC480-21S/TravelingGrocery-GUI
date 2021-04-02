@@ -5,6 +5,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
+//Redux
+import { useDispatch } from "react-redux";
+import { send_Google_User_info } from "../../../actions/actions";
 //Google Stuff
 import { useGoogleLogout } from "react-google-login";
 //Components or Local imports
@@ -12,6 +15,7 @@ import { useGoogleLogout } from "react-google-login";
 //Styles
 const Profile = ({ open, onClose }) => {
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const handleClose = () => {
 		onClose();
 	};
@@ -21,8 +25,8 @@ const Profile = ({ open, onClose }) => {
 	};
 
 	const onLogoutSuccess = (response) => {
-		console.log("Response from Google AUTH: " + response);
-		//dispatch(send_Google_User_info(null));
+		console.log("Response from Google AUTH [SINGOUT]: " + response);
+		dispatch(send_Google_User_info({ profileObj: "null", tk: null }));
 		history.push("/login");
 	};
 	const onFailure = (error) => {

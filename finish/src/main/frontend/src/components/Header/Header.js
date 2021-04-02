@@ -22,7 +22,7 @@ const Header = () => {
 	const history = useHistory();
 
 	const title = useSelector((state) => state.active_list.listName); //gets the name of the list clicked
-	const profile = useSelector((state) => state.user); //gets profile info from Google login
+	const profile = useSelector((state) => state.user.profile); //gets profile info from Google login
 
 	const [open, setOpen] = useState(false); //Boolean that determines the state of Dialog/Profile component
 	const [open2, setOpen2] = useState(false); //Boolean that determines the state of Dialog/Set_Title component
@@ -71,11 +71,11 @@ const Header = () => {
 							</IconButton>
 							<Set_Title open={open2} onClose={handleTitleOnClose} />
 						</div>
-					) : location.pathname === "/items" ? (
-						<Typography className={styles.main}>Items</Typography>
-					) : location.pathname === `/list/${title}/edit` ? (
-						<Typography className={styles.main}>{title}</Typography>
-					) : null}
+					) : location.pathname === `/list/${title}/store` ? (
+						<Typography className={styles.main}>Store</Typography>
+					) : (
+						<>Error</>
+					)}
 				</div>
 				<div className={styles.item_three}>
 					{" "}
@@ -90,10 +90,10 @@ const Header = () => {
 				<div className={styles.item_four}>
 					{" "}
 					{/* Search Bar */}
-					{location.pathname === `/list/${title}` ||
+					{/* {location.pathname === `/list/${title}` ||
 					location.pathname === `/list/${title}/edit` ? (
 						<Search_Bar />
-					) : null}
+					) : null} */}
 				</div>
 			</div>
 		</div>

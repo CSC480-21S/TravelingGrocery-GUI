@@ -108,3 +108,8 @@ export const store_getItems = () =>
 	axios
 		.get(`${url_store}/items`)
 		.catch((e) => console.log(`store_getItems: ${e.message}`));
+export const store_searchItems = (searchTerm) => {
+	axios
+		.post(`${url_store}/search`, searchTerm)
+		.then((res) => console.log(JSON.stringify(res)));
+};
