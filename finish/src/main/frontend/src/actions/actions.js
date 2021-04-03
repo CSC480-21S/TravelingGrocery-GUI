@@ -55,11 +55,6 @@ export const fetch_store_items = () => async (dispatch) => {
 	}
 };
 
-//Set Global To be Updates List
-export const set_list_to_be_updated = (list) => (dispatch) => {
-	dispatch({ type: TYPES.SET_LIST_TO_BE_UPDATED, payload: list });
-};
-
 //============================================================================
 //					PI SERVER
 //============================================================================
@@ -102,4 +97,30 @@ export const store_getItems = () => async (dispatch) => {
 	} catch (error) {
 		console.log(error.message);
 	}
+};
+export const store_searchItems = (search) => async (dispatch) => {
+	try {
+		const { data } = await api.store_searchItems();
+		console.log("Response (store_searchItems): " + JSON.stringify(data));
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+
+//============================================================================
+//					REDUCERS
+//============================================================================
+
+//----------	List to Update (REDUCER)	----------
+
+//Set Global To be Updates List
+export const set_list_to_be_updated = (list) => (dispatch) => {
+	dispatch({ type: TYPES.SET_LIST_TO_BE_UPDATED, payload: list });
+};
+
+export const listToBeUpdated_AddItem = (item) => (dispatch) => {
+	dispatch({ type: TYPES.LIST_TO_BE_UPDATED_ADD_ITEM, payload: item });
+};
+export const set_fromStore = (bol) => (dispatch) => {
+	dispatch({ type: TYPES.SET_FROM_STORE, payload: bol });
 };

@@ -37,8 +37,13 @@ const Regular_Lists = ({ items, set_isEdit }) => {
 
 	const handleEdit = () => {
 		const temp = items.map((item) => {
+			delete item.shoppingListID;
+			delete item.itemMissedFlag;
 			item.isChecked = false;
-			console.log(JSON.stringify(item));
+			item.delete = false;
+			item.create = false;
+			item.update = false;
+			item.fromStore = false;
 			return item;
 		});
 		dispatch(set_list_to_be_updated(temp));

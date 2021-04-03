@@ -1,44 +1,67 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
-import { update_user_item } from "../../../../api/api";
+//API
+import { list_addItemList } from "../../../../api/api";
+import { list_deleteItemList } from "../../../../api/api";
+import { list_updateItemList } from "../../../../api/api";
 
-import { update_Item } from "../../../../api/api";
-import { delete_Item } from "../../../../api/api";
-import { add_Item } from "../../../../api/api";
-import { add_item_to_list } from "../../../../api/api";
-import { pink } from "@material-ui/core/colors";
+//ACTIONS
+import { set_fromStore } from "../../../../actions/actions";
 
-const Confirm = ({ new_Items, items_ToBeDeleted, set_isEdit }) => {
-	const user_id = useSelector((state) => state.user.email);
+const Confirm = ({ new_Items, set_isEdit }) => {
+	const dispatch = useDispatch();
 
-	const handleSaveChanges = () => {
-		//Handle items to be deleted
-		items_ToBeDeleted.map((item) => {
-			console.log(`ITEMS TO BE DELETED: ${JSON.stringify(items_ToBeDeleted)}`);
-			if (item !== null) {
-				console.log(`item deleted: ${JSON.stringify(item)}`);
-				delete item.isChecked;
-				delete item.isStoreItem;
-				delete_Item(item.id);
-			}
-		});
-		//Handle items to be updated
+	const shoppingListID = useSelector(
+		(state) => state.active_list.shoppingListID
+	);
+
+	const handleSaveChanges = async () => {
+		let list_create = { listItems: [] };
+		let list_delete = { listItems: [] };
+		let list_update = { listItems: [] };
+
 		new_Items.map((item) => {
-			delete item.isChecked;
-			if (item.isStoreItem) {
-				delete item.isChecked;
-				delete item.isStoreItem;
-				add_item_to_list(user_id, item);
-			} else {
-				console.log(`ITEMS TO BE UPDTED: ${JSON.stringify(item)}`);
-				update_Item(item.id, item);
+			if (item.delete && !item.fromStore) {
+				var temp = item;
+				delete temp.isChecked;
+				delete temp.delete;
+				delete temp.create;
+				delete temp.update;
+				delete temp.fromStore;
+				list_delete.listItems.push(temp.itemName);
 			}
-			//console.log("from item: \n" + JSON.stringify(item));
+			if (item.create) {
+				var create = item;
+				delete create.isChecked;
+				delete create.delete;
+				delete create.create;
+				delete create.update;
+				delete create.fromStore;
+				list_create.listItems.push(create);
+			}
+			if (item.update) {
+				var update = item;
+				delete update.isChecked;
+				delete update.delete;
+				delete update.create;
+				delete update.update;
+				delete update.fromStore;
+				list_update.listItems.push(update);
+			}
 		});
 
+		console.log("CREATE: " + JSON.stringify(list_create));
+		console.log("UPDATE: " + JSON.stringify(list_update));
+		console.log("DELETE: " + JSON.stringify(list_delete));
+
+		await list_addItemList(shoppingListID, list_create);
+		await list_deleteItemList(shoppingListID, list_delete);
+		await list_updateItemList(shoppingListID, list_update);
+
+		dispatch(set_fromStore(false));
 		set_isEdit(false);
 	};
 

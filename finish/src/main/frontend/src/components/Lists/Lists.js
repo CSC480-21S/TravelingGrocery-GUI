@@ -10,6 +10,7 @@ import { sendList } from "../../actions/actions";
 
 const Lists = () => {
 	const items = useSelector((state) => state.lists); //get items
+	const fromStore = useSelector((state) => state.fromStore);
 	const [isEdit, set_isEdit] = useState(false);
 	const shoppingListID = useSelector(
 		(state) => state.active_list.shoppingListID
@@ -29,7 +30,7 @@ const Lists = () => {
 	return (
 		<>
 			<div>
-				{isEdit ? (
+				{isEdit || fromStore ? (
 					<Edit_List items={items} set_isEdit={set_isEdit} />
 				) : (
 					<Regular_List items={items} set_isEdit={set_isEdit} />

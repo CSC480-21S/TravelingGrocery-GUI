@@ -8,8 +8,8 @@ import makeStyles from "./Search_Bar_styles";
 import item_styles from "../Item/item_styles";
 //API
 import { store_searchItems } from "../../../api/api";
-import { store_getItems } from "../../../api/api";
-const Search_Bar = ({ items, set_Filtered_storeList }) => {
+
+const Search_Bar = ({ items, set_items }) => {
 	const styles = makeStyles();
 	const [input_value, set_input_value] = useState({ searchTerm: "" });
 	const onChange = (event) => {
@@ -17,12 +17,11 @@ const Search_Bar = ({ items, set_Filtered_storeList }) => {
 	};
 	const onEnter = async (e) => {
 		e.preventDefault();
-		const data = store_searchItems(input_value);
-		console.log(`SEARCH REPSONSE: ${data}`);
+		const { data } = await store_searchItems(input_value);
+		set_items(data);
+		console.log(`SEARCH REPSONSE: ${JSON.stringify(data)}`);
 	};
-	useEffect(() => {
-		console.log(JSON.stringify(input_value));
-	}, [input_value]);
+	useEffect(() => {}, [input_value]);
 	return (
 		<div>
 			<TextField

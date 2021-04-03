@@ -1,9 +1,8 @@
 //Regular imports
 import React, { useState, useEffect, useRef } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useDispatch } from "react-redux";
 //Actions
-import { set_list_to_be_updated } from "../../../../actions/actions";
+
 //Components
 import First_Section_List from "./Sections/First/First_Section_List";
 import Second_Section_List from "./Sections/Second/Second_Section_List";
@@ -12,9 +11,8 @@ import Third_Section_List from "./Sections/Third/Third_Section_List";
 //Styles
 import makeStyles from "./item_styles";
 
-const Item = ({ item, set_new_Item, new_Items }) => {
+const Item = ({ item }) => {
 	const styles = makeStyles();
-	const dispatch = useDispatch();
 	//Edit List Content
 	const [item_count, set_Item_count] = useState(item.quantityItem);
 	const [isChecked, set_isChecked] = useState(item.isChecked);
@@ -26,17 +24,7 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 	useEffect(() => {
 		//Prevent rendering on mount
 		if (isMounted.current) {
-			console.log(isChecked);
-			new_Items.map((obj) => {
-				if (obj.id === item.id) {
-					/* 					console.log("ISCHECKED: " + isChecked);
-					console.log("OBJ: " + obj.isChecked); */
-					obj.isChecked = isChecked;
-				}
-			});
-			set_new_Item(new_Items);
-			dispatch(set_list_to_be_updated(new_Items));
-			console.log("New Items CHECK: " + JSON.stringify(new_Items));
+			item.isChecked = isChecked;
 		} else {
 			isMounted.current = true;
 		}
@@ -46,15 +34,8 @@ const Item = ({ item, set_new_Item, new_Items }) => {
 	useEffect(() => {
 		//Prevent rendering on mount
 		if (isMounted2.current) {
-			//console.log(`COUNT: ${item_count}`);
-			new_Items.map((obj) => {
-				if (obj.id === item.id) {
-					obj.count = item_count;
-				}
-			});
-			set_new_Item(new_Items);
-			dispatch(set_list_to_be_updated(new_Items));
-			//console.log("New Items COUNT: " + JSON.stringify(new_Items));
+			item.quantityItem = item_count;
+			item.update = true;
 		} else {
 			isMounted2.current = true;
 		}

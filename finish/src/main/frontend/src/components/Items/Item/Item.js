@@ -1,6 +1,7 @@
 //Regular imports
 import React, { useState, useEffect, useRef } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
+import { useDispatch } from "react-redux";
 //Actions
 
 //Components
@@ -10,29 +11,36 @@ import Third_Section_List from "./Sections/Third/Third_Section_List";
 
 //Styles
 import makeStyles from "./item_styles";
-
+import { Button } from "@material-ui/core";
+//Actions
+import { listToBeUpdated_AddItem } from "../../../actions/actions";
+import { set_fromStore } from "../../../actions/actions";
 const List = ({ item, items, set_items }) => {
 	const styles = makeStyles();
+	const dispatch = useDispatch();
 	const isMounted = useRef(false);
 	const isMounted2 = useRef(false);
 
-	const [isChecked, set_isChecked] = useState(false);
 	const [item_count, set_itemCount] = useState(1);
 
-	useEffect(() => {
-		if (isMounted.current) {
-			items.map((obj) => {
-				if (obj.id === item.id) obj.isChecked = isChecked;
-			});
-			//console.log("ISCHECKED: " + JSON.stringify(items));
-			set_items(items);
-		} else {
-			isMounted.current = true;
-		}
-	}, [isChecked]);
+	const addItem = () => {
+		const temp = {
+			itemName: item.name,
+			itemNote: "",
+			quantityItem: item_count,
+			isChecked: false,
+			delete: false,
+			create: true,
+			update: false,
+			fromStore: true,
+		};
+		dispatch(listToBeUpdated_AddItem(temp));
+		dispatch(set_fromStore(true));
+		console.log(JSON.stringify(item));
+	};
 
 	//
-	useEffect(() => {
+	/* useEffect(() => {
 		if (isMounted2.current) {
 			items.map((obj) => {
 				if (obj.id === item.id) obj.count = item_count;
@@ -41,19 +49,11 @@ const List = ({ item, items, set_items }) => {
 		} else {
 			isMounted2.current = true;
 		}
-	}, [item_count]);
-
+	}, [item_count]); */
 	useEffect(() => {});
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
 			<div className={styles.container}>
-				<div>
-					<Checkbox
-						checked={isChecked}
-						onChange={() => set_isChecked(!isChecked)}
-						inputProps={{ "aria-label": "primary checkbox" }}
-					/>
-				</div>
 				<div className={styles.item_Image_Container}>
 					<First_Section_List />
 				</div>
@@ -66,6 +66,9 @@ const List = ({ item, items, set_items }) => {
 						item_count={item_count}
 						set_itemCount={set_itemCount}
 					/>
+				</div>
+				<div>
+					<Button onClick={addItem}>Add</Button>
 				</div>
 			</div>
 		</div>

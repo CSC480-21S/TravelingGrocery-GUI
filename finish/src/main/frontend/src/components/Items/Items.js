@@ -26,59 +26,32 @@ const Items = () => {
 		useSelector((state) => state.list_toUpdate)
 	);
 	//STORE ITEMS
-	const [items, set_items] = useState(
-		useSelector((state) =>
-			state.store_list.map((item) => {
-				item.listId = list_Name;
-				item.userId = username;
-				item.count = 1;
-				item.isChecked = false;
-				item.isStoreItem = true;
-				return item;
-			})
-		)
-	);
+	const [items, set_items] = useState([]);
 
-	// IF CHECKED ADD THE ITEMS TO THE LIST TO BE UPDATED
-	const handleAdd = () => {
-		items.map((item) => {
-			if (item.isChecked === true) {
-				try {
-					item.isChecked = false;
-					items_to_be_updated.push(item); //push returns the new index of the array
-					set_ItemsToBeUpdated(items_to_be_updated);
-				} catch (error) {
-					console.log(error);
-				}
-			}
-		});
-		//console.log(`ITMES TO BE ADDED: ${JSON.stringify(items)}`);
-		history.goBack();
-		dispatch(set_list_to_be_updated(items_to_be_updated));
-	};
 	//====================================================
 
-	//FETCH STORE ITEMS
 	useEffect(() => {
-		//dispatch(fetch_store_items());
-		//dispatch(store_getItems());
+		set_items(
+			items.map((item) => {
+				item.count = 1;
+				item.isChecked = false;
+			})
+		);
 	}, []);
 
 	return (
 		<div>
-			<Search_Bar
-				items={items}
-				set_Filtered_storeList={set_Filtered_storeList}
-			/>
+			{/* Search Bar gets the items from the store */}
+			<Search_Bar set_items={set_items} />
 			<div className={styles.text}>
 				<Typography style={{ fontFamily: "Inter", fontWeight: "600" }}>
 					Add Items to {list_Name}
 				</Typography>
 			</div>
 			<div>
-				{/* {items.map((item) => (
+				{items.map((item) => (
 					<Item key={item.id} item={item} items={items} set_items={set_items} />
-				))} */}
+				))}
 			</div>
 		</div>
 	);
