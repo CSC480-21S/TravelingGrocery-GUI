@@ -1,0 +1,1 @@
+json-server -p 8000 data/db.json

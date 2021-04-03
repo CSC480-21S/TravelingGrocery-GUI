@@ -1,0 +1,59 @@
+{
+	"directions": [
+		{
+			"shoppingListID": 5,
+			"itemName": "turkey jerky",
+			"aisle": 3,
+			"rack": 2,
+			"shelf": "middle",
+			"side": "right",
+			"department": "Aisles",
+			"itemQuantity": 3,
+			"itemStockBool": true
+		},
+		{
+			"shoppingListID": 5,
+			"itemName": "grape juice",
+			"aisle": 4,
+			"rack": 2,
+			"shelf": "top",
+			"side": "right",
+			"department": "Aisles",
+			"itemQuantity": 1,
+			"itemStockBool": false
+		},
+		{
+			"shoppingListID": 5,
+			"itemName": "ranch",
+			"aisle": 5,
+			"rack": 3,
+			"shelf": "top",
+			"side": "right",
+			"department": "Aisles",
+			"itemQuantity": 6,
+			"itemStockBool": true
+		},
+		{
+			"shoppingListID": 5,
+			"itemName": "spices",
+			"aisle": 9,
+			"rack": 6,
+			"shelf": "middle",
+			"side": "right",
+			"department": "Aisles",
+			"itemQuantity": 1,
+			"itemStockBool": true
+		},
+		{
+			"shoppingListID": 5,
+			"itemName": "pita bread",
+			"aisle": 12,
+			"rack": 2,
+			"shelf": "middle",
+			"side": "left",
+			"department": "Aisles",
+			"itemQuantity": 4,
+			"itemStockBool": true
+		}
+	]
+}
