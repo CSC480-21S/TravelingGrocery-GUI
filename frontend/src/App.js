@@ -11,6 +11,7 @@ import {
 
 // USER components
 import NavigationUser from "./user/Navigation/NavigationUser";
+import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser"
 
 import NavbarUser from "./user/Navbar/Navbar";
 import HomePage from "./user/HomePage/HomePage";
@@ -82,6 +83,10 @@ const App = () => {
 					<NavbarUser />
 					<NavigationUser />
 				</Route>
+				<Route exact path="/user/offline_navigation">
+					<NavbarUser />
+					<NavigationOfflineUser />
+				</Route>
 				<Route exact path="/profile">
 					<NavbarUser />
 					<Profile />
@@ -95,6 +100,9 @@ const App = () => {
 					</Link>
 					<Link to="/user/navigation">
 						<p>User navigation</p>
+					</Link>
+					<Link to="/user/offline_navigation">
+						<p>Offline user navigation</p>
 					</Link>
 					<h3>Employee Stuff</h3>
 					<Link to="/employee/dashboard">
