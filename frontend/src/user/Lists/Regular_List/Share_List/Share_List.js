@@ -9,11 +9,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
 import { Typography } from "@material-ui/core";
-//Redux
-import { useDispatch } from "react-redux";
+
 //Local Imports
 import makeStyles from "./Share_List_styles";
-const Share_List = ({ onShare, set_onShare, shoppingListID }) => {
+
+const ShareList = ({ onShare, set_onShare, shoppingListID }) => {
 	const styles = makeStyles();
 	const [userID, set_userID] = useState();
 	const handleClose = () => {
@@ -63,4 +63,4 @@ const Share_List = ({ onShare, set_onShare, shoppingListID }) => {
 	);
 };
 
-export default Share_List;
+export default ShareList;

@@ -3,7 +3,7 @@ import {
 	LIST_TO_BE_UPDATED_ADD_ITEM,
 } from "../../actions/actionTypes";
 
-export default (lists = [], action) => {
+const list_toUpdate = (lists = [], action) => {
 	switch (action.type) {
 		case SET_LIST_TO_BE_UPDATED:
 			return action.payload;
@@ -14,3 +14,4 @@ export default (lists = [], action) => {
 			return lists;
 	}
 };
+export default list_toUpdate;

@@ -5,12 +5,12 @@ import Button from "@material-ui/core/Button";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import Typography from "@material-ui/core/Typography";
 //Local imports
-import Add_Item from "./Add_Item/Add_item";
+import AddItem from "./Add_Item/Add_item";
 import Confirm from "./Confirm/Confirm";
 import Item from "./List/Item";
 import makeStyles from "./Edit_List_styles";
 
-const Edit_List = ({ set_isEdit }) => {
+const EditList = ({ set_isEdit }) => {
 	const dispatch = useDispatch();
 	const styles = makeStyles();
 
@@ -34,10 +34,7 @@ const Edit_List = ({ set_isEdit }) => {
 	useEffect(() => {
 		/* console.log("FROM EDIT LISTS: " + JSON.stringify(new_Items)); */
 		dispatch(set_list_to_be_updated(new_Items));
-	}, []);
-	useEffect(() => {
-		/* 	console.log("LIST: " + JSON.stringify(new_Items)); */
-	}, [new_Items]);
+	}, [dispatch, new_Items]);
 
 	return (
 		<div style={{ marginTop: "0px" }}>
@@ -64,7 +61,7 @@ const Edit_List = ({ set_isEdit }) => {
 				</div>
 			</div>
 			<div>
-				<Add_Item new_Items={new_Items} />
+				<AddItem new_Items={new_Items} />
 			</div>
 			<div>
 				{new_Items.map((item) =>
@@ -86,4 +83,4 @@ const Edit_List = ({ set_isEdit }) => {
 	);
 };
 
-export default Edit_List;
+export default EditList;

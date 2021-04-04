@@ -1,4 +1,3 @@
-import Avatar from "@material-ui/core/Avatar";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
@@ -10,11 +9,10 @@ import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 //Components or local imports
-import Search_Bar from "./Search_Bar/Search_Bar";
-import Set_Title from "./Set_Title/Set_Title";
+
+import SetTitle from "./Set_Title/Set_Title";
 //Libraries
 import makeStyles from "./Header_styles";
-import Profile from "./Profile/Profile";
 
 const Header = () => {
 	const styles = makeStyles();
@@ -22,17 +20,9 @@ const Header = () => {
 	const history = useHistory();
 
 	const title = useSelector((state) => state.active_list.listName); //gets the name of the list clicked
-	const profile = useSelector((state) => state.user.profile); //gets profile info from Google login
 
-	const [open, setOpen] = useState(false); //Boolean that determines the state of Dialog/Profile component
 	const [open2, setOpen2] = useState(false); //Boolean that determines the state of Dialog/Set_Title component
 	//Profile
-	const handleProfile = () => {
-		setOpen(true);
-	};
-	const handleProfileOnClose = () => {
-		setOpen(false);
-	};
 	const handleBack = () => {
 		history.goBack();
 	};
@@ -69,7 +59,7 @@ const Header = () => {
 							<IconButton onClick={() => setOpen2(true)}>
 								<EditOutlinedIcon style={{ fontSize: "20px" }} />
 							</IconButton>
-							<Set_Title open={open2} onClose={handleTitleOnClose} />
+							<SetTitle open={open2} onClose={handleTitleOnClose} />
 						</div>
 					) : location.pathname === `/list/${title}/store` ? (
 						<Typography className={styles.main}>Store</Typography>
@@ -77,24 +67,8 @@ const Header = () => {
 						<>Error</>
 					)}
 				</div>
-				<div className={styles.item_three}>
-					{" "}
-					{/* Profile Picture */}
-					{true ? (
-						<IconButton className={styles.item_login} onClick={handleProfile}>
-							<Avatar alt="Test" src={profile.imageUrl} variant="circular" />
-						</IconButton>
-					) : null}
-					<Profile open={open} onClose={handleProfileOnClose} />
-				</div>
-				<div className={styles.item_four}>
-					{" "}
-					{/* Search Bar */}
-					{/* {location.pathname === `/list/${title}` ||
-					location.pathname === `/list/${title}/edit` ? (
-						<Search_Bar />
-					) : null} */}
-				</div>
+				<div className={styles.item_three}></div>
+				<div className={styles.item_four}></div>
 			</div>
 		</div>
 	);

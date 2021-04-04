@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,7 +15,7 @@ import makeStyles from "./Note_Item_Styles";
 import { list_updateItem } from "../../../../../../../../api/api";
 import { list_getItems } from "../../../../../../../../actions/actions";
 
-const Note_Item = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
+const NoteItem = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
 	const [itemToBeUpdated, set_itemToBeUpdated] = useState(item);
 	const dispatch = useDispatch();
 	const styles = makeStyles();
@@ -47,7 +47,6 @@ const Note_Item = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
 					</IconButton>
 				</DialogActions>
 				<DialogContent>
-					{" "}
 					<Typography className={styles.title}> Note </Typography>
 				</DialogContent>
 				<form
@@ -82,4 +81,4 @@ const Note_Item = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
 	);
 };
 
-export default Note_Item;
+export default NoteItem;

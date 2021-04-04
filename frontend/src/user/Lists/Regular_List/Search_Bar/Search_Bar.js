@@ -5,7 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 //Local Imports
 import makeStyles from "./Search_Bar_styles";
 
-const Search_Bar = ({ items, set_fliteredList }) => {
+const SearchBar = ({ items, set_fliteredList }) => {
 	const styles = makeStyles();
 	const [input_value, set_input_value] = useState();
 	const onChange = (event) => {
@@ -22,7 +22,7 @@ const Search_Bar = ({ items, set_fliteredList }) => {
 		} catch (e) {
 			console.log("FROM SEARCH BAR IN REGULAR ITEMS: " + e.message);
 		}
-	}, [input_value]);
+	}, [input_value, items, set_fliteredList]);
 	return (
 		<div>
 			<TextField
@@ -44,4 +44,4 @@ const Search_Bar = ({ items, set_fliteredList }) => {
 	);
 };
 
-export default Search_Bar;
+export default SearchBar;

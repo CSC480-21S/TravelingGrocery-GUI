@@ -1,6 +1,6 @@
 import { FETCH_LIST_ITEMS, LIST_GET_ITEMS } from "../../actions/actionTypes";
 
-export default (lists = [], action) => {
+const lists = (lists = [], action) => {
 	switch (action.type) {
 		case FETCH_LIST_ITEMS:
 			//console.log(`Payload from List Reducer: ${action.payload}`);
@@ -12,3 +12,4 @@ export default (lists = [], action) => {
 			return lists;
 	}
 };
+export default lists;

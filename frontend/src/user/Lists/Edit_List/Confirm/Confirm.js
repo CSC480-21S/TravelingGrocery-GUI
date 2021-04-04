@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 
 //API
 import { list_addItemList } from "../../../../api/api";
@@ -51,6 +50,7 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 				delete update.fromStore;
 				list_update.listItems.push(update);
 			}
+			return item;
 		});
 
 		console.log("CREATE: " + JSON.stringify(list_create));

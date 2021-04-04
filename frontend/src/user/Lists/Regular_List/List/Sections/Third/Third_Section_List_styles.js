@@ -5,5 +5,4 @@ export default makeStyles((theme) => ({
 	group_button: {},
 	minus: {},
 	count: {},
-	minus: {},
 }));

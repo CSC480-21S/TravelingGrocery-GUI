@@ -8,23 +8,19 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
 //Import Local Components
-import Regular_Item from "./List/Regular_Item";
-import Start_Shooping from "./Start_Shooping/Start_Shooping";
+import RegularItem from "./List/Regular_Item";
+import StartShooping from "./Start_Shooping/Start_Shooping";
 import makeStyles from "./Regular_List_styles";
-import Delete_List from "./Delete_List/Delete_List";
-import Share_List from "./Share_List/Share_List";
-import Search_Bar from "./Search_Bar/Search_Bar";
+import DeleteList from "./Delete_List/Delete_List";
+import ShareList from "./Share_List/Share_List";
+import SearchBar from "./Search_Bar/Search_Bar";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
-import { sendList } from "../../../actions/actions";
 
-const Regular_Lists = ({ items, set_isEdit }) => {
+const RegularLists = ({ items, set_isEdit }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
-	const history = useHistory();
-	const location = useLocation();
 
 	const [onDelete, set_onDelete] = useState(false);
 	const [onShare, set_onShare] = useState(false);
@@ -59,19 +55,19 @@ const Regular_Lists = ({ items, set_isEdit }) => {
 	useEffect(() => {}, []);
 	return (
 		<div className={styles.root}>
-			<Delete_List
+			<DeleteList
 				onDelete={onDelete}
 				set_onDelete={set_onDelete}
 				shoppingListID={shoppingListID}
 			/>
-			<Share_List
+			<ShareList
 				onShare={onShare}
 				set_onShare={set_onShare}
 				shoppingListID={shoppingListID}
 			/>
 			<div>
 				<div className={styles.searchBar}>
-					<Search_Bar items={items} set_fliteredList={set_fliteredList} />
+					<SearchBar items={items} set_fliteredList={set_fliteredList} />
 				</div>
 				<div className={styles.top_container}>
 					<div>
@@ -131,12 +127,12 @@ const Regular_Lists = ({ items, set_isEdit }) => {
 				<>
 					<div>
 						{filteredList.length === 0
-							? items.map((item) => <Regular_Item item={item} />)
-							: filteredList.map((item) => <Regular_Item item={item} />)}
+							? items.map((item) => <RegularItem item={item} />)
+							: filteredList.map((item) => <RegularItem item={item} />)}
 					</div>
 
 					<div>
-						<Start_Shooping />
+						<StartShooping />
 					</div>
 				</>
 			)}
@@ -144,4 +140,4 @@ const Regular_Lists = ({ items, set_isEdit }) => {
 	);
 };
 
-export default Regular_Lists;
+export default RegularLists;

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 //Local Imports
 import makeStyles from "./Third_Section_List_styles";
 
-const Third_Section_List = ({ item_count, set_itemCount }) => {
+const ThirdSectionList = ({ item_count, set_itemCount }) => {
 	const styles = makeStyles();
 
 	return (
@@ -31,4 +31,4 @@ const Third_Section_List = ({ item_count, set_itemCount }) => {
 	);
 };
 
-export default Third_Section_List;
+export default ThirdSectionList;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { sendList } from "../../../actions/actions";
 import { list_update } from "../../../api/api";
 
-const Set_Title = ({ onClose, open }) => {
+const SetTitle = ({ onClose, open }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
 	const [list, setList] = useState(useSelector((state) => state.active_list));
@@ -74,4 +74,4 @@ const Set_Title = ({ onClose, open }) => {
 	);
 };
 
-export default Set_Title;
+export default SetTitle;

@@ -5,11 +5,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 //Local Imports
 import makeStyles from "./Search_Bar_styles";
-import item_styles from "../Item/item_styles";
 //API
 import { store_searchItems } from "../../../api/api";
 
-const Search_Bar = ({ items, set_items }) => {
+const SearchBar = ({ items, set_items }) => {
 	const styles = makeStyles();
 	const [input_value, set_input_value] = useState({ searchTerm: "" });
 	const onChange = (event) => {
@@ -52,4 +51,4 @@ const Search_Bar = ({ items, set_items }) => {
 	);
 };
 
-export default Search_Bar;
+export default SearchBar;

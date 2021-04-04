@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import makeStyles from "./Add_item_styles";
 import { set_list_to_be_updated } from "../../../../actions/actions";
 
-const Add_item = ({ new_Items }) => {
+const AddItem = ({ new_Items }) => {
 	const styles = makeStyles();
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -30,4 +30,4 @@ const Add_item = ({ new_Items }) => {
 	);
 };
 
-export default Add_item;
+export default AddItem;

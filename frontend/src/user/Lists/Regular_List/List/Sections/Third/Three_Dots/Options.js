@@ -6,9 +6,9 @@ import ForwardIcon from "@material-ui/icons/Forward";
 import NoteAddOutlinedIcon from "@material-ui/icons/NoteAddOutlined";
 //Local Components
 import makeStyles from "./Options_styles";
-import Delete_Item from "./Delete/Delete_Item";
-import Delete_affirmation from "./Delete/Delete_affirmation";
-import Note_Item from "./Note/Note_Item";
+import DeleteItem from "./Delete/Delete_Item";
+import DeleteAffirmation from "./Delete/Delete_affirmation";
+import NoteItem from "./Note/Note_Item";
 
 const Options = ({ set_Setting_bolean, item }) => {
 	const styles = makeStyles();
@@ -29,7 +29,7 @@ const Options = ({ set_Setting_bolean, item }) => {
 
 	return (
 		<>
-			<Delete_Item
+			<DeleteItem
 				onDelete={onDelete}
 				setOnDelete={setOnDelete}
 				set_Setting_bolean={set_Setting_bolean} // To close the three dots menu
@@ -38,7 +38,7 @@ const Options = ({ set_Setting_bolean, item }) => {
 			/>
 			{/* When user confirms the deletion of an item, a dialog box confirming
 			the deletion renders*/}
-			<Note_Item
+			<NoteItem
 				onNote={onNote}
 				setOnNote={setOnNote}
 				set_Setting_bolean={set_Setting_bolean}
@@ -46,7 +46,7 @@ const Options = ({ set_Setting_bolean, item }) => {
 			/>
 			<div className={styles.container}>
 				{/* When onDelete is true a dialog box will render */}
-				<Delete_affirmation
+				<DeleteAffirmation
 					onConfirmation={onConfirmation}
 					setOnConfirmation={setOnConfirmation}
 				/>

@@ -1,11 +1,16 @@
 // Package/module imports
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Route, Redirect, Switch, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Redirect,
+	Switch,
+	Link,
+} from "react-router-dom";
 
 // USER components
-import NavigationUser from "./user/Navigation/NavigationUser"
+import NavigationUser from "./user/Navigation/NavigationUser";
 
 import NavbarUser from "./user/Navbar/Navbar";
 import HomePage from "./user/HomePage/HomePage";
@@ -13,17 +18,18 @@ import Header from "./user/Header/Header";
 import Lists from "./user/Lists/Lists";
 import Login from "./user/Login_SingOut/Login";
 import Items from "./user/Items/Items";
-import Edit_List from "./user/Lists/Edit_List/Edit_List";
-
+import EditList from "./user/Lists/Edit_List/Edit_List";
+import Profile from "./user/Profile/Profile";
 // EMPLOYEE components
-import NavbarEmployee from "./employee/NavbarEmployee"
+import NavbarEmployee from "./employee/NavbarEmployee";
 
 // ADMIN components
-import NavbarAdmin from "./admin/NavbarAdmin"
+import NavbarAdmin from "./admin/navbarAdmin/NavbarAdmin";
+import Home from "./admin/homeAdmin/home";
+import Employee from "./admin/employee/Employee";
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
-	const token = useSelector((state) => state.user.tk);
 
 	const handleLogin = () => {
 		try {
@@ -64,6 +70,11 @@ const App = () => {
 				{/* ADMIN routing  */}
 				<Route exact path="/admin/dashboard">
 					<NavbarAdmin />
+					<Home />
+				</Route>
+				<Route exact path="/admin/employees">
+					<NavbarAdmin />
+					<Employee />
 				</Route>
 
 				{/* USER routing  */}
@@ -71,16 +82,28 @@ const App = () => {
 					<NavbarUser />
 					<NavigationUser />
 				</Route>
+				<Route exact path="/profile">
+					<NavbarUser />
+					<Profile />
+				</Route>
 
 				{/* TEST/DEBUGGING routing  */}
 				<Route exact path="/developer">
 					<h3>User Stuff</h3>
-					<Link to="/home"><p>User home</p></Link>
-					<Link to="/user/navigation"><p>User navigation</p></Link>
+					<Link to="/home">
+						<p>User home</p>
+					</Link>
+					<Link to="/user/navigation">
+						<p>User navigation</p>
+					</Link>
 					<h3>Employee Stuff</h3>
-					<Link to="/employee/dashboard"><p>Employee home</p></Link>
+					<Link to="/employee/dashboard">
+						<p>Employee home</p>
+					</Link>
 					<h3>Admin Stuff</h3>
-					<Link to="/admin/dashboard"><p>Admin home</p></Link>
+					<Link to="/admin/dashboard">
+						<p>Admin home</p>
+					</Link>
 				</Route>
 
 				{/* Justin gotta fix this crazy bool stuff */}
@@ -107,7 +130,7 @@ const App = () => {
 						<Route path="/list/:id/edit">
 							<NavbarUser />
 							<Header />
-							<Edit_List />
+							<EditList />
 						</Route>
 					</>
 				) : (

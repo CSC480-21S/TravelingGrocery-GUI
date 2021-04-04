@@ -4,7 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import makeStyles from "./First_Section_List_styles";
 //Local Imports
 import test from "../../../../../../images/test.jpg";
-const First_Section_List = () => {
+const FirstSectionList = () => {
 	const styles = makeStyles();
 	return (
 		<div>
@@ -13,4 +13,4 @@ const First_Section_List = () => {
 	);
 };
 
-export default First_Section_List;
+export default FirstSectionList;

@@ -14,7 +14,6 @@ import makeStyles from "../../styles/HomePage";
 import CreateList from "./CreateList";
 //Actions
 import { sendList } from "../../actions/actions";
-import { fetchLists } from "../../actions/actions";
 import { list_get } from "../../actions/actions";
 import { list_getItems } from "../../actions/actions";
 

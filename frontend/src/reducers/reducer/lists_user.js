@@ -1,6 +1,6 @@
 import { CREATE, FETCH_ALL, LIST_GET } from "../../actions/actionTypes";
 
-export default (lists = [], action) => {
+const lists_user = (lists = [], action) => {
 	//where action constains the payload/data thats going to the Store
 	switch (action.type) {
 		case CREATE: {
@@ -18,3 +18,4 @@ export default (lists = [], action) => {
 			return lists;
 	}
 };
+export default lists_user;

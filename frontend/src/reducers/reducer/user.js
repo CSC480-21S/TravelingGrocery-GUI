@@ -1,7 +1,6 @@
-import { compose } from "redux";
 import { SEND_GOOGLE_INFO } from "../../actions/actionTypes";
 //profile = initial state
-export default (state = [], action) => {
+const user = (state = [], action) => {
 	switch (action.type) {
 		case SEND_GOOGLE_INFO: {
 			let data = {};
@@ -20,3 +19,4 @@ export default (state = [], action) => {
 			return state;
 	}
 };
+export default user;

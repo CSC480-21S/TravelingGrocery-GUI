@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 //Styles
 import makeStyles from "./Third_Section_List_styles";
 
-const Third_Section_List = ({ item_count, set_Item_count }) => {
+const ThirdSectionList = ({ item_count, set_Item_count }) => {
 	const styles = makeStyles();
 
 	const increment = () => {
 		set_Item_count(1 + +item_count);
 	};
-	//Set Count is ASYNC so you have to wait before getting an updated value
 	const decrement = () => {
 		set_Item_count(item_count - 1);
 	};
-
-	// update count in JSON server everytime count changes
-	/* try {
-			console.log("When count: " + count);
-			const updated_item = {
-				listId: item.listId,
-				userId: item.userId,
-				name: item.name,
-				count: count.toString(),
-			};
-			await update_Item(item.id, updated_item);
-		} catch (error) {
-			console.log(error.message);
-		} */
 
 	return (
 		<div>
@@ -49,4 +34,4 @@ const Third_Section_List = ({ item_count, set_Item_count }) => {
 	);
 };
 
-export default Third_Section_List;
+export default ThirdSectionList;

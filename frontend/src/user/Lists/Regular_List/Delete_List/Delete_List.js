@@ -10,7 +10,7 @@ import { useHistory } from "react-router";
 //API
 import { list_delete } from "../../../../api/api";
 
-const Delete_List = ({ onDelete, set_onDelete, shoppingListID }) => {
+const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
 	const history = useHistory();
 	const handleClose = () => {
 		set_onDelete(false);
@@ -56,4 +56,4 @@ const Delete_List = ({ onDelete, set_onDelete, shoppingListID }) => {
 	);
 };
 
-export default Delete_List;
+export default DeleteList;

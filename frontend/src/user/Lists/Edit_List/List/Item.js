@@ -4,9 +4,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 //Actions
 
 //Components
-import First_Section_List from "./Sections/First/First_Section_List";
-import Second_Section_List from "./Sections/Second/Second_Section_List";
-import Third_Section_List from "./Sections/Third/Third_Section_List";
+import FirstSectionList from "./Sections/First/First_Section_List";
+import SecondSectionList from "./Sections/Second/Second_Section_List";
+import ThirdSectionList from "./Sections/Third/Third_Section_List";
 
 //Styles
 import makeStyles from "./item_styles";
@@ -28,7 +28,7 @@ const Item = ({ item }) => {
 		} else {
 			isMounted.current = true;
 		}
-	}, [isChecked]);
+	}, [isChecked, item]);
 
 	//UPDATE COUNT OF CURRENT ITEM
 	useEffect(() => {
@@ -39,7 +39,7 @@ const Item = ({ item }) => {
 		} else {
 			isMounted2.current = true;
 		}
-	}, [item_count]);
+	}, [item_count, item]);
 
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
@@ -53,14 +53,14 @@ const Item = ({ item }) => {
 					/>
 				</div>
 				<div className={styles.item_Image_Container}>
-					<First_Section_List />
+					<FirstSectionList />
 				</div>
 
 				<div className={styles.item_details_Container}>
-					<Second_Section_List item={item} />
+					<SecondSectionList item={item} />
 				</div>
 				<div className={styles.third_section_list_Container}>
-					<Third_Section_List
+					<ThirdSectionList
 						item_count={item_count}
 						set_Item_count={set_Item_count}
 					/>

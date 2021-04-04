@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 //Styles
 import makeStyles from "./Second_Section_List_styles";
-const Second_Section_List = ({ item }) => {
+const SecondSectionList = ({ item }) => {
 	const styles = makeStyles();
 	return (
 		<div>
@@ -16,4 +16,4 @@ const Second_Section_List = ({ item }) => {
 	);
 };
 
-export default Second_Section_List;
+export default SecondSectionList;
