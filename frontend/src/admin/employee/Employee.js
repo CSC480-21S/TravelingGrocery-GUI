@@ -63,7 +63,6 @@ const Employee = () => {
 						fontSize: "170%",
 						color: "darkgray",
 						position: "absolute",
-
 					}}
 				>
 					{" "}

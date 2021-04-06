@@ -13,6 +13,7 @@ const EmployeeInfo = ({ task, name, num, bool }) => {
 		display: "inline-block",
 		float: "left",
 		textAlign: "left",
+
 	};
 
 	return (
