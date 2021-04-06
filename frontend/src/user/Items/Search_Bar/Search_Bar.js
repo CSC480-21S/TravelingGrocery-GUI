@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -8,7 +8,7 @@ import makeStyles from "./Search_Bar_styles";
 //API
 import { store_searchItems } from "../../../api/api";
 
-const SearchBar = ({ items, set_items }) => {
+const SearchBar = ({ set_items, setIsFetching }) => {
 	const styles = makeStyles();
 	const [input_value, set_input_value] = useState({ searchTerm: "" });
 	const onChange = (event) => {
@@ -16,14 +16,19 @@ const SearchBar = ({ items, set_items }) => {
 	};
 	const onEnter = async (e) => {
 		e.preventDefault();
-		const { data } = await store_searchItems(input_value);
-		set_items(data);
-		console.log(`SEARCH REPSONSE: ${JSON.stringify(data)}`);
+		setIsFetching(true);
+		let data;
+		await store_searchItems(input_value).then((res) => {
+			data = res.data;
+			setIsFetching(false);
+			set_items(data);
+		});
 	};
-	useEffect(() => {}, [input_value]);
+
 	return (
 		<div>
 			<TextField
+				autoFocus
 				onKeyPress={(e) => {
 					/* console.log(`Pressed keyCode ${e.key}`); */
 					if (e.key === "Enter") {
@@ -40,7 +45,7 @@ const SearchBar = ({ items, set_items }) => {
 					disableUnderline: true,
 					startAdornment: (
 						<InputAdornment position="start">
-							<IconButton>
+							<IconButton onClick={(e) => onEnter(e)}>
 								<SearchIcon />
 							</IconButton>
 						</InputAdornment>

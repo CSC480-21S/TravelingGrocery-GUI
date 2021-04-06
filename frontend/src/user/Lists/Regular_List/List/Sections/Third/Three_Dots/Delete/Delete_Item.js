@@ -5,16 +5,24 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
-import Button from "@material-ui/core/Button";
-//local Imports
-import { delete_item } from "../../../../../../../../api/api";
+//Redux
+import { useDispatch } from "react-redux";
+//API
+import { list_deleteItem } from "../../../../../../../../api/api";
+//Actions
+import { list_getItems } from "../../../../../../../../actions/actions";
+//Styles
+import makeStyles from "./Delete_Item_styles";
 const DeleteItem = ({
 	onDelete,
 	setOnDelete,
 	set_Setting_bolean,
-	item_id,
 	setOnConfirmation,
+	item,
 }) => {
+	const dispatch = useDispatch();
+	const styles = makeStyles();
+
 	const handleClose = () => {
 		setOnDelete(false);
 	};
@@ -25,16 +33,16 @@ const DeleteItem = ({
 	};
 
 	const handle_Accept = async () => {
-		await delete_item(item_id);
-		setOnDelete(false);
+		await list_deleteItem(item.shoppingListID, item.itemName);
+		dispatch(list_getItems(item.shoppingListID));
 		set_Setting_bolean(true);
 		setOnConfirmation(true);
-		window.location.reload(false);
+		handleClose();
 	};
 	return (
 		<div>
-			<Dialog onClose={handleClose} open={onDelete}>
-				<div>
+			<Dialog onClose={handleClose} open={onDelete} className={styles.test}>
+				<div className={styles.container}>
 					<div>
 						<DialogActions>
 							<IconButton size="small" onClick={handleClose}>
@@ -42,25 +50,23 @@ const DeleteItem = ({
 							</IconButton>
 						</DialogActions>
 					</div>
-					<div>
+					<div className={styles.second}>
 						<Typography>
 							Are you sure you want to delete the item from the list?
 						</Typography>
 					</div>
-					<div>
+					<div className={styles.third}>
 						<div>
-							{" "}
 							{/* Cancel Button */}
-							<Button onClick={handle_Cancel}>
+							<IconButton onClick={handle_Cancel} className={styles.cancelBtn}>
 								<CloseIcon />
-							</Button>
+							</IconButton>
 						</div>
 						<div>
-							{" "}
 							{/* Accept Button */}
-							<Button onClick={handle_Accept}>
+							<IconButton onClick={handle_Accept} className={styles.acceptBtn}>
 								<CheckOutlinedIcon />
-							</Button>
+							</IconButton>
 						</div>
 					</div>
 				</div>

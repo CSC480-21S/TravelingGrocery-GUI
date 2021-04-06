@@ -1,13 +1,9 @@
 //Regular imports
 import React, { useState, useEffect, useRef } from "react";
-import Checkbox from "@material-ui/core/Checkbox";
-//Actions
-
 //Components
 import FirstSectionList from "./Sections/First/First_Section_List";
 import SecondSectionList from "./Sections/Second/Second_Section_List";
 import ThirdSectionList from "./Sections/Third/Third_Section_List";
-
 //Styles
 import makeStyles from "./item_styles";
 
@@ -16,10 +12,15 @@ const Item = ({ item }) => {
 	//Edit List Content
 	const [item_count, set_Item_count] = useState(item.quantityItem);
 	const [isChecked, set_isChecked] = useState(item.isChecked);
+	const [container, setContainer] = useState(true);
 	//Use ref does not build on re-renders
 	const isMounted = useRef(false);
 	const isMounted2 = useRef(false);
 
+	const handleTap = () => {
+		setContainer(!container);
+		set_isChecked(!isChecked);
+	};
 	//UPDATE CHECK OF CURENT ITEM
 	useEffect(() => {
 		//Prevent rendering on mount
@@ -43,15 +44,11 @@ const Item = ({ item }) => {
 
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
-			<div className={styles.container}>
+			<div
+				className={container ? styles.container : styles.container2}
+				onClick={handleTap}
+			>
 				{/* Item image */}
-				<div>
-					<Checkbox
-						checked={isChecked}
-						onChange={() => set_isChecked(!isChecked)}
-						inputProps={{ "aria-label": "primary checkbox" }}
-					/>
-				</div>
 				<div className={styles.item_Image_Container}>
 					<FirstSectionList />
 				</div>

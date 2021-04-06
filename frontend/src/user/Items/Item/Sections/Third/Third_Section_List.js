@@ -14,7 +14,7 @@ const ThirdSectionList = ({ item_count, set_itemCount }) => {
 				<Button
 					className={styles.minus}
 					onClick={() =>
-						item_count > 0 ? set_itemCount(item_count - 1) : item_count
+						item_count > 1 ? set_itemCount(item_count - 1) : item_count
 					}
 				>
 					-

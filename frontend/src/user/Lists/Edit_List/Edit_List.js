@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { set_list_to_be_updated } from "../../../actions/actions";
+import { useHistory, useLocation } from "react-router-dom";
+//Material UI
 import Button from "@material-ui/core/Button";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -9,10 +10,14 @@ import AddItem from "./Add_Item/Add_item";
 import Confirm from "./Confirm/Confirm";
 import Item from "./List/Item";
 import makeStyles from "./Edit_List_styles";
+//Actions
+import { set_list_to_be_updated } from "../../../actions/actions";
 
 const EditList = ({ set_isEdit }) => {
 	const dispatch = useDispatch();
 	const styles = makeStyles();
+	const history = useHistory();
+	const location = useLocation();
 
 	//Get List to be updated
 	const [new_Items, set_new_Item] = useState(
@@ -29,15 +34,19 @@ const EditList = ({ set_isEdit }) => {
 			})
 		);
 	};
-
+	const handleCancel = () => {
+		set_isEdit(false);
+	};
 	//UPTADE REDUX STATE (LIST_TOUPDATE) WHEN THE COMPONENT IS RENDERED
 	useEffect(() => {
-		/* console.log("FROM EDIT LISTS: " + JSON.stringify(new_Items)); */
 		dispatch(set_list_to_be_updated(new_Items));
 	}, [dispatch, new_Items]);
 
+	useEffect(() => {
+		if (new_Items.length === 0) history.push(`${location.pathname}/store`);
+	}, [history, location.pathname, new_Items.length]);
 	return (
-		<div style={{ marginTop: "0px" }}>
+		<div className={styles.mainContainer}>
 			<div className={styles.firstContainer}>
 				<div>
 					<Typography
@@ -51,6 +60,9 @@ const EditList = ({ set_isEdit }) => {
 					</Typography>
 				</div>
 				<div className={styles.delete}>
+					<Button onClick={handleCancel} style={{ textTransform: "none" }}>
+						Cancel
+					</Button>
 					<Button
 						onClick={handleDelete}
 						className={styles.delete_button}
@@ -76,7 +88,7 @@ const EditList = ({ set_isEdit }) => {
 					)
 				)}
 			</div>
-			<div>
+			<div className={styles.confirm}>
 				<Confirm new_Items={new_Items} set_isEdit={set_isEdit} />
 			</div>
 		</div>

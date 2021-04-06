@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => ({
 	container: {
 		display: "flex",
-		/* gridTemplateColumns: "auto auto auto", */
 		justifyContent: "space-between",
 		background: "#F6F6F6",
 		borderRadius: "15px",
@@ -15,24 +14,26 @@ export default makeStyles((theme) => ({
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		padding: theme.spacing(1),
+		padding: theme.spacing(1.5),
 	},
 	item_details_Container: {
 		width: "100%",
 		display: "flex",
 		justifyContent: "flex-start",
+		alignItems: "center",
 		paddingTop: theme.spacing(1.5),
 		paddingBottom: theme.spacing(1.5),
 	},
 
 	third_section_list_Container: {
-		width: "fit-content%",
+		width: "fit-content",
 		display: "flex",
+		alignItems: "center",
 		justifyContent: "flex-end",
 		paddingTop: theme.spacing(1.5),
 		paddingBottom: theme.spacing(1.5),
 	},
 	setting_details: {
-		width: "100%",
+		width: "108%",
 	},
 }));

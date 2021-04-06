@@ -91,7 +91,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 								className={styles.topIconButton1}
 								onClick={handleDelete}
 							>
-								Delete
+								Delete List
 							</Button>
 						</div>
 						<div>

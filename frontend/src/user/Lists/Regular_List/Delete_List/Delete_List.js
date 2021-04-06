@@ -5,13 +5,16 @@ import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
-import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router";
 //API
 import { list_delete } from "../../../../api/api";
+//Styles
+import makeStyles from "./Delete_List_Styles";
 
 const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
 	const history = useHistory();
+	const styles = makeStyles();
+
 	const handleClose = () => {
 		set_onDelete(false);
 	};
@@ -23,31 +26,31 @@ const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
 	return (
 		<div>
 			<Dialog onClose={handleClose} open={onDelete}>
-				<div>
-					<div>
+				<div className={styles.container}>
+					<div className={styles.first}>
 						<DialogActions>
 							<IconButton size="small" onClick={handleClose}>
 								<CloseIcon></CloseIcon>
 							</IconButton>
 						</DialogActions>
 					</div>
-					<div>
+					<div className={styles.second}>
 						<Typography>Are you sure you want to delete list?</Typography>
 					</div>
-					<div>
+					<div className={styles.third}>
 						<div>
 							{" "}
 							{/* Cancel Button */}
-							<Button onClick={handle_Cancel}>
+							<IconButton onClick={handle_Cancel} className={styles.cancelBtn}>
 								<CloseIcon />
-							</Button>
+							</IconButton>
 						</div>
 						<div>
 							{" "}
 							{/* Accept Button */}
-							<Button onClick={handle_Accept}>
+							<IconButton onClick={handle_Accept} className={styles.acceptBtn}>
 								<CheckOutlinedIcon />
-							</Button>
+							</IconButton>
 						</div>
 					</div>
 				</div>

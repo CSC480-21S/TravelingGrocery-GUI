@@ -14,8 +14,6 @@ const Login = () => {
 
 	//when Login works
 	const onSuccess = (response) => {
-		console.log(`Login Success: currentUser ${JSON.stringify(response)}`);
-		console.log("Response: " + response.isSignedIn());
 		dispatch(send_Google_User_info(response));
 		try {
 			/* axios

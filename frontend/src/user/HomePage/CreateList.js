@@ -7,12 +7,14 @@ import IconButton from "@material-ui/core/IconButton";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
-import { useDispatch } from "react-redux";
 import makeStyles from "../../styles/CreasteList";
 import { Typography } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-//APPI
-import { list_create } from "../../actions/actions";
+//API
+import { list_create } from "../../api/api";
+//ACTIONS
+import { list_get } from "../../actions/actions";
 
 const CreateList = (props) => {
 	const profile = useSelector((state) => state.user); //Retrieve user information from the store
@@ -34,8 +36,8 @@ const CreateList = (props) => {
 	};
 	const createNewList = async (e) => {
 		e.preventDefault();
-		dispatch(list_create(list));
-
+		await list_create(list);
+		dispatch(list_get());
 		handleClose();
 	};
 

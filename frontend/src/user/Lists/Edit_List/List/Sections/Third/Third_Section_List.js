@@ -7,11 +7,13 @@ import makeStyles from "./Third_Section_List_styles";
 const ThirdSectionList = ({ item_count, set_Item_count }) => {
 	const styles = makeStyles();
 
-	const increment = () => {
+	const increment = (e) => {
 		set_Item_count(1 + +item_count);
+		e.stopPropagation();
 	};
-	const decrement = () => {
-		set_Item_count(item_count - 1);
+	const decrement = (e) => {
+		set_Item_count(item_count > 1 ? item_count - 1 : item_count);
+		e.stopPropagation();
 	};
 
 	return (
@@ -19,13 +21,16 @@ const ThirdSectionList = ({ item_count, set_Item_count }) => {
 			<div>
 				{/* Item Count Buttons */}
 				<ButtonGroup className={styles.group_button}>
-					<Button className={styles.minus} onClick={() => decrement()}>
+					<Button className={styles.minus} onClick={(e) => decrement(e)}>
 						-
 					</Button>
-					<Button className={styles.count} disabled>
+					<Button
+						onClick={(e) => e.stopPropagation()}
+						classes={{ disabled: styles.disabledCount, root: styles.count }}
+					>
 						{item_count}
 					</Button>
-					<Button className={styles.plus} onClick={() => increment()}>
+					<Button className={styles.plus} onClick={(e) => increment(e)}>
 						+
 					</Button>
 				</ButtonGroup>

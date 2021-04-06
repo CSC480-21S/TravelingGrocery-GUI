@@ -24,9 +24,6 @@ const HomePage = () => {
 
 	const lists = useSelector((state) => state.list_users); // gets the lists from server
 	const profile = useSelector((state) => state.user.profile); //gets profile info from Google login
-	//console.log("Profile from HomePage:" + profile);
-	//console.log("Lists From HomePage: " + JSON.stringify(lists));
-
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
@@ -49,7 +46,6 @@ const HomePage = () => {
 	useEffect(() => {
 		const auth = window.gapi.auth2.getAuthInstance();
 		const user = auth.currentUser.get();
-		console.log("GAPI FROM HOME: " + JSON.stringify(user.getBasicProfile()));
 	});
 	return (
 		<Grid
