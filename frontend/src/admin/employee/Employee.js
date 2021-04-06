@@ -7,6 +7,8 @@ const Employee = () => {
 		margin: "5px",
 		padding: "10px 20px",
 		height: "100px",
+
+
 	};
 	const task2 = {
 		background: "#f4f4f4",
@@ -14,6 +16,9 @@ const Employee = () => {
 		padding: "10px 20px",
 		height: "100px",
 		cursor: "pointer",
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	};
 
 	const [employees, setEmployees] = useState([]);
@@ -22,7 +27,7 @@ const Employee = () => {
 
 	const getCurrentEmployees = async () => {
 		try {
-			const res = await axios.get("http://localhost:5000/users");
+			const res = await axios.get("http://localhost:5050/users");
 			setEmployees(res.data);
 		} catch (e) {
 			console.error(e);
@@ -58,7 +63,7 @@ const Employee = () => {
 						fontSize: "170%",
 						color: "darkgray",
 						position: "absolute",
-						bottom: 0,
+
 					}}
 				>
 					{" "}

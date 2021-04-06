@@ -6,6 +6,7 @@ const EmployeeInfo = ({ task, name, num, bool }) => {
 		float: "left",
 		width: "130px",
 		textAlign: "left",
+
 	};
 
 	const rightelement = {
@@ -17,15 +18,15 @@ const EmployeeInfo = ({ task, name, num, bool }) => {
 	return (
 		<div style={task}>
 			<div style={leftelement}>
-				<p style={{ fontSize: "70%", fontWeight: "bold" }}>Name:</p>
-				<p style={{ fontSize: "70%", fontWeight: "bold" }}>Status:</p>
-				<p style={{ fontSize: "70%", fontWeight: "bold" }}>Number of Orders:</p>
+				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Name:</p>
+				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Status:</p>
+				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Number of Orders:</p>
 			</div>
 
 			<div style={rightelement}>
-				<p style={{ fontSize: "70%" }}>{name}</p>
-				<p style={{ fontSize: "70%" }}>{bool}</p>
-				<p style={{ fontSize: "70%" }}>{num}</p>
+				<p style={{ fontSize: "50%" }}>{name}</p>
+				<p style={{ fontSize: "50%" }}>{bool}</p>
+				<p style={{ fontSize: "50%" }}>{num}</p>
 			</div>
 		</div>
 	);

@@ -2,11 +2,13 @@
   "users": [
     {
       "id": "justincabrera854@gmail.com",
-      "email": "justincabrera854@gmail.com"
+      "email": "justincabrera854@gmail.com",
+      "num": "02"
     },
     {
       "id": "jcabrera@oswego.edu",
-      "email": "jcabrera@oswego.edu"
+      "email": "jcabrera@oswego.edu",
+      "num": "02"
     }
   ],
   "lists": [

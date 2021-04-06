@@ -28,6 +28,7 @@ import NavbarEmployee from "./employee/NavbarEmployee";
 import NavbarAdmin from "./admin/navbarAdmin/NavbarAdmin";
 import Home from "./admin/homeAdmin/home";
 import Employee from "./admin/employee/Employee";
+import Manage from "./admin/manageInventory/Manage";
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
@@ -76,6 +77,10 @@ const App = () => {
 				<Route exact path="/admin/employees">
 					<NavbarAdmin />
 					<Employee />
+				</Route>
+				<Route exact path="/admin/inventory">
+					<NavbarAdmin />
+					<Manage />
 				</Route>
 
 				{/* USER routing  */}
