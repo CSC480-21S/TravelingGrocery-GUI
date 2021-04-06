@@ -29,7 +29,7 @@ export const list_get = () => async (dispatch) => {
 export const list_getItems = (shoppingListID) => async (dispatch) => {
 	try {
 		const { data } = await api.list_getItems(shoppingListID);
-		console.log("response (list_getItems): " + JSON.stringify(data));
+		//console.log("response (list_getItems): " + JSON.stringify(data));
 		dispatch({ type: TYPES.LIST_GET_ITEMS, payload: data });
 	} catch (error) {
 		console.log(error.message);
@@ -39,21 +39,20 @@ export const list_getItems = (shoppingListID) => async (dispatch) => {
 export const store_getItems = () => async (dispatch) => {
 	try {
 		const { data } = await api.store_getItems();
-		console.log("Response (store_getItems: " + JSON.stringify(data));
+		//console.log("Response (store_getItems: " + JSON.stringify(data));
 		dispatch({ type: TYPES.FETCH_STORE_ITEMS, payload: data });
 	} catch (error) {
 		console.log(error.message);
 	}
 };
-export const store_searchItems = (search) => async (dispatch) => {
+export const store_navigation = (lists) => async (dispatch) => {
 	try {
-		const { data } = await api.store_searchItems();
-		console.log("Response (store_searchItems): " + JSON.stringify(data));
+		const { data } = await api.store_nav(lists);
+		dispatch({ type: TYPES.STORE_NAV, payload: data });
 	} catch (error) {
 		console.log(error.message);
 	}
 };
-
 //============================================================================
 //					REDUCERS
 //============================================================================

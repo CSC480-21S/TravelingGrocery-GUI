@@ -10,7 +10,7 @@ const SecondSectionList = ({ item }) => {
 				{item.itemName ? item.itemName : "Error_Name"}
 			</Typography>
 			<p></p>
-			<Typography className={styles.item_Stock}>On Stock</Typography>
+			<Typography className={styles.item_Stock}>In Stock</Typography>
 		</div>
 	);
 };

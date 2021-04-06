@@ -7,6 +7,7 @@ import store_list from "./reducer/Store_List,";
 import list_toUpdate from "./reducer/list_toUpdate";
 import list_users from "./reducer/lists_user";
 import fromStore from "./reducer/fromStore";
+import storeNav from "./reducer/storeNav";
 
 export default combineReducers({
 	list_users,
@@ -16,4 +17,5 @@ export default combineReducers({
 	store_list,
 	list_toUpdate,
 	fromStore,
+	storeNav,
 });
