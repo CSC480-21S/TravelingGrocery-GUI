@@ -22,7 +22,6 @@ const Manage = () =>
 
             </div>
 
-
             <div style={container}>
                 <h3
                     style={{
