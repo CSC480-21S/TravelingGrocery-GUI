@@ -11,7 +11,9 @@ const SecondSectionList = ({ item }) => {
 			</Typography>
 			{/* <Typography className={styles.item_Type}>Item Type</Typography> */}
 			<br />
-			<Typography className={styles.item_Stock}>On Stock</Typography>
+			<Typography className={styles.item_Stock}>
+				{true ? "In Stock" : "Out of Stock"}
+			</Typography>
 		</div>
 	);
 };

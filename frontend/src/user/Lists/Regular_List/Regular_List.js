@@ -17,6 +17,7 @@ import ShareList from "./Share_List/Share_List";
 import SearchBar from "./Search_Bar/Search_Bar";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
+import ShoopingDialog from "./StartShoopingDialog/ShoppingDialog";
 
 const RegularLists = ({ items, set_isEdit }) => {
 	const styles = makeStyles();
@@ -25,6 +26,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 	const [onDelete, set_onDelete] = useState(false);
 	const [onShare, set_onShare] = useState(false);
 	const [filteredList, set_fliteredList] = useState([]);
+	const [open, setOpen] = useState(false);
 
 	const user = useSelector((state) => state.user.profile); //gets user information from reducer
 	const shoppingListID = useSelector(
@@ -55,6 +57,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 	useEffect(() => {}, []);
 	return (
 		<div className={styles.root}>
+			<ShoopingDialog open={open} setOpen={setOpen} items={items} />
 			<DeleteList
 				onDelete={onDelete}
 				set_onDelete={set_onDelete}
@@ -91,7 +94,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 								className={styles.topIconButton1}
 								onClick={handleDelete}
 							>
-								Delete
+								Delete List
 							</Button>
 						</div>
 						<div>
@@ -132,7 +135,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 					</div>
 
 					<div>
-						<StartShooping />
+						<StartShooping setOpen={setOpen} />
 					</div>
 				</>
 			)}

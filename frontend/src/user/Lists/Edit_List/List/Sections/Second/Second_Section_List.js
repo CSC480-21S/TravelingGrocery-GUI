@@ -9,9 +9,8 @@ const SecondSectionList = ({ item }) => {
 			<Typography className={styles.item_Name}>
 				{item.itemName ? item.itemName : "Error_Name"}
 			</Typography>
-			<Typography className={styles.item_Type}>Item Type</Typography>
-			<Typography className={styles.item_Stock}>On Stock</Typography>
-			<Typography className={styles.item_Location}>Item location</Typography>
+			<p></p>
+			<Typography className={styles.item_Stock}>In Stock</Typography>
 		</div>
 	);
 };

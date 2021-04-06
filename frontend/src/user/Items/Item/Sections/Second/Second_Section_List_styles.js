@@ -15,7 +15,6 @@ export default makeStyles((theme) => ({
 		fontSize: "12px",
 		lineHeight: "14px",
 	},
-	item_Stock: {},
 	item_Location: {
 		color: "#838383",
 		fontFamily: "Roboto",

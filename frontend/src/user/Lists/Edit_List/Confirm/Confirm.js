@@ -4,15 +4,15 @@ import Button from "@material-ui/core/Button";
 
 //API
 import { list_addItemList } from "../../../../api/api";
-import { list_deleteItemList } from "../../../../api/api";
 import { list_updateItemList } from "../../../../api/api";
 
 //ACTIONS
 import { set_fromStore } from "../../../../actions/actions";
+import { list_getItems } from "../../../../actions/actions";
 
 const Confirm = ({ new_Items, set_isEdit }) => {
 	const dispatch = useDispatch();
-
+	const url = "http://pi.cs.oswego.edu:9081/list";
 	const shoppingListID = useSelector(
 		(state) => state.active_list.shoppingListID
 	);
@@ -24,15 +24,10 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 
 		new_Items.map((item) => {
 			if (item.delete && !item.fromStore) {
-				var temp = item;
-				delete temp.isChecked;
-				delete temp.delete;
-				delete temp.create;
-				delete temp.update;
-				delete temp.fromStore;
-				list_delete.listItems.push(temp.itemName);
+				var temp = item.itemName;
+				list_delete.listItems.push(temp);
 			}
-			if (item.create) {
+			if (item.create || item.fromStore) {
 				var create = item;
 				delete create.isChecked;
 				delete create.delete;
@@ -41,7 +36,7 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 				delete create.fromStore;
 				list_create.listItems.push(create);
 			}
-			if (item.update) {
+			if (item.update && !item.fromStore) {
 				var update = item;
 				delete update.isChecked;
 				delete update.delete;
@@ -53,15 +48,25 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 			return item;
 		});
 
-		console.log("CREATE: " + JSON.stringify(list_create));
+		/* console.log("CREATE: " + JSON.stringify(list_create));
 		console.log("UPDATE: " + JSON.stringify(list_update));
-		console.log("DELETE: " + JSON.stringify(list_delete));
+		console.log("DELETE: " + JSON.stringify(list_delete)); */
 
-		await list_addItemList(shoppingListID, list_create);
-		await list_deleteItemList(shoppingListID, list_delete);
-		await list_updateItemList(shoppingListID, list_update);
+		if (list_create.listItems.length > 0)
+			await list_addItemList(shoppingListID, list_create);
+		if (list_update.listItems.length > 0)
+			await list_updateItemList(shoppingListID, list_update);
 
+		await fetch(`${url}/${shoppingListID}/items`, {
+			headers: {
+				"Content-Type": "application/json",
+			},
+			method: "DELETE",
+			body: JSON.stringify(list_delete),
+		});
+		//await list_deleteItemList(shoppingListID, list_delete);
 		dispatch(set_fromStore(false));
+		dispatch(list_getItems(shoppingListID));
 		set_isEdit(false);
 	};
 

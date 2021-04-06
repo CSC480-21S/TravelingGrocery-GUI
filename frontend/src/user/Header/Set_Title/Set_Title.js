@@ -7,20 +7,22 @@ import IconButton from "@material-ui/core/IconButton";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
-import { useDispatch } from "react-redux";
 import makeStyles from "./Set_Title_styles";
 import { Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
-//Local Imports
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+//Actions
 import { sendList } from "../../../actions/actions";
+import { list_get } from "../../../actions/actions";
+//API
 import { list_update } from "../../../api/api";
 
 const SetTitle = ({ onClose, open }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [list, setList] = useState(useSelector((state) => state.active_list));
 
-	console.log(JSON.stringify(list));
 	const handleClose = () => {
 		onClose();
 	};
@@ -28,7 +30,9 @@ const SetTitle = ({ onClose, open }) => {
 		e.preventDefault();
 		await list_update(list.shoppingListID, list);
 		dispatch(sendList(list));
+		dispatch(list_get());
 		handleClose();
+		history.replace(`${list.listName}`);
 	};
 
 	return (

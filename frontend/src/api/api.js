@@ -59,18 +59,22 @@ export const list_getMissedItems = () =>
 	axios
 		.get(`${url_list}/missed/items`)
 		.catch((e) => console.log(`API list_getMissedItems [ERROR]: ${e.message}`));
+//Get
 export const list_getItems = (shoppingListID) =>
 	axios
 		.get(`${url_list}/${shoppingListID}/items`)
 		.catch((e) => console.log(`API list_getItems [ERROR]: ${e.message}`));
+//Create
 export const list_addItemList = (shoppingListID, items) =>
 	axios
 		.post(`${url_list}/${shoppingListID}/items`, items)
 		.catch((e) => console.log(e.message));
+//Delete
 export const list_deleteItemList = (shoppingListID, items) =>
 	axios
 		.delete(`${url_list}/${shoppingListID}/items`, items)
 		.catch((e) => console.log(e.message));
+//Update
 export const list_updateItemList = (shoppingListID, items) =>
 	axios
 		.put(`${url_list}/${shoppingListID}/items`, items)
@@ -88,7 +92,7 @@ export const list_updateItem = (shoppingListID, itemName, item) =>
 	axios
 		.put(`${url_list}/${shoppingListID}/item/${itemName}`, item)
 		.catch((e) => console.log(e.message));
-//	Share List
+//	Share List --------------------
 export const shareList_getUsers = (shoppingListID) =>
 	axios
 		.get(`${url_list}/${shoppingListID}/user`)
@@ -103,7 +107,7 @@ export const shareList_deleteUser = (shoppingListID, userID) =>
 		.catch((e) => console.log(e.message));
 //===================================  Store SERVICE  =======================================================
 //
-
+export const store_nav = (lists) => axios.post(`${url_store}/nav`, lists);
 export const store_getItems = () =>
 	axios
 		.get(`${url_store}/items`)

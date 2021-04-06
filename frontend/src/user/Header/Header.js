@@ -62,7 +62,7 @@ const Header = () => {
 							<SetTitle open={open2} onClose={handleTitleOnClose} />
 						</div>
 					) : location.pathname === `/list/${title}/store` ? (
-						<Typography className={styles.main}>Store</Typography>
+						<Typography className={styles.main}>Search Items</Typography>
 					) : (
 						<>Error</>
 					)}

@@ -11,11 +11,9 @@ import makeStyles from "./Regular_Item_styles";
 
 const RegularItem = ({ item }) => {
 	const styles = makeStyles();
-	const [setting_boolean, set_Setting_boolean] = useState(false);
+	const [setting_boolean, set_Setting_boolean] = useState(true);
 
-	useEffect(() => {
-		return set_Setting_boolean(true);
-	}, []);
+	useEffect(() => {}, []);
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
 			<div className={styles.container}>
