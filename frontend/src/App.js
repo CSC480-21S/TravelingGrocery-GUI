@@ -21,15 +21,18 @@ import Login from "./user/Login_SingOut/Login";
 import Items from "./user/Items/Items";
 import EditList from "./user/Lists/Edit_List/Edit_List";
 import Profile from "./user/Profile/Profile";
+
 // EMPLOYEE components
 import NavbarEmployee from "./employee/NavbarEmployee";
+import HomeEmployee from "./employee/homeEmployee/HomeEmployee"
 
 // ADMIN components
 import NavbarAdmin from "./admin/navbarAdmin/NavbarAdmin";
-import Home from "./admin/homeAdmin/home";
+import HomeAdmin from "./admin/homeAdmin/HomeAdmin";
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
 import AddEmployee from "./admin/employee/AddEmployee";
+import AddItem from "./admin/manageInventory/AddItem";
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
@@ -66,14 +69,15 @@ const App = () => {
 				</Route>
 
 				{/* EMPLOYEE routing  */}
-				<Route exact path="/employee/dashboard">
+				<Route exact path="/employee/home">
 					<NavbarEmployee />
+					<HomeEmployee />
 				</Route>
 
 				{/* ADMIN routing  */}
-				<Route exact path="/admin/dashboard">
+				<Route exact path="/admin/home">
 					<NavbarAdmin />
-					<Home />
+					<HomeAdmin />
 				</Route>
 				<Route exact path="/admin/employees">
 					<NavbarAdmin />
@@ -119,11 +123,11 @@ const App = () => {
 						<p>Offline user navigation</p>
 					</Link>
 					<h3>Employee Stuff</h3>
-					<Link to="/employee/dashboard">
+					<Link to="/employee/home">
 						<p>Employee home</p>
 					</Link>
 					<h3>Admin Stuff</h3>
-					<Link to="/admin/dashboard">
+					<Link to="/admin/home">
 						<p>Admin home</p>
 					</Link>
 				</Route>

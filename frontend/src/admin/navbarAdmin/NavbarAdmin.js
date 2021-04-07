@@ -19,8 +19,8 @@ const NavbarAdmin = () => {
 			<div className="rightSide" id={showLinks ? "hidden" : ""}>
 				{/* If showLinks is true, set id to "hidden" else set to "" */}
 				<div className="links" id={showLinks ? "hidden" : ""}>
-					<Link to="/admin/dashboard" onClick={() => setShowLinks(!showLinks)}>
-						Admin Dashboard
+					<Link to="/admin/home" onClick={() => setShowLinks(!showLinks)}>
+						Admin Home
 					</Link>
 					<Link to="/developer" onClick={() => setShowLinks(!showLinks)}>
 						Developer

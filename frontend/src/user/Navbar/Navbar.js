@@ -16,10 +16,7 @@ const Navbar = () => {
 				{/* If showLinks is true, set id to "hidden" else set to "" */}
 				<div className="links" id={showLinks ? "hidden" : ""}>
 					<Link to="/home" onClick={() => setShowLinks(!showLinks)}>
-						Dashboard
-					</Link>
-					<Link to="/sharelist" onClick={() => setShowLinks(!showLinks)}>
-						Share
+						Home
 					</Link>
 					<Link to="/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile

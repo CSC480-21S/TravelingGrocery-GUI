@@ -16,7 +16,7 @@ function NavbarEmployee() {
             <div className="rightSide" id={showLinks ? "hidden" : ""}>
                 {/* If showLinks is true, set id to "hidden" else set to "" */}
                 <div className="links" id={showLinks ? "hidden" : ""}>
-                    <Link to="/employee/dashboard" onClick={()=> setShowLinks(!showLinks)}>Employee Dashboard</Link>
+                    <Link to="/employee/home" onClick={()=> setShowLinks(!showLinks)}>Employee Home</Link>
                     <Link to="/developer" onClick={()=> setShowLinks(!showLinks)}>Developer</Link>
 					{/* NOTE: Put a link to your component here */}
                 </div>
