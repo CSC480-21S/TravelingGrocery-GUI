@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
+import {Redirect, useHistory} from "react-router-dom";
 
 const Manage = () =>
 {
+    const history = useHistory();
+
     const container = {
         background: "#f4f4f4",
         margin: "5px",
@@ -14,6 +17,11 @@ const Manage = () =>
         alignItems: 'center'
     };
 
+    const routeChange = () =>{
+       let path = `/admin/inventory/additem`;
+        history.push(path);
+    }
+
     return (
         <div>
             <h1 style={{textAlign: 'center', fontSize: '120%'}}> Manage Inventory </h1>
@@ -21,7 +29,7 @@ const Manage = () =>
                 <button style={{backgroundColor: 'white', height: '30px'}}>VIEW OUT-OF-STOCK ITEMS</button>
             </div>
 
-            <div style={container}>
+            <div style={container} onClick={routeChange}>
                 <h3
                     style={{
                         verticalAlign: "middle",
