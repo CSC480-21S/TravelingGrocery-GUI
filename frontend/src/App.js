@@ -83,6 +83,10 @@ const App = () => {
 					<NavbarAdmin />
 					<Manage />
 				</Route>
+				<Route exact path="/admin/inventory/additem">
+					<NavbarAdmin />
+					<AddItem />
+				</Route>
 				<Route exact path="/admin/addEmployee">
 					<NavbarAdmin />
 					<AddEmployee />
