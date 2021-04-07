@@ -10,25 +10,28 @@ import {
 } from "react-router-dom";
 
 // USER components
+import NavbarUser from "./user/Navbar/Navbar";
 import NavigationUser from "./user/Navigation/NavigationUser";
 import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser"
-
-import NavbarUser from "./user/Navbar/Navbar";
 import HomePage from "./user/HomePage/HomePage";
 import Header from "./user/Header/Header";
 import Lists from "./user/Lists/Lists";
 import Login from "./user/Login_SingOut/Login";
 import Items from "./user/Items/Items";
 import EditList from "./user/Lists/Edit_List/Edit_List";
-import Profile from "./user/Profile/Profile";
+import UserProfile from "./user/Profile/Profile";
 
 // EMPLOYEE components
 import NavbarEmployee from "./employee/NavbarEmployee";
-import HomeEmployee from "./employee/homeEmployee/HomeEmployee"
+import HomeEmployee from "./employee/HomeEmployee"
+import ProfileEmployee from "./employee/Profile"
+import NavigationEmployee from "./employee/NavigationEmployee"
+import OrdersEmployee from "./employee/OrdersEmployee"
 
 // ADMIN components
-import NavbarAdmin from "./admin/navbarAdmin/NavbarAdmin";
-import HomeAdmin from "./admin/homeAdmin/HomeAdmin";
+import NavbarAdmin from "./admin/NavbarAdmin";
+import HomeAdmin from "./admin/HomeAdmin";
+import ProfileAdmin from "./admin/Profile"
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
 import AddEmployee from "./admin/employee/AddEmployee";
@@ -73,11 +76,30 @@ const App = () => {
 					<NavbarEmployee />
 					<HomeEmployee />
 				</Route>
+				<Route exact path="/employee/profile">
+					<NavbarUser />
+					<ProfileEmployee />
+				</Route>
+				<Route exact path="/employee/orders">
+					<NavbarEmployee />
+					<OrdersEmployee />
+				</Route>
+				<Route exact path="/employee/navigation">
+					<NavbarEmployee />
+					<NavigationEmployee />
+				</Route>
+				<Route exact path="/employee/offline_navigation">
+					<NavbarEmployee />
+				</Route>
 
 				{/* ADMIN routing  */}
 				<Route exact path="/admin/home">
 					<NavbarAdmin />
 					<HomeAdmin />
+				</Route>
+				<Route exact path="/admin/profile">
+					<NavbarUser />
+					<ProfileAdmin />
 				</Route>
 				<Route exact path="/admin/employees">
 					<NavbarAdmin />
@@ -105,9 +127,9 @@ const App = () => {
 					<NavbarUser />
 					<NavigationOfflineUser />
 				</Route>
-				<Route exact path="/profile">
+				<Route exact path="/user/profile">
 					<NavbarUser />
-					<Profile />
+					<UserProfile />
 				</Route>
 
 				{/* TEST/DEBUGGING routing  */}

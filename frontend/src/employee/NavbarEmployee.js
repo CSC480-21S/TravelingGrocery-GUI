@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import '../App.css'
+
 import ReorderIcon from '@material-ui/icons/Reorder'
 import { Link } from 'react-router-dom';
 
@@ -17,6 +18,9 @@ function NavbarEmployee() {
                 {/* If showLinks is true, set id to "hidden" else set to "" */}
                 <div className="links" id={showLinks ? "hidden" : ""}>
                     <Link to="/employee/home" onClick={()=> setShowLinks(!showLinks)}>Employee Home</Link>
+                    <Link to="/employee/profile" onClick={() => setShowLinks(!showLinks)}>
+						Profile
+					</Link>
                     <Link to="/developer" onClick={()=> setShowLinks(!showLinks)}>Developer</Link>
 					{/* NOTE: Put a link to your component here */}
                 </div>

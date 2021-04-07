@@ -1,11 +1,11 @@
 // Name: Jeff Cho
-import "../../styles/Navigation.css";
+import "../styles/Navigation.css";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import img_blank from "../../images/blank.png";
-import img_out_of_stock from "../../images/out_of_stock.jpg";
+import img_blank from "../images/blank.png";
+import img_out_of_stock from "../images/out_of_stock.jpg";
 
-const NavigationUser = () => {
+const NavigationEmployee = () => {
 	// I have to set a default placeholder state until the get request finishes?
 	// TODO:  This is a weird fix, Find a better way?
 	const directions = useSelector((state) => state.storeNav);
@@ -84,4 +84,4 @@ const NavigationUser = () => {
 	);
 };
 
-export default NavigationUser;
+export default NavigationEmployee;

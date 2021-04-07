@@ -1,4 +1,4 @@
-import "../../styles/Profile.css";
+import "../styles/Profile.css";
 
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -64,7 +64,7 @@ const Profile = () => {
 	return (
 		<div className="Profile">
 			<div className = "containerTop">
-				 User Profile
+				Employee Profile
 			</div>
 			
 			<div className = "containerImage">
