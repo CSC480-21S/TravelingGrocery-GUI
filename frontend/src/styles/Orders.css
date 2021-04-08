@@ -1,0 +1,14 @@
+.OrdersEmployee .containerTop {
+    text-align: center;
+    justify-content: center;
+}
+
+.OrdersEmployee .containerTop h1 {
+    color: black;
+    font-size: xx-large;
+    font-weight: bold;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+

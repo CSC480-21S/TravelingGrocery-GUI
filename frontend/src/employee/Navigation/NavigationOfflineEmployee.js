@@ -3,7 +3,7 @@ import "../../styles/Navigation.css";
 import img_blank from '../../images/blank.png';
 import img_out_of_stock from '../../images/out_of_stock.jpg';
 
-const NavigationOfflineUser = () => {
+const NavigationOfflineEmployee = () => {
     const directions = JSON.parse(localStorage.getItem('directions'));
     const [index, setIndex] = useState(0)
     const [finished, setFinished] = useState(false)
@@ -41,7 +41,7 @@ const NavigationOfflineUser = () => {
                     <img className= 'itemImage' src={img_blank} alt="itemImage" /> 
                     : <img className= 'itemImage' src={img_out_of_stock} alt="itemImage" />
                 }
-                
+                <p className='hugLeft'> ListID {directions[index].shoppingListID} </p>
                 <p className='hugLeft'> {directions[index].itemName} </p>
                 <p className='hugLeft'> {directions[index].department} Department </p>
                 <p className='hugLeft'> Aisle {directions[index].aisle} </p>
@@ -66,4 +66,4 @@ const NavigationOfflineUser = () => {
     );
 }
 
-export default NavigationOfflineUser
+export default NavigationOfflineEmployee

@@ -20,7 +20,7 @@ const NavbarAdmin = () => {
 				{/* If showLinks is true, set id to "hidden" else set to "" */}
 				<div className="links" id={showLinks ? "hidden" : ""}>
 					<Link to="/admin/home" onClick={() => setShowLinks(!showLinks)}>
-						Admin Home
+						Home
 					</Link>
 					<Link to="/admin/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile

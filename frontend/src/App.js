@@ -25,7 +25,8 @@ import UserProfile from "./user/Profile/Profile";
 import NavbarEmployee from "./employee/NavbarEmployee";
 import HomeEmployee from "./employee/HomeEmployee"
 import ProfileEmployee from "./employee/Profile"
-import NavigationEmployee from "./employee/NavigationEmployee"
+import NavigationEmployee from "./employee/Navigation/NavigationEmployee"
+import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee"
 import OrdersEmployee from "./employee/OrdersEmployee"
 
 // ADMIN components
@@ -90,6 +91,7 @@ const App = () => {
 				</Route>
 				<Route exact path="/employee/offline_navigation">
 					<NavbarEmployee />
+					<NavigationOfflineEmployee />
 				</Route>
 
 				{/* ADMIN routing  */}
