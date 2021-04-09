@@ -22,7 +22,7 @@ const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
 		await list_delete(shoppingListID);
 		history.push("/home");
 	};
-	const handle_Cancel = () => {};
+
 	return (
 		<div>
 			<Dialog onClose={handleClose} open={onDelete}>
@@ -41,7 +41,7 @@ const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
 						<div>
 							{" "}
 							{/* Cancel Button */}
-							<IconButton onClick={handle_Cancel} className={styles.cancelBtn}>
+							<IconButton onClick={handleClose} className={styles.cancelBtn}>
 								<CloseIcon />
 							</IconButton>
 						</div>

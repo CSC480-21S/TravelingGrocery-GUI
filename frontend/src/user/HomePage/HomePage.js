@@ -4,7 +4,6 @@ import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import IconButton from "@material-ui/core/IconButton";
-import Grid from "@material-ui/core/Grid";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -22,8 +21,10 @@ const HomePage = () => {
 	const styles = makeStyles();
 	const history = useHistory();
 
-	const lists = useSelector((state) => state.list_users); // gets the lists from server
 	const profile = useSelector((state) => state.user.profile); //gets profile info from Google login
+	const lists = useSelector((state) => state.list_users); // gets the lists from server
+	const [list_share, setListShare] = useState([]);
+	const [list_finished, setListFinish] = useState([]);
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
@@ -48,61 +49,62 @@ const HomePage = () => {
 		const user = auth.currentUser.get();
 	});
 	return (
-		<Grid
-			container
-			className={styles.superContainer}
-			direction="column"
-			spacing={4}
-		>
+		<div className={styles.superContainer}>
 			{/* User Regular Lists */}
 			{/* <p>{profile.tokenObj.id_token}</p> */}
-			<Grid item className={styles.test}>
-				<Typography className={styles.userName}>Hi {profile.name}</Typography>
-				<Grid container spacing={2}>
-					{lists.map((list) =>
-						list != null ? (
-							<Grid item key={list.id}>
-								<Button
-									className={styles.regularButton}
-									onClick={() => handleList(list)}
-								>
-									{list.listName}
-								</Button>
-							</Grid>
-						) : (
-							<></>
-						)
-					)}
-					<Grid item>
+			<Typography className={styles.text}>Hi {profile.name}</Typography>
+			<div className={styles.lists}>
+				{lists.map((list) =>
+					list != null ? (
+						<div item key={list.id}>
+							<Button
+								className={styles.regularButton}
+								onClick={() => handleList(list)}
+							>
+								{list.listName}
+							</Button>
+						</div>
+					) : (
+						<></>
+					)
+				)}
+				<div>
+					{" "}
+					{/* Add List Button */}
+					<IconButton className={styles.iconButton} onClick={handleClickOpen}>
 						{" "}
-						{/* Add List Button */}
-						<IconButton className={styles.iconButton} onClick={handleClickOpen}>
-							{" "}
-							{/*This is the PopUp menu*/}
-							<AddIcon />
-						</IconButton>
-						<CreateList open={open} onClose={handleClose} />
-					</Grid>
-				</Grid>
-			</Grid>
+						{/*This is the PopUp menu*/}
+						<AddIcon />
+					</IconButton>
+					<CreateList open={open} onClose={handleClose} />
+				</div>
+			</div>
 			{/* Shared Item List */}
-			<Grid item className={styles.test}>
-				<Typography className={styles.sharedList}>Shared List</Typography>
-				<Grid container spacing={2}>
-					<Grid item>
-						<Button className={styles.regularButton}>Shared List</Button>
-					</Grid>
-				</Grid>
-			</Grid>
-			<Grid item className={styles.test}>
-				<Typography className={styles.sharedList}>Finished List</Typography>
-				<Grid container spacing={2}>
-					<Grid item>
-						<Button className={styles.regularButton}>Finished List</Button>
-					</Grid>
-				</Grid>
-			</Grid>
-		</Grid>
+			{list_share.length > 0 ? (
+				<>
+					<Typography className={styles.text}>Shared List</Typography>
+					<div className={styles.lists}>
+						<div>
+							<Button className={styles.regularButton}>Shared List</Button>
+						</div>
+					</div>
+				</>
+			) : (
+				<></>
+			)}
+			{list_finished.length > 0 ? (
+				<>
+					<Typography className={styles.text}>Finished List</Typography>
+					<div item className={styles.lists}>
+						<div>
+							<Button className={styles.regularButton}>Finished List</Button>
+						</div>
+					</div>
+				</>
+			) : (
+				<></>
+			)}
+		</div>
 	);
 };
 

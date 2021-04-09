@@ -2,6 +2,7 @@
 import "../../styles/Navigation.css";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import img_blank from "../../images/blank.png";
 import img_out_of_stock from "../../images/out_of_stock.jpg";
 
@@ -13,6 +14,7 @@ const NavigationUser = () => {
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
 
+	const history = useHistory();
 	const saveToLocalStorage = (state) => {
 		try {
 			const serializedState = JSON.stringify(state);
@@ -39,26 +41,54 @@ const NavigationUser = () => {
 			//console.log("You attempted to decrement out of bounds")
 		}
 	};
-
+	const onExit = (e) => {
+		e.preventDefault();
+		history.push("/home");
+	};
 	return (
-		<div className="Navigation">
-			<div className="containerTop">Navigation</div>
-
-			<div className="containerDirections">
+		<div className="navigation">
+			<div className="header">
+				<div className="percent">
+					{index + 1}/{directions.length}
+				</div>
+				<div className="title">Navigation</div>
+				<div className="exit" onClick={onExit}>
+					Exit
+				</div>
+			</div>
+			<div className="itemContainer">
 				{/* Conditonal statement bool ? ifTrue : ifFalse */}
 				{directions[index].itemStockBool ? (
 					<img className="itemImage" src={img_blank} alt="itemImage" />
 				) : (
 					<img className="itemImage" src={img_out_of_stock} alt="itemImage" />
 				)}
+				<div className="itemDetails">
+					<div className="itemName"> {directions[index].itemName} </div>
+					<div className="itemDepartment">
+						{directions[index].department} Department
+					</div>
+					<div className="stock">
+						{!directions[index].itemStockBool ? "OUT OF STOCK" : ""}
+					</div>
+					<div className="itemCount">
+						Quantity: {directions[index].itemQuantity}
+					</div>
+				</div>
+			</div>
+			<div className="containerDirections">
+				{/* Conditonal statement bool ? ifTrue : ifFalse */}
+				{/* {directions[index].itemStockBool ? (
+					<img className="itemImage" src={img_blank} alt="itemImage" />
+				) : (
+					<img className="itemImage" src={img_out_of_stock} alt="itemImage" />
+				)} */}
+				<h3>Directions</h3>
 
-				<p className="hugLeft"> {directions[index].itemName} </p>
-				<p className="hugLeft"> {directions[index].department} Department </p>
-				<p className="hugLeft"> Aisle {directions[index].aisle} </p>
+				<p className="hugLeft">Aisle: {directions[index].aisle}</p>
+				<p className="hugLeft">{directions[index].side} side </p>
 				<p className="hugLeft">
-					{" "}
-					Rack {directions[index].rack} | {directions[index].side} side |{" "}
-					{directions[index].shelf} shelf{" "}
+					Rack {directions[index].rack} {directions[index].shelf} shelf
 				</p>
 			</div>
 
@@ -68,8 +98,7 @@ const NavigationUser = () => {
 				) : (
 					<button className="outOfStockButton">Move item</button>
 				)}
-				<br></br>
-				{index + 1}/{directions.length} {finished ? "Finished!" : ""}
+				{/* {index + 1}/{directions.length} {finished ? "Finished!" : ""} */}
 			</div>
 
 			<div className="containerBackNext">

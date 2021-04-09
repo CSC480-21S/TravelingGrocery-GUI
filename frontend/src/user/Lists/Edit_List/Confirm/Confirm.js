@@ -27,7 +27,7 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 				var temp = item.itemName;
 				list_delete.listItems.push(temp);
 			}
-			if (item.create || item.fromStore) {
+			if (item.create) {
 				var create = item;
 				delete create.isChecked;
 				delete create.delete;

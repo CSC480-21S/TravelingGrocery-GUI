@@ -52,15 +52,16 @@ const Item = ({ item }) => {
 				<div className={styles.item_Image_Container}>
 					<FirstSectionList />
 				</div>
-
-				<div className={styles.item_details_Container}>
-					<SecondSectionList item={item} />
-				</div>
-				<div className={styles.third_section_list_Container}>
-					<ThirdSectionList
-						item_count={item_count}
-						set_Item_count={set_Item_count}
-					/>
+				<div className={styles.test}>
+					<div className={styles.item_details_Container}>
+						<SecondSectionList item={item} />
+					</div>
+					<div className={styles.third_section_list_Container}>
+						<ThirdSectionList
+							item_count={item_count}
+							set_Item_count={set_Item_count}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/Navbar.css";
+import "./Navbar.css";
 import ReorderIcon from "@material-ui/icons/Reorder";
 
 import { Link } from "react-router-dom";

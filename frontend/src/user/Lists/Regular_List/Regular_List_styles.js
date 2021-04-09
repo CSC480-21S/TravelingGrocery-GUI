@@ -9,10 +9,18 @@ export default makeStyles((theme) => ({
 		gridTemplateColumns: "auto auto",
 		marginLeft: 15,
 		marginRight: 15,
+		"@media (max-width: 414px)": {
+			display: "flex",
+			flexDirection: "column",
+		},
 	},
 	buttons: {
 		display: "flex",
 		justifyContent: "flex-end",
+		"@media (max-width: 414px)": {
+			marginTop: 15,
+			justifyContent: "center",
+		},
 	},
 	topIconButton1: {
 		textTransform: "none",

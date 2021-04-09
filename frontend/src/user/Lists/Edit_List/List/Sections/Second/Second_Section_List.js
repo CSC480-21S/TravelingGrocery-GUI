@@ -9,7 +9,6 @@ const SecondSectionList = ({ item }) => {
 			<Typography className={styles.item_Name}>
 				{item.itemName ? item.itemName : "Error_Name"}
 			</Typography>
-			<p></p>
 			<Typography className={styles.item_Stock}>In Stock</Typography>
 		</div>
 	);

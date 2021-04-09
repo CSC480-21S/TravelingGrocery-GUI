@@ -1,6 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+	container: {
+		display: "flex-column",
+	},
+	itemName: {
+		marginBottom: theme.spacing(1.5),
+	},
 	item_Name: {
 		fontFamily: "Roboto",
 		fontWeight: "1000",

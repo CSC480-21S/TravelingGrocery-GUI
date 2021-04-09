@@ -12,7 +12,7 @@ import {
 // USER components
 import NavbarUser from "./user/Navbar/Navbar";
 import NavigationUser from "./user/Navigation/NavigationUser";
-import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser"
+import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser";
 import HomePage from "./user/HomePage/HomePage";
 import Header from "./user/Header/Header";
 import Lists from "./user/Lists/Lists";
@@ -23,15 +23,15 @@ import UserProfile from "./user/Profile/Profile";
 
 // EMPLOYEE components
 import NavbarEmployee from "./employee/NavbarEmployee";
-import HomeEmployee from "./employee/HomeEmployee"
-import ProfileEmployee from "./employee/Profile"
-import NavigationEmployee from "./employee/NavigationEmployee"
-import OrdersEmployee from "./employee/OrdersEmployee"
+import HomeEmployee from "./employee/HomeEmployee";
+import ProfileEmployee from "./employee/Profile";
+import NavigationEmployee from "./employee/NavigationEmployee";
+import OrdersEmployee from "./employee/OrdersEmployee";
 
 // ADMIN components
 import NavbarAdmin from "./admin/NavbarAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
-import ProfileAdmin from "./admin/Profile"
+import ProfileAdmin from "./admin/Profile";
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
 import AddEmployee from "./admin/employee/AddEmployee";
@@ -120,7 +120,6 @@ const App = () => {
 
 				{/* USER routing  */}
 				<Route exact path="/user/navigation">
-					<NavbarUser />
 					<NavigationUser />
 				</Route>
 				<Route exact path="/user/offline_navigation">
