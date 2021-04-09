@@ -2,8 +2,8 @@
 /* CSS for employee and user navigation */
 
 /* CSS FOR TOP */
-.containerTop {
-    color: #222258;
+.Navigation .containerTop {
+    color: black;
     font-size: xx-large;
     font-weight: bold;
 
@@ -16,7 +16,7 @@
 }
 
 /* CSS FOR ITEM DIRECTIONS */
-.containerDirections {
+.Navigation .containerDirections {
     background-color: #F6F6F6;
     font-size: large;
     width: 100%;
@@ -27,13 +27,13 @@
     padding-bottom: 0.1%;
 }
 
-.containerDirections .hugLeft {
+.Navigation .containerDirections .hugLeft {
     padding-left: 10%;
     text-align: left;
     font-weight: bold;
 }
 
-.containerDirections .itemImage {
+.Navigation .containerDirections .itemImage {
     width: 40%;
     height: auto;
     margin-left: auto;
@@ -42,7 +42,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-    .containerDirections {
+    .Navigation .containerDirections {
         background-color: #F6F6F6;
         font-size: small;
         width: 100%;
@@ -53,13 +53,13 @@
         padding-bottom: 0.1%;
     }
 
-    .containerDirections .hugLeft {
+    .Navigation .containerDirections .hugLeft {
         padding-left: 10%;
         text-align: left;
         font-weight: bold;
     }
 
-    .containerDirections .itemImage {
+    .Navigation .containerDirections .itemImage {
         width: 40%;
         height: auto;
         margin-left: auto;
@@ -69,13 +69,13 @@
 }
 
 /* CSS FOR STATUS */
-.containerStatus {
+.Navigation .containerStatus {
     margin-top: 5px;
     text-align: center;
     justify-content: center;
 }
 
-.containerStatus .outOfStockButton {
+.Navigation .containerStatus .outOfStockButton {
     font-weight: bold;
     color: red;
     background-color: white;
@@ -90,14 +90,14 @@
 }
 
 /* CSS FOR BUTTONS */
-.containerBackNext {
+.Navigation .containerBackNext {
     padding-bottom: 15px;
     text-align: center;
     justify-content: center;
     margin-right: 1.5%;
 }
 
-.containerBackNext .nextButton {
+.Navigation .containerBackNext .nextButton {
     color: white;
     background-color: #222258;
     font-size: medium;
@@ -111,7 +111,7 @@
     left: 3%;
 }
 
-.containerBackNext .backButton {
+.Navigation .containerBackNext .backButton {
     font-size: medium;
     background-color: white;
     padding-top: 5px;

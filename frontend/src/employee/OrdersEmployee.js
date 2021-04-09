@@ -1,11 +1,15 @@
-import React from "react";
+import "../styles/Orders.css";
 
 const OrdersEmployee = () => {
-	document.title = "Employee - Home";
 
 	return (
 		<div className="OrdersEmployee">
-            <p>test</p>
+			<div className="containerTop">
+				<h1>Orders</h1>
+			</div>
+			<div className="containerArray">
+				
+			</div>
 		</div>
 	);
 };

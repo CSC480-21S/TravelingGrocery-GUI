@@ -2,7 +2,7 @@ import "../../styles/Profile.css";
 
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Avatar from "@material-ui/core/Avatar";
+// import Avatar from "@material-ui/core/Avatar";
 import { useGoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
 

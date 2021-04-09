@@ -6,7 +6,7 @@ const HomeAdmin = () => {
 	document.title = "Admin - Home";
 
 	return (
-		<div className="HomeAdmin">
+		<div className="Home">
 			<title>Admin Home</title>
 			<div className="containerTop">
 				Admin Home
