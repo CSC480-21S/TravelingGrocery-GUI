@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import EmployeeInfo from "./EmployeeInfo";
+import {useHistory} from "react-router-dom";
 
 const Employee = () => {
+	const history = useHistory();
+
+	const routeChange = () =>{
+		let path = "/admin/addEmployee";
+		history.push(path);
+	}
+
 	const task = {
 		background: "#f4f4f4",
 		margin: "5px",
 		padding: "10px 20px",
 		height: "100px",
-
-
 	};
 	const task2 = {
 		background: "#f4f4f4",
@@ -56,7 +62,7 @@ const Employee = () => {
 					name={employee.email}
 				/>
 			))}
-			<div style={task2}>
+			<div style={task2} onClick={routeChange}>
 				<h3
 					style={{
 						verticalAlign: "middle",
