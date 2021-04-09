@@ -58,6 +58,7 @@ const Order = ({task, orderNum, numItems, name, time, orders, setOrders}) =>
         padding: "10px 20px",
         height: "130px",
         borderRadius: '15px',
+        display: 'flex',
         cursor: 'pointer'
     };
 

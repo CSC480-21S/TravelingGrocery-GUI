@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import AllEmployees from "./AllEmployees";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,6 +9,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 
 const AssignEmployees = () => {
     const location = useLocation();
+    const history = useHistory();
     const [employees, setEmployees] = useState([]);
     const axios = require("axios");
     const [open, setOpen] = useState(false);
@@ -68,6 +69,11 @@ const AssignEmployees = () => {
         console.log(JSON.stringify(temp))
     }
 
+    const routeChange = () =>{
+        let path = "/admin/assignOrders";
+        history.push(path);
+    }
+
     const button1 = {
         background: '#FFFFFF',
         border: '1px solid #000000',
@@ -115,7 +121,7 @@ const AssignEmployees = () => {
                     {"The Order has been assigned!"}
                 </DialogTitle>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={routeChange} color="primary">
                         Ok
                     </Button>
                 </DialogActions>

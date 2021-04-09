@@ -14,7 +14,7 @@ const AllEmployees = ({email, bool, employees, setEmployees}) => {
     const leftelement = {
         display: "inline-block",
         float: "left",
-        width: "130px",
+        width: "50px",
         textAlign: "left",
 
     };
