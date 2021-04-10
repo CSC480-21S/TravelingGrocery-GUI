@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import EmployeeInfo from "./EmployeeInfo";
+import {useHistory} from "react-router-dom";
 
 const Employee = () => {
+	const history = useHistory();
+
+	const routeChange = () =>{
+		let path = "/admin/addEmployee";
+		history.push(path);
+	}
+
 	const task = {
 		background: "#f4f4f4",
 		margin: "5px",
 		padding: "10px 20px",
 		height: "100px",
-
-
+		display: "flex",
 	};
 	const task2 = {
 		background: "#f4f4f4",
@@ -18,7 +25,7 @@ const Employee = () => {
 		cursor: "pointer",
 		display: 'flex',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
 	};
 
 	const [employees, setEmployees] = useState([]);
@@ -46,21 +53,20 @@ const Employee = () => {
 				position: "relative",
 			}}
 		>
-			<h1>Employees</h1>
+			<h1 style={{fontSize: '120%', zIndex: -1, position: 'relative'}}>Employees</h1>
 			{employees.map((employee) => (
 				<EmployeeInfo
 					key={employee.id}
 					task={task}
-					num={employee.num}
 					bool={employee.userShoppingBool ? "on Clock" : "Off Clock"}
 					name={employee.email}
 				/>
 			))}
-			<div style={task2}>
+			<div style={task2} onClick={routeChange}>
 				<h3
 					style={{
 						verticalAlign: "middle",
-						fontSize: "170%",
+						fontSize: "130%",
 						color: "darkgray",
 						position: "absolute",
 					}}

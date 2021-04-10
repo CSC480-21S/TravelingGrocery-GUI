@@ -1,10 +1,10 @@
 import React from "react";
 
-const EmployeeInfo = ({ task, name, num, bool }) => {
+const EmployeeInfo = ({ task, name, bool }) => {
 	const leftelement = {
 		display: "inline-block",
 		float: "left",
-		width: "130px",
+		width: "50px",
 		textAlign: "left",
 
 	};
@@ -13,7 +13,6 @@ const EmployeeInfo = ({ task, name, num, bool }) => {
 		display: "inline-block",
 		float: "left",
 		textAlign: "left",
-
 	};
 
 	return (
@@ -21,13 +20,11 @@ const EmployeeInfo = ({ task, name, num, bool }) => {
 			<div style={leftelement}>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Name:</p>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Status:</p>
-				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Number of Orders:</p>
 			</div>
 
 			<div style={rightelement}>
 				<p style={{ fontSize: "50%" }}>{name}</p>
 				<p style={{ fontSize: "50%" }}>{bool}</p>
-				<p style={{ fontSize: "50%" }}>{num}</p>
 			</div>
 		</div>
 	);

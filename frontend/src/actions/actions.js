@@ -70,3 +70,7 @@ export const listToBeUpdated_AddItem = (item) => (dispatch) => {
 export const set_fromStore = (bol) => (dispatch) => {
 	dispatch({ type: TYPES.SET_FROM_STORE, payload: bol });
 };
+
+export const assign_employee = (employee) => (dispatch) => {
+	dispatch({type: TYPES.ASSIGN_EMPLOYEE, payload: employee})
+};

@@ -8,6 +8,7 @@ import list_toUpdate from "./reducer/list_toUpdate";
 import list_users from "./reducer/lists_user";
 import fromStore from "./reducer/fromStore";
 import storeNav from "./reducer/storeNav";
+import currentEmployee from "./reducer/currentEmployee";
 
 export default combineReducers({
 	list_users,
@@ -18,4 +19,5 @@ export default combineReducers({
 	list_toUpdate,
 	fromStore,
 	storeNav,
+	currentEmployee,
 });

@@ -12,3 +12,5 @@ export const STORE_NAV = "STORE_NAV";
 //PI ACTIONS
 export const LIST_GET = "LIST_GET";
 export const LIST_GET_ITEMS = "LIST_GET_ITEMS";
+//Assign stuff
+export const ASSIGN_EMPLOYEE = "ASSIGN_EMPLOYEE"

@@ -1,6 +1,6 @@
 /* CSS for Admin Home and Employee Home */
 
-.containerTop {
+.Home .containerTop {
     font-size: xx-large;
     font-weight: bold;
 
@@ -10,13 +10,13 @@
     justify-content: center;
 }
 
-.containerButtons {
+.Home .containerButtons {
     text-align: center;
     justify-content: center;
     padding-top: 2%;
 }
 
-.buttons {
+.Home .buttons {
     color: white;
     background-color: #222258;
     cursor: pointer;
@@ -26,4 +26,11 @@
     padding-bottom: 5px;
     max-width: 500px;
     width: 80%;
+}
+
+.Home .containerTop p {
+    font-size: x-large;
+    font-weight: bold;
+
+    padding-bottom: 5px;
 }

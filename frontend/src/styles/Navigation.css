@@ -5,6 +5,7 @@
 	width: 100%;
 }
 /* CSS FOR TOP */
+<<<<<<< HEAD
 .percent {
 	color: #222258;
 	font-family: Inter;
@@ -31,6 +32,12 @@
 	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-left: 3%;
+=======
+.Navigation .containerTop {
+    color: black;
+    font-size: xx-large;
+    font-weight: bold;
+>>>>>>> f2890c7a7122d91ce9c8a75c58af2bf628bbbe3a
 
 	text-align: center;
 	justify-content: center;
@@ -111,6 +118,7 @@
 	margin: 5%;
 }
 /* CSS FOR ITEM DIRECTIONS */
+<<<<<<< HEAD
 .containerDirections {
 	background-color: #f6f6f6;
 	width: 100%;
@@ -199,3 +207,111 @@
 	cursor: pointer;
 	border: 1px solid black;
 }
+=======
+.Navigation .containerDirections {
+    background-color: #F6F6F6;
+    font-size: large;
+    width: 100%;
+    line-height: 1;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0.1%;
+}
+
+.Navigation .containerDirections .hugLeft {
+    padding-left: 10%;
+    text-align: left;
+    font-weight: bold;
+}
+
+.Navigation .containerDirections .itemImage {
+    width: 40%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media only screen and (max-width: 900px) {
+    .Navigation .containerDirections {
+        background-color: #F6F6F6;
+        font-size: small;
+        width: 100%;
+        line-height: 1;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 0.1%;
+    }
+
+    .Navigation .containerDirections .hugLeft {
+        padding-left: 10%;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .Navigation .containerDirections .itemImage {
+        width: 40%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+/* CSS FOR STATUS */
+.Navigation .containerStatus {
+    margin-top: 5px;
+    text-align: center;
+    justify-content: center;
+}
+
+.Navigation .containerStatus .outOfStockButton {
+    font-weight: bold;
+    color: red;
+    background-color: white;
+    font-size: medium;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    left: 2%;
+}
+
+/* CSS FOR BUTTONS */
+.Navigation .containerBackNext {
+    padding-bottom: 15px;
+    text-align: center;
+    justify-content: center;
+    margin-right: 1.5%;
+}
+
+.Navigation .containerBackNext .nextButton {
+    color: white;
+    background-color: #222258;
+    font-size: medium;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    left: 3%;
+}
+
+.Navigation .containerBackNext .backButton {
+    font-size: medium;
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+>>>>>>> f2890c7a7122d91ce9c8a75c58af2bf628bbbe3a
