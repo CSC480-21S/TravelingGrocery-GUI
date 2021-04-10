@@ -8,6 +8,7 @@ import EditList from "./Edit_List/Edit_List";
 import { list_getItems } from "../../actions/actions";
 
 const Lists = () => {
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //user access Token
 	const items = useSelector((state) => state.lists); //get items
 	const fromStore = useSelector((state) => state.fromStore);
 	const [isEdit, set_isEdit] = useState(false);
@@ -17,7 +18,7 @@ const Lists = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		return () => dispatch(list_getItems(shoppingListID)); //Update List when closing component
+		return () => dispatch(list_getItems(shoppingListID, token)); //Update List when closing component
 	}, [dispatch, shoppingListID]);
 
 	return (

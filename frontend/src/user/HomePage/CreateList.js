@@ -18,6 +18,8 @@ import { list_get } from "../../actions/actions";
 
 const CreateList = (props) => {
 	const profile = useSelector((state) => state.user); //Retrieve user information from the store
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
+	//console.log(token);
 	const [list, setList] = useState({
 		listName: "",
 		userID: profile.googleId,
@@ -36,8 +38,8 @@ const CreateList = (props) => {
 	};
 	const createNewList = async (e) => {
 		e.preventDefault();
-		await list_create(list);
-		dispatch(list_get());
+		await list_create(list, token);
+		dispatch(list_get(token));
 		handleClose();
 	};
 

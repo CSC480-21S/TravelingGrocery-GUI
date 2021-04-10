@@ -12,10 +12,13 @@ import { useDispatch } from "react-redux";
 import { Typography } from "@material-ui/core";
 //local Imports
 import makeStyles from "./Note_Item_Styles";
+//API
 import { list_updateItem } from "../../../../../../../../api/api";
+//ACTIONS
 import { list_getItems } from "../../../../../../../../actions/actions";
 
 const NoteItem = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	const [itemToBeUpdated, set_itemToBeUpdated] = useState(item);
 	const dispatch = useDispatch();
 	const styles = makeStyles();
@@ -27,9 +30,10 @@ const NoteItem = ({ onNote, setOnNote, set_Setting_bolean, item }) => {
 		await list_updateItem(
 			itemToBeUpdated.shoppingListID,
 			itemToBeUpdated.itemName,
-			itemToBeUpdated
+			itemToBeUpdated,
+			token
 		);
-		dispatch(list_getItems(item.shoppingListID));
+		dispatch(list_getItems(item.shoppingListID, token));
 		handleClose();
 		set_Setting_bolean(true);
 	};

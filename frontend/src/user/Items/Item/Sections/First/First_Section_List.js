@@ -3,7 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 //Styles
 import makeStyles from "./First_Section_List_styles";
 //Local Imports
-import test from "../../../../../images/test.jpg";
+import test from "../../../../../images/blank.png";
 const FirstSectionList = () => {
 	const styles = makeStyles();
 	return (

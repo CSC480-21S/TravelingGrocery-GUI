@@ -16,9 +16,9 @@ export const send_Google_User_info = (profile) => (dispatch) => {
 //					PI SERVER
 //============================================================================
 
-export const list_get = () => async (dispatch) => {
+export const list_get = (token) => async (dispatch) => {
 	try {
-		const { data } = await api.list_get();
+		const { data } = await api.list_get(token);
 		//console.log("response (list_get): " + JSON.stringify(data));
 		dispatch({ type: TYPES.LIST_GET, payload: data });
 	} catch (error) {
@@ -26,9 +26,9 @@ export const list_get = () => async (dispatch) => {
 	}
 };
 
-export const list_getItems = (shoppingListID) => async (dispatch) => {
+export const list_getItems = (shoppingListID, token) => async (dispatch) => {
 	try {
-		const { data } = await api.list_getItems(shoppingListID);
+		const { data } = await api.list_getItems(shoppingListID, token);
 		//console.log("response (list_getItems): " + JSON.stringify(data));
 		dispatch({ type: TYPES.LIST_GET_ITEMS, payload: data });
 	} catch (error) {
@@ -72,5 +72,5 @@ export const set_fromStore = (bol) => (dispatch) => {
 };
 
 export const assign_employee = (employee) => (dispatch) => {
-	dispatch({type: TYPES.ASSIGN_EMPLOYEE, payload: employee})
+	dispatch({ type: TYPES.ASSIGN_EMPLOYEE, payload: employee });
 };

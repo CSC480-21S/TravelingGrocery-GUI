@@ -34,7 +34,7 @@ const List = ({ item }) => {
 		};
 		dispatch(listToBeUpdated_AddItem(temp)); //Add item to the list thats going to be updated
 		dispatch(set_fromStore(true)); // set bolean indicating that the item came from the store
-		setBol(true);
+		setBol(true); //Snack bar boolean
 	};
 
 	useEffect(() => {});

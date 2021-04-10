@@ -20,6 +20,7 @@ const DeleteItem = ({
 	setOnConfirmation,
 	item,
 }) => {
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	const dispatch = useDispatch();
 	const styles = makeStyles();
 
@@ -33,8 +34,8 @@ const DeleteItem = ({
 	};
 
 	const handle_Accept = async () => {
-		await list_deleteItem(item.shoppingListID, item.itemName);
-		dispatch(list_getItems(item.shoppingListID));
+		await list_deleteItem(item.shoppingListID, item.itemName, token);
+		dispatch(list_getItems(item.shoppingListID, token));
 		set_Setting_bolean(true);
 		setOnConfirmation(true);
 		handleClose();

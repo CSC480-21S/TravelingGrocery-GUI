@@ -12,6 +12,7 @@ import { list_delete } from "../../../../api/api";
 import makeStyles from "./Delete_List_Styles";
 
 const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	const history = useHistory();
 	const styles = makeStyles();
 
@@ -19,7 +20,7 @@ const DeleteList = ({ onDelete, set_onDelete, shoppingListID }) => {
 		set_onDelete(false);
 	};
 	const handle_Accept = async () => {
-		await list_delete(shoppingListID);
+		await list_delete(shoppingListID, token);
 		history.push("/home");
 	};
 

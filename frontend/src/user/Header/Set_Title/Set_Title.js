@@ -18,6 +18,7 @@ import { list_get } from "../../../actions/actions";
 import { list_update } from "../../../api/api";
 
 const SetTitle = ({ onClose, open }) => {
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
 	const styles = makeStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -28,9 +29,9 @@ const SetTitle = ({ onClose, open }) => {
 	};
 	const updateList = async (e) => {
 		e.preventDefault();
-		await list_update(list.shoppingListID, list);
+		await list_update(list.shoppingListID, list, token);
 		dispatch(sendList(list));
-		dispatch(list_get());
+		dispatch(list_get(token));
 		handleClose();
 		history.replace(`${list.listName}`);
 	};

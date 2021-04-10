@@ -22,32 +22,35 @@ const HomePage = () => {
 	const history = useHistory();
 
 	const profile = useSelector((state) => state.user.profile); //gets profile info from Google login
+	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
 	const lists = useSelector((state) => state.list_users); // gets the lists from server
 	const [list_share, setListShare] = useState([]);
 	const [list_finished, setListFinish] = useState([]);
 	const [open, setOpen] = useState(false);
 
+	//-------------------  HANDLE DIALOG BOXES  -------------------
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
 	const handleClose = () => {
 		setOpen(false);
 	};
+	//-------------------  Handle list onCLick -------------------
 	const handleList = (list) => {
 		dispatch(sendList(list));
-		dispatch(list_getItems(list.shoppingListID));
+		dispatch(list_getItems(list.shoppingListID, token));
 		history.push(`/list/${list.listName}`);
 	};
 
-	useEffect(() => {
+	//------------------- USE EFFECTS --------------------
+	useEffect(async () => {
 		//fetch lists on Mount
-		dispatch(list_get());
+		dispatch(list_get(token));
 	}, [dispatch]);
 
 	useEffect(() => {
-		const auth = window.gapi.auth2.getAuthInstance();
-		const user = auth.currentUser.get();
-		console.log(JSON.stringify(user));
+		const auth = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
+		//console.log(JSON.stringify(auth));
 	});
 	return (
 		<div className={styles.superContainer}>
