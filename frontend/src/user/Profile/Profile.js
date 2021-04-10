@@ -12,14 +12,12 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 
 const Profile = () => {
-	const email = useState(useSelector((state) => state.user.profile.email));
-	const name = useState(useSelector((state) => state.user.profile.givenName));
-	const lastName = useState(
-		useSelector((state) => state.user.profile.familyName)
-	);
-	const imageURL = useState(
-		useSelector((state) => state.user.profile.imageUrl)
-	);
+	const email = useSelector((state) => state.user.profile.email);
+	const name = useSelector((state) => state.user.profile.givenName);
+	const lastName = useSelector((state) => state.user.profile.familyName);
+
+	const imageURL = useSelector((state) => state.user.profile.imageUrl);
+
 	const history = useHistory();
 
 	const [open, setOpen] = useState(false);
@@ -63,20 +61,20 @@ const Profile = () => {
 
 	return (
 		<div className="Profile">
-			<div className = "containerTop">
-				 User Profile
-			</div>
-			
-			<div className = "containerImage">
+			<div className="containerTop">User Profile</div>
+
+			<div className="containerImage">
 				<img className="imgProfile" src={imageURL} alt="profileImg" />
 			</div>
 
-			<div className= "containerUserInfo">
-				<p>Email: {email[0]}</p>
-				<p>Name: {name[0]} {lastName[0]}</p>
+			<div className="containerUserInfo">
+				<p>Email: {email}</p>
+				<p>
+					Name: {name} {lastName}
+				</p>
 			</div>
 
-			<div className= "containerButtons">
+			<div className="containerButtons">
 				<button className="logoutButton" onClick={signOut}>
 					Logout
 				</button>

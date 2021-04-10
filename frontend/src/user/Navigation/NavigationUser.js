@@ -87,9 +87,8 @@ const NavigationUser = () => {
 
 				<p className="hugLeft">Aisle: {directions[index].aisle}</p>
 				<p className="hugLeft">{directions[index].side} side </p>
-				<p className="hugLeft">
-					Rack {directions[index].rack} {directions[index].shelf} shelf
-				</p>
+				<p className="hugLeft">Rack: {directions[index].rack}</p>
+				<p className="hugLeft">Shelf: {directions[index].shelf}</p>
 			</div>
 
 			<div className="containerStatus">

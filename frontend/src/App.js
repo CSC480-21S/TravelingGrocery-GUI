@@ -11,13 +11,8 @@ import {
 
 // USER components
 import NavigationUser from "./user/Navigation/NavigationUser";
-<<<<<<< HEAD
-import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser";
-=======
-import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser"
-
 import NavbarUser from "./user/Navbar/Navbar";
->>>>>>> f2890c7a7122d91ce9c8a75c58af2bf628bbbe3a
+import NavigationOfflineUser from "./user/Navigation/NavigationOfflineUser";
 import HomePage from "./user/HomePage/HomePage";
 import Header from "./user/Header/Header";
 import Lists from "./user/Lists/Lists";
@@ -27,7 +22,6 @@ import EditList from "./user/Lists/Edit_List/Edit_List";
 import Profile from "./user/Profile/Profile";
 // EMPLOYEE components
 import NavbarEmployee from "./employee/NavbarEmployee";
-<<<<<<< HEAD
 import HomeEmployee from "./employee/HomeEmployee";
 import ProfileEmployee from "./employee/Profile";
 import NavigationEmployee from "./employee/NavigationEmployee";
@@ -37,12 +31,9 @@ import OrdersEmployee from "./employee/OrdersEmployee";
 import NavbarAdmin from "./admin/NavbarAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
 import ProfileAdmin from "./admin/Profile";
-=======
 
 // ADMIN components
-import NavbarAdmin from "./admin/navbarAdmin/NavbarAdmin";
 import Home from "./admin/homeAdmin/home";
->>>>>>> f2890c7a7122d91ce9c8a75c58af2bf628bbbe3a
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
 import AddEmployee from "./admin/employee/AddEmployee";

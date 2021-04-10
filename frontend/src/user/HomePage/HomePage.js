@@ -47,6 +47,7 @@ const HomePage = () => {
 	useEffect(() => {
 		const auth = window.gapi.auth2.getAuthInstance();
 		const user = auth.currentUser.get();
+		console.log(JSON.stringify(user));
 	});
 	return (
 		<div className={styles.superContainer}>

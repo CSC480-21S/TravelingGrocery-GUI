@@ -28,6 +28,18 @@ export default makeStyles((theme) => ({
 		borderRadius: "8px",
 		fontSize: "10px",
 		height: "28px",
+		"@media (max-width: 414px)": {
+			width: "115px",
+			height: "35px",
+		},
+		"@media (max-width: 375px)": {
+			width: "100px",
+			height: "35px",
+		},
+		"@media (max-width: 330px)": {
+			width: "82px",
+			height: "35px",
+		},
 	},
 	topIconButton2: {
 		marginLeft: theme.spacing(1.5),
@@ -37,6 +49,18 @@ export default makeStyles((theme) => ({
 		borderRadius: "8px",
 		fontSize: "10px",
 		height: "28px",
+		"@media (max-width: 414px)": {
+			width: "115px",
+			height: "35px",
+		},
+		"@media (max-width: 375px)": {
+			width: "100px",
+			height: "35px",
+		},
+		"@media (max-width: 320px)": {
+			width: "82px",
+			height: "35px",
+		},
 	},
 	topIconButton3: {
 		textTransform: "none",
@@ -44,6 +68,18 @@ export default makeStyles((theme) => ({
 		borderRadius: "8px",
 		fontSize: "10px",
 		height: "28px",
+		"@media (max-width: 414px)": {
+			width: "115px",
+			height: "35px",
+		},
+		"@media (max-width: 375px)": {
+			width: "100px",
+			height: "35px",
+		},
+		"@media (max-width: 330px)": {
+			width: "82px",
+			height: "35px",
+		},
 	},
 	button: {
 		background: "#FAF9F9",

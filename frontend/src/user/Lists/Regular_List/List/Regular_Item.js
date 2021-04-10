@@ -13,7 +13,6 @@ const RegularItem = ({ item }) => {
 	const styles = makeStyles();
 	const [setting_boolean, set_Setting_boolean] = useState(true);
 
-	useEffect(() => {}, []);
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
 			<div className={styles.container}>

@@ -47,7 +47,7 @@ const ShareList = ({ onShare, set_onShare, shoppingListID }) => {
 							className={styles.inputText}
 							value={userID}
 							onChange={(e) => set_userID(e.target.value)}
-							placeholder="Enter UserID"
+							placeholder="Enter user Gmail"
 							InputProps={{
 								disableUnderline: true,
 							}}
