@@ -25,13 +25,15 @@ import NavbarEmployee from "./employee/NavbarEmployee";
 import HomeEmployee from "./employee/HomeEmployee";
 import ProfileEmployee from "./employee/Profile";
 import NavigationEmployee from "./employee/NavigationEmployee";
-import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee"
 import OrdersEmployee from "./employee/OrdersEmployee";
 
 // ADMIN components
 import NavbarAdmin from "./admin/NavbarAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
 import ProfileAdmin from "./admin/Profile";
+
+// ADMIN components
+import Home from "./admin/homeAdmin/home";
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
 import AddEmployee from "./admin/employee/AddEmployee";
@@ -74,35 +76,14 @@ const App = () => {
 				</Route>
 
 				{/* EMPLOYEE routing  */}
-				<Route exact path="/employee/home">
+				<Route exact path="/employee/dashboard">
 					<NavbarEmployee />
-					<HomeEmployee />
-				</Route>
-				<Route exact path="/employee/profile">
-					<NavbarUser />
-					<ProfileEmployee />
-				</Route>
-				<Route exact path="/employee/orders">
-					<NavbarEmployee />
-					<OrdersEmployee />
-				</Route>
-				<Route exact path="/employee/navigation">
-					<NavbarEmployee />
-					<NavigationEmployee />
-				</Route>
-				<Route exact path="/employee/offline_navigation">
-					<NavbarEmployee />
-					<NavigationOfflineEmployee />
 				</Route>
 
 				{/* ADMIN routing  */}
-				<Route exact path="/admin/home">
+				<Route exact path="/admin/dashboard">
 					<NavbarAdmin />
-					<HomeAdmin />
-				</Route>
-				<Route exact path="/admin/profile">
-					<NavbarUser />
-					<ProfileAdmin />
+					<Home />
 				</Route>
 				<Route exact path="/admin/employees">
 					<NavbarAdmin />
@@ -155,11 +136,11 @@ const App = () => {
 						<p>Offline user navigation</p>
 					</Link>
 					<h3>Employee Stuff</h3>
-					<Link to="/employee/home">
+					<Link to="/employee/dashboard">
 						<p>Employee home</p>
 					</Link>
 					<h3>Admin Stuff</h3>
-					<Link to="/admin/home">
+					<Link to="/admin/dashboard">
 						<p>Admin home</p>
 					</Link>
 				</Route>
