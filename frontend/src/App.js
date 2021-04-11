@@ -26,7 +26,7 @@ import HomeEmployee from "./employee/HomeEmployee";
 import ProfileEmployee from "./employee/Profile";
 import NavigationEmployee from "./employee/NavigationEmployee";
 import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee"
-import OrdersEmployee from "./employee/OrdersEmployee";
+import OrdersEmployee from "./employee/ordersEmployee/OrdersEmployee";
 
 // ADMIN components
 import NavbarAdmin from "./admin/NavbarAdmin";
