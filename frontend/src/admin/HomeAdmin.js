@@ -13,7 +13,7 @@ const HomeAdmin = () => {
 			</div>
 
 			<div className="containerButtons">
-				<Link to="/admin/assign">
+				<Link to="/admin/assignOrders">
 					<button className="buttons">Assign Orders</button>
 					<br></br>
 				</Link>{" "}
