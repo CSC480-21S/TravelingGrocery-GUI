@@ -41,7 +41,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 			item.delete = false;
 			item.create = false;
 			item.update = false;
-			item.fromStore = false;
+			item.regularItem = true;
 			return item;
 		});
 		dispatch(set_list_to_be_updated(temp));

@@ -31,7 +31,7 @@ const Items = () => {
 
 			<div>
 				{items.map((item) => (
-					<Item key={item.id} item={item} items={items} set_items={set_items} />
+					<Item key={item.id} item={item} />
 				))}
 			</div>
 		</div>

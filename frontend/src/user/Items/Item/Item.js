@@ -15,7 +15,7 @@ import { Button } from "@material-ui/core";
 import { listToBeUpdated_AddItem } from "../../../actions/actions";
 import { set_fromStore } from "../../../actions/actions";
 //API
-const List = ({ item }) => {
+const List = ({ item, items }) => {
 	const styles = makeStyles();
 	const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ const List = ({ item }) => {
 			delete: false,
 			create: true,
 			update: false,
-			fromStore: true,
+			regularItem: false,
 		};
 		dispatch(listToBeUpdated_AddItem(temp)); //Add item to the list thats going to be updated
 		dispatch(set_fromStore(true)); // set bolean indicating that the item came from the store

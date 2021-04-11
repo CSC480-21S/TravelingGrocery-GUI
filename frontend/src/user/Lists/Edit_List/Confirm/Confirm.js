@@ -24,11 +24,11 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 		let list_update = { listItems: [] };
 
 		new_Items.map((item) => {
-			if (item.delete && !item.fromStore) {
+			if (item.delete) {
 				var temp = item.itemName;
 				list_delete.listItems.push(temp);
 			}
-			if (item.create) {
+			if (item.create && !item.delete) {
 				var create = item;
 				delete create.isChecked;
 				delete create.delete;
@@ -37,7 +37,7 @@ const Confirm = ({ new_Items, set_isEdit }) => {
 				delete create.fromStore;
 				list_create.listItems.push(create);
 			}
-			if (item.update && !item.fromStore) {
+			if (item.update && !item.create && !item.delete) {
 				var update = item;
 				delete update.isChecked;
 				delete update.delete;

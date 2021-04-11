@@ -8,7 +8,23 @@ const list_toUpdate = (lists = [], action) => {
 		case SET_LIST_TO_BE_UPDATED:
 			return action.payload;
 		case LIST_TO_BE_UPDATED_ADD_ITEM: {
-			return [...lists, action.payload];
+			let temp = lists;
+			let bool = false;
+
+			temp.map((item) => {
+				//if item already exist update item count
+				if (item.itemName === action.payload.itemName) {
+					item.quantityItem += action.payload.quantityItem;
+					item.update = true;
+					bool = true;
+				}
+			});
+			console.log("FROM REDUCER\n" + JSON.stringify(temp));
+			if (bool) {
+				return temp;
+			} else {
+				return [...lists, action.payload];
+			}
 		}
 		default:
 			return lists;

@@ -7,7 +7,7 @@ import makeStyles from "./Search_Bar_styles";
 
 const SearchBar = ({ items, set_fliteredList }) => {
 	const styles = makeStyles();
-	const [input_value, set_input_value] = useState();
+	const [input_value, set_input_value] = useState("");
 	const onChange = (event) => {
 		set_input_value(event.target.value);
 	};

@@ -12,6 +12,7 @@ import Item from "./List/Item";
 import makeStyles from "./Edit_List_styles";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
+import { set_fromStore } from "../../../actions/actions";
 
 const EditList = ({ set_isEdit }) => {
 	const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const EditList = ({ set_isEdit }) => {
 	};
 	const handleCancel = () => {
 		set_isEdit(false);
+		dispatch(set_fromStore(false));
 	};
 	//UPTADE REDUX STATE (LIST_TOUPDATE) WHEN THE COMPONENT IS RENDERED
 	useEffect(() => {
@@ -45,6 +47,7 @@ const EditList = ({ set_isEdit }) => {
 	useEffect(() => {
 		if (new_Items.length === 0) history.push(`${location.pathname}/store`);
 	}, [history, location.pathname, new_Items.length]);
+
 	return (
 		<div className={styles.mainContainer}>
 			<div className={styles.firstContainer}>
