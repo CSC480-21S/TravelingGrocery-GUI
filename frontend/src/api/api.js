@@ -153,6 +153,16 @@ export const shareList_deleteUser = (shoppingListID, userID, token) =>
 		})
 		.catch((e) => console.log(e.message));
 
+//--------------------	Analytics  --------------------
+
+// Shopped Items Per Hour -------------------------
+export const list_getAnalytics = (users, token) =>
+	axios
+		.put(`${url_list}/shopped/items/time`, users, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e.message));
+
 //----------------------------------------------------------------------------------------------------------
 //										 Store SERVICE
 //----------------------------------------------------------------------------------------------------------
@@ -165,3 +175,9 @@ export const store_getItems = () =>
 export const store_searchItems = (searchTerm) =>
 	axios.post(`${url_store}/search`, searchTerm);
 /* .then((res) => console.log(JSON.stringify(res.data))); */
+export const store_addItems = (items, token) =>
+	axios
+	.post(`${url_store}/items`, items, {
+		headers: { Authorization: `Bearer ${token}` },
+	})
+	.catch((e) => console.log(`store_addItems: ${e.message}`));

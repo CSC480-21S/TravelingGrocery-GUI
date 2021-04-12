@@ -1,15 +1,14 @@
 import React, {  useState } from "react";
-import axios from 'axios';
 import { TextField} from "@material-ui/core";
 import Select from 'react-select';
 import Button from "@material-ui/core/Button";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
-
-const SERVER_URL = 'http://pi.cs.oswego.edu:9681/store/additems'
+import {store_addItems} from '../../api/api'
 
 const AddItem = () => {
+    const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
     // Non selected
     const [itemName, setitemName] = useState(null);
     const [itemDescription, setItemDescription] = useState("");
@@ -125,21 +124,7 @@ const AddItem = () => {
             return
         }
 
-        /*
-        const body = {
-            "itemName": itemName,
-            "itemDescription": itemDescription,
-            "itemStockBool": selectedOptionItemStockBool.value,
-            "saleBool": selectedOptionSaleBool.value,
-            "departmentName": selectedOptionDepartmentName.value,
-            "aisle": selectedOptionAisle.value,
-            "rack": selectedOptionRack.value,
-            "shelf": selectedOptionShelf.value,
-            "side": selectedOptionSide.value
-        }
-        */
-
-        axios.post(SERVER_URL, {
+        const items = {
             "New Items": [
                 {
                     "itemName": itemName,
@@ -153,12 +138,9 @@ const AddItem = () => {
                     "side": selectedOptionSide.value
                 }
             ]
-        })
-            .then(res => {
-                console.log(res)
-        })
+        }
 
-        //console.log(body)
+        store_addItems(items, token)
         handleClickOpen()
     }
 
