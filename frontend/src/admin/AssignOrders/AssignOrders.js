@@ -25,31 +25,6 @@ const AssignOrders = () => {
 		width: "90%",
 	};
 
-	const getCurrentEmployees = async () => {
-		let temp2;
-		const res = await unassignedList(token);
-		const temp = res.data.shoppingLists;
-		console.log(token);
-		//console.log(JSON.stringify(temp))
-
-		await temp.map(async (order) => {
-			order.num = getNumofItems(order);
-
-			let temp2;
-			await list_getItems(order.shoppingListID, token).then(
-				(r) => (temp2 = r.data.listItems)
-			);
-
-			let count = 0;
-			temp2.map((r) => (count = count + r.quantityItem));
-			order.num = count;
-
-			console.log(order);
-		});
-
-		console.log(JSON.stringify(temp));
-		//setOrders(temp.shoppingLists)
-	};
 	//======================================================================
 	//			This works
 	const getItems = async (shoppingListID) => {
@@ -66,6 +41,7 @@ const AssignOrders = () => {
 		let count = 0;
 		tempList.forEach(async (obj) => {
 			obj.TOTAL_NUMBER_iTEMS = await getItems(obj.shoppingListID);
+			obj.bool = false
 			count++;
 			//console.log(JSON.stringify(obj));
 			//console.log("temp LIST: " + JSON.stringify(tempList));
@@ -91,18 +67,6 @@ const AssignOrders = () => {
 			pathname: "/admin/assignOrders/assignEmployees",
 			state: { orders: final },
 		});
-	};
-	const getNumofItems = async (order) => {
-		let temp;
-		let count = 0;
-		await list_getItems(order.shoppingListID, token).then(
-			(r) => (temp = r.data.listItems)
-		);
-
-		//console.log(JSON.stringify(temp))
-		temp.map((r) => (count = count + r.quantityItem));
-
-		return count;
 	};
 	const buttonClicked = () => {
 		let count = 0;
@@ -145,7 +109,7 @@ const AssignOrders = () => {
 						orderNum={order.shoppingListID}
 						numItems={order.TOTAL_NUMBER_iTEMS}
 						name={order.email}
-						time={order.num}
+						time={order.listDateCreated}
 						orders={orders}
 						setOrders={setOrders}
 					/>
