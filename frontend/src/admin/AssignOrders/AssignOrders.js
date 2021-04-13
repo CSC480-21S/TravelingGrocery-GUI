@@ -4,139 +4,160 @@ import Button from "@material-ui/core/Button";
 import AssignOrders_styles from "../../styles/AssignOrders_styles";
 import makeStyles from "../../user/Lists/Edit_List/Edit_List_styles";
 import EmployeeInfo from "../employee/EmployeeInfo";
-import {useHistory} from "react-router-dom";
-import {unassignedList, list_getItems} from "../../api/api"
-import {useSelector} from "react-redux";
+import { useHistory } from "react-router-dom";
+import { unassignedList, list_getItems } from "../../api/api";
+import { useSelector } from "react-redux";
 
 const AssignOrders = () => {
-    document.title = "Assign Orders";
-    const token = useState(useSelector((state) => state.user.tk.tk))[0];
-    const [orders, setOrders] = useState([]);
-    const final = []
-    const styles = makeStyles;
+	document.title = "Assign Orders";
 
-    const history = useHistory();
+	const styles = makeStyles;
+	//const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
+	const token = useState(useSelector((state) => state.user.tk.tk))[0];
+	const history = useHistory();
+	const [orders, setOrders] = useState([]);
+	const final = [];
 
+	const button1 = {
+		background: "#FFFFFF",
+		border: "1px solid #000000",
+		borderRadius: "15px",
+		width: "90%",
+	};
 
-    const button1 = {
-        background: '#FFFFFF',
-            border: '1px solid #000000',
-            borderRadius: '15px',
-            width: '90%'
-        }
+	const getCurrentEmployees = async () => {
+		let temp2;
+		const res = await unassignedList(token);
+		const temp = res.data.shoppingLists;
+		console.log(token);
+		//console.log(JSON.stringify(temp))
 
-    const axios = require("axios");
+		await temp.map(async (order) => {
+			order.num = getNumofItems(order);
 
-    const getCurrentEmployees = async () => {
-        let temp2
-        const res = await unassignedList(token);
-        const temp = res.data.shoppingLists;
-        console.log(token)
-        //console.log(JSON.stringify(temp))
+			let temp2;
+			await list_getItems(order.shoppingListID, token).then(
+				(r) => (temp2 = r.data.listItems)
+			);
 
-         await temp.map( async (order)  =>  {
-            order.num = getNumofItems(order)
+			let count = 0;
+			temp2.map((r) => (count = count + r.quantityItem));
+			order.num = count;
 
-             let temp2
-             await list_getItems(order.shoppingListID, token).then(r => temp2 = r.data.listItems)
+			console.log(order);
+		});
 
-            let count = 0
-            temp2.map((r) => (
-                count = count + r.quantityItem
-            ))
-            order.num = count
+		console.log(JSON.stringify(temp));
+		//setOrders(temp.shoppingLists)
+	};
+	//======================================================================
+	//			This works
+	const getItems = async (shoppingListID) => {
+		let count = 0;
+		const { data } = await list_getItems(shoppingListID, token);
+		data.listItems.forEach((obj) => {
+			count = count + parseInt(obj.quantityItem);
+		});
+		//console.log(count);
+		return count;
+	};
+	const setList = async (list) => {
+		let tempList = list;
+		let count = 0;
+		tempList.forEach(async (obj) => {
+			obj.TOTAL_NUMBER_iTEMS = await getItems(obj.shoppingListID);
+			count++;
+			//console.log(JSON.stringify(obj));
+			//console.log("temp LIST: " + JSON.stringify(tempList));
+			if (count === tempList.length) {
+				console.log("temp FINAL LIST: " + JSON.stringify(tempList));
+				setOrders(tempList);
+			}
+		});
+	};
+	useEffect(async () => {
+		const { data } = await unassignedList(token);
+		await setList(data.shoppingLists);
+	}, []);
 
-             console.log(order)
-    })
-
-        console.log(JSON.stringify(temp))
-        //setOrders(temp.shoppingLists)
-    };
-
-    useEffect(() => {
+	//======================================================================
+	/*   useEffect(() => {
         getCurrentEmployees().then((r) => console.log(orders));
-    }, []);
+    }, []); */
 
+	const routeChange = () => {
+		let path = "/admin/addEmployee";
+		history.push({
+			pathname: "/admin/assignOrders/assignEmployees",
+			state: { orders: final },
+		});
+	};
+	const getNumofItems = async (order) => {
+		let temp;
+		let count = 0;
+		await list_getItems(order.shoppingListID, token).then(
+			(r) => (temp = r.data.listItems)
+		);
 
-    const routeChange = () =>{
-        let path = "/admin/addEmployee";
-        history.push({
-            pathname: '/admin/assignOrders/assignEmployees',
-            state: {orders: final}
-        });
-    }
-    const getNumofItems = async (order) => {
-        let temp
-        let count = 0
-        await list_getItems(order.shoppingListID, token).then(r => temp = r.data.listItems)
+		//console.log(JSON.stringify(temp))
+		temp.map((r) => (count = count + r.quantityItem));
 
-        //console.log(JSON.stringify(temp))
-        temp.map((r) => (
-            count = count + r.quantityItem
-        ))
+		return count;
+	};
+	const buttonClicked = () => {
+		let count = 0;
+		orders.map((order) => {
+			if (order.bool) {
+				final.push(order);
+			}
+		});
+		console.log(final);
+		//console.log(finalOrder)
+		/*if the admin didnt select any order and then pressing assign order button*/
+		if (final.length === 0) {
+			alert("Need to select atleast one order!");
+			return;
+		}
 
-        return count
-    }
-    const buttonClicked = () => {
-        let count = 0;
-        orders.map((order) => {
-            if(order.bool)
-            {
-                final.push(order)
-            }
-        })
-        console.log(final)
-        //console.log(finalOrder)
-        /*if the admin didnt select any order and then pressing assign order button*/
-        if(final.length === 0)
-        {
-            alert("Need to select atleast one order!")
-            return
-        }
+		/*redirect to assign employees page*/
+		routeChange();
+	};
 
-        /*redirect to assign employees page*/
-        routeChange()
-    }
+	return (
+		<div
+			style={{
+				justifyContent: "center",
+				alignItems: "center",
+				textAlign: "center",
+				position: "relative",
+			}}
+		>
+			<h1 style={{ fontSize: "120%" }}>Assign Orders</h1>
+			<div>
+				<h5 style={{ textAlign: "left", paddingLeft: "20px" }}>
+					{" "}
+					Available Orders:
+				</h5>
 
-    return (
+				{orders.map((order) => (
+					<Order
+						key={order.id}
+						orderNum={order.shoppingListID}
+						numItems={order.TOTAL_NUMBER_iTEMS}
+						name={order.email}
+						time={order.num}
+						orders={orders}
+						setOrders={setOrders}
+					/>
+				))}
+			</div>
 
-        <div style={{
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            position: "relative",
-        }}>
-            <h1 style={{fontSize: '120%'}}>Assign Orders</h1>
-            <div>
-                <h5 style={{textAlign: 'left', paddingLeft: '20px'}}> Available Orders:</h5>
-
-                {orders.map((order) => (
-                    <Order
-                        key={order.id}
-                        orderNum={order.shoppingListID}
-                        numItems={order.shoppingListID}
-                        name={order.email}
-                        time={order.num}
-                        orders={orders}
-                        setOrders={setOrders}
-                    />
-                ))}
-            </div>
-
-            <div style={{paddingTop: '60px', paddingBottom: '20px'}}>
-                <Button
-                    fontSize="small"
-                    style={button1}
-                    onClick={buttonClicked}
-                >
-                    Assign Orders
-                </Button>
-
-            </div>
-
-
-
-        </div>
-    )
-}
+			<div style={{ paddingTop: "60px", paddingBottom: "20px" }}>
+				<Button fontSize="small" style={button1} onClick={buttonClicked}>
+					Assign Orders
+				</Button>
+			</div>
+		</div>
+	);
+};
 export default AssignOrders;
