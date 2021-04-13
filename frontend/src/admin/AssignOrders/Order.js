@@ -12,7 +12,7 @@ const Order = ({task, orderNum, numItems, name, time, orders, setOrders}) =>
             setclicked(true)
 
             orders.map((order) => {
-                if(order.OrderNumber === orderNum)
+                if(order.shoppingListID === orderNum)
                 {
 
                     order.bool = true
@@ -27,7 +27,7 @@ const Order = ({task, orderNum, numItems, name, time, orders, setOrders}) =>
         {
             setColor('#f4f4f4')
             orders.map((order) => {
-                    if(order.OrderNumber === orderNum)
+                    if(order.shoppingListID === orderNum)
                     {
                         order.bool = false
                     }
