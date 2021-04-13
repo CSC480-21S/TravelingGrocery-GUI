@@ -89,7 +89,7 @@ const AddItem = () => {
     ];
 
     const Department = [
-        { value: "Aisle", label: 'Aisle' },
+        { value: "Aisles", label: 'Aisles' },
         { value: "Bakery", label: 'Bakery' },
         { value: "Beverage", label: 'Beverage' },
         { value: "Checkout", label: 'Checkout' },
@@ -125,7 +125,7 @@ const AddItem = () => {
         }
 
         const items = {
-            "New Items": [
+            "NewItems": [
                 {
                     "itemName": itemName,
                     "itemDescription": itemDescription,

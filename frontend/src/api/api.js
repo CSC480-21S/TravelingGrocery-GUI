@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = "http://localhost:5050"; //first run json server,
 const url_list = "http://pi.cs.oswego.edu:9081/list";
-const url_store = "http://pi.cs.oswego.edu:9681/store";
+const url_store = "http://pi.cs.oswego.edu:9082/store";
 //run ngrok http 5050,
 //change the url   http://pi.cs.oswego.edu:9181/list
 
@@ -177,7 +177,7 @@ export const store_searchItems = (searchTerm) =>
 /* .then((res) => console.log(JSON.stringify(res.data))); */
 export const store_addItems = (items, token) =>
 	axios
-	.post(`${url_store}/items`, items, {
+	.post(`${url_store}/additems`, items, {
 		headers: { Authorization: `Bearer ${token}` },
 	})
 	.catch((e) => console.log(`store_addItems: ${e.message}`));

@@ -11,6 +11,7 @@ const Analytics = () => {
     const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
     const [user, setUser] = useState(null);
     const [open, setOpen] = useState(false);
+    const [itemsPerHour, setItemsPerHour] = useState("placeHolder")
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,12 +39,11 @@ const Analytics = () => {
             alert("Make sure you entered all information!")
             return
         }
-
         const Users = {
             "Users": [user]
         }
-        const res = list_getAnalytics(Users, token)
-        console.log(res)
+        //const res = list_getAnalytics(Users, token)
+        //console.log(res)
         handleClickOpen()
     }
 
@@ -80,7 +80,7 @@ const Analytics = () => {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Display items/hr here"}
+                    {itemsPerHour}
                 </DialogTitle>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
