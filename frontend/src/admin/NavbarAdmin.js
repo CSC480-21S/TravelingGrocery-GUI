@@ -9,7 +9,7 @@ const NavbarAdmin = () => {
 	// Used for showing a button to access nav links when screen size small
 	const [showLinks, setShowLinks] = useState(false);
 
-	document.title = "Dashboard - Admin";
+	//document.title = "Dashboard - Admin";
 
 	return (
 		<div className="Navbar">

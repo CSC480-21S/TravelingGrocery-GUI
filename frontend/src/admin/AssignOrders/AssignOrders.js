@@ -5,9 +5,12 @@ import AssignOrders_styles from "../../styles/AssignOrders_styles";
 import makeStyles from "../../user/Lists/Edit_List/Edit_List_styles";
 import EmployeeInfo from "../employee/EmployeeInfo";
 import {useHistory} from "react-router-dom";
+import {unassignedList, list_getItems} from "../../api/api"
+import {useSelector} from "react-redux";
 
 const AssignOrders = () => {
-
+    document.title = "Assign Orders";
+    const token = useState(useSelector((state) => state.user.tk.tk))[0];
     const [orders, setOrders] = useState([]);
     const final = []
     const styles = makeStyles;
@@ -22,27 +25,38 @@ const AssignOrders = () => {
             width: '90%'
         }
 
-
-
     const axios = require("axios");
 
     const getCurrentEmployees = async () => {
-        try {
-            const res = await axios.get("http://localhost:5050/Orders");
+        let temp2
+        const res = await unassignedList(token);
+        const temp = res.data.shoppingLists;
+        console.log(token)
+        //console.log(JSON.stringify(temp))
 
-            /*loop thru order*/
-            {res.data.map((order) => (
-                order.bool = false
-            ))}
-            setOrders(res.data);
-        } catch (e) {
-            console.error(e);
-        }
+         await temp.map( async (order)  =>  {
+            order.num = getNumofItems(order)
+
+             let temp2
+             await list_getItems(order.shoppingListID, token).then(r => temp2 = r.data.listItems)
+
+            let count = 0
+            temp2.map((r) => (
+                count = count + r.quantityItem
+            ))
+            order.num = count
+
+             console.log(order)
+    })
+
+        console.log(JSON.stringify(temp))
+        //setOrders(temp.shoppingLists)
     };
 
     useEffect(() => {
         getCurrentEmployees().then((r) => console.log(orders));
     }, []);
+
 
     const routeChange = () =>{
         let path = "/admin/addEmployee";
@@ -51,7 +65,18 @@ const AssignOrders = () => {
             state: {orders: final}
         });
     }
+    const getNumofItems = async (order) => {
+        let temp
+        let count = 0
+        await list_getItems(order.shoppingListID, token).then(r => temp = r.data.listItems)
 
+        //console.log(JSON.stringify(temp))
+        temp.map((r) => (
+            count = count + r.quantityItem
+        ))
+
+        return count
+    }
     const buttonClicked = () => {
         let count = 0;
         orders.map((order) => {
@@ -88,10 +113,10 @@ const AssignOrders = () => {
                 {orders.map((order) => (
                     <Order
                         key={order.id}
-                        orderNum={order.OrderNumber}
-                        numItems={order.NumOfItems}
-                        name={order.Customer}
-                        time={order.Time}
+                        orderNum={order.shoppingListID}
+                        numItems={order.shoppingListID}
+                        name={order.email}
+                        time={order.num}
                         orders={orders}
                         setOrders={setOrders}
                     />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import {Dialog, DialogTitle, TextField} from "@material-ui/core";
+import axios from "axios";
 
 
 const AddEmployee = () => {
@@ -41,6 +42,11 @@ const AddEmployee = () => {
 
     const buttonClicked = ()=>{
         console.log(email);
+        const employee = {
+            "userType": "employee",
+            "email": email
+    }
+
         handleClickOpen();
     };
 

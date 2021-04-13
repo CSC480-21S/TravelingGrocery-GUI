@@ -197,3 +197,15 @@ export const userAccount_login = (token) =>
 	axios.post(`${url_user}/records`, token);
 
 /* .then((res) => console.log(JSON.stringify(res.data))); */
+
+//----------------------------------------------------------------------------------------------------------
+//										 Admin SERVICE
+//----------------------------------------------------------------------------------------------------------
+
+
+export const unassignedList = (token) =>
+	axios
+		.get(`${url_list}/unassigned`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e));
