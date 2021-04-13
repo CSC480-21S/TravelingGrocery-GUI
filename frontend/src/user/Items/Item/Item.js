@@ -36,8 +36,10 @@ const List = ({ item, items }) => {
 		dispatch(set_fromStore(true)); // set bolean indicating that the item came from the store
 		setBol(true); //Snack bar boolean
 	};
+	useEffect(() => {
+		set_itemCount(1);
+	}, [item]);
 
-	useEffect(() => {});
 	return (
 		<div style={{ paddingLeft: 20, paddingRight: 20 }}>
 			<div className={styles.container}>

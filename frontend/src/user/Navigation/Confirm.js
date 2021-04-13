@@ -6,9 +6,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
 import { useHistory } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //API
 import { list_update } from "../../api/api";
+//ACTIONS
+
 //Styles
 import makeStyles from "./ConfirmStyles";
 
@@ -41,7 +43,7 @@ const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
 						</DialogActions>
 					</div>
 					<div className={styles.second}>
-						<Typography>Are you sure done Shopping?</Typography>
+						<Typography>Are you done shopping?</Typography>
 					</div>
 					<div className={styles.third}>
 						<div>
