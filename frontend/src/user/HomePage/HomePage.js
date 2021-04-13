@@ -49,6 +49,16 @@ const HomePage = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
+		const finishedList = [];
+		lists.forEach((list) => {
+			if (list.listShoppedFlag === 1) {
+				finishedList.push(list);
+			}
+		});
+		setListFinish(finishedList);
+	}, [lists]);
+
+	useEffect(() => {
 		const auth = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 		//console.log(JSON.stringify(auth));
 	});
@@ -86,7 +96,9 @@ const HomePage = () => {
 			{/* Shared Item List */}
 			{list_share.length > 0 ? (
 				<>
-					<Typography className={styles.text}>Shared List</Typography>
+					<Typography className={styles.text}>
+						{list_share.length < 2 ? "Shared List" : "Shared Lists"}
+					</Typography>
 					<div className={styles.lists}>
 						<div>
 							<Button className={styles.regularButton}>Shared List</Button>
@@ -98,11 +110,17 @@ const HomePage = () => {
 			)}
 			{list_finished.length > 0 ? (
 				<>
-					<Typography className={styles.text}>Finished List</Typography>
+					<Typography className={styles.text}>
+						{list_finished.length < 2 ? "Finished List" : "Finished Lists"}
+					</Typography>
 					<div item className={styles.lists}>
-						<div>
-							<Button className={styles.regularButton}>Finished List</Button>
-						</div>
+						{lists.map((obj) =>
+							obj.listShoppedFlag === 1 ? (
+								<Button className={styles.finishedButton}>
+									{obj.listName}
+								</Button>
+							) : null
+						)}
 					</div>
 				</>
 			) : (

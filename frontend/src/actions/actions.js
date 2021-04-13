@@ -45,9 +45,9 @@ export const store_getItems = () => async (dispatch) => {
 		console.log(error.message);
 	}
 };
-export const store_navigation = (lists) => async (dispatch) => {
+export const store_navigation = (lists, token) => async (dispatch) => {
 	try {
-		const { data } = await api.store_nav(lists);
+		const { data } = await api.store_nav(lists, token);
 		dispatch({ type: TYPES.STORE_NAV, payload: data });
 	} catch (error) {
 		console.log(error.message);

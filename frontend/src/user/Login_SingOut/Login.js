@@ -11,6 +11,8 @@ import one from "../../images/one.png";
 import two from "../../images/two.png";
 import three from "../../images/three.png";
 import four from "../../images/four.png";
+//API
+import { userAccount_login } from "../../api/api";
 //Styles
 import "./Login.css";
 const Login = () => {
@@ -24,19 +26,10 @@ const Login = () => {
 		{ image: two, description: "Shop the List" },
 	];
 	//when Login works
-	const onSuccess = (response) => {
+	const onSuccess = async (response) => {
 		dispatch(send_Google_User_info(response));
-		try {
-			/* axios
-				.post("http://pi.cs.oswego.edu:7808/user/records", {
-					token: response.tc.id_token,
-				})
-				.then((response) =>
-					console.log(`response: ${JSON.stringify(response)}`)
-				); */
-		} catch (error) {
-			console.log(`Error: ${error.message}`);
-		}
+		const token = { token: response.tc.id_token };
+		//await userAccount_login(token).then((res) => console.log(res));
 		history.push("/home");
 	};
 	//When login is a failute

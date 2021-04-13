@@ -6,23 +6,26 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 //API
-import { list_updateItemList } from "../../api/api";
+import { list_update } from "../../api/api";
 //Styles
 import makeStyles from "./ConfirmStyles";
 
-const Confirm = ({ onConfirm, set_onConfirm, directions, shoppingListID }) => {
+const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
 	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
+	const navList = useSelector((state) => state.active_list);
 	const history = useHistory();
 	const styles = makeStyles();
-	const list = { listItems: [] };
 
 	const handleClose = () => {
 		set_onConfirm(false);
 	};
 
 	const handle_Accept = async () => {
-		await list_updateItemList();
+		navList.listShoppedFlag = 1;
+		console.log(JSON.stringify(navList));
+		await list_update(shoppingListID, navList, token);
 		history.push("/home");
 	};
 

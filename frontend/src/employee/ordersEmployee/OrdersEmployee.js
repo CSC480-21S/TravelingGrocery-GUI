@@ -2,111 +2,134 @@ import React, { useEffect, useState } from "react";
 import Order from "./Order";
 import Button from "@material-ui/core/Button";
 import makeStyles from "../../user/Lists/Edit_List/Edit_List_styles";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+//API
+import { list_getItems } from "../../api/api";
+//ACTIONS
+import { store_navigation } from "../../actions/actions";
 
 const OrdersEmployee = () => {
+	const [orders, setOrders] = useState([]);
+	const final = { lists: [] };
+	const styles = makeStyles;
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-    const [orders, setOrders] = useState([]);
-    const final = {"lists":[]}
-    const styles = makeStyles;
+	const button1 = {
+		background: "#FFFFFF",
+		border: "1px solid #000000",
+		borderRadius: "15px",
+		width: "90%",
+	};
 
-    const history = useHistory();
+	const axios = require("axios");
 
-    const button1 = {
-        background: '#FFFFFF',
-            border: '1px solid #000000',
-            borderRadius: '15px',
-            width: '90%'
-        }
+	const getCurrentEmployees = async () => {
+		try {
+			const res = await axios.get("http://localhost:5051/Orders");
+			//console.log(res.data[0].shoppingLists)
+			/*loop thru order*/
+			{
+				res.data[0].shoppingLists.map((order) => (order.bool = false));
+			}
+			setOrders(res.data[0].shoppingLists);
+		} catch (e) {
+			console.error(e);
+		}
+	};
 
-    const axios = require("axios");
+	useEffect(() => {
+		getCurrentEmployees().then((r) => console.log(orders));
+	}, []);
 
-    const getCurrentEmployees = async () => {
-        try {
-            const res = await axios.get("http://localhost:5051/Orders");
-            //console.log(res.data[0].shoppingLists)
-            /*loop thru order*/
-            {res.data[0].shoppingLists.map((order) => (
-                order.bool = false
-            ))}
-            setOrders(res.data[0].shoppingLists);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+	const routeChange = () => {
+		let path = "/admin/addEmployee";
+		history.push({
+			pathname: "/admin/assignOrders/assignEmployees",
+			state: { orders: final },
+		});
+	};
 
-    useEffect(() => {
-        getCurrentEmployees().then((r) => console.log(orders));
-    }, []);
+	const buttonClicked = () => {
+		const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
+		let lists = { lists: [] };
 
-    const routeChange = () =>{
-        let path = "/admin/addEmployee";
-        history.push({
-            pathname: '/admin/assignOrders/assignEmployees',
-            state: {orders: final}
-        });
-    }
+		// loop trough orders to get shoppingListID
+		// If order is selected:
+		//      Create shoppingListID, itemNameArray and itemQuantityArray
+		//      Store shoppingListID
+		//      Get the items of the lists using the shoppingListID
+		//      loop trough the list's items and push the itemName and itemQuantity
+		// Repeat for the rest of the lists
 
-    const buttonClicked = () => {
-        let count = 0;
-        /* if order is selected add to final array? */
-        orders.map((order) => {
-            if(order.bool)
-            {
-                const temp = {
-                    "shoppingListID": order.shoppingListID,
-                    "itemNameArray": order.items
-                }
-            }
-        })
-        console.log(final)
-        //console.log(finalOrder)
-        /*if the admin didnt select any order and then pressing assign order button*/
-        if(final.length === 0)
-        {
-            alert("Need to select atleast one order!")
-            return
-        }
+		/* if order is selected add to final array? */
+		orders.map(async (order) => {
+			// If order is selected
+			if (order.bool) {
+				// Store shoppingListID
+				const temp = {
+					shoppingListID: order.shoppingListID,
+					itemNameArray: [],
+					itemQuantityArray: [],
+				};
+				const { item } = await list_getItems(order.shoppingListID, token);
+				item.forEach((obj) => {
+					temp.itemNameArray.push(obj.itemName);
+					temp.itemQuantityArray.push(obj.itemQuantity);
+				});
+				lists.lists.push(temp);
+			}
+		});
 
-        /*redirect to assign employees page*/
-        routeChange()
-    }
+		dispatch(store_navigation(lists, token));
+		//console.log(final)
+		//console.log(finalOrder)
+		/*if the admin didnt select any order and then pressing assign order button*/
+		if (final.length === 0) {
+			alert("Need to select atleast one order!");
+			return;
+		}
 
-    return (
-        <div style={{
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            position: "relative",
-        }}>
-            <h1 style={{fontSize: '120%'}}>Orders</h1>
-            <div>
-                <h5 style={{textAlign: 'left', paddingLeft: '20px'}}> Available Orders:</h5>
+		/*redirect to assign employees page*/
+		routeChange();
+	};
 
-                {orders.map((order) => (
-                    <Order
-                        key={order.shoppingListID}
-                        listName={order.listName}
-                        numItems={order.items.length}
-                        shoppingListID={order.shoppingListID}
-                        dateCreated={order.listDateCreated}
-                        orders={orders}
-                        setOrders={setOrders}
-                    />
-                ))}
-            </div>
+	return (
+		<div
+			style={{
+				justifyContent: "center",
+				alignItems: "center",
+				textAlign: "center",
+				position: "relative",
+			}}
+		>
+			<h1 style={{ fontSize: "120%" }}>Orders</h1>
+			<div>
+				<h5 style={{ textAlign: "left", paddingLeft: "20px" }}>
+					{" "}
+					Available Orders:
+				</h5>
 
-            <div style={{paddingTop: '60px', paddingBottom: '20px'}}>
-                <Button
-                    fontSize="small"
-                    style={button1}
-                    onClick={buttonClicked}
-                >
-                    Start Shopping
-                </Button>
+				{orders.map((order) => (
+					<Order
+						key={order.shoppingListID}
+						listName={order.listName}
+						numItems={order.items.length}
+						shoppingListID={order.shoppingListID}
+						dateCreated={order.listDateCreated}
+						orders={orders}
+						setOrders={setOrders}
+					/>
+				))}
+			</div>
 
-            </div>
-        </div>
-    )
-}
+			<div style={{ paddingTop: "60px", paddingBottom: "20px" }}>
+				<Button fontSize="small" style={button1} onClick={buttonClicked}>
+					Start Shopping
+				</Button>
+			</div>
+		</div>
+	);
+};
 export default OrdersEmployee;

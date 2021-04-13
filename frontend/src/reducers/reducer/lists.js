@@ -6,7 +6,7 @@ const lists = (lists = [], action) => {
 			//console.log(`Payload from List Reducer: ${action.payload}`);
 			return action.payload;
 		case LIST_GET_ITEMS:
-			console.log(JSON.stringify(action.payload));
+			//console.log(JSON.stringify(action.payload));
 			return action.payload.listItems;
 		default:
 			return lists;

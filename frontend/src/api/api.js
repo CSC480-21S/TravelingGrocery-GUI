@@ -2,7 +2,8 @@ import axios from "axios";
 
 const url = "http://localhost:5050"; //first run json server,
 const url_list = "http://pi.cs.oswego.edu:9081/list";
-const url_store = "http://pi.cs.oswego.edu:9681/store";
+const url_store = "http://pi.cs.oswego.edu:9082/store";
+const url_user = "http://pi.cs.oswego.edu:7808/user";
 //run ngrok http 5050,
 //change the url   http://pi.cs.oswego.edu:9181/list
 
@@ -157,11 +158,24 @@ export const shareList_deleteUser = (shoppingListID, userID, token) =>
 //										 Store SERVICE
 //----------------------------------------------------------------------------------------------------------
 
-export const store_nav = (lists) => axios.post(`${url_store}/nav`, lists);
+export const store_nav = (lists, token) =>
+	axios.post(`${url_store}/nav`, lists, {
+		headers: { Authorization: `Bearer ${token}` },
+	});
+
 export const store_getItems = () =>
 	axios
 		.get(`${url_store}/items`)
 		.catch((e) => console.log(`store_getItems: ${e.message}`));
-export const store_searchItems = (searchTerm) =>
-	axios.post(`${url_store}/search`, searchTerm);
-/* .then((res) => console.log(JSON.stringify(res.data))); */
+
+export const store_searchItems = (searchTerm, token) =>
+	axios.post(`${url_store}/search`, searchTerm, {
+		headers: { Authorization: `Bearer ${token}` },
+	});
+
+//----------------------------------------------------------------------------------------------------------
+//										 User Account SERVICE
+//----------------------------------------------------------------------------------------------------------
+
+export const userAccount_login = (token) =>
+	axios.post(`${url_user}/records`, token);

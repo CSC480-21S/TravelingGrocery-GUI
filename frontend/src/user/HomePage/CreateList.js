@@ -19,7 +19,7 @@ import { list_get } from "../../actions/actions";
 const CreateList = (props) => {
 	const profile = useSelector((state) => state.user); //Retrieve user information from the store
 	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
-	//console.log(token);
+
 	const [list, setList] = useState({
 		listName: "",
 		userID: profile.googleId,
@@ -73,7 +73,7 @@ const CreateList = (props) => {
 							InputProps={{
 								disableUnderline: true,
 							}}
-						></TextField>
+						/>
 						<Button type="submit" className={styles.submitButton}>
 							Create New List
 						</Button>

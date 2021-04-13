@@ -2,14 +2,15 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-
 //hooks
 import { React, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-//Components or local imports
+import { useSelector, useDispatch } from "react-redux";
+//Actions
+import { set_fromStore } from "../../actions/actions";
 
+//Components or local imports
 import SetTitle from "./Set_Title/Set_Title";
 //Libraries
 import makeStyles from "./Header_styles";
@@ -18,14 +19,18 @@ const Header = () => {
 	const styles = makeStyles();
 	const location = useLocation();
 	const history = useHistory();
+	const dispatch = useDispatch();
 
 	const title = useSelector((state) => state.active_list.listName); //gets the name of the list clicked
 
 	const [open2, setOpen2] = useState(false); //Boolean that determines the state of Dialog/Set_Title component
 	//Profile
 	const handleBack = () => {
+		/* if (location.pathname === `/list/${title}/store`)
+			dispatch(set_fromStore(false)); */
 		history.goBack();
 	};
+
 	//Title
 	const handleTitleOnClose = () => {
 		setOpen2(false);
