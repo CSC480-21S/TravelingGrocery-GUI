@@ -27,10 +27,10 @@ import ProfileEmployee from "./employee/Profile";
 import NavigationEmployee from "./employee/NavigationEmployee";
 import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee"
 import OrdersEmployee from "./employee/ordersEmployee/OrdersEmployee";
-
 // ADMIN components
 import NavbarAdmin from "./admin/NavbarAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
+import Analytics from "./admin/analytics/Analytics";
 import ProfileAdmin from "./admin/Profile";
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
@@ -111,6 +111,10 @@ const App = () => {
 				<Route exact path="/admin/inventory">
 					<NavbarAdmin />
 					<Manage />
+				</Route>
+				<Route exact path="/admin/analytics">
+					<NavbarAdmin />
+					<Analytics />
 				</Route>
 				<Route exact path="/admin/inventory/additem">
 					<NavbarAdmin />

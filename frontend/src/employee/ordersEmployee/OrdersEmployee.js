@@ -53,7 +53,6 @@ const OrdersEmployee = () => {
 
 	const buttonClicked = () => {
 		const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
-		let lists = { lists: [] };
 
 		// loop trough orders to get shoppingListID
 		// If order is selected:
@@ -64,6 +63,7 @@ const OrdersEmployee = () => {
 		// Repeat for the rest of the lists
 
 		/* if order is selected add to final array? */
+		let lists = { lists: [] };
 		orders.map(async (order) => {
 			// If order is selected
 			if (order.bool) {

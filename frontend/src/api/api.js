@@ -154,6 +154,16 @@ export const shareList_deleteUser = (shoppingListID, userID, token) =>
 		})
 		.catch((e) => console.log(e.message));
 
+//--------------------	Analytics  --------------------
+
+// Shopped Items Per Hour -------------------------
+export const list_getAnalytics = (users, token) =>
+	axios
+		.put(`${url_list}/shopped/items/time`, users, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e.message));
+
 //----------------------------------------------------------------------------------------------------------
 //										 Store SERVICE
 //----------------------------------------------------------------------------------------------------------
@@ -173,9 +183,17 @@ export const store_searchItems = (searchTerm, token) =>
 		headers: { Authorization: `Bearer ${token}` },
 	});
 
+export const store_addItems = (items, token) =>
+	axios
+		.post(`${url_store}/additems`, items, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(`store_addItems: ${e.message}`));
 //----------------------------------------------------------------------------------------------------------
 //										 User Account SERVICE
 //----------------------------------------------------------------------------------------------------------
 
 export const userAccount_login = (token) =>
 	axios.post(`${url_user}/records`, token);
+
+/* .then((res) => console.log(JSON.stringify(res.data))); */
