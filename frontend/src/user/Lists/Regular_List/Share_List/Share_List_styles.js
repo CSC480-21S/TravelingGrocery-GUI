@@ -32,10 +32,9 @@ export default makeStyles((theme) => ({
 		height: "50px",
 		width: "fit-content",
 		background: "#F6F6F6",
-		border: "2px solid #E8E8E8",
+
 		borderRadius: "8px",
 		padding: theme.spacing(1),
-
 		bottom: "20px",
 		boxSizing: "border-box",
 	},

@@ -4,6 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import makeStyles from "./First_Section_List_styles";
 //Local Imports
 import test from "../../../../../images/blank.png";
+
 const FirstSectionList = () => {
 	const styles = makeStyles();
 	return (

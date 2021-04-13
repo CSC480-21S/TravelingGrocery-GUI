@@ -28,6 +28,8 @@ const HomePage = () => {
 	const [list_finished, setListFinish] = useState([]);
 	const [open, setOpen] = useState(false);
 
+	//-------------------  Testing  -------------------
+	console.log(JSON.stringify(lists));
 	//-------------------  HANDLE DIALOG BOXES  -------------------
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -55,13 +57,14 @@ const HomePage = () => {
 				finishedList.push(list);
 			}
 		});
+
 		setListFinish(finishedList);
 	}, [lists]);
 
 	useEffect(() => {
 		const auth = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 		//console.log(JSON.stringify(auth));
-	});
+	}, []);
 	return (
 		<div className={styles.superContainer}>
 			{/* User Regular Lists */}
@@ -116,9 +119,11 @@ const HomePage = () => {
 					<div item className={styles.lists}>
 						{lists.map((obj) =>
 							obj.listShoppedFlag === 1 ? (
-								<Button className={styles.finishedButton}>
-									{obj.listName}
-								</Button>
+								<div key={obj.id}>
+									<Button className={styles.finishedButton}>
+										{obj.listName}
+									</Button>
+								</div>
 							) : null
 						)}
 					</div>

@@ -70,7 +70,7 @@ const AssignOrders = () => {
 			//console.log(JSON.stringify(obj));
 			//console.log("temp LIST: " + JSON.stringify(tempList));
 			if (count === tempList.length) {
-				console.log("temp FINAL LIST: " + JSON.stringify(tempList));
+				//console.log("temp FINAL LIST: " + JSON.stringify(tempList));
 				setOrders(tempList);
 			}
 		});

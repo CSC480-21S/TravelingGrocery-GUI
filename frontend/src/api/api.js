@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = "http://localhost:5050"; //first run json server,
 const url_list = "http://pi.cs.oswego.edu:9081/list";
-const url_store = "http://pi.cs.oswego.edu:9082/store";
+const url_store = "http://pi.cs.oswego.edu:9681/store";
 const url_user = "http://pi.cs.oswego.edu:7808/user";
 //run ngrok http 5050,
 //change the url   http://pi.cs.oswego.edu:9181/list
@@ -201,7 +201,6 @@ export const userAccount_login = (token) =>
 //----------------------------------------------------------------------------------------------------------
 //										 Admin SERVICE
 //----------------------------------------------------------------------------------------------------------
-
 
 export const unassignedList = (token) =>
 	axios
