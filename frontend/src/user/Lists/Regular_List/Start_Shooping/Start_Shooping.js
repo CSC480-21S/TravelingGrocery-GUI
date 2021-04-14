@@ -10,7 +10,7 @@ const Start_Shooping = ({ setOpen }) => {
 	return (
 		<div className={styles.container}>
 			<Button className={styles.button_root} onClick={startShooping}>
-				Start Shooping
+				Start Shopping
 			</Button>
 		</div>
 	);

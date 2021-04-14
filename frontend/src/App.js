@@ -25,7 +25,7 @@ import NavbarEmployee from "./employee/NavbarEmployee";
 import HomeEmployee from "./employee/HomeEmployee";
 import ProfileEmployee from "./employee/Profile";
 import NavigationEmployee from "./employee/NavigationEmployee";
-import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee"
+import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee";
 import OrdersEmployee from "./employee/ordersEmployee/OrdersEmployee";
 // ADMIN components
 import NavbarAdmin from "./admin/NavbarAdmin";
@@ -63,7 +63,24 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		handleLogin();
+		//handleLogin();
+		try {
+			window.gapi.load("auth2", () => {
+				window.gapi.auth2
+					.init({
+						ux_mode: "redirect",
+						client_id:
+							"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
+					})
+					.then(async () => {
+						const auth = window.gapi.auth2.getAuthInstance();
+						set_bol(auth.isSignedIn.get());
+						auth.isSignedIn.listen((isSignedIn) => set_bol(isSignedIn));
+					});
+			});
+		} catch (e) {
+			console.log(e);
+		}
 	}, []);
 
 	return (
