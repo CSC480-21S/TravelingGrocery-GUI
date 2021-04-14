@@ -29,7 +29,7 @@ const Login = () => {
 	const onSuccess = async (response) => {
 		dispatch(send_Google_User_info(response));
 		const token = { token: response.tc.id_token };
-		//await userAccount_login(token).then((res) => console.log(res));
+		await userAccount_login(token).then((res) => console.log(res)).catch((e)=>{console.log(e)});
 		history.push("/home");
 	};
 	//When login is a failute
