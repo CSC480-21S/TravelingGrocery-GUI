@@ -29,8 +29,13 @@ const Login = () => {
 	const onSuccess = async (response) => {
 		dispatch(send_Google_User_info(response));
 		const token = { token: response.tc.id_token };
-		//await userAccount_login(token).then((res) => console.log(res));
-		history.push("/home");
+		await userAccount_login(token).then((res) => {
+			const obj = res.data;
+			if (obj.userType === "employee") return history.push("/employee/home");
+			if (obj.userType === "admin") return history.push("/admin/home");
+			console.log("LOGIN RESPONSE:\n" + JSON.stringify(res.data));
+			return history.push("/home");
+		});
 	};
 	//When login is a failute
 	const onFailure = (response) => {

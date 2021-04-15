@@ -29,7 +29,6 @@ const HomePage = () => {
 	const [open, setOpen] = useState(false);
 
 	//-------------------  Testing  -------------------
-	console.log(JSON.stringify(lists));
 	//-------------------  HANDLE DIALOG BOXES  -------------------
 	const handleClickOpen = () => {
 		setOpen(true);

@@ -1,27 +1,34 @@
 // Name: Jeff Cho
 import "../styles/Navigation.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import img_blank from "../images/blank.png";
 import img_out_of_stock from "../images/out_of_stock.jpg";
+//Local Import
+import Confirm from "./Confirm";
 
 const NavigationEmployee = () => {
 	// I have to set a default placeholder state until the get request finishes?
 	// TODO:  This is a weird fix, Find a better way?
+	const [onConfirm, set_onConfirm] = useState(false);
 	const directions = useSelector((state) => state.storeNav);
-
+	const [shoppingListIDArray, setShoppingListIDArray] = useState({
+		shoppingListID: [],
+	});
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
+	const history = useHistory();
 
-	const saveToLocalStorage = (state) => {
-		try {
-			const serializedState = JSON.stringify(state);
-			localStorage.setItem("directions", serializedState);
-		} catch (e) {
-			console.log(e);
-		}
-	};
+	useEffect(() => {
+		let temp = [];
+		directions.forEach((direction) => {
+			temp.push(direction.setShoppingListID);
+		});
+		console.log(JSON.stringify(temp));
+	}, [directions, shoppingListIDArray]);
 
+	//	REGULAR METHODS 	=============================================
 	const increment = () => {
 		if (index !== directions.length - 1) {
 			setIndex(index + 1);
@@ -35,50 +42,122 @@ const NavigationEmployee = () => {
 		if (index !== 0) {
 			setFinished(false);
 			setIndex(index - 1);
-		} else {
-			//console.log("You attempted to decrement out of bounds")
 		}
+		if (finished) {
+			setIndex(directions.length - 1);
+			setFinished(false);
+		}
+	};
+	const onFinish = () => {
+		set_onConfirm(true);
+	};
+
+	const onExit = (e) => {
+		e.preventDefault();
+		history.push("/login");
 	};
 
 	return (
-		<div className="Navigation">
-			<div className="containerTop">Navigation</div>
-
-			<div className="containerDirections">
+		<div className="navigation">
+			<Confirm
+				onConfirm={onConfirm}
+				set_onConfirm={set_onConfirm}
+				directions={directions}
+			/>
+			<div className="header">
+				{!finished ? (
+					<div className="percent">
+						{index + 1}/{directions.length}
+					</div>
+				) : (
+					<div></div>
+				)}
+				<div className="title">Navigation</div>
+				<div className="exit" onClick={onExit}>
+					Exit
+				</div>
+			</div>
+			{/* item container */}
+			<div className={!finished ? "itemContainer" : "itemContainer2"}>
 				{/* Conditonal statement bool ? ifTrue : ifFalse */}
-				{directions[index].itemStockBool ? (
+				{!finished ? (
+					<>
+						{directions[index].itemStockBool ? (
+							<img className="itemImage" src={img_blank} alt="itemImage" />
+						) : (
+							<img
+								className="itemImage"
+								src={img_out_of_stock}
+								alt="itemImage"
+							/>
+						)}
+						<div className="itemDetails">
+							<div className="itemName"> {directions[index].itemName} </div>
+							<div className="itemDepartment">
+								{directions[index].department} Department
+							</div>
+							<div className="stock">
+								{!directions[index].itemStockBool ? "OUT OF STOCK" : ""}
+							</div>
+							<div className="itemCount">
+								Quantity: {directions[index].itemQuantity}
+							</div>
+						</div>
+					</>
+				) : (
+					<p className="endListText">You have reached to the end of the List</p>
+				)}
+				{/* end of list */}
+			</div>
+
+			{!finished ? (
+				<>
+					<div className="containerDirections">
+						{/* Conditonal statement bool ? ifTrue : ifFalse */}
+						{/* {directions[index].itemStockBool ? (
 					<img className="itemImage" src={img_blank} alt="itemImage" />
 				) : (
 					<img className="itemImage" src={img_out_of_stock} alt="itemImage" />
-				)}
+				)} */}
+						<h3>Directions</h3>
 
-				<p className="hugLeft"> {directions[index].itemName} </p>
-				<p className="hugLeft"> {directions[index].department} Department </p>
-				<p className="hugLeft"> Aisle {directions[index].aisle} </p>
-				<p className="hugLeft">
-					{" "}
-					Rack {directions[index].rack} | {directions[index].side} side |{" "}
-					{directions[index].shelf} shelf{" "}
-				</p>
-			</div>
+						<p className="hugLeft">Aisle: {directions[index].aisle}</p>
+						<p className="hugLeft">{directions[index].side} side </p>
+						<p className="hugLeft">Rack: {directions[index].rack}</p>
+						<p className="hugLeft">Shelf: {directions[index].shelf}</p>
+					</div>
 
-			<div className="containerStatus">
-				{directions[index].itemStockBool ? (
-					""
-				) : (
-					<button className="outOfStockButton">Move item</button>
-				)}
-				<br></br>
-				{index + 1}/{directions.length} {finished ? "Finished!" : ""}
-			</div>
+					<div className="containerStatus">
+						{directions[index].itemStockBool ? (
+							""
+						) : (
+							<button className="outOfStockButton">Move item</button>
+						)}
+						{/* {index + 1}/{directions.length} {finished ? "Finished!" : ""} */}
+					</div>
+				</>
+			) : (
+				<div className="congratsContainer">
+					<p className="congratsText">Congratulations!</p>
+					<p className="congratsDescriptionTest">
+						You are now ready to move to the checkout counter
+					</p>
+				</div>
+			)}
 
 			<div className="containerBackNext">
 				<button className="backButton" onClick={() => decrement()}>
 					Back
 				</button>
-				<button className="nextButton" onClick={() => increment()}>
-					Next
-				</button>
+				{!finished ? (
+					<button className="nextButton" onClick={() => increment()}>
+						Next
+					</button>
+				) : (
+					<button className="nextButton" onClick={() => onFinish()}>
+						Finish
+					</button>
+				)}
 			</div>
 		</div>
 	);
