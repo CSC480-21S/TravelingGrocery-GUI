@@ -29,7 +29,7 @@ const AssignOrders = () => {
 	//			This works
 	const getItems = async (shoppingListID) => {
 		let count = 0;
-		const { data } = await list_getItems(shoppingListID, token);
+		const { data } = await list_getItems(shoppingListID, token).catch(e=>{return []});
 		data.listItems.forEach((obj) => {
 			count = count + parseInt(obj.quantityItem);
 		});
@@ -53,7 +53,12 @@ const AssignOrders = () => {
 	};
 	useEffect(async () => {
 		const { data } = await unassignedList(token);
-		await setList(data.shoppingLists);
+
+		data.shoppingLists.forEach((obj) => {
+			obj.bool = false
+		})
+		console.log(data.shoppingLists)
+		setOrders(data.shoppingLists)
 	}, []);
 
 	//======================================================================
@@ -107,7 +112,7 @@ const AssignOrders = () => {
 					<Order
 						key={order.id}
 						orderNum={order.shoppingListID}
-						numItems={order.TOTAL_NUMBER_iTEMS}
+						numItems={order.itemCount}
 						name={order.email}
 						time={order.listDateCreated}
 						orders={orders}

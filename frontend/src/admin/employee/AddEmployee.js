@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import {Dialog, DialogTitle, TextField} from "@material-ui/core";
 import axios from "axios";
-
+import {useSelector} from "react-redux";
+import {add_employee} from "../../api/api";
 
 const AddEmployee = () => {
+
+    const token = useState(useSelector((state) => state.user.tk.tk))[0];
 
     const [email, setEmail] = useState();
 
@@ -40,12 +43,16 @@ const AddEmployee = () => {
     };
 
 
-    const buttonClicked = ()=>{
+    const buttonClicked = async () => {
         console.log(email);
         const employee = {
-            "userType": "employee",
+            "token": token,
             "email": email
-    }
+        }
+
+        const data = await add_employee(employee, token);
+
+        console.log(data);
 
         handleClickOpen();
     };
