@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import EmployeeInfo from "./EmployeeInfo";
 import {useHistory} from "react-router-dom";
+import {get_employees} from "../../api/api";
+import {useSelector} from "react-redux";
 
 const Employee = () => {
 	const history = useHistory();
+	const token = useState(useSelector((state) => state.user.tk.tk))[0];
 
 	const routeChange = () =>{
 		let path = "/admin/addEmployee";
+
 		history.push(path);
 	}
 
@@ -34,8 +38,9 @@ const Employee = () => {
 
 	const getCurrentEmployees = async () => {
 		try {
-			const res = await axios.get("http://localhost:5050/users");
-			setEmployees(res.data);
+			const res = await get_employees(token);
+			console.log(res.data.employees)
+			setEmployees(res.data.employees);
 		} catch (e) {
 			console.error(e);
 		}
@@ -58,7 +63,7 @@ const Employee = () => {
 				<EmployeeInfo
 					key={employee.id}
 					task={task}
-					bool={employee.userShoppingBool ? "on Clock" : "Off Clock"}
+					bool={employee.userShoppingBool === 1? "on Clock" : "Off Clock"}
 					name={employee.email}
 				/>
 			))}
