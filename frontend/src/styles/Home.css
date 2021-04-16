@@ -3,28 +3,46 @@
 .Home .containerTop {
     font-size: xx-large;
     font-weight: bold;
-
     padding-top: 15px;
     text-align: center;
     justify-content: center;
+    padding-bottom: 20px;
 }
 
 .Home .containerButtons {
-    text-align: center;
+    /*text-align: center;
     justify-content: center;
     padding-top: 2%;
+    margin-left: -300px*/
+    display: inline-grid;
+    position: relative; 
+    left: 50%;
+    margin-left: -150px;
 }
 
 .Home .buttons {
     color: white;
     background-color: #222258;
     cursor: pointer;
-    font-size: larger;
+    font-size: x-large;
     border-radius: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    max-width: 500px;
-    width: 80%;
+    padding-left: 25px; 
+    padding-right: 25px;
+    /*max-width: 500px;*/
+    width: -webkit-fill-available;
+    /*textAlign: "center",
+		fontSize: "x-large",
+		backgroundColor: "white",
+		paddingTop: "5px",
+		paddingBottom: "5px",
+		paddingLeft: "25px",
+		paddingRight: "25px",
+		borderRadius: "10px",
+		cursor: "pointer",
+		border: "1px solid black",
+		width: "-webkit-fill-available",*/
 }
 
 .Home .containerTop p {
