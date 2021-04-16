@@ -43,16 +43,36 @@ const Login = () => {
 	};
 
 	const handleChange = (event) => {
-		setIndex(event.target.value);
+        setIndex(event.target.value);
+        console.log("index is now: " + index)
 	};
 
-	const manageIndex = () => {
-		index + 1 > content.length - 1 ? setIndex(0) : setIndex(index + 1);
+    const manageIndex = () => {
+        if (index == 0) {
+            setIndex(1)
+            //console.log("index is now: " + 1)
+        }
+        else if (index == 1) {
+            setIndex(2)
+            //console.log("index is now: " + 2)
+        }
+        else if (index == 2) {
+            setIndex(3)
+            //console.log("index is now: " + 3)
+        }
+        else if (index == 3) {
+            setIndex(0)
+            //console.log("index is now: " + 0)
+        }
+
+        //(index + 1) > (content.length - 1) ? setIndex(0) : setIndex(index + 1);
+        
 	};
 
-	useEffect(() => {
-		setTimeout(manageIndex, 10000);
-	});
+    useEffect(() => {
+        setTimeout(manageIndex, 5000);
+    });
+
 	return (
 		<div>
 			<div id="rectangle">
@@ -114,7 +134,8 @@ const Login = () => {
 					onSuccess={onSuccess}
 					isSignedIn={true}
 					uxMode={"redirect"}
-				/>
+                />
+                <p></p>
 			</div>
 		</div>
 	);

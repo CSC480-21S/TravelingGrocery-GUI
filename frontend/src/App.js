@@ -20,6 +20,7 @@ import Login from "./user/Login_SingOut/Login";
 import Items from "./user/Items/Items";
 import EditList from "./user/Lists/Edit_List/Edit_List";
 import Profile from "./user/Profile/Profile";
+import ShareList from "./user/ShareList/ShareList";
 // EMPLOYEE components
 import NavbarEmployee from "./employee/NavbarEmployee";
 import HomeEmployee from "./employee/HomeEmployee";
@@ -162,6 +163,10 @@ const App = () => {
 					<NavbarUser />
 					<Profile />
 				</Route>
+				<Route exact path="/shareList">
+                   			<NavbarUser />
+                    			<ShareList />
+                		</Route>
 
 				{/* TEST/DEBUGGING routing  */}
 				<Route exact path="/developer">

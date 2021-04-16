@@ -8,6 +8,7 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 //Import Local Components
 import RegularItem from "./List/Regular_Item";
 import StartShooping from "./Start_Shooping/Start_Shooping";
@@ -17,7 +18,6 @@ import ShareList from "./Share_List/Share_List";
 import SearchBar from "./Search_Bar/Search_Bar";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
-import ShoopingDialog from "./StartShoopingDialog/ShoppingDialog";
 
 const RegularLists = ({ items, set_isEdit }) => {
 	const styles = makeStyles();
@@ -26,7 +26,6 @@ const RegularLists = ({ items, set_isEdit }) => {
 	const [onDelete, set_onDelete] = useState(false);
 	const [onShare, set_onShare] = useState(false);
 	const [filteredList, set_fliteredList] = useState([]);
-	const [open, setOpen] = useState(false);
 
 	const user = useSelector((state) => state.user.profile); //gets user information from reducer
 	const shoppingListID = useSelector(
@@ -51,13 +50,15 @@ const RegularLists = ({ items, set_isEdit }) => {
 		set_onDelete(true);
 	};
 	const handleShare = () => {
-		set_onShare(true);
+        dispatch(shoppingListID);
+
+
+        //set_onShare(true);
 	};
 
 	useEffect(() => {}, []);
 	return (
 		<div className={styles.root}>
-			<ShoopingDialog open={open} setOpen={setOpen} items={items} />
 			<DeleteList
 				onDelete={onDelete}
 				set_onDelete={set_onDelete}
@@ -76,7 +77,8 @@ const RegularLists = ({ items, set_isEdit }) => {
 					<div>
 						<Typography
 							style={{
-								fontFamily: "Inter",
+								//fontFamily: "Inter",
+                                //font: "larger",
 								fontStyle: "normal",
 								fontWeight: 600,
 							}}
@@ -94,18 +96,23 @@ const RegularLists = ({ items, set_isEdit }) => {
 								className={styles.topIconButton1}
 								onClick={handleDelete}
 							>
-								Delete List
+								Delete
 							</Button>
 						</div>
-						<div>
+                        <div>
+                            <Link to={{
+                                pathname: '/shareList',
+                                
+                            }} style={{textDecoration: 'none'}}> 
 							<Button
 								fontSize="small"
 								startIcon={<ShareIcon />}
 								className={styles.topIconButton2}
-								onClick={handleShare}
+								//onClick={handleShare}
 							>
 								Share
 							</Button>
+                            </Link>
 						</div>
 						<div>
 							<Button
@@ -135,7 +142,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 					</div>
 
 					<div>
-						<StartShooping setOpen={setOpen} />
+						<StartShooping />
 					</div>
 				</>
 			)}
