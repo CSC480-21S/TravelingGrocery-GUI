@@ -3,18 +3,20 @@ import Order from "./Order";
 import Button from "@material-ui/core/Button";
 import makeStyles from "../../user/Lists/Edit_List/Edit_List_styles";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 //API
 import { list_getItems } from "../../api/api";
+import { list_get } from "../../api/api";
 //ACTIONS
 import { store_navigation } from "../../actions/actions";
 
 const OrdersEmployee = () => {
 	const [orders, setOrders] = useState([]);
-	const final = { lists: [] };
 	const styles = makeStyles;
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const token = useState(useSelector((state) => state.user.tk.tk))[0];
 
 	const button1 = {
 		background: "#FFFFFF",
@@ -23,36 +25,27 @@ const OrdersEmployee = () => {
 		width: "90%",
 	};
 
-	const axios = require("axios");
-
-	const getCurrentEmployees = async () => {
-		try {
-			const res = await axios.get("http://localhost:5051/Orders");
-			//console.log(res.data[0].shoppingLists)
-			/*loop thru order*/
-			{
-				res.data[0].shoppingLists.map((order) => (order.bool = false));
-			}
-			setOrders(res.data[0].shoppingLists);
-		} catch (e) {
-			console.error(e);
-		}
-	};
-
+	//Get users lists to be shooped
 	useEffect(() => {
-		getCurrentEmployees().then((r) => console.log(orders));
+		//getCurrentEmployees().then((r) => console.log(orders));
+		list_get(token)
+			.then((res) => {
+				console.log(JSON.stringify(res.data));
+				setOrders(res.data.shoppingLists);
+			})
+			.catch((err) => console.log(err));
 	}, []);
-
+	//====================================================
 	const routeChange = () => {
 		let path = "/admin/addEmployee";
 		history.push({
 			pathname: "/admin/assignOrders/assignEmployees",
-			state: { orders: final },
+			//state: { orders: final },
 		});
 	};
-
+	//====================================================
 	const buttonClicked = () => {
-		const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
+		//const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
 
 		// loop trough orders to get shoppingListID
 		// If order is selected:
@@ -64,37 +57,44 @@ const OrdersEmployee = () => {
 
 		/* if order is selected add to final array? */
 		let lists = { lists: [] };
-		orders.map(async (order) => {
+		orders.forEach(async (order) => {
 			// If order is selected
 			if (order.bool) {
 				// Store shoppingListID
+				const items = { listItems: null };
 				const temp = {
 					shoppingListID: order.shoppingListID,
 					itemNameArray: [],
 					itemQuantityArray: [],
 				};
-				const { item } = await list_getItems(order.shoppingListID, token);
-				item.forEach((obj) => {
+				await list_getItems(order.shoppingListID, token).then((res) => {
+					console.log("response: \n" + JSON.stringify(res.data));
+					items.listItems = res.data.listItems;
+				});
+				//console.log("ITEMS: \n" + JSON.stringify(items));
+
+				items.listItems.forEach((obj) => {
 					temp.itemNameArray.push(obj.itemName);
-					temp.itemQuantityArray.push(obj.itemQuantity);
+					temp.itemQuantityArray.push(obj.quantityItem);
 				});
 				lists.lists.push(temp);
+				/* 	console.log("TEMP: \n" + JSON.stringify(temp));
+				console.log("FINAL LIST:" + JSON.stringify(lists)); */
+
+				/*if the admin didnt select any order and then pressing assign order button*/
+				if (lists.lists.length < 1) {
+					alert("Need to select atleast one order!");
+					console.log("hello");
+					return;
+				}
+				dispatch(store_navigation(lists, token));
+				/*redirect to assign employees page*/
+				history.push("/employee/navigation");
 			}
 		});
-
-		dispatch(store_navigation(lists, token));
-		//console.log(final)
-		//console.log(finalOrder)
-		/*if the admin didnt select any order and then pressing assign order button*/
-		if (final.length === 0) {
-			alert("Need to select atleast one order!");
-			return;
-		}
-
-		/*redirect to assign employees page*/
-		routeChange();
 	};
 
+	//====================================================
 	return (
 		<div
 			style={{
@@ -114,10 +114,8 @@ const OrdersEmployee = () => {
 				{orders.map((order) => (
 					<Order
 						key={order.shoppingListID}
-						listName={order.listName}
-						numItems={order.items.length}
 						shoppingListID={order.shoppingListID}
-						dateCreated={order.listDateCreated}
+						order={order}
 						orders={orders}
 						setOrders={setOrders}
 					/>
