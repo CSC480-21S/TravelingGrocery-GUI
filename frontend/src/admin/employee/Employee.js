@@ -63,7 +63,7 @@ const Employee = () => {
 				<EmployeeInfo
 					key={employee.id}
 					task={task}
-					bool={employee.userShoppingBool === 1? "on Clock" : "Off Clock"}
+					bool={employee.userShoppingBool === 1? "On Clock" : "Off Clock"}
 					name={employee.email}
 				/>
 			))}
