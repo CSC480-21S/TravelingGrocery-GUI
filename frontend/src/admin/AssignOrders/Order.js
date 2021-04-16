@@ -6,36 +6,37 @@ const Order = ({task, orderNum, numItems, name, time, orders, setOrders}) =>
     const[clicked, setclicked] = useState(false)
 
     const changeColor = () => {
-        if(color === '#f4f4f4')
-        {
-            setColor('#DADADA')
-            setclicked(true)
+            if(color === '#f4f4f4')
+            {
+                setColor('#DADADA')
+                setclicked(true)
 
-            orders.map((order) => {
-                if(order.shoppingListID === orderNum)
-                {
+                orders.map((order) => {
+                        if(order.shoppingListID === orderNum)
+                        {
 
-                    order.bool = true
-                }
-            }
-            )
-            console.log(JSON.stringify(orders))
-            setOrders(orders)
-
-        }
-        else
-        {
-            setColor('#f4f4f4')
-            orders.map((order) => {
-                    if(order.shoppingListID === orderNum)
-                    {
-                        order.bool = false
+                            order.bool = true
+                        }
                     }
-                }
-            )
-            console.log(JSON.stringify(orders))
-            setOrders(orders)
-        }
+                )
+                console.log(JSON.stringify(orders))
+                setOrders(orders)
+
+            }
+            else
+            {
+                setColor('#f4f4f4')
+                orders.map((order) => {
+                        if(order.shoppingListID === orderNum)
+                        {
+                            order.bool = false
+                        }
+                    }
+                )
+                console.log(JSON.stringify(orders))
+                setOrders(orders)
+            }
+
     }
     const leftelement = {
         display: "inline-block",

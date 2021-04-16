@@ -108,10 +108,11 @@ const AssignEmployees = () => {
             {employees.map((employee) => (
                 <AllEmployees
                     key={employee.id}
-                    bool={employee.userShoppingBool ? "on Clock" : "Off Clock"}
+                    bool={employee.userShoppingBool === 1? "On Clock" : "Off Clock"}
                     email={employee.email}
                     employees={employees}
                     setEmployees={setEmployees}
+                    checkEmployee={employee.userShoppingBool}
                 />
             ))}
 

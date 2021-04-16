@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {assign_employee} from '../../actions/actions'
 import {useDispatch, useSelector} from "react-redux";
 
-const AllEmployees = ({email, bool, employees, setEmployees}) => {
+const AllEmployees = ({email, bool, employees, setEmployees, checkEmployee}) => {
 
     const[color, setColor] = useState('#f4f4f4')
     const check = useSelector((state) => state.currentEmployee)
@@ -27,21 +27,24 @@ const AllEmployees = ({email, bool, employees, setEmployees}) => {
     };
 
     const changeColor2 = () => {
-        dispatch(assign_employee(email))
-        setColor('#DADADA')
-
-        employees.map((employee) => {
-            //console.log(employee)
-            if(employee.email === email)
+            if(checkEmployee === 1)
             {
-                console.log("clicked")
-                employee.selected = true
+                dispatch(assign_employee(email))
+                setColor('#DADADA')
+
+                employees.map((employee) => {
+                    //console.log(employee)
+                    if(employee.email === email)
+                    {
+                        console.log("clicked")
+                        employee.selected = true
+                    }
+                    else
+                        employee.selected = false
+                })
+                console.log(JSON.stringify(employees))
+                setEmployees(employees)
             }
-            else
-                employee.selected = false
-        })
-        console.log(JSON.stringify(employees))
-        setEmployees(employees)
 
     }
     useEffect(() => {

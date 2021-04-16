@@ -115,6 +115,7 @@ const AssignOrders = () => {
 						numItems={order.itemCount}
 						name={order.email}
 						time={order.listDateCreated}
+						bool={order.userShoppingBool}
 						orders={orders}
 						setOrders={setOrders}
 					/>
