@@ -1,4 +1,4 @@
-﻿import "../../App.css";
+import "../../App.css";
 import "./ShareList.css";
 
 import React, { Component } from "react";
@@ -47,22 +47,33 @@ class ShareList extends Component {
     }
 
     //button handlers
-    clickButton() {
+    clickButton = async () => {
+        //const token = useState(useSelector((state) => state.user.tk.tk))[0];
         let name = this.state.value;
         let endIndex = name.indexOf("@");
         if (endIndex == -1) { this.setState({ badEmail: true }) }
         else {
             //console.log(name.slice(0, endIndex));
             //no response so no .then
-           axios.post("/list/"+this.props.shoppingID+"/user", name.slice(0,endIndex))
+            //let user;
+            //console.log(name)
+            //await axios.post("http://pi.cs.oswego.edu:7808/user/lookup", { "users": [name] }).then(r => user = r);
+
+            //console.log(user);
+            //console.log(user.data.users[0].userID)
+            //console.log(this.props.token)
+            //console.log(this.props.shoppingID)
+
+            await axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": name }, { headers: { Authorization: "Bearer " +this.props.token }})// user.data.users[0].userID })//user.data.users[0].userID)
 
             //dunno what to put here to get it to talk to the endpoint
-            this.setState({ badEmail: false, isOpenStockWarning: true, nextModal: 1 });
+            this.setState({ badEmail: false, isOpenShare: true, nextModal: 1 });
         }
     }
 
-    requestShopper() {
-        axios.post("/list/" + this.props.shoppingID + "/user", "aislesboss")
+    requestShopper = async () => {
+        await axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": "AISLESboss@gmail.com" }, { headers: { Authorization: "Bearer " + this.props.token } })
+        //axios.post("/list/" + this.props.shoppingID + "/user", "aislesboss")
         //i want to just run clickButton with a preset address, however I need a unique pop-up so a workaround is needed 
         //(either dupe if short or add a bool to the state checking the origin if long)
         this.setState({ isOpenStockWarning: true, nextModal: 2 });
@@ -149,6 +160,7 @@ class ShareList extends Component {
 
 const mapStateToProps = (state) => ({
     shoppingID: state.active_list.shoppingListID,
+    token: state.user.tk.tk//))[0];
     //shoppingName: state.active_list.listName
 })
 
