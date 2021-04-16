@@ -3,10 +3,6 @@ import * as TYPES from "./actionTypes";
 
 //DONT FORGET TO DISPATCH THE ACTION (REDUX)
 
-//Send a List to a Component
-export const sendList = (list) => (dispatch) => {
-	dispatch({ type: TYPES.SEND_LIST, payload: list });
-};
 //Send Google Info to a Component
 export const send_Google_User_info = (profile) => (dispatch) => {
 	dispatch({ type: TYPES.SEND_GOOGLE_INFO, payload: profile });
@@ -74,4 +70,9 @@ export const set_fromStore = (bol) => (dispatch) => {
 
 export const assign_employee = (employee) => (dispatch) => {
 	dispatch({ type: TYPES.ASSIGN_EMPLOYEE, payload: employee });
+};
+
+//Send a List to a Component
+export const sendList = (list) => (dispatch) => {
+	dispatch({ type: TYPES.SEND_LIST, payload: list });
 };

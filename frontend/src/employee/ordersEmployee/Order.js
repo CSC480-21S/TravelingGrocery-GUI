@@ -14,7 +14,7 @@ const Order = ({ shoppingListID, order, orders, setOrders }) => {
 					order.bool = true;
 				}
 			});
-			console.log(JSON.stringify(orders));
+			//console.log(JSON.stringify(orders));
 			setOrders(orders);
 		} else {
 			setColor("#f4f4f4");
@@ -23,7 +23,7 @@ const Order = ({ shoppingListID, order, orders, setOrders }) => {
 					order.bool = false;
 				}
 			});
-			console.log(JSON.stringify(orders));
+			//console.log(JSON.stringify(orders));
 			setOrders(orders);
 		}
 	};

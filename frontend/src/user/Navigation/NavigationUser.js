@@ -11,11 +11,14 @@ import Confirm from "./Confirm";
 const NavigationUser = () => {
 	// I have to set a default placeholder state until the get request finishes?
 	// TODO:  This is a weird fix, Find a better way?
-	const [onConfirm, set_onConfirm] = useState(false);
+
+	//States from Store
 	const directions = useSelector((state) => state.storeNav);
-	const shoppingListID = directions[0].shoppingListID;
+	//Local States
+	const [onConfirm, set_onConfirm] = useState(false);
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
+	const shoppingListID = directions[0].shoppingListID;
 	const history = useHistory();
 
 	const increment = () => {

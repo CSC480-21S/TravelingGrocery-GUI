@@ -14,20 +14,9 @@ const NavigationEmployee = () => {
 	// TODO:  This is a weird fix, Find a better way?
 	const [onConfirm, set_onConfirm] = useState(false);
 	const directions = useSelector((state) => state.storeNav);
-	const [shoppingListIDArray, setShoppingListIDArray] = useState({
-		shoppingListID: [],
-	});
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
 	const history = useHistory();
-
-	useEffect(() => {
-		let temp = [];
-		directions.forEach((direction) => {
-			temp.push(direction.setShoppingListID);
-		});
-		console.log(JSON.stringify(temp));
-	}, [directions, shoppingListIDArray]);
 
 	//	REGULAR METHODS 	=============================================
 	const increment = () => {
@@ -60,11 +49,7 @@ const NavigationEmployee = () => {
 
 	return (
 		<div className="navigation">
-			<Confirm
-				onConfirm={onConfirm}
-				set_onConfirm={set_onConfirm}
-				directions={directions}
-			/>
+			<Confirm onConfirm={onConfirm} set_onConfirm={set_onConfirm} />
 			<div className="header">
 				{!finished ? (
 					<div className="percent">

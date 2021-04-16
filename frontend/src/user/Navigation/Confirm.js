@@ -17,6 +17,7 @@ import makeStyles from "./ConfirmStyles";
 const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
 	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	const navList = useSelector((state) => state.active_list);
+
 	const history = useHistory();
 	const styles = makeStyles();
 

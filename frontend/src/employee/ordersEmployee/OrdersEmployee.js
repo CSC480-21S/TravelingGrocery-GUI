@@ -10,6 +10,7 @@ import { list_getItems } from "../../api/api";
 import { list_get } from "../../api/api";
 //ACTIONS
 import { store_navigation } from "../../actions/actions";
+import { sendList } from "../../actions/actions";
 
 const OrdersEmployee = () => {
 	const [orders, setOrders] = useState([]);
@@ -30,8 +31,12 @@ const OrdersEmployee = () => {
 		//getCurrentEmployees().then((r) => console.log(orders));
 		list_get(token)
 			.then((res) => {
-				console.log(JSON.stringify(res.data));
-				setOrders(res.data.shoppingLists);
+				//console.log(JSON.stringify(res.data));
+				const temp = res.data.shoppingLists.filter(
+					(obj) => obj.listShoppedFlag !== 1
+				);
+				//console.log("TEMP: " + JSON.stringify(temp));
+				setOrders(temp);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -57,10 +62,16 @@ const OrdersEmployee = () => {
 
 		/* if order is selected add to final array? */
 		let lists = { lists: [] };
+		let lists_toUpdate = [];
+		let count = 0;
 		orders.forEach(async (order) => {
 			// If order is selected
 			if (order.bool) {
+				//Set Active List reducer
+				delete order.bool;
+				lists_toUpdate.push(order);
 				// Store shoppingListID
+				//console.log("ORDER: " + JSON.stringify(order));
 				const items = { listItems: null };
 				const temp = {
 					shoppingListID: order.shoppingListID,
@@ -68,7 +79,7 @@ const OrdersEmployee = () => {
 					itemQuantityArray: [],
 				};
 				await list_getItems(order.shoppingListID, token).then((res) => {
-					console.log("response: \n" + JSON.stringify(res.data));
+					//console.log("response: \n" + JSON.stringify(res.data));
 					items.listItems = res.data.listItems;
 				});
 				//console.log("ITEMS: \n" + JSON.stringify(items));
@@ -78,18 +89,26 @@ const OrdersEmployee = () => {
 					temp.itemQuantityArray.push(obj.quantityItem);
 				});
 				lists.lists.push(temp);
-				/* 	console.log("TEMP: \n" + JSON.stringify(temp));
-				console.log("FINAL LIST:" + JSON.stringify(lists)); */
+				// 	console.log("TEMP: \n" + JSON.stringify(temp));
 
 				/*if the admin didnt select any order and then pressing assign order button*/
 				if (lists.lists.length < 1) {
 					alert("Need to select atleast one order!");
-					console.log("hello");
+					//console.log("hello");
 					return;
 				}
-				dispatch(store_navigation(lists, token));
-				/*redirect to assign employees page*/
-				history.push("/employee/navigation");
+				count++;
+				if (count === orders.length) {
+					//console.log(`COUNT: ${count}, ORDERS.LENGHT: ${orders.length} `);
+					//console.log(`LIST TO UPDATE: ${JSON.stringify(lists_toUpdate)}`);
+					//console.log("FINAL LIST:" + JSON.stringify(lists));
+					//SET ACTIVE LISTS
+					dispatch(sendList(lists_toUpdate));
+					//SEND POST FOR NAV DIRECTIONS
+					dispatch(store_navigation(lists, token));
+					/*redirect to assign employees page*/
+					history.push("/employee/navigation");
+				}
 			}
 		});
 	};
@@ -105,28 +124,33 @@ const OrdersEmployee = () => {
 			}}
 		>
 			<h1 style={{ fontSize: "120%" }}>Orders</h1>
-			<div>
-				<h5 style={{ textAlign: "left", paddingLeft: "20px" }}>
-					{" "}
-					Available Orders:
-				</h5>
 
-				{orders.map((order) => (
-					<Order
-						key={order.shoppingListID}
-						shoppingListID={order.shoppingListID}
-						order={order}
-						orders={orders}
-						setOrders={setOrders}
-					/>
-				))}
-			</div>
-
-			<div style={{ paddingTop: "60px", paddingBottom: "20px" }}>
-				<Button fontSize="small" style={button1} onClick={buttonClicked}>
-					Start Shopping
-				</Button>
-			</div>
+			{orders.length === 0 ? (
+				<p>No orders have been assigned to you</p>
+			) : (
+				<>
+					<h5 style={{ textAlign: "left", paddingLeft: "20px" }}>
+						{" "}
+						Available Orders:
+					</h5>
+					<div>
+						{orders.map((order) => (
+							<Order
+								key={order.shoppingListID}
+								shoppingListID={order.shoppingListID}
+								order={order}
+								orders={orders}
+								setOrders={setOrders}
+							/>
+						))}
+					</div>
+					<div style={{ paddingTop: "60px", paddingBottom: "20px" }}>
+						<Button fontSize="small" style={button1} onClick={buttonClicked}>
+							Start Shopping
+						</Button>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };

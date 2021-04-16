@@ -14,10 +14,12 @@ import { list_update } from "../api/api";
 //Styles
 import makeStyles from "./ConfirmStyles";
 
-const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
+const Confirm = ({ onConfirm, set_onConfirm }) => {
 	//const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
+	//States from the Store
+	const lists_toUpdate = useSelector((state) => state.active_list);
+	//Local States
 	const token = useState(useSelector((state) => state.user.tk.tk))[0];
-	const navList = useSelector((state) => state.active_list);
 	const history = useHistory();
 	const styles = makeStyles();
 
@@ -26,10 +28,12 @@ const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
 	};
 
 	const handle_Accept = async () => {
-		navList.listShoppedFlag = 1;
-		console.log(JSON.stringify(navList));
-		await list_update(shoppingListID, navList, token);
-		history.push("/home");
+		lists_toUpdate.forEach(async (list) => {
+			list.listShoppedFlag = 1;
+			await list_update(list.shoppingListID, list, token);
+		});
+		//console.log(JSON.stringify(lists_toUpdate));
+		history.push("/login");
 	};
 
 	return (
