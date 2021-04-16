@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 
 const Profile = () => {
+	document.title = "Profile";
 	const email = useSelector((state) => state.user.profile.email);
 	const name = useSelector((state) => state.user.profile.givenName);
 	const lastName = useSelector((state) => state.user.profile.familyName);
