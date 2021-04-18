@@ -1,6 +1,6 @@
 import "../../App.css";
 import "./ShareList.css";
-
+import { shareList_addUser, list_update } from "../../api/api"
 import React, { Component } from "react";
 import Modal, { Confirmation } from "./AlertDialogue";
 import { connect } from 'react-redux';
@@ -64,7 +64,7 @@ class ShareList extends Component {
             //console.log(this.props.token)
             //console.log(this.props.shoppingID)
 
-            await axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": name }, { headers: { Authorization: "Bearer " +this.props.token }})// user.data.users[0].userID })//user.data.users[0].userID)
+            await shareList_addUser(this.props.shoppingID, { "userID": name }, this.props.token)//axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": name }, { headers: { Authorization: "Bearer " +this.props.token }})// user.data.users[0].userID })//user.data.users[0].userID)
 
             //dunno what to put here to get it to talk to the endpoint
             this.setState({ badEmail: false, isOpenShare: true, nextModal: 1 });
@@ -72,7 +72,17 @@ class ShareList extends Component {
     }
 
     requestShopper = async () => {
-        await axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": "AISLESboss@gmail.com" }, { headers: { Authorization: "Bearer " + this.props.token } })
+        this.props.currentList.listPublicStatus = "1";
+        //console.log(JSON.stringify(this.props.currentList));
+        let item = {
+            "listName": this.props.currentList.name,
+            "listPublicStatus": "1",
+            "listShoppedFlag": this.props.currentList.listShoppedFlag,
+            "shopperUserID": this.props.currentList.shopperUserID,
+        }
+        await list_update(this.props.shoppingID, item, this.props.token);
+        //await shareList_addUser(this.props.shoppingID, { "userID": "AISLESboss@gmail.com" }, this.props.token)//axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": "AISLESboss@gmail.com" }, { headers: { Authorization: "Bearer " + this.props.token } })
+        //await axios.post("http://pi.cs.oswego.edu:9081/list/" + this.props.shoppingID + "/user", { "userID": "AISLESboss@gmail.com" }, { headers: { Authorization: "Bearer " + this.props.token } })
         //axios.post("/list/" + this.props.shoppingID + "/user", "aislesboss")
         //i want to just run clickButton with a preset address, however I need a unique pop-up so a workaround is needed 
         //(either dupe if short or add a bool to the state checking the origin if long)
@@ -160,7 +170,8 @@ class ShareList extends Component {
 
 const mapStateToProps = (state) => ({
     shoppingID: state.active_list.shoppingListID,
-    token: state.user.tk.tk//))[0];
+    token: state.user.tk.tk,
+    currentList: state.active_list//))[0];
     //shoppingName: state.active_list.listName
 })
 
