@@ -97,7 +97,7 @@ const App = () => {
 					<HomeEmployee />
 				</Route>
 				<Route exact path="/employee/profile">
-					<NavbarUser />
+					<NavbarEmployee />
 					<ProfileEmployee />
 				</Route>
 				<Route exact path="/employee/orders">
@@ -111,7 +111,15 @@ const App = () => {
 				<Route exact path="/employee/offline_navigation">
 					<NavbarEmployee />
 					<NavigationOfflineEmployee />
-				</Route>
+                </Route>
+                <Route exact path="/employee/faq">
+                    <NavbarEmployee />
+                    <h3>UNDER CONSTRUCTION</h3>
+                </Route>
+                <Route exact path="/employee/about">
+                    <NavbarEmployee />
+                    <h3>UNDER CONSTRUCTION</h3>
+                </Route>
 
 				{/* ADMIN routing  */}
 				<Route exact path="/admin/home">
@@ -119,7 +127,7 @@ const App = () => {
 					<HomeAdmin />
 				</Route>
 				<Route exact path="/admin/profile">
-					<NavbarUser />
+                    <NavbarAdmin />
 					<ProfileAdmin />
 				</Route>
 				<Route exact path="/admin/employees">
@@ -149,7 +157,15 @@ const App = () => {
 				<Route exact path="/admin/assignOrders/assignEmployees">
 					<NavbarAdmin />
 					<AssignEmployees />
-				</Route>
+                </Route>
+                <Route exact path="/admin/faq">
+                    <NavbarAdmin />
+                    <h3>UNDER CONSTRUCTION</h3>
+                </Route>
+                <Route exact path="/admin/about">
+                    <NavbarAdmin />
+                    <h3>UNDER CONSTRUCTION</h3>
+                </Route>
 
 				{/* USER routing  */}
 				<Route exact path="/user/navigation">
@@ -164,9 +180,17 @@ const App = () => {
 					<Profile />
 				</Route>
 				<Route exact path="/shareList">
-                   			<NavbarUser />
-                    			<ShareList />
-                		</Route>
+                   	<NavbarUser />
+                    <ShareList />
+                </Route>
+                <Route exact path="/faq">
+                    <NavbarUser />
+                    <h3>UNDER CONSTRUCTION</h3>
+                </Route>
+                <Route exact path="/about">
+                    <NavbarUser />
+                    <h3>UNDER CONSTRUCTION</h3>
+                </Route>                
 
 				{/* TEST/DEBUGGING routing  */}
 				<Route exact path="/developer">
