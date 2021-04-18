@@ -19,9 +19,11 @@ import SearchBar from "./Search_Bar/Search_Bar";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
 
+
 const RegularLists = ({ items, set_isEdit }) => {
 	const styles = makeStyles();
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    
 
 	const [onDelete, set_onDelete] = useState(false);
 	const [onShare, set_onShare] = useState(false);
@@ -49,12 +51,8 @@ const RegularLists = ({ items, set_isEdit }) => {
 	const handleDelete = () => {
 		set_onDelete(true);
 	};
-	const handleShare = () => {
-        dispatch(shoppingListID);
 
-
-        //set_onShare(true);
-	};
+    
 
 	useEffect(() => {}, []);
 	return (
@@ -142,7 +140,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 					</div>
 
 					<div>
-						<StartShooping />
+						<StartShooping items = {items}/>
 					</div>
 				</>
 			)}
