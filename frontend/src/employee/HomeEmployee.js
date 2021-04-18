@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
+import { update_status, userAccount_login } from "../api/api"
 
 const HomeEmployee = () => {
-	//document.title = "Employee - Home";
-	const [active, setActive] = useState(false);
+	document.title = "Employee - Home";
+    const [active, setActive] = useState(false);//useSelector((state) => state.user.active);//
+    const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 
-	// TODO: Useeffect HTTP request to get state of active or inactiv e
+	// TODO: Useeffect HTTP request to get state of active or inactive
+    useEffect(async () => {
+        await userAccount_login(token).then(r => setActive(r.userShoppingBool))
+    }, []);
 
-	const toggleActive = () => {
+	const toggleActive = async () => {
 		if (active === true) {
-			setActive(false);
+            setActive(false);
+            let item = {
+                "token": token,
+                "isActive": 0
+            }
+            await update_status(item, token)
 			// TODO: Change active status in database as well
 		} else {
-			setActive(true);
+            setActive(true);
+            let item = {
+                "token": token,
+                "isActive": 1
+            }
+            await update_status(item, token)
 			// TODO: Change active status in database as well
 		}
 	};
