@@ -21,15 +21,12 @@ const Navbar = () => {
 					<Link to="/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile
 					</Link>
-					<Link
-						to="/user/offline_navigation"
-						onClick={() => setShowLinks(!showLinks)}
-					>
-						OfflineNavigation
+                    <Link to="/faq" onClick={() => setShowLinks(!showLinks)}>
+                        FAQ
 					</Link>
-					<Link to="/developer" onClick={() => setShowLinks(!showLinks)}>
-						Developer
-					</Link>
+                    <Link to="/about" onClick={() => setShowLinks(!showLinks)}>
+                        About
+                    </Link>
 				</div>
 				<button onClick={() => setShowLinks(!showLinks)}>
 					{" "}
