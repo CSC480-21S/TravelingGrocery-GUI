@@ -25,9 +25,12 @@ const NavbarAdmin = () => {
 					<Link to="/admin/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile
 					</Link>
-					<Link to="/developer" onClick={() => setShowLinks(!showLinks)}>
-						Developer
+                    <Link to="/admin/faq" onClick={() => setShowLinks(!showLinks)}>
+                        FAQ
 					</Link>
+                    <Link to="/admin/about" onClick={() => setShowLinks(!showLinks)}>
+                        About
+                    </Link>
 					{/* NOTE: Put a link to your component here */}
 				</div>
 				<button onClick={() => setShowLinks(!showLinks)}>
