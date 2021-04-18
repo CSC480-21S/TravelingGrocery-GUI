@@ -222,4 +222,9 @@ export const get_employees = (token) =>
 		.get(`${url_user}/Upgrade`, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
-		.catch((e) => console.log(e));
+        .catch((e) => console.log(e));
+
+export const update_status = (tokenAndActiveStatus, token) => 
+    axios
+        .get(`${url_user}/Upgrade`, tokenAndActiveStatus, { headers: { Authorization: `Bearer ${token}` } })
+        .catch((e) => console.log(e))
