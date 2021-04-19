@@ -13,4 +13,6 @@ export const STORE_NAV = "STORE_NAV";
 export const LIST_GET = "LIST_GET";
 export const LIST_GET_ITEMS = "LIST_GET_ITEMS";
 //Assign stuff
-export const ASSIGN_EMPLOYEE = "ASSIGN_EMPLOYEE"
+export const ASSIGN_EMPLOYEE = "ASSIGN_EMPLOYEE";
+//USER
+export const UPDATE_ACTIVE = "UPDATE_ACTIVE";

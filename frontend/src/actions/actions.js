@@ -76,3 +76,7 @@ export const assign_employee = (employee) => (dispatch) => {
 export const sendList = (list) => (dispatch) => {
 	dispatch({ type: TYPES.SEND_LIST, payload: list });
 };
+//Update USer
+export const update_active = (bol) => (dispatch) => {
+	dispatch({ type: TYPES.UPDATE_ACTIVE, payload: bol });
+};

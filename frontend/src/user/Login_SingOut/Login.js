@@ -27,13 +27,15 @@ const Login = () => {
 	];
 	//when Login works
 	const onSuccess = async (response) => {
-		dispatch(send_Google_User_info(response));
 		const token = { token: response.tc.id_token };
 		await userAccount_login(token).then((res) => {
 			const obj = res.data;
+			let data = { response: response, res: res };
+			//console.log(JSON.stringify(data));
+			dispatch(send_Google_User_info(data));
 			if (obj.userType === "employee") return history.push("/employee/home");
 			if (obj.userType === "admin") return history.push("/admin/home");
-			console.log("LOGIN RESPONSE:\n" + JSON.stringify(res.data));
+			//console.log("LOGIN RESPONSE:\n" + JSON.stringify(res.data));
 			return history.push("/home");
 		});
 	};
@@ -43,35 +45,31 @@ const Login = () => {
 	};
 
 	const handleChange = (event) => {
-        setIndex(event.target.value);
-        console.log("index is now: " + index)
+		setIndex(event.target.value);
+		console.log("index is now: " + index);
 	};
 
-    const manageIndex = () => {
-        if (index == 0) {
-            setIndex(1)
-            //console.log("index is now: " + 1)
-        }
-        else if (index == 1) {
-            setIndex(2)
-            //console.log("index is now: " + 2)
-        }
-        else if (index == 2) {
-            setIndex(3)
-            //console.log("index is now: " + 3)
-        }
-        else if (index == 3) {
-            setIndex(0)
-            //console.log("index is now: " + 0)
-        }
+	const manageIndex = () => {
+		if (index == 0) {
+			setIndex(1);
+			//console.log("index is now: " + 1)
+		} else if (index == 1) {
+			setIndex(2);
+			//console.log("index is now: " + 2)
+		} else if (index == 2) {
+			setIndex(3);
+			//console.log("index is now: " + 3)
+		} else if (index == 3) {
+			setIndex(0);
+			//console.log("index is now: " + 0)
+		}
 
-        //(index + 1) > (content.length - 1) ? setIndex(0) : setIndex(index + 1);
-        
+		//(index + 1) > (content.length - 1) ? setIndex(0) : setIndex(index + 1);
 	};
 
-    useEffect(() => {
-        setTimeout(manageIndex, 5000);
-    });
+	useEffect(() => {
+		setTimeout(manageIndex, 5000);
+	});
 
 	return (
 		<div>
@@ -134,8 +132,8 @@ const Login = () => {
 					onSuccess={onSuccess}
 					isSignedIn={true}
 					uxMode={"redirect"}
-                />
-                <p></p>
+				/>
+				<p></p>
 			</div>
 		</div>
 	);

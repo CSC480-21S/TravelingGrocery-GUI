@@ -15,6 +15,7 @@ import CreateList from "./CreateList";
 import { sendList } from "../../actions/actions";
 import { list_get } from "../../actions/actions";
 import { list_getItems } from "../../actions/actions";
+import { set_fromStore } from "../../actions/actions";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const HomePage = () => {
 
 	useEffect(() => {
 		const auth = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
+		dispatch(set_fromStore(false));
 		//console.log(JSON.stringify(auth));
 	}, []);
 	return (
