@@ -21,10 +21,12 @@ function NavbarEmployee() {
                     <Link to="/employee/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile
 					</Link>
-                    <Link to="/employee/offline_navigation" onClick={() => setShowLinks(!showLinks)}>
-						OfflineNavigation
+                    <Link to="/employee/faq" onClick={() => setShowLinks(!showLinks)}>
+						FAQ
 					</Link>
-                    <Link to="/developer" onClick={()=> setShowLinks(!showLinks)}>Developer</Link>
+                    <Link to="/employee/about" onClick={() => setShowLinks(!showLinks)}>
+                        About
+                    </Link>
 					{/* NOTE: Put a link to your component here */}
                 </div>
                 <button onClick={()=> setShowLinks(!showLinks)}> <ReorderIcon /> </button>
