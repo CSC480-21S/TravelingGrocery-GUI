@@ -1,5 +1,6 @@
 import "../../App.css";
-import "./ShareList.css";
+// I moved ShareList.css to styles folder
+import "../../styles/ShareList.css";
 import { shareList_addUser, list_update } from "../../api/api"
 import React, { Component } from "react";
 import Modal, { Confirmation } from "./AlertDialogue";
@@ -126,7 +127,7 @@ class ShareList extends Component {
         //<p>{this.props.shoppingID}</p>
 
         return (
-            <div>               
+            <div className="ShareList">               
                 <h1 className="title">Share List</h1>
 
                 <p className="text">OPTION 1:</p>

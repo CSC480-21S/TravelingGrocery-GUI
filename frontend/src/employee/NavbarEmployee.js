@@ -18,6 +18,9 @@ function NavbarEmployee() {
                 {/* If showLinks is true, set id to "hidden" else set to "" */}
                 <div className="links" id={showLinks ? "hidden" : ""}>
                     <Link to="/employee/home" onClick={()=> setShowLinks(!showLinks)}>Home</Link>
+                    <Link to="/employee/offline_navigation" onClick={() => setShowLinks(!showLinks)}>
+                        OfflineNavigation
+					</Link>
                     <Link to="/employee/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile
 					</Link>

@@ -65,6 +65,7 @@ const OrdersEmployee = () => {
 		let lists_toUpdate = [];
 		let count = 0;
 		orders.forEach(async (order) => {
+			count++;
 			// If order is selected
 			if (order.bool) {
 				//Set Active List reducer
@@ -97,7 +98,7 @@ const OrdersEmployee = () => {
 					//console.log("hello");
 					return;
 				}
-				count++;
+				
 				if (count === orders.length) {
 					//console.log(`COUNT: ${count}, ORDERS.LENGHT: ${orders.length} `);
 					//console.log(`LIST TO UPDATE: ${JSON.stringify(lists_toUpdate)}`);

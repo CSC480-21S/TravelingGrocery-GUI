@@ -18,6 +18,9 @@ const Navbar = () => {
 					<Link to="/home" onClick={() => setShowLinks(!showLinks)}>
 						Home
 					</Link>
+					<Link to="/user/offline_navigation" onClick={() => setShowLinks(!showLinks)}>
+                        OfflineNavigation
+					</Link>
 					<Link to="/profile" onClick={() => setShowLinks(!showLinks)}>
 						Profile
 					</Link>
