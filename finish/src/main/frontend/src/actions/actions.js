@@ -3,65 +3,18 @@ import * as TYPES from "./actionTypes";
 
 //DONT FORGET TO DISPATCH THE ACTION (REDUX)
 
-//============================================================================
-//					JSON SERVER
-//============================================================================
-//Create a new List
-export const create_List = (list, id) => async (dispatch) => {
-	try {
-		const { data } = await api.createList(list, id);
-		//console.log(`data: ${data}`);
-		dispatch({ type: TYPES.CREATE, payload: data });
-	} catch (error) {
-		console.log(error.message);
-	}
-};
-//Get all Lists
-export const fetchLists = (id) => async (dispatch) => {
-	try {
-		const { data } = await api.getLists(id);
-		//console.log("FetchLists data: " + data);
-		dispatch({ type: TYPES.FETCH_ALL, payload: data });
-	} catch (error) {
-		console.log(error.message);
-	}
-};
-//Send a List to a Component
-export const sendList = (list) => (dispatch) => {
-	dispatch({ type: TYPES.SEND_LIST, payload: list });
-};
 //Send Google Info to a Component
 export const send_Google_User_info = (profile) => (dispatch) => {
 	dispatch({ type: TYPES.SEND_GOOGLE_INFO, payload: profile });
-};
-//Fetch items of a list
-export const fecth_list_items = (user_id, list_id) => async (dispatch) => {
-	try {
-		const { data } = await api.fetch_items(user_id, list_id);
-		//console.log(`Items from Actions: ${JSON.stringify(data)}`);
-		dispatch({ type: TYPES.FETCH_LIST_ITEMS, payload: data });
-	} catch (error) {
-		console.log(error.message);
-	}
-};
-//Fetch Store items
-export const fetch_store_items = () => async (dispatch) => {
-	try {
-		const { data } = await api.fetch_store_items();
-		//console.log(`Store Items from Actions: ${JSON.stringify(data)}`);
-		dispatch({ type: TYPES.FETCH_STORE_ITEMS, payload: data });
-	} catch (error) {
-		console.log(error.message);
-	}
 };
 
 //============================================================================
 //					PI SERVER
 //============================================================================
 
-export const list_get = () => async (dispatch) => {
+export const list_get = (token) => async (dispatch) => {
 	try {
-		const { data } = await api.list_get();
+		const { data } = await api.list_get(token);
 		//console.log("response (list_get): " + JSON.stringify(data));
 		dispatch({ type: TYPES.LIST_GET, payload: data });
 	} catch (error) {
@@ -69,20 +22,10 @@ export const list_get = () => async (dispatch) => {
 	}
 };
 
-export const list_create = (list) => async (dispatch) => {
+export const list_getItems = (shoppingListID, token) => async (dispatch) => {
 	try {
-		//console.log(JSON.stringify("List: " + JSON.stringify(list)));
-		const { data } = await api.list_create(list);
-		//console.log("respone (list_create) " + JSON.stringify(data));
-		dispatch({ type: TYPES.CREATE, payload: data });
-	} catch (error) {
-		console.log(error.nessage);
-	}
-};
-export const list_getItems = (shoppingListID) => async (dispatch) => {
-	try {
-		const { data } = await api.list_getItems(shoppingListID);
-		console.log("response (list_getItems): " + JSON.stringify(data));
+		const { data } = await api.list_getItems(shoppingListID, token);
+		//console.log("response (list_getItems): " + JSON.stringify(data));
 		dispatch({ type: TYPES.LIST_GET_ITEMS, payload: data });
 	} catch (error) {
 		console.log(error.message);
@@ -92,16 +35,16 @@ export const list_getItems = (shoppingListID) => async (dispatch) => {
 export const store_getItems = () => async (dispatch) => {
 	try {
 		const { data } = await api.store_getItems();
-		console.log("Response (store_getItems: " + JSON.stringify(data));
+		//console.log("Response (store_getItems: " + JSON.stringify(data));
 		dispatch({ type: TYPES.FETCH_STORE_ITEMS, payload: data });
 	} catch (error) {
 		console.log(error.message);
 	}
 };
-export const store_searchItems = (search) => async (dispatch) => {
+export const store_navigation = (lists, token) => async (dispatch) => {
 	try {
-		const { data } = await api.store_searchItems();
-		console.log("Response (store_searchItems): " + JSON.stringify(data));
+		const { data } = await api.store_nav(lists, token);
+		dispatch({ type: TYPES.STORE_NAV, payload: data });
 	} catch (error) {
 		console.log(error.message);
 	}
@@ -123,4 +66,17 @@ export const listToBeUpdated_AddItem = (item) => (dispatch) => {
 };
 export const set_fromStore = (bol) => (dispatch) => {
 	dispatch({ type: TYPES.SET_FROM_STORE, payload: bol });
+};
+
+export const assign_employee = (employee) => (dispatch) => {
+	dispatch({ type: TYPES.ASSIGN_EMPLOYEE, payload: employee });
+};
+
+//Send a List to a Component
+export const sendList = (list) => (dispatch) => {
+	dispatch({ type: TYPES.SEND_LIST, payload: list });
+};
+//Update USer
+export const update_active = (bol) => (dispatch) => {
+	dispatch({ type: TYPES.UPDATE_ACTIVE, payload: bol });
 };

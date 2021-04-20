@@ -1,22 +1,24 @@
-import { compose } from "redux";
-import { SEND_GOOGLE_INFO } from "../../actions/actionTypes";
+import { SEND_GOOGLE_INFO, UPDATE_ACTIVE } from "../../actions/actionTypes";
 //profile = initial state
-export default (state = [], action) => {
+const user = (state = [], action) => {
 	switch (action.type) {
 		case SEND_GOOGLE_INFO: {
 			let data = {};
-			var token;
-			const profile = action.payload.profileObj;
-			if (!action.payload.tokenId) {
+			const profile = action.payload.response.profileObj;
+			console.log(JSON.stringify(action.payload.res.data));
+			if (!action.payload.response.tokenId) {
 				data["tk"] = null;
 			} else {
-				token = { tk: action.payload.tokenId };
-				data["tk"] = token;
+				data["tk"] = { tk: action.payload.response.tokenId };
+				data["active"] = action.payload.res.data.userShoppingBool;
 			}
 			data["profile"] = profile;
 			return data;
 		}
+		case UPDATE_ACTIVE:
+			return { ...state, active: action.payload };
 		default:
 			return state;
 	}
 };
+export default user;

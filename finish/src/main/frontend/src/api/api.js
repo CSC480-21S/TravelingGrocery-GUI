@@ -3,6 +3,8 @@ import axios from "axios";
 const url = "http://localhost:5050"; //first run json server,
 const url_list = "http://pi.cs.oswego.edu:9081/list";
 const url_store = "http://pi.cs.oswego.edu:9681/store";
+//const url_user = "http://pi.cs.oswego.edu:7808/user";
+const url_user = "http://pi.cs.oswego.edu:7808/user";
 //run ngrok http 5050,
 //change the url   http://pi.cs.oswego.edu:9181/list
 
@@ -35,79 +37,196 @@ export const delete_item = (item_id) => axios.delete(`${url}/items/${item_id}`);
 //										SERVER DEPLOYED at PI
 //==========================================================================================================
 
-//===================================  LIST SERVICE  =======================================================
-//
-//	List (List of lists) --------------------
-export const list_get = () =>
+//----------------------------------------------------------------------------------------------------------
+//											 LIST SERVICE
+//----------------------------------------------------------------------------------------------------------
+
+//--------------------	List (List of lists) --------------------
+
+export const list_get = (token) =>
 	axios
-		.get(url_list)
+		.get(url_list, { headers: { Authorization: `Bearer ${token}` } })
 		.catch((e) => console.log(`API list_get [ERROR]: ${e.message}`));
-export const list_create = (list) =>
+export const list_create = (list, token) =>
 	axios
-		.post(url_list, list)
+		.post(url_list, list, { headers: { Authorization: `Bearer ${token}` } })
 		.catch((e) => console.log(`API list_create [ERROR]: ${e.message}`));
-export const list_delete = (shoppingListID) =>
+export const list_delete = (shoppingListID, token) =>
 	axios
-		.delete(`${url_list}/${shoppingListID}`)
+		.delete(`${url_list}/${shoppingListID}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(`API list_delete [ERROR]: ${e.message}`));
-export const list_update = (shoppingListID, list) =>
+export const list_update = (shoppingListID, list, token) =>
 	axios
-		.put(`${url_list}/${shoppingListID}`, list)
+		.put(`${url_list}/${shoppingListID}`, list, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(`API list_update [ERROR]: ${e.message}`));
-// List Items (List of Items) --------------------
-export const list_getMissedItems = () =>
+
+// --------------------  List Items (List of Items) --------------------
+
+export const list_getMissedItems = (token) =>
 	axios
-		.get(`${url_list}/missed/items`)
+		.get(`${url_list}/missed/items`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(`API list_getMissedItems [ERROR]: ${e.message}`));
-export const list_getItems = (shoppingListID) =>
+
+//Get ----------------------------------------
+export const list_getItems = (shoppingListID, token) =>
 	axios
-		.get(`${url_list}/${shoppingListID}/items`)
+		.get(`${url_list}/${shoppingListID}/items`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(`API list_getItems [ERROR]: ${e.message}`));
-export const list_addItemList = (shoppingListID, items) =>
+
+//Create ----------------------------------------
+export const list_addItemList = (shoppingListID, items, token) =>
 	axios
-		.post(`${url_list}/${shoppingListID}/items`, items)
+		.post(`${url_list}/${shoppingListID}/items`, items, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-export const list_deleteItemList = (shoppingListID, items) =>
+
+//Delete ----------------------------------------
+export const list_deleteItemList = (shoppingListID, items, token) =>
 	axios
-		.delete(`${url_list}/${shoppingListID}/items`, items)
+		.delete(`${url_list}/${shoppingListID}/items`, items, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-export const list_updateItemList = (shoppingListID, items) =>
+
+//Update ----------------------------------------
+export const list_updateItemList = (shoppingListID, items, token) =>
 	axios
-		.put(`${url_list}/${shoppingListID}/items`, items)
+		.put(`${url_list}/${shoppingListID}/items`, items, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-//	List Item (Individual Item)--------------------
-export const list_addItem = (shoppingListID, item) =>
+
+//--------------------	List Item (Individual Item)  --------------------
+
+//Create ----------------------------------------
+export const list_addItem = (shoppingListID, item, token) =>
 	axios
-		.post(`${url_list}/${shoppingListID}/item`, item)
+		.post(`${url_list}/${shoppingListID}/item`, item, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-export const list_deleteItem = (shoppingListID, itemName) =>
+
+//Delete ----------------------------------------
+export const list_deleteItem = (shoppingListID, itemName, token) =>
 	axios
-		.delete(`${url_list}/${shoppingListID}/item/${itemName}`)
+		.delete(`${url_list}/${shoppingListID}/item/${itemName}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-export const list_updateItem = (shoppingListID, itemName, item) =>
+
+//Update ----------------------------------------
+export const list_updateItem = (shoppingListID, itemName, item, token) =>
 	axios
-		.put(`${url_list}/${shoppingListID}/item/${itemName}`, item)
+		.put(`${url_list}/${shoppingListID}/item/${itemName}`, item, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-//	Share List
-export const shareList_getUsers = (shoppingListID) =>
+
+//Get Share List ----------------------------------------
+export const shareList_getUsers = (shoppingListID, token) =>
 	axios
-		.get(`${url_list}/${shoppingListID}/user`)
+		.get(`${url_list}/${shoppingListID}/user`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-export const shareList_addUser = (shoppingListID, userID) =>
+
+//Create Share List ----------------------------------------
+export const shareList_addUser = (shoppingListID, userID, token) =>
 	axios
-		.post(`${url_list}/${shoppingListID}/user`, userID)
+		.post(`${url_list}/${shoppingListID}/user`, userID, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-export const shareList_deleteUser = (shoppingListID, userID) =>
+
+//Delete Share List ----------------------------------------
+export const shareList_deleteUser = (shoppingListID, userID, token) =>
 	axios
-		.delete(`${url_list}/${shoppingListID}/user/${userID}`)
+		.delete(`${url_list}/${shoppingListID}/user/${userID}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		.catch((e) => console.log(e.message));
-//===================================  Store SERVICE  =======================================================
-//
+
+//--------------------	Analytics  --------------------
+
+// Shopped Items Per Hour -------------------------
+export const list_getAnalytics = (users, token) =>
+	axios
+		.put(`${url_list}/shopped/items/time`, users, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e.message));
+
+//----------------------------------------------------------------------------------------------------------
+//										 Store SERVICE
+//----------------------------------------------------------------------------------------------------------
+
+export const store_nav = (lists, token) =>
+	axios.post(`${url_store}/nav`, lists, {
+		headers: { Authorization: `Bearer ${token}` },
+	});
 
 export const store_getItems = () =>
 	axios
 		.get(`${url_store}/items`)
 		.catch((e) => console.log(`store_getItems: ${e.message}`));
-export const store_searchItems = (searchTerm) =>
-	axios.post(`${url_store}/search`, searchTerm);
+
+export const store_searchItems = (searchTerm, token) =>
+	axios.post(`${url_store}/search`, searchTerm, {
+		headers: { Authorization: `Bearer ${token}` },
+	});
+
+export const store_addItems = (items, token) =>
+	axios
+		.post(`${url_store}/additems`, items, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(`store_addItems: ${e.message}`));
+//----------------------------------------------------------------------------------------------------------
+//										 User Account SERVICE
+//----------------------------------------------------------------------------------------------------------
+
+export const userAccount_login = (token) =>
+	axios.post(`${url_user}/records`, token);
+
 /* .then((res) => console.log(JSON.stringify(res.data))); */
+
+//----------------------------------------------------------------------------------------------------------
+//										 Admin SERVICE
+//----------------------------------------------------------------------------------------------------------
+
+export const unassignedList = (token) =>
+	axios
+		.get(`${url_list}/unassigned`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e));
+
+export const add_employee = (employee, token) =>
+	axios
+		.post(`${url_user}/Upgrade`, employee, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(`upgrade: ${e.message}`));
+
+export const get_employees = (token) =>
+	axios
+		.get(`${url_user}/Upgrade`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e));
+
+export const update_status = (tokenAndActiveStatus, token) =>
+	axios
+		.put(`${url_user}/Upgrade`, tokenAndActiveStatus, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e));
