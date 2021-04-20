@@ -14,7 +14,7 @@ import { list_getItems } from "../../../../actions/actions";
 const Confirm = ({ new_Items, set_isEdit }) => {
 	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId; //token from google login
 	const dispatch = useDispatch();
-	const url = "http://pi.cs.oswego.edu:9081/list";
+	const url = process.env.REACT_APP_LIST_SERVICE;
 	const shoppingListID = useSelector(
 		(state) => state.active_list.shoppingListID
 	);

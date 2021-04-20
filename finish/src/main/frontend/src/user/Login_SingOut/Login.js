@@ -86,6 +86,7 @@ const Login = () => {
 			</div>
 			<div className="infoContainer">
 				<img
+					alt=""
 					className="images"
 					src={content[index].image}
 					style={{ width: "60%" }}

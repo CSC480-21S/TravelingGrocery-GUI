@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Order = ({ shoppingListID, order, orders, setOrders }) => {
 	const [color, setColor] = useState("#f4f4f4");
