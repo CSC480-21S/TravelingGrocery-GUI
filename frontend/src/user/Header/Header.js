@@ -6,9 +6,8 @@ import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import { React, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 //Actions
-import { set_fromStore } from "../../actions/actions";
 
 //Components or local imports
 import SetTitle from "./Set_Title/Set_Title";
@@ -19,15 +18,12 @@ const Header = () => {
 	const styles = makeStyles();
 	const location = useLocation();
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	const title = useSelector((state) => state.active_list.listName); //gets the name of the list clicked
 
 	const [open2, setOpen2] = useState(false); //Boolean that determines the state of Dialog/Set_Title component
 	//Profile
 	const handleBack = () => {
-		/* if (location.pathname === `/list/${title}/store`)
-			dispatch(set_fromStore(false)); */
 		history.goBack();
 	};
 

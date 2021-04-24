@@ -88,6 +88,9 @@ const NavigationEmployee = () => {
 							<div className="itemCount">
 								Quantity: {directions[index].itemQuantity}
 							</div>
+							<div className="itemDepartment">
+								ShoppingID: {directions[index].shoppingListID}{" "}
+							</div>
 						</div>
 					</>
 				) : (

@@ -1,41 +1,8 @@
 import axios from "axios";
 
-const url = "http://localhost:5050"; //first run json server,
-const url_list = "http://pi.cs.oswego.edu:9081/list";
-const url_store = "http://pi.cs.oswego.edu:9681/store";
-//const url_user = "http://pi.cs.oswego.edu:7808/user";
-const url_user = "http://pi.cs.oswego.edu:7808/user";
-//run ngrok http 5050,
-//change the url   http://pi.cs.oswego.edu:9181/list
-
-//==========================================================================================================
-//					JSON-SERVER
-//==========================================================================================================
-//Handle Store's items--------------------
-export const fetch_store_items = () => axios.get(`${url}/items_list`);
-export const fetch_items = (user_id, list_Id) =>
-	axios.get(`${url}/users/${user_id}/items?listId=${list_Id}`);
-//Handle User's List --------------------
-export const getLists = (user_id) => axios.get(`${url}/users/${user_id}/lists`);
-export const update_List = (list_id, list) =>
-	axios.put(`${url}/lists/${list_id}`, list);
-export const createList = (newList, user_id) =>
-	axios.post(`${url}/users/${user_id}/lists`, newList);
-export const add_item_to_list = (user_id, item) =>
-	axios.post(`${url}/users/${user_id}/items`, item);
-//Handle List's items --------------------
-export const add_Item = (item_id, item) =>
-	axios.post(`${url}/items/${item_id}`, item);
-export const update_Item = (item_id, item) =>
-	axios.put(`${url}/items/${item_id}`, item);
-
-export const delete_Item = (item_id, item) =>
-	axios.delete(`${url}/items/${item_id}`);
-//Testing stuff
-export const delete_item = (item_id) => axios.delete(`${url}/items/${item_id}`);
-//==========================================================================================================
-//										SERVER DEPLOYED at PI
-//==========================================================================================================
+const url_list = process.env.REACT_APP_LIST_SERVICE;
+const url_store = process.env.REACT_APP_STORE_SERVICE;
+const url_user = process.env.REACT_APP_USER_SERVICE;
 
 //----------------------------------------------------------------------------------------------------------
 //											 LIST SERVICE
@@ -43,20 +10,27 @@ export const delete_item = (item_id) => axios.delete(`${url}/items/${item_id}`);
 
 //--------------------	List (List of lists) --------------------
 
+//Get List ----------------------------------------
 export const list_get = (token) =>
 	axios
 		.get(url_list, { headers: { Authorization: `Bearer ${token}` } })
 		.catch((e) => console.log(`API list_get [ERROR]: ${e.message}`));
+
+//Create List ----------------------------------------
 export const list_create = (list, token) =>
 	axios
 		.post(url_list, list, { headers: { Authorization: `Bearer ${token}` } })
 		.catch((e) => console.log(`API list_create [ERROR]: ${e.message}`));
+
+//Delete List ----------------------------------------
 export const list_delete = (shoppingListID, token) =>
 	axios
 		.delete(`${url_list}/${shoppingListID}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		.catch((e) => console.log(`API list_delete [ERROR]: ${e.message}`));
+
+//Update List ----------------------------------------
 export const list_update = (shoppingListID, list, token) =>
 	axios
 		.put(`${url_list}/${shoppingListID}`, list, {
@@ -66,6 +40,7 @@ export const list_update = (shoppingListID, list, token) =>
 
 // --------------------  List Items (List of Items) --------------------
 
+//Get Missed Items ----------------------------------------
 export const list_getMissedItems = (token) =>
 	axios
 		.get(`${url_list}/missed/items`, {
@@ -73,7 +48,7 @@ export const list_getMissedItems = (token) =>
 		})
 		.catch((e) => console.log(`API list_getMissedItems [ERROR]: ${e.message}`));
 
-//Get ----------------------------------------
+//Get Item ----------------------------------------
 export const list_getItems = (shoppingListID, token) =>
 	axios
 		.get(`${url_list}/${shoppingListID}/items`, {
@@ -81,7 +56,7 @@ export const list_getItems = (shoppingListID, token) =>
 		})
 		.catch((e) => console.log(`API list_getItems [ERROR]: ${e.message}`));
 
-//Create ----------------------------------------
+//Create Items ----------------------------------------
 export const list_addItemList = (shoppingListID, items, token) =>
 	axios
 		.post(`${url_list}/${shoppingListID}/items`, items, {
@@ -89,7 +64,7 @@ export const list_addItemList = (shoppingListID, items, token) =>
 		})
 		.catch((e) => console.log(e.message));
 
-//Delete ----------------------------------------
+//Delete Items ----------------------------------------
 export const list_deleteItemList = (shoppingListID, items, token) =>
 	axios
 		.delete(`${url_list}/${shoppingListID}/items`, items, {
@@ -97,7 +72,7 @@ export const list_deleteItemList = (shoppingListID, items, token) =>
 		})
 		.catch((e) => console.log(e.message));
 
-//Update ----------------------------------------
+//Update Items ----------------------------------------
 export const list_updateItemList = (shoppingListID, items, token) =>
 	axios
 		.put(`${url_list}/${shoppingListID}/items`, items, {
@@ -107,7 +82,7 @@ export const list_updateItemList = (shoppingListID, items, token) =>
 
 //--------------------	List Item (Individual Item)  --------------------
 
-//Create ----------------------------------------
+//Create Single Item ----------------------------------------
 export const list_addItem = (shoppingListID, item, token) =>
 	axios
 		.post(`${url_list}/${shoppingListID}/item`, item, {
@@ -115,7 +90,7 @@ export const list_addItem = (shoppingListID, item, token) =>
 		})
 		.catch((e) => console.log(e.message));
 
-//Delete ----------------------------------------
+//Delete  Single Item  ----------------------------------------
 export const list_deleteItem = (shoppingListID, itemName, token) =>
 	axios
 		.delete(`${url_list}/${shoppingListID}/item/${itemName}`, {
@@ -123,13 +98,15 @@ export const list_deleteItem = (shoppingListID, itemName, token) =>
 		})
 		.catch((e) => console.log(e.message));
 
-//Update ----------------------------------------
+//Update  Single Item  ----------------------------------------
 export const list_updateItem = (shoppingListID, itemName, item, token) =>
 	axios
 		.put(`${url_list}/${shoppingListID}/item/${itemName}`, item, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		.catch((e) => console.log(e.message));
+
+//--------------------	Share List  --------------------
 
 //Get Share List ----------------------------------------
 export const shareList_getUsers = (shoppingListID, token) =>
@@ -169,21 +146,25 @@ export const list_getAnalytics = (users, token) =>
 //										 Store SERVICE
 //----------------------------------------------------------------------------------------------------------
 
+// Get navigation directions -------------------------
 export const store_nav = (lists, token) =>
 	axios.post(`${url_store}/nav`, lists, {
 		headers: { Authorization: `Bearer ${token}` },
 	});
 
+// Get items from the Store -------------------------
 export const store_getItems = () =>
 	axios
 		.get(`${url_store}/items`)
 		.catch((e) => console.log(`store_getItems: ${e.message}`));
 
+// POST Search items -------------------------
 export const store_searchItems = (searchTerm, token) =>
 	axios.post(`${url_store}/search`, searchTerm, {
 		headers: { Authorization: `Bearer ${token}` },
 	});
 
+// POST Add items to the store -------------------------
 export const store_addItems = (items, token) =>
 	axios
 		.post(`${url_store}/additems`, items, {
@@ -194,14 +175,11 @@ export const store_addItems = (items, token) =>
 //										 User Account SERVICE
 //----------------------------------------------------------------------------------------------------------
 
+// Authenticate user with backend -------------------------
 export const userAccount_login = (token) =>
 	axios.post(`${url_user}/records`, token);
 
-/* .then((res) => console.log(JSON.stringify(res.data))); */
-
-//----------------------------------------------------------------------------------------------------------
-//										 Admin SERVICE
-//----------------------------------------------------------------------------------------------------------
+////--------------------	Admin 	-------------------------
 
 export const unassignedList = (token) =>
 	axios

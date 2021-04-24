@@ -8,9 +8,9 @@ import img_out_of_stock from "../../images/out_of_stock.jpg";
 const NavigationEmployee = () => {
 	// I have to set a default placeholder state until the get request finishes?
 	// TODO:  This is a weird fix, Find a better way?
-    const directions = useSelector((state) => state.storeNav);
-
-    document.title = "Navigation";
+	const directions = useSelector((state) => state.storeNav);
+	// THIS SHOULD BE DELETED
+	document.title = "Navigation";
 
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
@@ -57,6 +57,7 @@ const NavigationEmployee = () => {
 				<p className="hugLeft"> {directions[index].itemName} </p>
 				<p className="hugLeft"> {directions[index].department} Department </p>
 				<p className="hugLeft"> Aisle {directions[index].aisle} </p>
+				<p> hello</p>
 				<p className="hugLeft">
 					{" "}
 					Rack {directions[index].rack} | {directions[index].side} side |{" "}

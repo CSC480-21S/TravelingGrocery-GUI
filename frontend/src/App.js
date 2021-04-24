@@ -43,37 +43,16 @@ import AssignEmployees from "./admin/AssignOrders/AssignEmployees";
 const App = () => {
 	const [bol, set_bol] = useState(null);
 
-	const handleLogin = () => {
-		try {
-			window.gapi.load("auth2", () => {
-				window.gapi.auth2
-					.init({
-						ux_mode: "redirect",
-						client_id:
-							"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
-					})
-					.then(async () => {
-						const auth = window.gapi.auth2.getAuthInstance();
-						set_bol(auth.isSignedIn.get());
-						auth.isSignedIn.listen((isSignedIn) => set_bol(isSignedIn));
-					});
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
 	useEffect(() => {
-		//handleLogin();
+		//handle GAPI;
 		try {
 			window.gapi.load("auth2", () => {
 				window.gapi.auth2
 					.init({
 						ux_mode: "redirect",
-						client_id:
-							"534704394140-vgqdcmbmel4gn1bfa7g3hd6h70qm5c6m.apps.googleusercontent.com",
+						client_id: process.env.REACT_APP_GAPI_KEY,
 					})
-					.then(async () => {
+					.then(() => {
 						const auth = window.gapi.auth2.getAuthInstance();
 						set_bol(auth.isSignedIn.get());
 						auth.isSignedIn.listen((isSignedIn) => set_bol(isSignedIn));
@@ -111,15 +90,15 @@ const App = () => {
 				<Route exact path="/employee/offline_navigation">
 					<NavbarEmployee />
 					<NavigationOfflineEmployee />
-                </Route>
-                <Route exact path="/employee/faq">
-                    <NavbarEmployee />
-                    <h3>UNDER CONSTRUCTION</h3>
-                </Route>
-                <Route exact path="/employee/about">
-                    <NavbarEmployee />
-                    <h3>UNDER CONSTRUCTION</h3>
-                </Route>
+				</Route>
+				<Route exact path="/employee/faq">
+					<NavbarEmployee />
+					<h3>UNDER CONSTRUCTION</h3>
+				</Route>
+				<Route exact path="/employee/about">
+					<NavbarEmployee />
+					<h3>UNDER CONSTRUCTION</h3>
+				</Route>
 
 				{/* ADMIN routing  */}
 				<Route exact path="/admin/home">
@@ -127,7 +106,7 @@ const App = () => {
 					<HomeAdmin />
 				</Route>
 				<Route exact path="/admin/profile">
-                    <NavbarAdmin />
+					<NavbarAdmin />
 					<ProfileAdmin />
 				</Route>
 				<Route exact path="/admin/employees">
@@ -157,15 +136,15 @@ const App = () => {
 				<Route exact path="/admin/assignOrders/assignEmployees">
 					<NavbarAdmin />
 					<AssignEmployees />
-                </Route>
-                <Route exact path="/admin/faq">
-                    <NavbarAdmin />
-                    <h3>UNDER CONSTRUCTION</h3>
-                </Route>
-                <Route exact path="/admin/about">
-                    <NavbarAdmin />
-                    <h3>UNDER CONSTRUCTION</h3>
-                </Route>
+				</Route>
+				<Route exact path="/admin/faq">
+					<NavbarAdmin />
+					<h3>UNDER CONSTRUCTION</h3>
+				</Route>
+				<Route exact path="/admin/about">
+					<NavbarAdmin />
+					<h3>UNDER CONSTRUCTION</h3>
+				</Route>
 
 				{/* USER routing  */}
 				<Route exact path="/user/navigation">
@@ -180,17 +159,17 @@ const App = () => {
 					<Profile />
 				</Route>
 				<Route exact path="/shareList">
-                   	<NavbarUser />
-                    <ShareList />
-                </Route>
-                <Route exact path="/faq">
-                    <NavbarUser />
-                    <h3>UNDER CONSTRUCTION</h3>
-                </Route>
-                <Route exact path="/about">
-                    <NavbarUser />
-                    <h3>UNDER CONSTRUCTION</h3>
-                </Route>                
+					<NavbarUser />
+					<ShareList />
+				</Route>
+				<Route exact path="/faq">
+					<NavbarUser />
+					<h3>UNDER CONSTRUCTION</h3>
+				</Route>
+				<Route exact path="/about">
+					<NavbarUser />
+					<h3>UNDER CONSTRUCTION</h3>
+				</Route>
 
 				{/* TEST/DEBUGGING routing  */}
 				<Route exact path="/developer">

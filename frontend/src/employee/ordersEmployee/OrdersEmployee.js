@@ -61,12 +61,14 @@ const OrdersEmployee = () => {
 		// Repeat for the rest of the lists
 
 		/* if order is selected add to final array? */
+
 		let lists = { lists: [] };
 		let lists_toUpdate = [];
 		let count = 0;
 		orders.forEach(async (order) => {
 			count++;
 			// If order is selected
+			//console.log("hello");
 			if (order.bool) {
 				//Set Active List reducer
 				delete order.bool;
@@ -90,7 +92,7 @@ const OrdersEmployee = () => {
 					temp.itemQuantityArray.push(obj.quantityItem);
 				});
 				lists.lists.push(temp);
-				// 	console.log("TEMP: \n" + JSON.stringify(temp));
+				//console.log("TEMP: \n" + JSON.stringify(temp));
 
 				/*if the admin didnt select any order and then pressing assign order button*/
 				if (lists.lists.length < 1) {
@@ -98,11 +100,11 @@ const OrdersEmployee = () => {
 					//console.log("hello");
 					return;
 				}
-				
+
 				if (count === orders.length) {
 					//console.log(`COUNT: ${count}, ORDERS.LENGHT: ${orders.length} `);
 					//console.log(`LIST TO UPDATE: ${JSON.stringify(lists_toUpdate)}`);
-					//console.log("FINAL LIST:" + JSON.stringify(lists));
+					console.log("FINAL LIST:" + JSON.stringify(lists));
 					//SET ACTIVE LISTS
 					dispatch(sendList(lists_toUpdate));
 					//SEND POST FOR NAV DIRECTIONS

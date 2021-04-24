@@ -1,24 +1,12 @@
 {
   "users": [
     {
-      "id": "justincabrera8546666@gmail.com",
-      "email": "justincabrera8546666@gmail.com",
-      "num": "02"
+      "id": "justincabrera854@gmail.com",
+      "email": "justincabrera854@gmail.com"
     },
     {
-      "id": "jcabrera1@oswego.edu",
-      "email": "jcabrera1@oswego.edu",
-      "num": "02"
-    },
-    {
-      "id": "jcabrera2@oswego.edu",
-      "email": "jcabrera2@oswego.edu",
-      "num": "02"
-    },
-    {
-      "id": "jcabrera3@oswego.edu",
-      "email": "jcabrera3@oswego.edu",
-      "num": "02"
+      "id": "jcabrera@oswego.edu",
+      "email": "jcabrera@oswego.edu"
     }
   ],
   "lists": [
@@ -231,44 +219,6 @@
     {
       "id": 3,
       "name": "Frozen Foods"
-    }
-  ],
-
-  "Orders": [
-    {
-      "id": 1,
-      "OrderNumber": 1,
-      "NumOfItems": 20,
-      "Customer": "Nazar Trut",
-      "Time": "09:57 AM"
-    },
-    {
-      "id": 2,
-      "OrderNumber": 2,
-      "NumOfItems": 20,
-      "Customer": "Nazar Trut",
-      "Time": "09:57 AM"
-    },
-    {
-      "id": 3,
-      "OrderNumber": 3,
-      "NumOfItems": 20,
-      "Customer": "Nazar Trut",
-      "Time": "09:57 AM"
-    },
-    {
-      "id": 4,
-      "OrderNumber": 4,
-      "NumOfItems": 20,
-      "Customer": "Nazar Trut",
-      "Time": "09:57 AM"
-    },
-    {
-      "id": 5,
-      "OrderNumber": 5,
-      "NumOfItems": 20,
-      "Customer": "Nazar Trut",
-      "Time": "09:57 AM"
     }
   ]
 }
