@@ -1,6 +1,6 @@
 import { FETCH_STORE_ITEMS } from "../../actions/actionTypes";
 
-const Store_List = (lists = [], action) => {
+export default (lists = [], action) => {
 	switch (action.type) {
 		case FETCH_STORE_ITEMS:
 			//console.log(`from reducer: ${JSON.stringify(action.payload)}`);
@@ -9,4 +9,3 @@ const Store_List = (lists = [], action) => {
 			return lists;
 	}
 };
-export default Store_List;
