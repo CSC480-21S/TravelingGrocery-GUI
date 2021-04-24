@@ -1,10 +1,12 @@
-import { SET_ACTIVE_LIST } from "../../actions/actionTypes";
+import { SEND_LIST } from "../../actions/actionTypes";
 
-export default (active_list = [], action) => {
-	switch (action) {
-		case SET_ACTIVE_LIST:
+const active_list = (lists = [], action) => {
+	//where action constains the payload/data thats going to the Store
+	switch (action.type) {
+		case SEND_LIST:
 			return action.payload;
 		default:
-			return active_list;
+			return lists;
 	}
 };
+export default active_list;
