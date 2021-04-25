@@ -73,7 +73,7 @@ const NavigationUser = () => {
 			{/* item container */}
 			<div className={!finished ? "itemContainer" : "itemContainer2"}>
 				{/* Conditonal statement bool ? ifTrue : ifFalse */}
-				{!finished ? (
+				{!finished && directions.length > 0 ? (
 					<>
 						{directions[index].itemStockBool ? (
 							<img className="itemImage" src={img_blank} alt="itemImage" />
@@ -103,7 +103,7 @@ const NavigationUser = () => {
 				{/* end of list */}
 			</div>
 
-			{!finished ? (
+			{!finished && directions.length > 0 ? (
 				<>
 					<div className="containerDirections">
 						{/* Conditonal statement bool ? ifTrue : ifFalse */}
@@ -142,7 +142,7 @@ const NavigationUser = () => {
 				<button className="backButton" onClick={() => decrement()}>
 					Back
 				</button>
-				{!finished ? (
+				{!finished && directions.length > 0 ? (
 					<button className="nextButton" onClick={() => increment()}>
 						Next
 					</button>
