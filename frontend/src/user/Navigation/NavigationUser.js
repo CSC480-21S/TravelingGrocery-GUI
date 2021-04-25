@@ -50,7 +50,7 @@ const NavigationUser = () => {
 	};
 
 	return (
-		<div className="navigation">
+		<div className="Navigation">
 			<Confirm
 				shoppingListID={shoppingListID}
 				onConfirm={onConfirm}

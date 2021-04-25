@@ -84,7 +84,6 @@ const App = () => {
 					<OrdersEmployee />
 				</Route>
 				<Route exact path="/employee/navigation">
-					<NavbarEmployee />
 					<NavigationEmployee />
 				</Route>
 				<Route exact path="/employee/offline_navigation">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Order = ({ shoppingListID, order, orders, setOrders }) => {
+const Order = ({ shoppingListID, order, orders, userID, setOrders }) => {
 	const [color, setColor] = useState("#f4f4f4");
 	const [clicked, setclicked] = useState(false);
 
@@ -54,15 +54,15 @@ const Order = ({ shoppingListID, order, orders, setOrders }) => {
 		<div style={container} onClick={changeColor}>
 			<div style={leftelement}>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>List Name:</p>
-				<p style={{ fontSize: "50%", fontWeight: "bold" }}>ShoppingList ID:</p>
-				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Number of Items:</p>
+				<p style={{ fontSize: "50%", fontWeight: "bold" }}>ListOwner ID:</p>
+				<p style={{ fontSize: "50%", fontWeight: "bold" }}>List ID:</p>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Date Created:</p>
 			</div>
 
 			<div style={rightelement}>
 				<p style={{ fontSize: "50%" }}>{order.listName}</p>
+				<p style={{ fontSize: "50%" }}>{userID}</p>
 				<p style={{ fontSize: "50%" }}>{shoppingListID}</p>
-				<p style={{ fontSize: "50%" }}>hello</p>
 				<p style={{ fontSize: "50%" }}>{order.listDateCreated}</p>
 			</div>
 		</div>
