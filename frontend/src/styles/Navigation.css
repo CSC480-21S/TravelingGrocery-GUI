@@ -1,14 +1,14 @@
 /* Name: Jeff Cho */
 /* CSS for employee and user navigation */
-.Navigation {
+.navigation {
 	margin-top: 10%;
 	height: 100%;
 	width: 100%;
-	padding-bottom: 15px;
 }
 /* CSS FOR TOP */
-.Navigation .percent {
+.percent {
 	color: #222258;
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 15px;
@@ -16,16 +16,17 @@
 
 	margin-left: 15%;
 }
-.Navigation .header {
+.header {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	align-items: center;
 }
-.Navigation .title {
+.title {
 	color: #222258;
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 700;
-	font-size: x-large;
+	font-size: 25px;
 	line-height: 19px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -33,11 +34,18 @@
 	text-align: center;
 	justify-content: center;
 }
+.Navigation .containerTop {
+	color: black;
+	font-size: xx-large;
+	font-weight: bold;
 
-.Navigation .exit {
-	color: red;
+	text-align: center;
+	justify-content: center;
+}
+.exit {
 	display: flex;
 	justify-content: flex-end;
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 16px;
@@ -45,7 +53,7 @@
 	line-height: 19px;
 }
 /* CSS FOR ITEMS DETAILS */
-.Navigation .itemContainer {
+.itemContainer {
 	display: flex;
 	width: fit-content;
 	height: fit-content;
@@ -55,10 +63,10 @@
 	margin-left: 5%;
 	margin-right: 5%;
 	margin-left: 5%;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
-.Navigation .itemContainer2 {
+.itemContainer2 {
 	background: #f6f6f6;
 	align-content: center;
 	justify-items: center;
@@ -69,19 +77,21 @@
 	margin-left: 5%;
 	height: 100px;
 }
-.Navigation .itemDetails {
+.itemDetails {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
-.Navigation .itemName {
+.itemName {
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 17px;
 	padding-bottom: 2px;
 }
-.Navigation .itemDepartment {
+.itemDepartment {
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 12px;
@@ -89,27 +99,29 @@
 	color: #838383;
 	padding-bottom: 2px;
 }
-.Navigation .stock {
+.stock {
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 12px;
 	line-height: 15px;
 	color: #f20707;
 }
-.Navigation .itemCount {
+.itemCount {
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 17px;
 	margin-top: 5%;
 }
-.Navigation .itemImage {
+.itemImage {
 	width: 15%;
 	height: auto;
 	margin: 5%;
 }
 /* CSS FOR ITEM DIRECTIONS */
-.Navigation .containerDirections {
+.containerDirections {
 	background-color: #f6f6f6;
 	width: 100%;
 	line-height: 1;
@@ -119,18 +131,18 @@
 	border-radius: 10px;
 }
 
-.Navigation .hugLeft {
+.hugLeft {
 	padding-left: 10%;
 	text-align: left;
 	font-weight: bold;
 }
 /* CSS FOR STATUS */
-.Navigation .containerStatus .outOfStockButton {
+.containerStatus .outOfStockButton {
 	margin-top: 5px;
 	text-align: center;
 	justify-content: center;
 }
-.Navigation .outOfStockButton {
+.outOfStockButton {
 	font-weight: bold;
 	color: red;
 	background-color: white;
@@ -145,13 +157,13 @@
 }
 
 /* CSS FOR BUTTONS */
-.Navigation .containerBackNext {
+.containerBackNext {
 	padding-top: 10%;
 	height: 20%;
 	text-align: center;
 }
 
-.Navigation .nextButton {
+.nextButton {
 	color: white;
 	background-color: #222258;
 	font-size: medium;
@@ -165,7 +177,8 @@
 	left: 3%;
 }
 
-.Navigation .endListText {
+.endListText {
+	font-family: Roboto;
 	font-style: normal;
 	font-weight: 800;
 	font-size: 18px;
@@ -175,28 +188,30 @@
 	vertical-align: middle;
 	line-height: 90px;
 }
-.Navigation .congratsContainer {
+.congratsContainer {
 	display: flex;
 	flex-direction: column;
 	margin-top: 10%;
 	margin-left: 10%;
 	margin-right: 10%;
 }
-.Navigation .congratsText {
+.congratsText {
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 30px;
 	line-height: 36px;
 	text-align: center;
 }
-.Navigation .congratsDescriptionTest {
+.congratsDescriptionTest {
+	font-family: Inter;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 30px;
 	line-height: 36px;
 	text-align: center;
 }
-.Navigation .backButton {
+.backButton {
 	font-size: medium;
 	background-color: white;
 	padding-top: 5px;
@@ -208,13 +223,13 @@
 	border: 1px solid black;
 }
 @media only screen and (min-width: 900px) {
-	.Navigation .itemContainer {
+	.itemContainer {
 		width: auto;
 		margin-top: 5%;
 		margin-left: 30%;
 		margin-right: 30%;
 	}
-	.Navigation .containerDirections {
+	.containerDirections {
 		width: auto;
 		margin-left: 30%;
 		margin-right: 30%;
@@ -224,7 +239,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-	.Navigation .containerDirections {
+	.containerDirections {
 		display: flex-column;
 		width: 90%;
 		height: fit-content;
@@ -235,14 +250,14 @@
 		border-radius: 10px;
 	}
 
-	.Navigation .containerDirections .hugLeft {
+	.containerDirections .hugLeft {
 		padding-left: 10%;
 		text-align: left;
 		font-weight: bold;
 	}
 }
 @media only screen and (max-width: 320px) {
-	.Navigation .containerDirections {
+	.containerDirections {
 		display: flex-column;
 		width: 90%;
 		height: fit-content;
@@ -253,13 +268,13 @@
 		border-radius: 10px;
 	}
 
-	.Navigation .containerDirections .hugLeft {
+	.containerDirections .hugLeft {
 		padding-left: 10%;
 		font-size: 20px;
 		text-align: left;
 		font-weight: bold;
 	}
-	.Navigation .containerBackNext {
+	.containerBackNext {
 		padding-top: 5%;
 		height: 20%;
 		text-align: center;

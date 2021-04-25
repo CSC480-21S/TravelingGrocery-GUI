@@ -7,10 +7,11 @@ import IconButton from "@material-ui/core/IconButton";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import FormControl from "@material-ui/core/FormControl";
-import makeStyles from "../../styles/CreasteList";
 import { Typography } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+//Styles
+import makeStyles from "../../styles/CreasteList";
 //API
 import { list_create } from "../../api/api";
 //ACTIONS
@@ -90,6 +91,7 @@ const CreateList = (props) => {
 							value={list.listName}
 							onChange={(e) => setList({ ...list, listName: e.target.value })}
 							//placeholder="Enter Name"
+							style={{ paddingBottom: "30px" }}
 							InputProps={{
 								disableUnderline: true,
 							}}

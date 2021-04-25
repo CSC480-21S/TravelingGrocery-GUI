@@ -141,7 +141,6 @@ const OrdersEmployee = () => {
 							<Order
 								key={order.shoppingListID}
 								shoppingListID={order.shoppingListID}
-								userID={order.userID}
 								order={order}
 								orders={orders}
 								setOrders={setOrders}
