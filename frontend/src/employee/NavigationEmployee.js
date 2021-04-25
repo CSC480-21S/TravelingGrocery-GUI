@@ -48,10 +48,10 @@ const NavigationEmployee = () => {
 	};
 
 	return (
-		<div className="Navigation">
+		<div className="navigation">
 			<Confirm onConfirm={onConfirm} set_onConfirm={set_onConfirm} />
 			<div className="header">
-				{!finished ? (
+				{!finished && directions.length !== 0 ? (
 					<div className="percent">
 						{index + 1}/{directions.length}
 					</div>
@@ -94,7 +94,7 @@ const NavigationEmployee = () => {
 						</div>
 					</>
 				) : (
-					<p className="endListText">No more items</p>
+					<p className="endListText">You have reached to the end of the List</p>
 				)}
 				{/* end of list */}
 			</div>
@@ -109,6 +109,7 @@ const NavigationEmployee = () => {
 					<img className="itemImage" src={img_out_of_stock} alt="itemImage" />
 				)} */}
 						<h3>Directions</h3>
+
 						<p className="hugLeft">Aisle: {directions[index].aisle}</p>
 						<p className="hugLeft">{directions[index].side} side </p>
 						<p className="hugLeft">Rack: {directions[index].rack}</p>
@@ -128,7 +129,7 @@ const NavigationEmployee = () => {
 				<div className="congratsContainer">
 					<p className="congratsText">Congratulations!</p>
 					<p className="congratsDescriptionTest">
-						Go to checkout and press finish
+						You are now ready to move to the checkout counter
 					</p>
 				</div>
 			)}
