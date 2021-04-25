@@ -30,7 +30,6 @@ const HomePage = () => {
 	const [open, setOpen] = useState(false);
 
 	//-------------------  Testing  -------------------
-
 	const handleInput = (string) => {
 		if (string.length > 10) {
 			const temp = string.match(/.{1,7}/g);

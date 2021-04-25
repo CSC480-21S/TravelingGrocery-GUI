@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Switch from "@material-ui/core/Switch";
@@ -21,11 +21,6 @@ const Items = () => {
 	const handleChange = () => {
 		setIsChecked(!isChecked);
 	};
-
-	useEffect(() => {
-		console.log(isChecked);
-	}, [isChecked]);
-
 	return (
 		<div>
 			{/* Search Bar gets the items from the store */}
@@ -42,7 +37,7 @@ const Items = () => {
 					{isEmpty
 						? "No results"
 						: isError
-						? "An error occurred when getting the lists"
+						? "404 Error"
 						: items.length > 0
 						? "Results"
 						: ""}
