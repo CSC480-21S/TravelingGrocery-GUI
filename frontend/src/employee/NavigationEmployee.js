@@ -51,7 +51,7 @@ const NavigationEmployee = () => {
 		<div className="navigation">
 			<Confirm onConfirm={onConfirm} set_onConfirm={set_onConfirm} />
 			<div className="header">
-				{!finished ? (
+				{!finished && directions.length !== 0 ? (
 					<div className="percent">
 						{index + 1}/{directions.length}
 					</div>

@@ -30,6 +30,24 @@ const HomePage = () => {
 	const [open, setOpen] = useState(false);
 
 	//-------------------  Testing  -------------------
+
+	const handleInput = (string) => {
+		if (string.length > 10) {
+			const temp = string.match(/.{1,7}/g);
+			let final = "";
+			let count = -1;
+			//Return does not break if applied to foreach
+			for (let thing of temp) {
+				count++;
+				if (count + 1 === 3 && temp[count + 1] !== null) {
+					return final + "\n" + thing.substr(0, 3) + " . . .";
+				}
+				final = final + "\n" + thing;
+			}
+			return final;
+		}
+		return string;
+	};
 	//-------------------  HANDLE DIALOG BOXES  -------------------
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -79,7 +97,7 @@ const HomePage = () => {
 								className={styles.regularButton}
 								onClick={() => handleList(list)}
 							>
-								{list.listName}
+								{handleInput(list.listName)}
 							</Button>
 						</div>
 					) : (
@@ -122,7 +140,7 @@ const HomePage = () => {
 							obj.listShoppedFlag === 1 ? (
 								<div key={obj.id}>
 									<Button className={styles.finishedButton}>
-										{obj.listName}
+										{handleInput(obj.listName)}
 									</Button>
 								</div>
 							) : null
