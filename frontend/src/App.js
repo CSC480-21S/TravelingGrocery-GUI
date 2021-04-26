@@ -1,6 +1,7 @@
 // Package/module imports
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
 	BrowserRouter as Router,
 	Route,
@@ -42,6 +43,7 @@ import AssignEmployees from "./admin/AssignOrders/AssignEmployees";
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
+	const userType = useSelector((state) => state.user.userType);
 
 	useEffect(() => {
 		//handle GAPI;
@@ -69,107 +71,136 @@ const App = () => {
 				<Route path="/login">
 					<Login />
 				</Route>
-
 				{/* EMPLOYEE routing  */}
-				<Route exact path="/employee/home">
-					<NavbarEmployee />
-					<HomeEmployee />
-				</Route>
-				<Route exact path="/employee/profile">
-					<NavbarEmployee />
-					<ProfileEmployee />
-				</Route>
-				<Route exact path="/employee/orders">
-					<NavbarEmployee />
-					<OrdersEmployee />
-				</Route>
-				<Route exact path="/employee/navigation">
-					<NavigationEmployee />
-				</Route>
-				<Route exact path="/employee/offline_navigation">
-					<NavbarEmployee />
-					<NavigationOfflineEmployee />
-				</Route>
-				<Route exact path="/employee/faq">
-					<NavbarEmployee />
-					<h3>UNDER CONSTRUCTION</h3>
-				</Route>
-				<Route exact path="/employee/about">
-					<NavbarEmployee />
-					<h3>UNDER CONSTRUCTION</h3>
-				</Route>
+				{userType === "employee" && bol && (
+					<Switch>
+						<Route exact path="/employee/home">
+							<NavbarEmployee />
+							<HomeEmployee />
+						</Route>
+						<Route exact path="/employee/profile">
+							<NavbarEmployee />
+							<ProfileEmployee />
+						</Route>
+						<Route exact path="/employee/orders">
+							<NavbarEmployee />
+							<OrdersEmployee />
+						</Route>
+						<Route exact path="/employee/navigation">
+							<NavigationEmployee />
+						</Route>
+						<Route exact path="/employee/offline_navigation">
+							<NavbarEmployee />
+							<NavigationOfflineEmployee />
+						</Route>
+						<Route exact path="/employee/faq">
+							<NavbarEmployee />
+							<h3>UNDER CONSTRUCTION</h3>
+						</Route>
+						<Route exact path="/employee/about">
+							<NavbarEmployee />
+							<h3>UNDER CONSTRUCTION</h3>
+						</Route>
+					</Switch>
+				)}
 
 				{/* ADMIN routing  */}
-				<Route exact path="/admin/home">
-					<NavbarAdmin />
-					<HomeAdmin />
-				</Route>
-				<Route exact path="/admin/profile">
-					<NavbarAdmin />
-					<ProfileAdmin />
-				</Route>
-				<Route exact path="/admin/employees">
-					<NavbarAdmin />
-					<Employee />
-				</Route>
-				<Route exact path="/admin/inventory">
-					<NavbarAdmin />
-					<Manage />
-				</Route>
-				<Route exact path="/admin/analytics">
-					<NavbarAdmin />
-					<Analytics />
-				</Route>
-				<Route exact path="/admin/inventory/additem">
-					<NavbarAdmin />
-					<AddItem />
-				</Route>
-				<Route exact path="/admin/addEmployee">
-					<NavbarAdmin />
-					<AddEmployee />
-				</Route>
-				<Route exact path="/admin/assignOrders">
-					<NavbarAdmin />
-					<AssignOrders />
-				</Route>
-				<Route exact path="/admin/assignOrders/assignEmployees">
-					<NavbarAdmin />
-					<AssignEmployees />
-				</Route>
-				<Route exact path="/admin/faq">
-					<NavbarAdmin />
-					<h3>UNDER CONSTRUCTION</h3>
-				</Route>
-				<Route exact path="/admin/about">
-					<NavbarAdmin />
-					<h3>UNDER CONSTRUCTION</h3>
-				</Route>
-
+				{userType === "admin" && bol && (
+					<Switch>
+						<Route exact path="/admin/home">
+							<NavbarAdmin />
+							<HomeAdmin />
+						</Route>
+						<Route exact path="/admin/profile">
+							<NavbarAdmin />
+							<ProfileAdmin />
+						</Route>
+						<Route exact path="/admin/employees">
+							<NavbarAdmin />
+							<Employee />
+						</Route>
+						<Route exact path="/admin/inventory">
+							<NavbarAdmin />
+							<Manage />
+						</Route>
+						<Route exact path="/admin/analytics">
+							<NavbarAdmin />
+							<Analytics />
+						</Route>
+						<Route exact path="/admin/inventory/additem">
+							<NavbarAdmin />
+							<AddItem />
+						</Route>
+						<Route exact path="/admin/addEmployee">
+							<NavbarAdmin />
+							<AddEmployee />
+						</Route>
+						<Route exact path="/admin/assignOrders">
+							<NavbarAdmin />
+							<AssignOrders />
+						</Route>
+						<Route exact path="/admin/assignOrders/assignEmployees">
+							<NavbarAdmin />
+							<AssignEmployees />
+						</Route>
+						<Route exact path="/admin/faq">
+							<NavbarAdmin />
+							<h3>UNDER CONSTRUCTION</h3>
+						</Route>
+						<Route exact path="/admin/about">
+							<NavbarAdmin />
+							<h3>UNDER CONSTRUCTION</h3>
+						</Route>
+					</Switch>
+				)}
 				{/* USER routing  */}
-				<Route exact path="/user/navigation">
-					<NavigationUser />
-				</Route>
-				<Route exact path="/user/offline_navigation">
-					<NavbarUser />
-					<NavigationOfflineUser />
-				</Route>
-				<Route exact path="/profile">
-					<NavbarUser />
-					<Profile />
-				</Route>
-				<Route exact path="/shareList">
-					<NavbarUser />
-					<ShareList />
-				</Route>
-				<Route exact path="/faq">
-					<NavbarUser />
-					<h3>UNDER CONSTRUCTION</h3>
-				</Route>
-				<Route exact path="/about">
-					<NavbarUser />
-					<h3>UNDER CONSTRUCTION</h3>
-				</Route>
-
+				{userType === "shopper" && bol && (
+					<Switch>
+						<Route path="/home">
+							<NavbarUser />
+							<Header />
+							<HomePage />
+						</Route>
+						<Route exact path="/list/:id">
+							<NavbarUser />
+							<Header />
+							<Lists />
+						</Route>
+						<Route path="/list/:id/store">
+							<NavbarUser />
+							<Header />
+							<Items />
+						</Route>
+						<Route path="/list/:id/edit">
+							<NavbarUser />
+							<Header />
+							<EditList />
+						</Route>
+						<Route exact path="/user/navigation">
+							<NavigationUser />
+						</Route>
+						<Route exact path="/user/offline_navigation">
+							<NavbarUser />
+							<NavigationOfflineUser />
+						</Route>
+						<Route exact path="/profile">
+							<NavbarUser />
+							<Profile />
+						</Route>
+						<Route exact path="/shareList">
+							<NavbarUser />
+							<ShareList />
+						</Route>
+						<Route exact path="/faq">
+							<NavbarUser />
+							<h3>UNDER CONSTRUCTION</h3>
+						</Route>
+						<Route exact path="/about">
+							<NavbarUser />
+							<h3>UNDER CONSTRUCTION</h3>
+						</Route>
+					</Switch>
+				)}
 				{/* TEST/DEBUGGING routing  */}
 				<Route exact path="/developer">
 					<h3>User Stuff</h3>
@@ -192,36 +223,10 @@ const App = () => {
 					</Link>
 				</Route>
 
-				{/* Justin gotta fix this crazy bool stuff */}
-				{bol ? (
-					<>
-						<Route path="/home">
-							<NavbarUser />
-							<Header />
-							<HomePage />
-						</Route>
-
-						<Route exact path="/list/:id">
-							<NavbarUser />
-							<Header />
-							<Lists />
-						</Route>
-
-						<Route path="/list/:id/store">
-							<NavbarUser />
-							<Header />
-							<Items />
-						</Route>
-
-						<Route path="/list/:id/edit">
-							<NavbarUser />
-							<Header />
-							<EditList />
-						</Route>
-					</>
-				) : (
-					<Redirect to="/login" />
-				)}
+				<Route path="/">
+					{!bol && <Redirect to="/login" />}
+					<p>Does not Exist</p>
+				</Route>
 			</Switch>
 		</Router>
 	);

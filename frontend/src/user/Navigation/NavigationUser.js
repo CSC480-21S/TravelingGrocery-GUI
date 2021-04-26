@@ -98,7 +98,9 @@ const NavigationUser = () => {
 						</div>
 					</>
 				) : (
-					<p className="endListText">You have reached to the end of the List</p>
+					<p className="endListText">
+						You have reached to the end of the list.
+					</p>
 				)}
 				{/* end of list */}
 			</div>
