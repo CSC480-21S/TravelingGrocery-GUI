@@ -18,7 +18,7 @@ const AddItem = () => {
     const [selectedOptionRack, setSelectedOptionRack] = useState(null);
     const [selectedOptionShelf, setSelectedOptionShelf] = useState(null);
     const [selectedOptionItemStockBool, setSelectedOptionItemStockBool] = useState(null);
-    const [selectedOptionDepartmentName, setSelectedOptionDepartmentName] = useState(null);
+    const [selectedOptionDepartmentName, setSelectedOptionDepartmentName] = useState("");
     const [selectedOptionSide, setSelectedOptionSide] = useState(null);
 
     const [open, setOpen] = useState(false);
@@ -114,34 +114,87 @@ const AddItem = () => {
         { value: false, label: 'Not On Sale' },
     ]
 
-    const buttonClicked = () => {
-        if(itemName == null || selectedOptionAisle == null || 
-            selectedOptionRack == null || selectedOptionShelf == null || 
-            selectedOptionItemStockBool == null || selectedOptionDepartmentName == null || 
-            selectedOptionSide == null)
+
+    const buttonClicked = async () => {
+
+        if (selectedOptionDepartmentName.value !== "Aisles") {
+
+            if (itemName == null ||
+                selectedOptionItemStockBool == null || selectedOptionDepartmentName.value === "" ||
+                selectedOptionSaleBool == null) {
+                alert("Make sure you entered all information!")
+                return
+            }
+
+        } else {
+            if (itemName == null || selectedOptionAisle == null ||
+                selectedOptionRack == null || selectedOptionShelf == null ||
+                selectedOptionItemStockBool == null || selectedOptionDepartmentName.value === "" ||
+                selectedOptionSide == null || selectedOptionSaleBool == null) {
+                alert("Make sure you entered all information!")
+                return
+            }
+        }
+
+        let items;
+        if (selectedOptionDepartmentName.value !== "Aisles") {
+            items = {
+                "NewItems": [
+                    {
+                        "itemName": itemName,
+                        "itemDescription": itemDescription,
+                        "itemStockBool": selectedOptionItemStockBool.value,
+                        "saleBool": selectedOptionSaleBool.value,
+                        "departmentName": selectedOptionDepartmentName.value,
+                        "aisle": 0,
+                        "rack": 0,
+                        "shelf": "none",
+                        "side": "none"
+                    }
+                ]
+            }
+        } else {
+            items = {
+                "NewItems": [
+                    {
+                        "itemName": itemName,
+                        "itemDescription": itemDescription,
+                        "itemStockBool": selectedOptionItemStockBool.value,
+                        "saleBool": selectedOptionSaleBool.value,
+                        "departmentName": selectedOptionDepartmentName.value,
+                        "aisle": selectedOptionAisle.value,
+                        "rack": selectedOptionRack.value,
+                        "shelf": selectedOptionShelf.value,
+                        "side": selectedOptionSide.value
+                    }
+                ]
+            }
+        }
+
+
+        console.log(JSON.stringify(items))
+        const test = await store_addItems(items, token)
+        console.log(test)
+        if(test === undefined)
         {
-            alert("Make sure you entered all information!")
-            return
+            alert("Opps something went wrong! Item might already exist!")
+
+        }
+        else
+        {
+            handleClickOpen()
+            setitemName("")
+            setItemDescription(null)
+            setSelectedOptionItemStockBool(null)
+            setSelectedOptionSaleBool(null)
+            setSelectedOptionDepartmentName("")
+            setSelectedOptionAisle(null)
+            setSelectedOptionRack(null)
+            setSelectedOptionShelf(null)
+            setSelectedOptionSide(null)
         }
 
-        const items = {
-            "NewItems": [
-                {
-                    "itemName": itemName,
-                    "itemDescription": itemDescription,
-                    "itemStockBool": selectedOptionItemStockBool.value,
-                    "saleBool": selectedOptionSaleBool.value,
-                    "departmentName": selectedOptionDepartmentName.value,
-                    "aisle": selectedOptionAisle.value,
-                    "rack": selectedOptionRack.value,
-                    "shelf": selectedOptionShelf.value,
-                    "side": selectedOptionSide.value
-                }
-            ]
-        }
 
-        store_addItems(items, token)
-        handleClickOpen()
     }
 
     return(
@@ -173,7 +226,7 @@ const AddItem = () => {
                 <Select
                     id="Sale" 
                     onChange={setSelectedOptionSaleBool}
-                    defaultValue={selectedOptionSaleBool}
+                    value={selectedOptionSaleBool}
                     options={SaleBool}
                     placeholder="Select Sale" >
                 </Select>
@@ -181,44 +234,46 @@ const AddItem = () => {
 
             <div style={{padding: '20px'}}>
                 <h1 style={{fontSize: '80%'}}> Location</h1>
-                <Select
-                    id="Aisle" l
-                    onChange={setSelectedOptionAisle}
-                    defaultValue={selectedOptionAisle}
-                    options={aisles}
-                    placeholder="Select Aisle" >
-                </Select>
 
-                <p></p>
-                <Select id="Rack"
-                    onChange={setSelectedOptionRack}
-                    defaultValue={selectedOptionRack}
-                    options={Rack}
-                    placeholder="Select Rack" />
-
-                <p></p>
-                <Select
-                    id="Shelf"
-                    onChange={setSelectedOptionShelf}
-                    defaultValue={selectedOptionShelf}
-                    options={Shelf}
-                    placeholder="Select Shelf"/>
-
-                <p></p>
-                <Select
-                    id="Side"
-                    onChange={setSelectedOptionSide}
-                    defaultValue={selectedOptionSide}
-                    options={Side}
-                    placeholder="Select Side"/>
-
-                <p></p>
                 <Select
                     id="Department"
                     onChange={setSelectedOptionDepartmentName}
-                    defaultValue={selectedOptionDepartmentName}
+                    value={selectedOptionDepartmentName}
                     options={Department}
                     placeholder="Select Department"/>
+                <p/>
+
+                {"Aisles" === selectedOptionDepartmentName.value  &&  <Select
+                    id="Aisle"
+                    onChange={setSelectedOptionAisle}
+                    value={selectedOptionAisle}
+                    options={aisles}
+                    placeholder="Select Aisle" >
+                </Select>}
+
+                <p/>
+                {"Aisles" === selectedOptionDepartmentName.value &&  <Select id="Rack"
+                    onChange={setSelectedOptionRack}
+                    value={selectedOptionRack}
+                    options={Rack}
+                    placeholder="Select Rack" />}
+
+                <p/>
+                {"Aisles" === selectedOptionDepartmentName.value  &&  <Select
+                    id="Shelf"
+                    onChange={setSelectedOptionShelf}
+                    value={selectedOptionShelf}
+                    options={Shelf}
+                    placeholder="Select Shelf"/>}
+
+                <p/>
+                {"Aisles" === selectedOptionDepartmentName.value  &&  <Select
+                    id="Side"
+                    onChange={setSelectedOptionSide}
+                    value={selectedOptionSide}
+                    options={Side}
+                    placeholder="Select Side"/>}
+
             </div>
 
             <div style={{padding: '20px'}}>
@@ -226,7 +281,7 @@ const AddItem = () => {
                 <Select
                     id="ItemStockBool"
                     onChange={setSelectedOptionItemStockBool}
-                    defaultValue={selectedOptionItemStockBool}
+                    value={selectedOptionItemStockBool}
                     options={ItemStockBool}
                     placeholder="Select Stock"/>
             </div>

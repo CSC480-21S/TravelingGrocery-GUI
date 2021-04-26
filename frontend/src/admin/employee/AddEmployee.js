@@ -12,6 +12,7 @@ const AddEmployee = () => {
     const [email, setEmail] = useState();
 
     const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState("");
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -44,6 +45,14 @@ const AddEmployee = () => {
 
 
     const buttonClicked = async () => {
+
+        /*check for empty text box*/
+        if(email === "")
+        {
+            alert("Make sure you entered all information!")
+            return;
+        }
+
         console.log(email);
         const employee = {
             "token": token,
@@ -51,7 +60,7 @@ const AddEmployee = () => {
         }
 
         const data = await add_employee(employee, token);
-
+        setMessage(data.data)
         console.log(data);
 
         handleClickOpen();
@@ -76,7 +85,7 @@ const AddEmployee = () => {
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">
-                    {"Employee Successfully Added"}
+                    {message}
                 </DialogTitle>
             </Dialog>
         </div>

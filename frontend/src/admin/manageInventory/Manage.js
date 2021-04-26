@@ -25,9 +25,7 @@ const Manage = () =>
     return (
         <div>
             <h1 style={{textAlign: 'center', fontSize: '120%'}}> Manage Inventory </h1>
-            <div style={{textAlign: 'right', padding: '10px'}}>
-                <button style={{backgroundColor: 'white', height: '30px'}}>VIEW OUT-OF-STOCK ITEMS</button>
-            </div>
+
 
             <div style={container} onClick={routeChange}>
                 <h3
