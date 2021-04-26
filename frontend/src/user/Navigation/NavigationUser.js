@@ -99,7 +99,7 @@ const NavigationUser = () => {
 					</>
 				) : (
 					<p className="endListText">
-						You have reached to the end of the list.
+						You have reached the end of the list.
 					</p>
 				)}
 				{/* end of list */}
