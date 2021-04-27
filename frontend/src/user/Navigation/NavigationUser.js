@@ -18,7 +18,6 @@ const NavigationUser = () => {
 	const [onConfirm, set_onConfirm] = useState(false);
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
-	const shoppingListID = directions[0].shoppingListID;
 	const history = useHistory();
 
 	const increment = () => {
@@ -29,7 +28,10 @@ const NavigationUser = () => {
 			//console.log("You attempted to increment out of bounds")
 		}
 	};
-
+	const getShoppingListID = () => {
+		if (directions) return directions[0].shoppingListID;
+		return;
+	};
 	const decrement = () => {
 		if (index !== 0) {
 			setFinished(false);
@@ -52,7 +54,7 @@ const NavigationUser = () => {
 	return (
 		<div className="Navigation">
 			<Confirm
-				shoppingListID={shoppingListID}
+				shoppingListID={getShoppingListID}
 				onConfirm={onConfirm}
 				set_onConfirm={set_onConfirm}
 				directions={directions}
@@ -73,7 +75,7 @@ const NavigationUser = () => {
 			{/* item container */}
 			<div className={!finished ? "itemContainer" : "itemContainer2"}>
 				{/* Conditonal statement bool ? ifTrue : ifFalse */}
-				{!finished && directions.length > 0 ? (
+				{!finished && directions.length > 0 && directions ? (
 					<>
 						{directions[index].itemStockBool ? (
 							<img className="itemImage" src={img_blank} alt="itemImage" />
@@ -98,14 +100,12 @@ const NavigationUser = () => {
 						</div>
 					</>
 				) : (
-					<p className="endListText">
-						You have reached the end of the list.
-					</p>
+					<p className="endListText">You have reached the end of the list.</p>
 				)}
 				{/* end of list */}
 			</div>
 
-			{!finished && directions.length > 0 ? (
+			{!finished && directions.length > 0 && directions ? (
 				<>
 					<div className="containerDirections">
 						{/* Conditonal statement bool ? ifTrue : ifFalse */}
