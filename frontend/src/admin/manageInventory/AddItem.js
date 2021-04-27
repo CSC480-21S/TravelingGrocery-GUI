@@ -50,7 +50,6 @@ const AddItem = () => {
     };
 
     const aisles = [
-        { value: 0, label: '0' },
         { value: 1, label: '1' },
         { value: 2, label: '2' },
         { value: 3 ,label: '3' },
@@ -66,7 +65,6 @@ const AddItem = () => {
     ];
 
     const Rack = [
-        { value: 0, label: '0' },
         { value: 1, label: '1' },
         { value: 2, label: '2' },
         { value: 3 ,label: '3' },
@@ -76,14 +74,12 @@ const AddItem = () => {
     ];
 
     const Shelf = [
-        { value: "none", label: 'none' },
         { value: "top", label: 'top' },
         { value: "middle", label: 'middle' },
         { value: "bottom",label: 'bottom' },
     ];
 
     const Side = [
-        { value: "none", label: 'none' },
         { value: "left", label: 'left' },
         { value: "right", label: 'right' },
     ];
