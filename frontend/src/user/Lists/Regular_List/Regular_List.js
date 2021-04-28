@@ -52,6 +52,11 @@ const RegularLists = ({ items, set_isEdit }) => {
 		set_onDelete(true);
 	};
 
+	const handleNoItems = (e) => {
+		e.preventDefault();
+		alert("Cannot share empty list")
+	}
+
     
 
 	useEffect(() => {}, []);
@@ -98,19 +103,30 @@ const RegularLists = ({ items, set_isEdit }) => {
 							</Button>
 						</div>
                         <div>
-                            <Link to={{
-                                pathname: '/shareList',
-                                
-                            }} style={{textDecoration: 'none'}}> 
-							<Button
-								fontSize="small"
-								startIcon={<ShareIcon />}
-								className={styles.topIconButton2}
-								//onClick={handleShare}
-							>
-								Share
-							</Button>
-                            </Link>
+							{items.length > 0 ?
+								<Link to={{
+									pathname: '/shareList',
+									
+								}} style={{textDecoration: 'none'}}> 
+								<Button
+									fontSize="small"
+									startIcon={<ShareIcon />}
+									className={styles.topIconButton2}
+									//onClick={handleShare}
+								>
+									Share
+								</Button>
+								</Link>
+								:
+								<Button
+									fontSize="small"
+									startIcon={<ShareIcon />}
+									className={styles.topIconButton2}
+									onClick={handleNoItems}
+								>
+									Share
+								</Button>
+							}
 						</div>
 						<div>
 							<Button

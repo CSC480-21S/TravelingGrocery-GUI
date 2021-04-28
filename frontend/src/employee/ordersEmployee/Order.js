@@ -44,7 +44,7 @@ const Order = ({ shoppingListID, order, orders, userID, setOrders }) => {
 		background: color,
 		margin: "5px",
 		padding: "10px 20px",
-		height: "130px",
+		height: "115px",
 		borderRadius: "15px",
 		display: "flex",
 		cursor: "pointer",
@@ -54,14 +54,12 @@ const Order = ({ shoppingListID, order, orders, userID, setOrders }) => {
 		<div style={container} onClick={changeColor}>
 			<div style={leftelement}>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>List Name:</p>
-				<p style={{ fontSize: "50%", fontWeight: "bold" }}>ListOwner ID:</p>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>List ID:</p>
 				<p style={{ fontSize: "50%", fontWeight: "bold" }}>Date Created:</p>
 			</div>
 
 			<div style={rightelement}>
 				<p style={{ fontSize: "50%" }}>{order.listName}</p>
-				<p style={{ fontSize: "50%" }}>{userID}</p>
 				<p style={{ fontSize: "50%" }}>{shoppingListID}</p>
 				<p style={{ fontSize: "50%" }}>{order.listDateCreated}</p>
 			</div>

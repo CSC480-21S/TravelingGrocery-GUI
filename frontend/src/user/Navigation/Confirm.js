@@ -14,7 +14,7 @@ import { list_update } from "../../api/api";
 //Styles
 import makeStyles from "./ConfirmStyles";
 
-const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
+const Confirm = ({ onConfirm, set_onConfirm, getShoppingListID }) => {
 	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	const navList = useSelector((state) => state.active_list);
 
@@ -28,7 +28,7 @@ const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
 	const handle_Accept = async () => {
 		navList.listShoppedFlag = 1;
 		console.log(JSON.stringify(navList));
-		await list_update(shoppingListID, navList, token);
+		await list_update(getShoppingListID(), navList, token);
 		history.push("/home");
 	};
 

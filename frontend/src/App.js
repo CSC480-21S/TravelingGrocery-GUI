@@ -27,7 +27,6 @@ import NavbarEmployee from "./employee/NavbarEmployee";
 import HomeEmployee from "./employee/HomeEmployee";
 import ProfileEmployee from "./employee/Profile";
 import NavigationEmployee from "./employee/NavigationEmployee";
-import NavigationOfflineEmployee from "./employee/Navigation/NavigationOfflineEmployee";
 import OrdersEmployee from "./employee/ordersEmployee/OrdersEmployee";
 // ADMIN components
 import NavbarAdmin from "./admin/NavbarAdmin";
@@ -88,10 +87,6 @@ const App = () => {
 						</Route>
 						<Route exact path="/employee/navigation">
 							<NavigationEmployee />
-						</Route>
-						<Route exact path="/employee/offline_navigation">
-							<NavbarEmployee />
-							<NavigationOfflineEmployee />
 						</Route>
 						<Route exact path="/employee/faq">
 							<NavbarEmployee />
