@@ -51,8 +51,8 @@ class ShareList extends Component {
     clickButton = async () => {
         //const token = useState(useSelector((state) => state.user.tk.tk))[0];
         let name = this.state.value;
-        let endIndex = name.indexOf("@");
-        if (endIndex == -1) { this.setState({ badEmail: true }) }
+        let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (regex.test(name)) { this.setState({ badEmail: true }) }
         else {
             //console.log(name.slice(0, endIndex));
             //no response so no .then
