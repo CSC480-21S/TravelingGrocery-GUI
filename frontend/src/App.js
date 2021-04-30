@@ -39,6 +39,8 @@ import AddEmployee from "./admin/employee/AddEmployee";
 import AddItem from "./admin/manageInventory/AddItem";
 import AssignOrders from "./admin/AssignOrders/AssignOrders";
 import AssignEmployees from "./admin/AssignOrders/AssignEmployees";
+//ABOUt
+import About from "./About";
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
@@ -94,7 +96,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/employee/about">
 							<NavbarEmployee />
-							<h3>UNDER CONSTRUCTION</h3>
+							<About />
 						</Route>
 					</Switch>
 				)}
@@ -144,7 +146,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/admin/about">
 							<NavbarAdmin />
-							<h3>UNDER CONSTRUCTION</h3>
+							<About />
 						</Route>
 					</Switch>
 				)}
@@ -192,7 +194,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/about">
 							<NavbarUser />
-							<h3>UNDER CONSTRUCTION</h3>
+							<About />
 						</Route>
 					</Switch>
 				)}
