@@ -1,3 +1,5 @@
+# IMPORTANT: File "env" MUST be renamed to ".env" or the login will not work!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
