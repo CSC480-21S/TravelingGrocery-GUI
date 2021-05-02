@@ -12,12 +12,15 @@ export default makeStyles((theme) => ({
 		marginRight: theme.spacing(1),
 		alignItems: "center",
 		justifyItems: "center",
+
+		justifyContent: "stretch",
 	},
 	item_one: {
 		gridArea: "first",
 	},
 	item_two: {
 		gridArea: "first2",
+		alignSelf: "stretch",
 	},
 	item_three: {
 		gridArea: "first3",
@@ -44,6 +47,12 @@ export default makeStyles((theme) => ({
 		fontSize: "30px",
 		lineHeight: "36px",
 		textAlign: "center",
+
+		overflowWrap: "break-word",
+		wordWrap: "break-word",
+		wordBreak: "break-all",
+		"*-webkit-hyphens": "auto",
+		hyphens: "auto",
 	},
 	title: {
 		display: "flex",

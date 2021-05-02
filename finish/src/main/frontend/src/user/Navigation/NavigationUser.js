@@ -1,6 +1,6 @@
 // Name: Jeff Cho
 import "../../styles/Navigation.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import img_blank from "../../images/blank.png";
@@ -18,7 +18,9 @@ const NavigationUser = () => {
 	const [onConfirm, set_onConfirm] = useState(false);
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
-	const shoppingListID = directions[0].shoppingListID;
+	const [itemQuantity, set_itemQuantity] = useState(0);
+	const [init, set_init] = useState(new Date());
+
 	const history = useHistory();
 
 	const increment = () => {
@@ -29,7 +31,10 @@ const NavigationUser = () => {
 			//console.log("You attempted to increment out of bounds")
 		}
 	};
-
+	const getShoppingListID = () => {
+		if (directions) return directions[0].shoppingListID;
+		return;
+	};
 	const decrement = () => {
 		if (index !== 0) {
 			setFinished(false);
@@ -41,6 +46,9 @@ const NavigationUser = () => {
 		}
 	};
 	const onFinish = () => {
+		let count = 0;
+		directions.forEach((item) => (count += item.itemQuantity));
+		set_itemQuantity(count);
 		set_onConfirm(true);
 	};
 
@@ -49,13 +57,15 @@ const NavigationUser = () => {
 		history.push("/home");
 	};
 
+	useEffect(() => console.log(init.getTime()), []);
 	return (
-		<div className="navigation">
+		<div className="Navigation">
 			<Confirm
-				shoppingListID={shoppingListID}
+				getShoppingListID={getShoppingListID}
 				onConfirm={onConfirm}
 				set_onConfirm={set_onConfirm}
-				directions={directions}
+				itemQuantity={itemQuantity}
+				init={init}
 			/>
 			<div className="header">
 				{!finished ? (
@@ -73,7 +83,7 @@ const NavigationUser = () => {
 			{/* item container */}
 			<div className={!finished ? "itemContainer" : "itemContainer2"}>
 				{/* Conditonal statement bool ? ifTrue : ifFalse */}
-				{!finished ? (
+				{!finished && directions.length > 0 && directions ? (
 					<>
 						{directions[index].itemStockBool ? (
 							<img className="itemImage" src={img_blank} alt="itemImage" />
@@ -98,12 +108,12 @@ const NavigationUser = () => {
 						</div>
 					</>
 				) : (
-					<p className="endListText">You have reached to the end of the List</p>
+					<p className="endListText">You have reached the end of the list.</p>
 				)}
 				{/* end of list */}
 			</div>
 
-			{!finished ? (
+			{!finished && directions.length > 0 && directions ? (
 				<>
 					<div className="containerDirections">
 						{/* Conditonal statement bool ? ifTrue : ifFalse */}
@@ -142,7 +152,7 @@ const NavigationUser = () => {
 				<button className="backButton" onClick={() => decrement()}>
 					Back
 				</button>
-				{!finished ? (
+				{!finished && directions.length > 0 ? (
 					<button className="nextButton" onClick={() => increment()}>
 						Next
 					</button>

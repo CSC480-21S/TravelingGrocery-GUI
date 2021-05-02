@@ -48,12 +48,12 @@ const NavigationEmployee = () => {
 	};
 
 	return (
-		<div className="navigation">
+		<div className="Navigation">
 			<Confirm onConfirm={onConfirm} set_onConfirm={set_onConfirm} />
 			<div className="header">
 				{!finished ? (
 					<div className="percent">
-						{index + 1}/{directions.length}
+						{directions.length === 0 ? 0 : index + 1}/{directions.length}
 					</div>
 				) : (
 					<div></div>
@@ -66,7 +66,7 @@ const NavigationEmployee = () => {
 			{/* item container */}
 			<div className={!finished ? "itemContainer" : "itemContainer2"}>
 				{/* Conditonal statement bool ? ifTrue : ifFalse */}
-				{!finished ? (
+				{!finished && directions.length > 0 ? (
 					<>
 						{directions[index].itemStockBool ? (
 							<img className="itemImage" src={img_blank} alt="itemImage" />
@@ -94,12 +94,12 @@ const NavigationEmployee = () => {
 						</div>
 					</>
 				) : (
-					<p className="endListText">You have reached to the end of the List</p>
+					<p className="endListText">No more items</p>
 				)}
 				{/* end of list */}
 			</div>
 
-			{!finished ? (
+			{!finished && directions.length > 0 ? (
 				<>
 					<div className="containerDirections">
 						{/* Conditonal statement bool ? ifTrue : ifFalse */}
@@ -109,7 +109,6 @@ const NavigationEmployee = () => {
 					<img className="itemImage" src={img_out_of_stock} alt="itemImage" />
 				)} */}
 						<h3>Directions</h3>
-
 						<p className="hugLeft">Aisle: {directions[index].aisle}</p>
 						<p className="hugLeft">{directions[index].side} side </p>
 						<p className="hugLeft">Rack: {directions[index].rack}</p>
@@ -129,7 +128,7 @@ const NavigationEmployee = () => {
 				<div className="congratsContainer">
 					<p className="congratsText">Congratulations!</p>
 					<p className="congratsDescriptionTest">
-						You are now ready to move to the checkout counter
+						Go to checkout and press finish
 					</p>
 				</div>
 			)}
@@ -138,7 +137,7 @@ const NavigationEmployee = () => {
 				<button className="backButton" onClick={() => decrement()}>
 					Back
 				</button>
-				{!finished ? (
+				{!finished && directions.length > 0 ? (
 					<button className="nextButton" onClick={() => increment()}>
 						Next
 					</button>

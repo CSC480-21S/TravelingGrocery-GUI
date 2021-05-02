@@ -56,7 +56,9 @@ const Header = () => {
 						<Typography className={styles.main}>Dashboard</Typography>
 					) : location.pathname === `/list/${title}` ? (
 						<div className={styles.title}>
-							<Typography className={styles.main}>{title}</Typography>
+							<Typography noWrap={false} className={styles.main}>
+								{title}
+							</Typography>
 							<IconButton onClick={() => setOpen2(true)}>
 								<EditOutlinedIcon style={{ fontSize: "20px" }} />
 							</IconButton>

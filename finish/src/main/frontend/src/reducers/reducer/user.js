@@ -5,12 +5,13 @@ const user = (state = [], action) => {
 		case SEND_GOOGLE_INFO: {
 			let data = {};
 			const profile = action.payload.response.profileObj;
-			console.log(JSON.stringify(action.payload.res.data));
+			console.log("user [REDUCER]: " + JSON.stringify(action.payload.res.data));
 			if (!action.payload.response.tokenId) {
 				data["tk"] = null;
 			} else {
 				data["tk"] = { tk: action.payload.response.tokenId };
 				data["active"] = action.payload.res.data.userShoppingBool;
+				data["userType"] = action.payload.res.data.userType;
 			}
 			data["profile"] = profile;
 			return data;

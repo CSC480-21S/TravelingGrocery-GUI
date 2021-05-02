@@ -12,6 +12,7 @@ const AddEmployee = () => {
     const [email, setEmail] = useState();
 
     const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState("");
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -42,8 +43,26 @@ const AddEmployee = () => {
         setEmail(event.target.value);
     };
 
+    const validateInput = (email) => {
+        let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return regex.test(email);
+    };
 
     const buttonClicked = async () => {
+
+        /*check for empty text box*/
+        if(email === "")
+        {
+            alert("Make sure you entered all information!")
+            return;
+        }
+
+        if(!validateInput(email))
+        {
+            alert("Invalid Email!")
+            return;
+        }
+
         console.log(email);
         const employee = {
             "token": token,
@@ -51,7 +70,7 @@ const AddEmployee = () => {
         }
 
         const data = await add_employee(employee, token);
-
+        setMessage(data.data)
         console.log(data);
 
         handleClickOpen();
@@ -76,7 +95,7 @@ const AddEmployee = () => {
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">
-                    {"Employee Successfully Added"}
+                    {message}
                 </DialogTitle>
             </Dialog>
         </div>

@@ -9,12 +9,19 @@ import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 //API
 import { list_update } from "../../api/api";
+import { updateAnalytic } from "../../api/api";
 //ACTIONS
 
 //Styles
 import makeStyles from "./ConfirmStyles";
 
-const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
+const Confirm = ({
+	onConfirm,
+	set_onConfirm,
+	getShoppingListID,
+	itemQuantity,
+	init,
+}) => {
 	const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	const navList = useSelector((state) => state.active_list);
 
@@ -27,8 +34,18 @@ const Confirm = ({ onConfirm, set_onConfirm, shoppingListID }) => {
 
 	const handle_Accept = async () => {
 		navList.listShoppedFlag = 1;
-		console.log(JSON.stringify(navList));
-		await list_update(shoppingListID, navList, token);
+		const final = new Date();
+		const timeShopped = final.getTime() - init.getTime();
+		const data = {
+			token: token,
+			incrementItemsShopped: itemQuantity,
+			incrementTimeShopped: timeShopped,
+		};
+		//console.log(JSON.stringify(data));
+		//console.log(JSON.stringify(navList));
+		const { data: response } = await updateAnalytic(data);
+		console.log(response);
+		await list_update(getShoppingListID(), navList, token);
 		history.push("/home");
 	};
 
