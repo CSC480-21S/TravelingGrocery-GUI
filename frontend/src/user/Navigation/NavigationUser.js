@@ -1,6 +1,6 @@
 // Name: Jeff Cho
 import "../../styles/Navigation.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import img_blank from "../../images/blank.png";
@@ -18,6 +18,9 @@ const NavigationUser = () => {
 	const [onConfirm, set_onConfirm] = useState(false);
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
+	const [itemQuantity, set_itemQuantity] = useState(0);
+	const [init, set_init] = useState(new Date());
+
 	const history = useHistory();
 
 	const increment = () => {
@@ -43,6 +46,9 @@ const NavigationUser = () => {
 		}
 	};
 	const onFinish = () => {
+		let count = 0;
+		directions.forEach((item) => (count += item.itemQuantity));
+		set_itemQuantity(count);
 		set_onConfirm(true);
 	};
 
@@ -51,13 +57,15 @@ const NavigationUser = () => {
 		history.push("/home");
 	};
 
+	useEffect(() => console.log(init.getTime()), []);
 	return (
 		<div className="Navigation">
 			<Confirm
 				getShoppingListID={getShoppingListID}
 				onConfirm={onConfirm}
 				set_onConfirm={set_onConfirm}
-				directions={directions}
+				itemQuantity={itemQuantity}
+				init={init}
 			/>
 			<div className="header">
 				{!finished ? (
