@@ -6,22 +6,21 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
 import {list_getAnalytics} from '../../api/api'
 import { isCompositeComponent } from "react-dom/test-utils";
+import Select from "react-select";
+import {useHistory} from "react-router-dom";
 
 const Analytics = () => {
-    const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
-    const [user, setUser] = useState(null);
-    const [open, setOpen] = useState(false);
-    const [itemsPerHour, setItemsPerHour] = useState("placeHolder")
 
-    const handleClickOpen = () => {
-        setOpen(true);
+    const [user, setUser] = useState(null);
+    const history = useHistory();
+
+    const routeChange = () => {
+        history.push({
+            pathname: "/admin/analytics/show",
+            state: { orders: user },
+        });
     };
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const onChangeUser = (event) => {
-        setUser(event.target.value);
-    };
+
 
     const button_style = {
         background: "#222258",
@@ -33,34 +32,33 @@ const Analytics = () => {
         width: "100%",
     };
 
+    const options = [
+        { value: "Employees", label: 'Employees' },
+        { value: "Shoppers", label: 'Shoppers' },
+    ]
+
     const buttonClicked = () => {
         if(user === null)
         {
             alert("Make sure you entered all information!")
             return
         }
-        const Users = {
-            "Users": [user]
-        }
-        //const res = list_getAnalytics(Users, token)
-        //console.log(res)
-        handleClickOpen()
+
+        routeChange()
+
     }
 
-	return (
-		<div>
+    return (
+        <div>
             <h1 style={{textAlign: 'center', fontSize: '120%'}}> Analytics </h1>
             <div style={{padding: '20px'}}>
-                <h1 style={{fontSize: '80%'}}> User</h1>
-                <TextField
-                    id="User"
-                    label="Enter user"
+
+                <Select
+                    id="Side"
+                    onChange={setUser}
                     value={user}
-                    onChange={onChangeUser}
-                    fullWidth={true}
-                    variant="outlined"
-                    inputProps={{ style: {backgroundColor: '#F6F6F6'}}}
-                />
+                    options={options}
+                    placeholder="Select"/>
             </div>
 
             <div style={{paddingLeft: '20px', paddingRight: '20px'}}>
@@ -73,23 +71,8 @@ const Analytics = () => {
                 </Button>
             </div>
 
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    {itemsPerHour}
-                </DialogTitle>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Ok
-                    </Button>
-                </DialogActions>
-            </Dialog>
-		</div>
-	);
+        </div>
+    );
 };
 
 export default Analytics;

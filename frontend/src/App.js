@@ -32,6 +32,7 @@ import OrdersEmployee from "./employee/ordersEmployee/OrdersEmployee";
 import NavbarAdmin from "./admin/NavbarAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
 import Analytics from "./admin/analytics/Analytics";
+import ShowAnalytics from "./admin/analytics/ShowAnalytics";
 import ProfileAdmin from "./admin/Profile";
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
@@ -41,6 +42,7 @@ import AssignOrders from "./admin/AssignOrders/AssignOrders";
 import AssignEmployees from "./admin/AssignOrders/AssignEmployees";
 //ABOUt
 import About from "./About";
+
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
@@ -123,6 +125,10 @@ const App = () => {
 						<Route exact path="/admin/analytics">
 							<NavbarAdmin />
 							<Analytics />
+						</Route>
+						<Route exact path="/admin/analytics/show">
+							<NavbarAdmin />
+							<ShowAnalytics />
 						</Route>
 						<Route exact path="/admin/inventory/additem">
 							<NavbarAdmin />
