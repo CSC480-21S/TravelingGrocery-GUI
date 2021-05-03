@@ -47,6 +47,7 @@ const EditList = ({ set_isEdit }) => {
 	useEffect(() => {
 		if (new_Items.length === 0) history.push(`${location.pathname}/store`);
 	}, [history, location.pathname, new_Items.length]);
+	//---------------TESTING STUFF
 
 	return (
 		<div className={styles.mainContainer}>

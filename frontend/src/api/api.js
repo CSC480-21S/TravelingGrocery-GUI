@@ -197,9 +197,9 @@ export const add_employee = (employee, token) =>
 		})
 		.catch((e) => console.log(`upgrade: ${e.message}`));
 
-export const get_employees = (token) =>
+export const get_employees = (token, userType) =>
 	axios
-		.get(`${url_user}/Upgrade`, {
+		.get(`${url_user}/Upgrade/${userType}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		.catch((e) => console.log(e));

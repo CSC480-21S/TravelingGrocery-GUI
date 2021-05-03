@@ -21,5 +21,7 @@ export default makeStyles((theme) => ({
 		background: "#222258",
 		color: "#FFFFFF",
 	},
-	confirm: {},
+	confirm: {
+		position: "absolute",
+	},
 }));

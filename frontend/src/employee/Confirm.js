@@ -8,13 +8,13 @@ import CheckOutlinedIcon from "@material-ui/icons/CheckOutlined";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 //API
-import { list_update } from "../api/api";
+import { list_update, updateAnalytic } from "../api/api";
 //ACTIONS
 
 //Styles
 import makeStyles from "./ConfirmStyles";
 
-const Confirm = ({ onConfirm, set_onConfirm }) => {
+const Confirm = ({ onConfirm, set_onConfirm, itemQuantity, init }) => {
 	//const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 	//States from the Store
 	const lists_toUpdate = useSelector((state) => state.active_list);
@@ -28,12 +28,21 @@ const Confirm = ({ onConfirm, set_onConfirm }) => {
 	};
 
 	const handle_Accept = async () => {
+		const final = new Date();
+		const timeShopped = (final.getTime() - init.getTime()) / 60000; //in minutes
+		const data = {
+			token: token,
+			incrementItemsShopped: itemQuantity,
+			incrementTimeShopped: Math.round(timeShopped),
+		};
 		lists_toUpdate.forEach(async (list) => {
 			list.listShoppedFlag = 1;
-			await list_update(list.shoppingListID, list, token);
+			//await list_update(list.shoppingListID, list, token);
 		});
-		//console.log(JSON.stringify(lists_toUpdate));
-		history.push("/login");
+		const { data: test } = await updateAnalytic(data);
+		console.log(test);
+		console.log(data);
+		//history.push("/login");
 	};
 
 	return (

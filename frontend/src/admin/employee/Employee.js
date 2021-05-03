@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import EmployeeInfo from "./EmployeeInfo";
-import {useHistory} from "react-router-dom";
-import {get_employees} from "../../api/api";
-import {useSelector} from "react-redux";
+import { useHistory } from "react-router-dom";
+import { get_employees } from "../../api/api";
+import { useSelector } from "react-redux";
 
 const Employee = () => {
 	const history = useHistory();
 	const token = useState(useSelector((state) => state.user.tk.tk))[0];
 
-	const routeChange = () =>{
+	const routeChange = () => {
 		let path = "/admin/addEmployee";
 
 		history.push(path);
-	}
+	};
 
 	const task = {
 		background: "#f4f4f4",
@@ -27,20 +27,18 @@ const Employee = () => {
 		padding: "10px 20px",
 		height: "100px",
 		cursor: "pointer",
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
 	};
 
 	const [employees, setEmployees] = useState([]);
 
-	const axios = require("axios");
-
 	const getCurrentEmployees = async () => {
 		try {
-			const res = await get_employees(token);
-			console.log(res.data.employees)
-			setEmployees(res.data.employees);
+			const res = await get_employees(token, "employee");
+			//console.log("From Look Employees: " + JSON.stringify(res.data.users));
+			setEmployees(res.data.users);
 		} catch (e) {
 			console.error(e);
 		}
@@ -58,12 +56,14 @@ const Employee = () => {
 				position: "relative",
 			}}
 		>
-			<h1 style={{fontSize: '120%', zIndex: -1, position: 'relative'}}>Employees</h1>
+			<h1 style={{ fontSize: "120%", zIndex: -1, position: "relative" }}>
+				Employees
+			</h1>
 			{employees.map((employee) => (
 				<EmployeeInfo
 					key={employee.id}
 					task={task}
-					bool={employee.userShoppingBool === 1? "On Clock" : "Off Clock"}
+					bool={employee.userShoppingBool === 1 ? "On Clock" : "Off Clock"}
 					name={employee.email}
 				/>
 			))}

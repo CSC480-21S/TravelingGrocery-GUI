@@ -16,7 +16,9 @@ const NavigationEmployee = () => {
 	const directions = useSelector((state) => state.storeNav);
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
+	const [itemQuantity, set_itemQuantity] = useState(0);
 	const history = useHistory();
+	const init = new Date();
 
 	//	REGULAR METHODS 	=============================================
 	const increment = () => {
@@ -39,6 +41,9 @@ const NavigationEmployee = () => {
 		}
 	};
 	const onFinish = () => {
+		let count = 0;
+		directions.forEach((item) => (count += item.itemQuantity));
+		set_itemQuantity(count);
 		set_onConfirm(true);
 	};
 
@@ -49,7 +54,12 @@ const NavigationEmployee = () => {
 
 	return (
 		<div className="Navigation">
-			<Confirm onConfirm={onConfirm} set_onConfirm={set_onConfirm} />
+			<Confirm
+				onConfirm={onConfirm}
+				set_onConfirm={set_onConfirm}
+				itemQuantity={itemQuantity}
+				init={init}
+			/>
 			<div className="header">
 				{!finished ? (
 					<div className="percent">

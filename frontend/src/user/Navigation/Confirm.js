@@ -35,17 +35,16 @@ const Confirm = ({
 	const handle_Accept = async () => {
 		navList.listShoppedFlag = 1;
 		const final = new Date();
-		const timeShopped = final.getTime() - init.getTime();
+		const timeShopped = (final.getTime() - init.getTime()) / 60000; //in minutes
 		const data = {
 			token: token,
 			incrementItemsShopped: itemQuantity,
 			incrementTimeShopped: timeShopped,
 		};
 		//console.log(JSON.stringify(data));
-		//console.log(JSON.stringify(navList));
-		const { data: response } = await updateAnalytic(data);
-		console.log(response);
-		//await list_update(getShoppingListID(), navList, token);
+
+		await updateAnalytic(data);
+		await list_update(getShoppingListID(), navList, token);
 		//history.push("/home");
 	};
 
