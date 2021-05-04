@@ -1,13 +1,13 @@
 import React, {  useState } from "react";
 import {useLocation} from "react-router-dom";
 
-const Analytic = ({name, stat}) => {
+const Analytic = ({name, totalTime, totalItems, stat}) => {
 
     const container = {
-        background: color,
+        background: '#f4f4f4',
         margin: "5px",
         padding: "10px 20px",
-        height: "100px",
+        height: "130px",
         borderRadius: "15px",
         cursor: "pointer",
         outline: "none",
@@ -17,7 +17,7 @@ const Analytic = ({name, stat}) => {
     const leftelement = {
         display: "inline-block",
         float: "left",
-        width: "50px",
+        width: "100px",
         textAlign: "left",
     };
 
@@ -32,12 +32,16 @@ const Analytic = ({name, stat}) => {
         <div style={container}>
             <div style={leftelement}>
                 <p style={{ fontSize: "50%", fontWeight: "bold" }}>Name:</p>
-                <p style={{ fontSize: "50%", fontWeight: "bold" }}>Average Items Shopped Per List:</p>
+                <p style={{ fontSize: "50%", fontWeight: "bold" }}>Total Items:</p>
+                <p style={{ fontSize: "50%", fontWeight: "bold" }}>Total Time:</p>
+                <p style={{ fontSize: "50%", fontWeight: "bold" }}>Items/Minutes:</p>
             </div>
 
             <div style={rightelement}>
                 <p style={{ fontSize: "50%" }}>{name}</p>
-                <p style={{ fontSize: "50%" }}>{stat}</p>
+                <p style={{ fontSize: "50%" }}>{totalItems} items</p>
+                <p style={{ fontSize: "50%" }}>{totalTime} minutes</p>
+                <p style={{ fontSize: "50%" }}>{stat} item/min</p>
             </div>
         </div>
     )

@@ -33,8 +33,8 @@ const Analytics = () => {
     };
 
     const options = [
-        { value: "Employees", label: 'Employees' },
-        { value: "Shoppers", label: 'Shoppers' },
+        { value: "Employee", label: 'Employee' },
+        { value: "Shopper", label: 'Shopper' },
     ]
 
     const buttonClicked = () => {

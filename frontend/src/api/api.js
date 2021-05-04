@@ -178,9 +178,18 @@ export const store_addItems = (items, token) =>
 // Authenticate user with backend -------------------------
 export const userAccount_login = (token) =>
 	axios.post(`${url_user}/records`, token);
+
 // Update Analytic
 export const updateAnalytic = (data) =>
 	axios.put(`${url_user}/analytics`, data);
+
+// Get Analytic
+export const getAnalytics = (token, userType) =>
+	axios
+		.get(`${url_user}/Upgrade/${userType}~`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+		.catch((e) => console.log(e))
 ////--------------------	Admin 	-------------------------
 
 export const unassignedList = (token) =>
