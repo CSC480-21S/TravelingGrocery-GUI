@@ -19,11 +19,9 @@ import SearchBar from "./Search_Bar/Search_Bar";
 //Actions
 import { set_list_to_be_updated } from "../../../actions/actions";
 
-
 const RegularLists = ({ items, set_isEdit }) => {
 	const styles = makeStyles();
-    const dispatch = useDispatch();
-    
+	const dispatch = useDispatch();
 
 	const [onDelete, set_onDelete] = useState(false);
 	const [onShare, set_onShare] = useState(false);
@@ -54,10 +52,8 @@ const RegularLists = ({ items, set_isEdit }) => {
 
 	const handleNoItems = (e) => {
 		e.preventDefault();
-		alert("Cannot share empty list")
-	}
-
-    
+		alert("Cannot share empty list");
+	};
 
 	useEffect(() => {}, []);
 	return (
@@ -81,7 +77,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 						<Typography
 							style={{
 								//fontFamily: "Inter",
-                                //font: "larger",
+								//font: "larger",
 								fontStyle: "normal",
 								fontWeight: 600,
 							}}
@@ -102,22 +98,24 @@ const RegularLists = ({ items, set_isEdit }) => {
 								Delete
 							</Button>
 						</div>
-                        <div>
-							{items.length > 0 ?
-								<Link to={{
-									pathname: '/shareList',
-									
-								}} style={{textDecoration: 'none'}}> 
-								<Button
-									fontSize="small"
-									startIcon={<ShareIcon />}
-									className={styles.topIconButton2}
-									//onClick={handleShare}
+						<div>
+							{items.length > 0 ? (
+								<Link
+									to={{
+										pathname: "/shareList",
+									}}
+									style={{ textDecoration: "none" }}
 								>
-									Share
-								</Button>
+									<Button
+										fontSize="small"
+										startIcon={<ShareIcon />}
+										className={styles.topIconButton2}
+										//onClick={handleShare}
+									>
+										Share
+									</Button>
 								</Link>
-								:
+							) : (
 								<Button
 									fontSize="small"
 									startIcon={<ShareIcon />}
@@ -126,7 +124,7 @@ const RegularLists = ({ items, set_isEdit }) => {
 								>
 									Share
 								</Button>
-							}
+							)}
 						</div>
 						<div>
 							<Button
@@ -155,8 +153,8 @@ const RegularLists = ({ items, set_isEdit }) => {
 							: filteredList.map((item) => <RegularItem item={item} />)}
 					</div>
 
-					<div>
-						<StartShooping items = {items}/>
+					<div className={styles.startShopping}>
+						<StartShooping items={items} />
 					</div>
 				</>
 			)}

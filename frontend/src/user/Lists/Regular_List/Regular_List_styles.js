@@ -99,4 +99,10 @@ export default makeStyles((theme) => ({
 		marginRight: theme.spacing(1.5),
 		marginBottom: theme.spacing(3),
 	},
+	startShopping: {
+		backgroundColor: "white",
+		width: "100%",
+		bottom: 0,
+		zIndex: 20,
+	},
 }));

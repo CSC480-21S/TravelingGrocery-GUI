@@ -18,6 +18,12 @@ export default makeStyles((theme) => ({
 	},
 	item_two: {
 		gridArea: "first2",
+
+		overflowWrap: "break-word",
+		wordWrap: "break-word",
+		wordBreak: "break-word",
+		"*-webkit-hyphens": "auto",
+		hyphens: "auto",
 	},
 	item_three: {
 		gridArea: "first3",
