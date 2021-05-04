@@ -4,7 +4,7 @@ import "../styles/FAQ.css";
 const FAQUser = () => {
     document.title = "FAQ";
     return (
-        <div>
+        <div className="FAQ">
             <h2 className="h1">Frequently Asked Questions:</h2>
             <h4 className="h2">Q: How do I create a list?
                 <p className="p">A: From the dashboard page, click the plus symbol, enter the name of the list, and hit "Create New List".</p>

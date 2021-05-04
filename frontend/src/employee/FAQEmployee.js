@@ -5,7 +5,7 @@ const FAQEmployee = () => {
     document.title = "FAQ";
 
     return (
-        <div>
+        <div className="FAQ">
             <h2 className="h1">Frequently Asked Questions:</h2>
             <h4 className="h2">Q: How do I change my Shopping Availability Status?
             <p className="p">A: Click the "Toggle Active" button.</p>

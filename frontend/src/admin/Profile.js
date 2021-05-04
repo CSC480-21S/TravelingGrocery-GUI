@@ -82,9 +82,11 @@ const Profile = () => {
 					Logout
 				</button>
 				<p></p>
+				{/*}
 				<button className="deleteButton" onClick={handleClickOpen}>
 					Delete Account
 				</button>
+				{*/}
 			</div>
 
 			<Dialog

@@ -1,22 +1,36 @@
 import React, { useState } from "react";
-import "./Navbar.css";
+import "../../styles/Navbar.css";
 import ReorderIcon from "@material-ui/icons/Reorder";
+import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 const Navbar = () => {
 	// Used for showing a button to access nav links when screen size small
     const [showLinks, setShowLinks] = useState(false);
+	const [width, set_width] = useState(window.innerWidth);
 
-    const onClick = () => {
+	const handleResize = () => {
+        set_width(window.innerWidth);
+    };
+
+	const onClick = () => {
         setShowLinks(!showLinks);
-        if(!showLinks) {
+
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+		if (showLinks) {
             document.body.style.overflow = "hidden";
         }
-        else{
+        if (!showLinks) {
             document.body.style.overflow = "auto";
         }
-    }
+		// show scrollbar when hamburger menu not activated
+		// protects against bug where scrollbar dissapears forever all across app
+        if (width >= 900) document.body.style.overflow = "auto";
+    });
 
 	return (
 		<div className="Navbar">

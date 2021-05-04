@@ -6,7 +6,7 @@ const FAQAdmin = () => {
 
     //add a q about how to view employee analytics
     return (
-        <div>
+        <div className="FAQ">
             <h2 className="h1">Frequently Asked Questions:</h2>
 
             <h4 className="h2">Q: How do I assign employees to shop Remote Customer lists?
