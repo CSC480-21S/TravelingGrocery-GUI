@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {get_employees, getAnalytics} from '../../api/api'
-import EmployeeInfo from "../employee/EmployeeInfo";
 import Analytic from "./Analytic";
 
 const ShowAnalytics = () => {
@@ -36,7 +35,7 @@ const ShowAnalytics = () => {
                     name={analytic.email}
                     totalTime={analytic.timeShopped}
                     totalItems={analytic.itemsShopped}
-                    stat={analytic.shoppedItemsPerHour}
+                    stat={!isFinite((analytic.itemsShopped / analytic.timeShopped).toFixed(2)) ? 0 : (analytic.itemsShopped / analytic.timeShopped).toFixed(2)}
                 />
             ))}
         </div>

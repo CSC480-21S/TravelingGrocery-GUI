@@ -7,7 +7,7 @@ import {add_employee} from "../../api/api";
 
 const AddEmployee = () => {
 
-    const token = useState(useSelector((state) => state.user.tk.tk))[0];
+    const token = window.gapi.auth2.getAuthInstance().currentUser.get().tokenId;
 
     const [email, setEmail] = useState();
 
@@ -69,11 +69,17 @@ const AddEmployee = () => {
             "email": email
         }
 
-        const data = await add_employee(employee, token);
+        const data = await add_employee(employee, token).catch(e => console.log(e));
         setMessage(data.data)
         console.log(data);
-
-        handleClickOpen();
+        if(data.data === email + " now updated to Employee")
+        {
+            handleClickOpen();
+        }
+        else if(data.data === "404 User Not Found")
+        {
+            alert("Email doesnt exist!")
+        }
     };
 
     return (
@@ -95,7 +101,7 @@ const AddEmployee = () => {
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">
-                    {message}
+                    Successfully Added Employee!
                 </DialogTitle>
             </Dialog>
         </div>

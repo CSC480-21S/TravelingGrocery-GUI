@@ -129,6 +129,10 @@ const App = () => {
 							<NavbarAdmin />
 							<Analytics />
 						</Route>
+						<Route exact path="/admin/analytics/show">
+							<NavbarAdmin />
+							<ShowAnalytics />
+						</Route>
 						<Route exact path="/admin/inventory/additem">
 							<NavbarAdmin />
 							<AddItem />
