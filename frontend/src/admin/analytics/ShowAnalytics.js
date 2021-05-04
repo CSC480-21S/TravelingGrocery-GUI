@@ -14,7 +14,7 @@ const ShowAnalytics = () => {
     const getAllAnalytics = async () => {
         try {
             const res = await getAnalytics(token, location.state.orders.value);
-            console.log("From Look Employees: " + JSON.stringify(res.data.users));
+            console.log("Analytics: " + JSON.stringify(res.data.users));
             setAnalytics(res.data.users);
         } catch (e) {
             console.error(e);
