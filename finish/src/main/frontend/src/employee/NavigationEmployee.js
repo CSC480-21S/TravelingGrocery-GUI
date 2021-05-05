@@ -18,7 +18,7 @@ const NavigationEmployee = () => {
 	const [finished, setFinished] = useState(false);
 	const [itemQuantity, set_itemQuantity] = useState(0);
 	const history = useHistory();
-	const init = new Date();
+	const [init, set_init] = useState(new Date());
 
 	//	REGULAR METHODS 	=============================================
 	const increment = () => {

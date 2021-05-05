@@ -42,7 +42,7 @@ const Confirm = ({ onConfirm, set_onConfirm, itemQuantity, init }) => {
 		const { data: test } = await updateAnalytic(data);
 		console.log(test);
 		console.log(data);
-		//history.push("/login");
+		history.push("/login");
 	};
 
 	return (

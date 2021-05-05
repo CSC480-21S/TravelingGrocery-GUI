@@ -1,15 +1,37 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../styles/Navbar.css";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 import logo from "../images/logo.png";
 
 const NavbarAdmin = () => {
 	// Used for showing a button to access nav links when screen size small
-	const [showLinks, setShowLinks] = useState(false);
+    const [showLinks, setShowLinks] = useState(false);
+	const [width, set_width] = useState(window.innerWidth);
 
-	//document.title = "Dashboard - Admin";
+	const handleResize = () => {
+        set_width(window.innerWidth);
+    };
+
+	const onClick = () => {
+        setShowLinks(!showLinks);
+
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+		if (showLinks) {
+            document.body.style.overflow = "hidden";
+        }
+        if (!showLinks) {
+            document.body.style.overflow = "auto";
+        }
+		// show scrollbar when hamburger menu not activated
+		// protects against bug where scrollbar dissapears forever all across app
+        if (width >= 900) document.body.style.overflow = "auto";
+    });
 
 	return (
 		<div className="Navbar">
@@ -19,21 +41,21 @@ const NavbarAdmin = () => {
 			<div className="rightSide" id={showLinks ? "hidden" : ""}>
 				{/* If showLinks is true, set id to "hidden" else set to "" */}
 				<div className="links" id={showLinks ? "hidden" : ""}>
-					<Link to="/admin/home" onClick={() => setShowLinks(!showLinks)}>
+                    <Link to="/admin/home" onClick={() => onClick()}>
 						Home
 					</Link>
-					<Link to="/admin/profile" onClick={() => setShowLinks(!showLinks)}>
+                    <Link to="/admin/profile" onClick={() => onClick()}>
 						Profile
 					</Link>
-                    <Link to="/admin/faq" onClick={() => setShowLinks(!showLinks)}>
+                    <Link to="/admin/faq" onClick={() => onClick()}>
                         FAQ
 					</Link>
-                    <Link to="/admin/about" onClick={() => setShowLinks(!showLinks)}>
+                    <Link to="/admin/about" onClick={() => onClick()}>
                         About
                     </Link>
 					{/* NOTE: Put a link to your component here */}
 				</div>
-				<button onClick={() => setShowLinks(!showLinks)}>
+                <button onClick={() => onClick()}>
 					{" "}
 					<ReorderIcon />{" "}
 				</button>

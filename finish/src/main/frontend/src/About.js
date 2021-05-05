@@ -1,6 +1,7 @@
 ﻿import React from "react";
 
 const About = () => {
+	document.title = "About";
 	return (
 		<div className="About" style={{ textAlign: "center" }}>
 			<h2>About</h2>

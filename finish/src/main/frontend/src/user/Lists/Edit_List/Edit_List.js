@@ -48,7 +48,13 @@ const EditList = ({ set_isEdit }) => {
 		if (new_Items.length === 0) history.push(`${location.pathname}/store`);
 	}, [history, location.pathname, new_Items.length]);
 	//---------------TESTING STUFF
-
+	const hasVScroll = () => {
+		console.log(document.body.scrollHeight > window.innerHeight);
+		return document.body.scrollHeight > window.innerHeight;
+	};
+	useEffect(() => {
+		console.log("hasVSroll: " + hasVScroll());
+	});
 	return (
 		<div className={styles.mainContainer}>
 			<div className={styles.firstContainer}>
@@ -76,10 +82,10 @@ const EditList = ({ set_isEdit }) => {
 					</Button>
 				</div>
 			</div>
-			<div>
+			<div className={styles.secondContainer}>
 				<AddItem new_Items={new_Items} />
 			</div>
-			<div>
+			<div className={hasVScroll() && styles.thirdContainer}>
 				{new_Items.map((item) =>
 					item.delete === false ? (
 						<Item
@@ -92,7 +98,7 @@ const EditList = ({ set_isEdit }) => {
 					)
 				)}
 			</div>
-			<div className={styles.confirm}>
+			<div className={hasVScroll() && styles.confirm}>
 				<Confirm new_Items={new_Items} set_isEdit={set_isEdit} />
 			</div>
 		</div>

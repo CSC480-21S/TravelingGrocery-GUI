@@ -32,6 +32,7 @@ import OrdersEmployee from "./employee/ordersEmployee/OrdersEmployee";
 import NavbarAdmin from "./admin/NavbarAdmin";
 import HomeAdmin from "./admin/HomeAdmin";
 import Analytics from "./admin/analytics/Analytics";
+import ShowAnalytics from "./admin/analytics/ShowAnalytics";
 import ProfileAdmin from "./admin/Profile";
 import Employee from "./admin/employee/Employee";
 import Manage from "./admin/manageInventory/Manage";
@@ -39,8 +40,12 @@ import AddEmployee from "./admin/employee/AddEmployee";
 import AddItem from "./admin/manageInventory/AddItem";
 import AssignOrders from "./admin/AssignOrders/AssignOrders";
 import AssignEmployees from "./admin/AssignOrders/AssignEmployees";
-//ABOUt
+//ABOUT
 import About from "./About";
+//FAQ
+import FAQUser from "./user/FAQUser";
+import FAQEmployee from "./employee/FAQEmployee";
+import FAQAdmin from "./admin/FAQAdmin";
 
 const App = () => {
 	const [bol, set_bol] = useState(null);
@@ -92,7 +97,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/employee/faq">
 							<NavbarEmployee />
-							<h3>UNDER CONSTRUCTION</h3>
+                            				<FAQEmployee />
 						</Route>
 						<Route exact path="/employee/about">
 							<NavbarEmployee />
@@ -124,6 +129,10 @@ const App = () => {
 							<NavbarAdmin />
 							<Analytics />
 						</Route>
+						<Route exact path="/admin/analytics/show">
+							<NavbarAdmin />
+							<ShowAnalytics />
+						</Route>
 						<Route exact path="/admin/inventory/additem">
 							<NavbarAdmin />
 							<AddItem />
@@ -142,7 +151,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/admin/faq">
 							<NavbarAdmin />
-							<h3>UNDER CONSTRUCTION</h3>
+                            				<FAQAdmin />
 						</Route>
 						<Route exact path="/admin/about">
 							<NavbarAdmin />
@@ -177,7 +186,6 @@ const App = () => {
 							<NavigationUser />
 						</Route>
 						<Route exact path="/user/offline_navigation">
-							<NavbarUser />
 							<NavigationOfflineUser />
 						</Route>
 						<Route exact path="/profile">
@@ -190,7 +198,7 @@ const App = () => {
 						</Route>
 						<Route exact path="/faq">
 							<NavbarUser />
-							<h3>UNDER CONSTRUCTION</h3>
+                            				<FAQUser />
 						</Route>
 						<Route exact path="/about">
 							<NavbarUser />
@@ -198,28 +206,6 @@ const App = () => {
 						</Route>
 					</Switch>
 				)}
-				{/* TEST/DEBUGGING routing  */}
-				<Route exact path="/developer">
-					<h3>User Stuff</h3>
-					<Link to="/home">
-						<p>User home</p>
-					</Link>
-					<Link to="/user/navigation">
-						<p>User navigation</p>
-					</Link>
-					<Link to="/user/offline_navigation">
-						<p>Offline user navigation</p>
-					</Link>
-					<h3>Employee Stuff</h3>
-					<Link to="/employee/home">
-						<p>Employee home</p>
-					</Link>
-					<h3>Admin Stuff</h3>
-					<Link to="/admin/home">
-						<p>Admin home</p>
-					</Link>
-				</Route>
-
 				<Route path="/">
 					{!bol && <Redirect to="/login" />}
 					<p>Does not Exist</p>

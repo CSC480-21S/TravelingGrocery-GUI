@@ -39,13 +39,15 @@ const Confirm = ({
 		const data = {
 			token: token,
 			incrementItemsShopped: itemQuantity,
-			incrementTimeShopped: timeShopped,
+			incrementTimeShopped: Math.round(timeShopped),
 		};
-		//console.log(JSON.stringify(data));
+		console.log(init.getTime());
+		console.log(timeShopped);
+		console.log(JSON.stringify(data));
 
 		await updateAnalytic(data);
 		await list_update(getShoppingListID(), navList, token);
-		//history.push("/home");
+		history.push("/home");
 	};
 
 	return (
