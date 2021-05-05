@@ -19,7 +19,7 @@ const NavigationUser = () => {
 	const [index, setIndex] = useState(0);
 	const [finished, setFinished] = useState(false);
 	const [itemQuantity, set_itemQuantity] = useState(0);
-	const init = new Date();
+	const [init, set_init] = useState(new Date());
 
 	const history = useHistory();
 

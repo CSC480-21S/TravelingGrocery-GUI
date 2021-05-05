@@ -41,6 +41,8 @@ const Confirm = ({
 			incrementItemsShopped: itemQuantity,
 			incrementTimeShopped: Math.round(timeShopped),
 		};
+		console.log(init.getTime());
+		console.log(timeShopped);
 		console.log(JSON.stringify(data));
 
 		await updateAnalytic(data);
